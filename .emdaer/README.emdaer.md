@@ -25,7 +25,5 @@
 <!--emdaer-t
   - '@emdaer/transform-prettier'
   - options:
-      proseWrap: preserve
-      singleQuote: true
-      trailingComma: es5
+    config: ./prettier.config.js
 -->
