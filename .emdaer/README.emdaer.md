@@ -25,6 +25,8 @@
   - value: description
 -->
 
+## Contributors
+EditVR is brought to you with love by Four Kitchens.
 <!--emdaer-p
   - '@emdaer/plugin-contributors-details-github'
 -->

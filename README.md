@@ -5,12 +5,14 @@
 -->
 
 <!--
-  emdaerHash:ac7f98da74b655446b222670da61b8a9
+  emdaerHash:dbfb5d97c5af54618c16eafdc56fcebe
 -->
 
 <h1 id="editvr-frontend">editvr-frontend</h1>
 <p><a href="https://circleci.com/gh/EditVR/editvr-frontend"><img src="https://img.shields.io/circleci/project/github/EditVR/editvr-frontend.svg?style=flat-square" alt="CircleCI"></a> <a href="https://github.com/emdaer/emdaer"><img src="https://img.shields.io/badge/📓-documented%20with%20emdaer-F06632.svg?style=flat-square" alt="Documented with emdaer"></a> <a href="http://commitizen.github.io/cz-cli/"><img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square" alt="Commitizen friendly"></a></p>
 <p>Editorial frontend, driven by EditVR’s API.</p>
+<h2 id="contributors">Contributors</h2>
+<p>EditVR is brought to you with love by Four Kitchens.</p>
 <details>
 <summary><strong>Contributors</strong></summary><br>
 <a title="I write software, mainly JS (Node), Go, and PHP." href="https://github.com/patrickocoffeyo">
