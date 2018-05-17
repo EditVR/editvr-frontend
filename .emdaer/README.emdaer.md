@@ -15,7 +15,7 @@
         link: 'https://github.com/emdaer/emdaer'
         style: 'flat-square'
       - alt: 'Commitizen friendly'
-        image: 'badge/commitizen-friendly-bright-green.svg'
+        image: 'badge/commitizen-friendly-brightgreen.svg'
         link: 'http://commitizen.github.io/cz-cli/'
         style: 'flat-square'
 -->

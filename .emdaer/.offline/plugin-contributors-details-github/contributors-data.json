@@ -7,19 +7,14 @@
     "url": "https://api.github.com/users/patrickocoffeyo",
     "html_url": "https://github.com/patrickocoffeyo",
     "followers_url": "https://api.github.com/users/patrickocoffeyo/followers",
-    "following_url":
-      "https://api.github.com/users/patrickocoffeyo/following{/other_user}",
+    "following_url": "https://api.github.com/users/patrickocoffeyo/following{/other_user}",
     "gists_url": "https://api.github.com/users/patrickocoffeyo/gists{/gist_id}",
-    "starred_url":
-      "https://api.github.com/users/patrickocoffeyo/starred{/owner}{/repo}",
-    "subscriptions_url":
-      "https://api.github.com/users/patrickocoffeyo/subscriptions",
+    "starred_url": "https://api.github.com/users/patrickocoffeyo/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/patrickocoffeyo/subscriptions",
     "organizations_url": "https://api.github.com/users/patrickocoffeyo/orgs",
     "repos_url": "https://api.github.com/users/patrickocoffeyo/repos",
-    "events_url":
-      "https://api.github.com/users/patrickocoffeyo/events{/privacy}",
-    "received_events_url":
-      "https://api.github.com/users/patrickocoffeyo/received_events",
+    "events_url": "https://api.github.com/users/patrickocoffeyo/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/patrickocoffeyo/received_events",
     "type": "User",
     "site_admin": false,
     "name": "Patrick Coffey",

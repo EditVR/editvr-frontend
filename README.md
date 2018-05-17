@@ -5,11 +5,11 @@
 -->
 
 <!--
-  emdaerHash:a20a3c1cd4cea5e98369113652c9d0db
+  emdaerHash:7b7826c112641a00cf7489583ee7cbaf
 -->
 
 <h1 id="editvr-frontend">editvr-frontend</h1>
-<p><a href="https://circleci.com/gh/EditVR/editvr-frontend"><img src="https://img.shields.io/circleci/project/github/EditVR/editvr-frontend.svg?style=flat-square" alt="CircleCI"></a> <a href="https://github.com/emdaer/emdaer"><img src="https://img.shields.io/badge/📓-documented%20with%20emdaer-F06632.svg?style=flat-square" alt="Documented with emdaer"></a> <a href="http://commitizen.github.io/cz-cli/"><img src="https://img.shields.io/badge/commitizen-friendly-bright-green.svg?style=flat-square" alt="Commitizen friendly"></a></p>
+<p><a href="https://circleci.com/gh/EditVR/editvr-frontend"><img src="https://img.shields.io/circleci/project/github/EditVR/editvr-frontend.svg?style=flat-square" alt="CircleCI"></a> <a href="https://github.com/emdaer/emdaer"><img src="https://img.shields.io/badge/📓-documented%20with%20emdaer-F06632.svg?style=flat-square" alt="Documented with emdaer"></a> <a href="http://commitizen.github.io/cz-cli/"><img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square" alt="Commitizen friendly"></a></p>
 <p>undefined</p>
 <details>
 <summary><strong>Contributors</strong></summary><br>
