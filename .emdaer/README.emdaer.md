@@ -22,6 +22,10 @@
   - value: description
 -->
 
+<!--emdaer-p
+  - '@emdaer/plugin-contributors-details-github'
+-->
+
 <!--emdaer-t
   - '@emdaer/transform-prettier'
   - options:
