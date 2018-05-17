@@ -40,8 +40,7 @@
 This project makes use of Jest and Enzyme. Test files should be located in the same directory as the component the test file is testing, or in the `__test__` directory.
 
  - To watch files and run tests: `yarn test`.
- - To run tests and then exit: `yarn test:ci`.
- - To update snapshot files: `yarn test -u`.
+ - To see test coverage reports: `yarn coverage`.
 
 For more information about tests on this project, please read this documentation:
  - [Jest Documentation](https://facebook.github.io/jest/).
