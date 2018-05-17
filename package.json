@@ -12,9 +12,15 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "prettier": "prettier --write \"**/*.{js,jsx,json,css}\""
+    "prettier": "prettier --write \"**/*.{js,jsx,json,css}\"",
+    "precommit": "lint-staged"
   },
   "devDependencies": {
+    "husky": "^0.14.3",
+    "lint-staged": "^7.1.0",
     "prettier": "^1.12.1"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,json,css}": ["prettier --write", "git add"]
   }
 }
