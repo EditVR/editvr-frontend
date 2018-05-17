@@ -11,10 +11,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "test:ci": "CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "prettier": "prettier --write \"**/*.{js,jsx,json,css}\"",
     "lint": "eslint --ext .jsx,.js .",
-    "precommit": "lint-staged ; yarn lint"
+    "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
+    "precommit": "lint-staged ; yarn lint ; yarn test:ci"
   },
   "devDependencies": {
     "enzyme": "^3.3.0",
@@ -31,9 +33,6 @@
     "react-test-renderer": "^16.3.2"
   },
   "lint-staged": {
-    "**/*.{js,jsx,json,css}": [
-      "prettier --write",
-      "git add"
-    ]
+    "**/*.{js,jsx,json,css}": ["prettier --write", "git add"]
   }
 }
