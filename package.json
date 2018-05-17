@@ -13,9 +13,16 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "prettier": "prettier --write \"**/*.{js,jsx,json,css}\"",
-    "precommit": "lint-staged"
+    "lint": "eslint --ext .jsx,.js .",
+    "precommit": "lint-staged ; yarn lint"
   },
   "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.2",
     "husky": "^0.14.3",
     "lint-staged": "^7.1.0",
     "prettier": "^1.12.1"
