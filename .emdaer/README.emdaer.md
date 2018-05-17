@@ -25,5 +25,5 @@
 <!--emdaer-t
   - '@emdaer/transform-prettier'
   - options:
-    config: ./prettier.config.js
+      config: ./prettier.config.js
 -->
