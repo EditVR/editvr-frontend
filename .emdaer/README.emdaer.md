@@ -29,6 +29,12 @@
   - '@emdaer/plugin-contributors-details-github'
 -->
 
+## License
+
+<!--emdaer-p
+  - '@emdaer/plugin-license-reference'
+-->
+
 <!--emdaer-t
   - '@emdaer/transform-prettier'
   - options:

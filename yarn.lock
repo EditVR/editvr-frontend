@@ -172,6 +172,12 @@
     glob "^7.1.2"
     node-fetch "^1.7.3"
 
+"@emdaer/plugin-license-reference@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@emdaer/plugin-license-reference/-/plugin-license-reference-3.0.0.tgz#6baec53d14dda29f80232080cc9f15ed64cc40c7"
+  dependencies:
+    "@emdaer/plugin-value-from-package" "^3.0.0"
+
 "@emdaer/plugin-shields@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@emdaer/plugin-shields/-/plugin-shields-3.0.0.tgz#8cf584319df41b18cd5f6b07da78a090a7aa4b64"

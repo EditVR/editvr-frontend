@@ -5,7 +5,7 @@
 -->
 
 <!--
-  emdaerHash:b90f70b3596720f78990f5c96aad7b39
+  emdaerHash:ac7f98da74b655446b222670da61b8a9
 -->
 
 <h1 id="editvr-frontend">editvr-frontend</h1>
@@ -20,4 +20,5 @@
 <br><br>
 </details>
 
-
+<h2 id="license">License</h2>
+<p>editvr-frontend is <a href="./LICENSE">GPL-3.0 licensed</a>.</p>
