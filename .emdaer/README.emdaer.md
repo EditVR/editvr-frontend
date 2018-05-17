@@ -14,6 +14,10 @@
         image: 'badge/📓-documented%20with%20emdaer-F06632.svg'
         link: 'https://github.com/emdaer/emdaer'
         style: 'flat-square'
+      - alt: 'Commitizen friendly'
+        image: 'badge/commitizen-friendly-bright-green.svg'
+        link: 'http://commitizen.github.io/cz-cli/'
+        style: 'flat-square'
 -->
 
 
