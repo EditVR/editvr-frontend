@@ -1,0 +1,39 @@
+[
+  {
+    "login": "patrickocoffeyo",
+    "id": 1107871,
+    "avatar_url": "https://avatars0.githubusercontent.com/u/1107871?s=24",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/patrickocoffeyo",
+    "html_url": "https://github.com/patrickocoffeyo",
+    "followers_url": "https://api.github.com/users/patrickocoffeyo/followers",
+    "following_url":
+      "https://api.github.com/users/patrickocoffeyo/following{/other_user}",
+    "gists_url": "https://api.github.com/users/patrickocoffeyo/gists{/gist_id}",
+    "starred_url":
+      "https://api.github.com/users/patrickocoffeyo/starred{/owner}{/repo}",
+    "subscriptions_url":
+      "https://api.github.com/users/patrickocoffeyo/subscriptions",
+    "organizations_url": "https://api.github.com/users/patrickocoffeyo/orgs",
+    "repos_url": "https://api.github.com/users/patrickocoffeyo/repos",
+    "events_url":
+      "https://api.github.com/users/patrickocoffeyo/events{/privacy}",
+    "received_events_url":
+      "https://api.github.com/users/patrickocoffeyo/received_events",
+    "type": "User",
+    "site_admin": false,
+    "name": "Patrick Coffey",
+    "company": "@fourkitchens ",
+    "blog": "http://patrickcoffey.io",
+    "location": "Austin Texas",
+    "email": null,
+    "hireable": null,
+    "bio": "I write software, mainly JS (Node), Go, and PHP.",
+    "public_repos": 38,
+    "public_gists": 10,
+    "followers": 79,
+    "following": 55,
+    "created_at": "2011-10-06T15:33:05Z",
+    "updated_at": "2018-05-16T19:16:48Z"
+  }
+]
