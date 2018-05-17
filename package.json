@@ -43,7 +43,8 @@
     "lint": "eslint --ext .jsx,.js .",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
-    "precommit": "lint-staged ; yarn lint ; yarn test:ci"
+    "precommit":
+      "lint-staged -c lint-staged.config.js ; yarn lint ; yarn test:ci"
   },
   "devDependencies": {
     "@commitlint/cli": "^6.2.0",
