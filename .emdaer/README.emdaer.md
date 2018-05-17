@@ -20,7 +20,6 @@
         style: 'flat-square'
 -->
 
-
 <!--emdaer-p
   - '@emdaer/plugin-value-from-package'
   - value: description
