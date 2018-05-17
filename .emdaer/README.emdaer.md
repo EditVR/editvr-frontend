@@ -25,6 +25,37 @@
   - value: description
 -->
 
+## Requirements
+
+ - Node.js (See `package.json:engines` for correct version).
+ - Yarn
+
+## Setup
+
+ - Clone this repository.
+ - In this repository's root folder, run: `yarn`.
+ - To start the dev server, run: `yarn start`.
+
+## Testing
+This project makes use of Jest and Enzyme. Test files should be located in the same directory as the component the test file is testing, or in the `__test__` directory.
+
+ - To watch files and run tests: `yarn test`.
+ - To run tests and then exit: `yarn test:ci`.
+ - To update snapshot files: `yarn test -u`.
+
+For more information about tests on this project, please read this documentation:
+ - [Jest Documentation](https://facebook.github.io/jest/).
+ - [Enzyme Documentation](https://github.com/airbnb/enzyme).
+
+## Deployment
+This project is automatically deployed when changes are merged from the `develop` branch into the `master` branch.
+
+ - To generate a production build: `yarn build`.
+ - To deploy EditVR: `yarn deploy`.
+
+## Contributing
+The process around contributing to this codebase and the workflow by which code changes are proposed and accepted into this project are documented [here](./.github/CONTRIBUTING.md).
+
 ## Contributors
 EditVR is brought to you with love by Four Kitchens.
 <!--emdaer-p
