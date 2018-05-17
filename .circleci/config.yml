@@ -34,6 +34,6 @@ jobs:
             git config --global user.email "editvr@fourkitchens.com"
             git config --global user.name "EditVR Bot"
             git fetch --tags
-            #yarn semantic-release
+            yarn semantic-release
             yarn deploy
           fi
