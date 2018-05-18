@@ -1,17 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/**
+ * @file App.js
+ * Exports a React component that handles routing.
+ */
+
+import React, { Fragment } from 'react';
+import { HashRouter as Router, Route } from 'react-router-dom';
+import { MuiThemeProvider, CssBaseline } from '@material-ui/core';
+
+import { Home } from './pages';
+
+import muiTheme from './styles/muiTheme';
 
 const App = () => (
-  <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <h1 className="App-title">Welcome to React</h1>
-    </header>
-    <p className="App-intro">
-      To get started, edit <code>src/App.js</code> and save to reload.
-    </p>
-  </div>
+  <Fragment>
+    <CssBaseline />
+    <MuiThemeProvider theme={muiTheme}>
+      <Router>
+        <Route exact path="/" component={Home} />
+      </Router>
+    </MuiThemeProvider>
+  </Fragment>
 );
 
 export default App;

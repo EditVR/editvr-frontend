@@ -7,14 +7,19 @@
     "url": "https://api.github.com/users/patrickocoffeyo",
     "html_url": "https://github.com/patrickocoffeyo",
     "followers_url": "https://api.github.com/users/patrickocoffeyo/followers",
-    "following_url": "https://api.github.com/users/patrickocoffeyo/following{/other_user}",
+    "following_url":
+      "https://api.github.com/users/patrickocoffeyo/following{/other_user}",
     "gists_url": "https://api.github.com/users/patrickocoffeyo/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/patrickocoffeyo/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/patrickocoffeyo/subscriptions",
+    "starred_url":
+      "https://api.github.com/users/patrickocoffeyo/starred{/owner}{/repo}",
+    "subscriptions_url":
+      "https://api.github.com/users/patrickocoffeyo/subscriptions",
     "organizations_url": "https://api.github.com/users/patrickocoffeyo/orgs",
     "repos_url": "https://api.github.com/users/patrickocoffeyo/repos",
-    "events_url": "https://api.github.com/users/patrickocoffeyo/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/patrickocoffeyo/received_events",
+    "events_url":
+      "https://api.github.com/users/patrickocoffeyo/events{/privacy}",
+    "received_events_url":
+      "https://api.github.com/users/patrickocoffeyo/received_events",
     "type": "User",
     "site_admin": false,
     "name": "Patrick Coffey",
@@ -39,14 +44,18 @@
     "url": "https://api.github.com/users/americkson",
     "html_url": "https://github.com/americkson",
     "followers_url": "https://api.github.com/users/americkson/followers",
-    "following_url": "https://api.github.com/users/americkson/following{/other_user}",
+    "following_url":
+      "https://api.github.com/users/americkson/following{/other_user}",
     "gists_url": "https://api.github.com/users/americkson/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/americkson/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/americkson/subscriptions",
+    "starred_url":
+      "https://api.github.com/users/americkson/starred{/owner}{/repo}",
+    "subscriptions_url":
+      "https://api.github.com/users/americkson/subscriptions",
     "organizations_url": "https://api.github.com/users/americkson/orgs",
     "repos_url": "https://api.github.com/users/americkson/repos",
     "events_url": "https://api.github.com/users/americkson/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/americkson/received_events",
+    "received_events_url":
+      "https://api.github.com/users/americkson/received_events",
     "type": "User",
     "site_admin": false,
     "name": "Adam Erickson",
@@ -71,14 +80,17 @@
     "url": "https://api.github.com/users/techninja",
     "html_url": "https://github.com/techninja",
     "followers_url": "https://api.github.com/users/techninja/followers",
-    "following_url": "https://api.github.com/users/techninja/following{/other_user}",
+    "following_url":
+      "https://api.github.com/users/techninja/following{/other_user}",
     "gists_url": "https://api.github.com/users/techninja/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/techninja/starred{/owner}{/repo}",
+    "starred_url":
+      "https://api.github.com/users/techninja/starred{/owner}{/repo}",
     "subscriptions_url": "https://api.github.com/users/techninja/subscriptions",
     "organizations_url": "https://api.github.com/users/techninja/orgs",
     "repos_url": "https://api.github.com/users/techninja/repos",
     "events_url": "https://api.github.com/users/techninja/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/techninja/received_events",
+    "received_events_url":
+      "https://api.github.com/users/techninja/received_events",
     "type": "User",
     "site_admin": false,
     "name": "James Todd",
@@ -103,14 +115,18 @@
     "url": "https://api.github.com/users/amazingrando",
     "html_url": "https://github.com/amazingrando",
     "followers_url": "https://api.github.com/users/amazingrando/followers",
-    "following_url": "https://api.github.com/users/amazingrando/following{/other_user}",
+    "following_url":
+      "https://api.github.com/users/amazingrando/following{/other_user}",
     "gists_url": "https://api.github.com/users/amazingrando/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/amazingrando/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/amazingrando/subscriptions",
+    "starred_url":
+      "https://api.github.com/users/amazingrando/starred{/owner}{/repo}",
+    "subscriptions_url":
+      "https://api.github.com/users/amazingrando/subscriptions",
     "organizations_url": "https://api.github.com/users/amazingrando/orgs",
     "repos_url": "https://api.github.com/users/amazingrando/repos",
     "events_url": "https://api.github.com/users/amazingrando/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/amazingrando/received_events",
+    "received_events_url":
+      "https://api.github.com/users/amazingrando/received_events",
     "type": "User",
     "site_admin": false,
     "name": "Randy Oest",
@@ -119,7 +135,8 @@
     "location": "Johnstown, PA",
     "email": null,
     "hireable": null,
-    "bio": "Randy Oest is a designer, developer, and teacher who wants to make people happy and confident online.",
+    "bio":
+      "Randy Oest is a designer, developer, and teacher who wants to make people happy and confident online.",
     "public_repos": 26,
     "public_gists": 5,
     "followers": 19,
@@ -135,14 +152,18 @@
     "url": "https://api.github.com/users/infiniteluke",
     "html_url": "https://github.com/infiniteluke",
     "followers_url": "https://api.github.com/users/infiniteluke/followers",
-    "following_url": "https://api.github.com/users/infiniteluke/following{/other_user}",
+    "following_url":
+      "https://api.github.com/users/infiniteluke/following{/other_user}",
     "gists_url": "https://api.github.com/users/infiniteluke/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/infiniteluke/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/infiniteluke/subscriptions",
+    "starred_url":
+      "https://api.github.com/users/infiniteluke/starred{/owner}{/repo}",
+    "subscriptions_url":
+      "https://api.github.com/users/infiniteluke/subscriptions",
     "organizations_url": "https://api.github.com/users/infiniteluke/orgs",
     "repos_url": "https://api.github.com/users/infiniteluke/repos",
     "events_url": "https://api.github.com/users/infiniteluke/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/infiniteluke/received_events",
+    "received_events_url":
+      "https://api.github.com/users/infiniteluke/received_events",
     "type": "User",
     "site_admin": false,
     "name": "Luke Herrington",
@@ -151,7 +172,8 @@
     "location": "United States",
     "email": null,
     "hireable": null,
-    "bio": "I build multi-channel publishing systems and web applications at @fourkitchens.",
+    "bio":
+      "I build multi-channel publishing systems and web applications at @fourkitchens.",
     "public_repos": 51,
     "public_gists": 1,
     "followers": 24,
@@ -167,14 +189,18 @@
     "url": "https://api.github.com/users/JeffTomlinson",
     "html_url": "https://github.com/JeffTomlinson",
     "followers_url": "https://api.github.com/users/JeffTomlinson/followers",
-    "following_url": "https://api.github.com/users/JeffTomlinson/following{/other_user}",
+    "following_url":
+      "https://api.github.com/users/JeffTomlinson/following{/other_user}",
     "gists_url": "https://api.github.com/users/JeffTomlinson/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/JeffTomlinson/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/JeffTomlinson/subscriptions",
+    "starred_url":
+      "https://api.github.com/users/JeffTomlinson/starred{/owner}{/repo}",
+    "subscriptions_url":
+      "https://api.github.com/users/JeffTomlinson/subscriptions",
     "organizations_url": "https://api.github.com/users/JeffTomlinson/orgs",
     "repos_url": "https://api.github.com/users/JeffTomlinson/repos",
     "events_url": "https://api.github.com/users/JeffTomlinson/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/JeffTomlinson/received_events",
+    "received_events_url":
+      "https://api.github.com/users/JeffTomlinson/received_events",
     "type": "User",
     "site_admin": false,
     "name": "Jeff Tomlinson",
@@ -199,7 +225,8 @@
     "url": "https://api.github.com/users/mirzu",
     "html_url": "https://github.com/mirzu",
     "followers_url": "https://api.github.com/users/mirzu/followers",
-    "following_url": "https://api.github.com/users/mirzu/following{/other_user}",
+    "following_url":
+      "https://api.github.com/users/mirzu/following{/other_user}",
     "gists_url": "https://api.github.com/users/mirzu/gists{/gist_id}",
     "starred_url": "https://api.github.com/users/mirzu/starred{/owner}{/repo}",
     "subscriptions_url": "https://api.github.com/users/mirzu/subscriptions",
@@ -231,14 +258,19 @@
     "url": "https://api.github.com/users/generalredneck",
     "html_url": "https://github.com/generalredneck",
     "followers_url": "https://api.github.com/users/generalredneck/followers",
-    "following_url": "https://api.github.com/users/generalredneck/following{/other_user}",
+    "following_url":
+      "https://api.github.com/users/generalredneck/following{/other_user}",
     "gists_url": "https://api.github.com/users/generalredneck/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/generalredneck/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/generalredneck/subscriptions",
+    "starred_url":
+      "https://api.github.com/users/generalredneck/starred{/owner}{/repo}",
+    "subscriptions_url":
+      "https://api.github.com/users/generalredneck/subscriptions",
     "organizations_url": "https://api.github.com/users/generalredneck/orgs",
     "repos_url": "https://api.github.com/users/generalredneck/repos",
-    "events_url": "https://api.github.com/users/generalredneck/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/generalredneck/received_events",
+    "events_url":
+      "https://api.github.com/users/generalredneck/events{/privacy}",
+    "received_events_url":
+      "https://api.github.com/users/generalredneck/received_events",
     "type": "User",
     "site_admin": false,
     "name": "Allan Chappell",
