@@ -10,7 +10,7 @@ export default theme => ({
     borderRadius: theme.spacing.unit * 3,
     display: 'flex',
     justifyContent: 'center',
-    marginBottom: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit * 4,
     padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 2}px`
   },
   logo: {

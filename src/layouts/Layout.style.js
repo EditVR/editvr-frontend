@@ -9,7 +9,8 @@ export default theme => ({
     padding: '2rem 2rem 5rem',
     width: '100%',
     height: '100%',
-    position: 'absolute'
+    position: 'absolute',
+    overflowX: 'scroll'
   },
   centerColumn: {
     padding: '0 1rem',
