@@ -3,4 +3,6 @@
  * Exports all layout components.
  */
 
-export * from './HomeLayout';
+import ThinLayout from './ThinLayout';
+
+export { ThinLayout };

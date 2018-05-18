@@ -1,21 +1,21 @@
 /**
- * @file HomeLayout.test.js
- * Contains tests for HomeLayout.js.
+ * @file ThinLayout.test.js
+ * Contains tests for ThinLayout.js.
  */
 
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import { HomeLayout } from './index';
+import { ThinLayout } from './index';
 
-describe('<HomeLayout />', () => {
+describe('<ThinLayout />', () => {
   it('Matches its snapshot', () => {
     expect(
       renderer
         .create(
-          <HomeLayout>
+          <ThinLayout>
             <div>child</div>
-          </HomeLayout>
+          </ThinLayout>
         )
         .toJSON()
     ).toMatchSnapshot();

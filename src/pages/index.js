@@ -3,4 +3,7 @@
  * Exports all page components.
  */
 
-export * from './Home';
+import Home from './Home/Home';
+import Login from './Login/Login';
+
+export { Home, Login };

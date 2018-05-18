@@ -12,7 +12,7 @@ export default theme => ({
     position: 'absolute',
     overflowX: 'scroll'
   },
-  centerColumn: {
+  thinWrapper: {
     padding: '0 1rem',
     maxWidth: 600,
     margin: '0 auto',

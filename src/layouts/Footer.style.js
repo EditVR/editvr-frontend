@@ -15,12 +15,17 @@ export default () => ({
     position: 'relative'
   },
   logo: {
-    width: '230px'
+    maxWidth: '230px',
+    width: '100%'
   },
   text: {
     color: 'rgba(255,255,255,.5)',
-    left: '86px',
-    top: '-1px',
-    position: 'absolute'
+    marginBottom: '10px'
+  },
+  '@media (min-width: 380px)': {
+    text: {
+      marginLeft: '86px',
+      marginBottom: '-20px'
+    }
   }
 });
