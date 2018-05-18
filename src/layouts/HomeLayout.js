@@ -7,6 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core';
 
+import ThemeProvider from './ThemeProvider';
 import Footer from './Footer';
 import Header from './Header';
 import LayoutStyles from './Layout.style';
@@ -33,6 +34,6 @@ Home.defaultProps = {
   children: null
 };
 
-const HomeLayout = withStyles(LayoutStyles)(Home);
+const HomeLayout = ThemeProvider(withStyles(LayoutStyles)(Home));
 
 export { HomeLayout };
