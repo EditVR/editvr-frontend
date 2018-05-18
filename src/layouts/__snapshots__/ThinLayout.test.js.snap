@@ -6,7 +6,7 @@ exports[`<ThinLayout /> Matches its snapshot 1`] = `
   id="layout__wrapper"
 >
   <div
-    className={undefined}
+    className="ThinLayout-thinWrapper-2"
     id="layout__thin-wrapper"
   >
     <header
