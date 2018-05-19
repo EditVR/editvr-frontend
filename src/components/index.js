@@ -4,5 +4,6 @@
  */
 
 import LoginForm from './LoginForm/LoginForm';
+import Loading from './Loading/Loading';
 
-export { LoginForm };
+export { LoginForm, Loading };
