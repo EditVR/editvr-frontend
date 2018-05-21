@@ -9,13 +9,14 @@ import { LinearProgress, Typography, withStyles } from '@material-ui/core';
 
 import LoadingStyles from './Loading.style';
 
-const Loading = ({ classes: { wrapper, spinner, title } }) =>
+const Loading = ({ classes: { wrapper, spinner, title } }) => (
   <div className={wrapper}>
     <LinearProgress className={spinner} />
     <Typography className={title} type="display1">
       Loading...
     </Typography>
-  </div>;
+  </div>
+);
 
 Loading.propTypes = {
   classes: PropTypes.shape({

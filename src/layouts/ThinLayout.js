@@ -7,7 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core';
 
-import ThemeProvider from './ThemeProvider';
+import { ThemeProvider } from '../hoc';
 import Footer from './Footer';
 import Header from './Header';
 import LayoutStyles from './Layout.style';

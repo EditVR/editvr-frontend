@@ -10,12 +10,12 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import App from './App';
 import { Loading } from './components';
-import { ThemeProvider } from './layouts';
+import { ThemeProvider } from './hoc';
 import registerServiceWorker from './registerServiceWorker';
 import { store, persistor } from './lib/reduxStore';
 
 // Create a theme-wrapped loading screen.
-const PersistLoader = ThemeProvider(() => (<Loading />));
+const PersistLoader = ThemeProvider(() => <Loading />);
 
 ReactDOM.render(
   <Provider store={store}>

@@ -8,6 +8,7 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 import { CssBaseline } from '@material-ui/core';
 
 import { Home, Login } from './pages';
+import { PrivateRoute, PublicRoute } from './components';
 
 const App = () => (
   <Fragment>
@@ -15,7 +16,8 @@ const App = () => (
     <Router>
       <Fragment>
         <Route exact path="/" component={Home} />
-        <Route path="/login" component={Login} />
+        <PublicRoute path="/login" component={Login} />
+        <PrivateRoute path="/experiences" component={Home} />
       </Fragment>
     </Router>
   </Fragment>

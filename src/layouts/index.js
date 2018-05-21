@@ -4,6 +4,5 @@
  */
 
 import ThinLayout from './ThinLayout';
-import ThemeProvider from './ThemeProvider';
 
-export { ThinLayout, ThemeProvider };
+export { ThinLayout };

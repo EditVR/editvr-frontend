@@ -6,16 +6,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import LoginForm from './LoginForm';
+import LoginForm from './LoginForm.container';
 
 describe('<LoginForm />', () => {
   it('Matches its snapshot', () => {
-    expect(
-      renderer
-        .create(
-          <LoginForm />
-        )
-        .toJSON()
-    ).toMatchSnapshot();
+    expect(renderer.create(<LoginForm />).toJSON()).toMatchSnapshot();
   });
 });

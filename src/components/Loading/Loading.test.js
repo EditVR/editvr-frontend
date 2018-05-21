@@ -6,16 +6,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
+import { ThemeProvider } from '../../hoc';
 import Loading from './Loading';
+
+const ThemedLoading = ThemeProvider(Loading);
 
 describe('<Loading />', () => {
   it('Matches its snapshot', () => {
-    expect(
-      renderer
-        .create(
-          <Loading />
-        )
-        .toJSON()
-    ).toMatchSnapshot();
+    expect(renderer.create(<ThemedLoading />).toJSON()).toMatchSnapshot();
   });
 });

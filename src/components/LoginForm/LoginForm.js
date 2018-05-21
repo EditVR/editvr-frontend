@@ -7,6 +7,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TextField, Button, withStyles } from '@material-ui/core';
 
+import { FormLoading, FormMessage } from '../';
 import LoginFormStyles from './LoginForm.style';
 
 class LoginForm extends Component {
@@ -14,6 +15,9 @@ class LoginForm extends Component {
     classes: PropTypes.shape({
       textField: PropTypes.string.isRequired,
       button: PropTypes.string.isRequired
+    }).isRequired,
+    actions: PropTypes.shape({
+      logUserIn: PropTypes.func
     }).isRequired
   };
 
@@ -40,7 +44,18 @@ class LoginForm extends Component {
    *
    * @param {object} event - Submit event object.
    */
-  handleSubmit = event => {};
+  handleSubmit = event => {
+    event.preventDefault();
+    this.setState({ apiLoading: true });
+    const { username, password } = this.state;
+    const {
+      actions: { logUserIn }
+    } = this.props;
+
+    logUserIn(username, password).catch(error => {
+      this.setState({ apiLoading: false, apiMessage: error.toString() });
+    });
+  };
 
   /**
    * {@inheretdoc}
@@ -51,6 +66,7 @@ class LoginForm extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
+        {apiMessage && <FormMessage>{apiMessage}</FormMessage>}
         <TextField
           id="username"
           label="Username"
@@ -75,6 +91,7 @@ class LoginForm extends Component {
         >
           Log In
         </Button>
+        {apiLoading && <FormLoading />}
       </form>
     );
   }
