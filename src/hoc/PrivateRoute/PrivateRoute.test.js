@@ -3,10 +3,10 @@
  * Contains tests for LoginForm.js.
  */
 
-import React, { Fragment } from 'react';
+import React from 'react';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
-import { MemoryRouter as Router } from 'react-router-dom';
+import { MemoryRouter as Router, Switch } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
 import PrivateRoute from './PrivateRoute.container';
@@ -30,12 +30,13 @@ describe('<PrivateRoute />', () => {
         .create(
           <Provider store={store}>
             <Router initialEntries={['/dashboard']}>
-              <Fragment>
+              <Switch>
                 <PrivateRoute
                   path="/dashboard"
+                  redirectTo="/login"
                   component={() => <div>test component</div>}
                 />
-              </Fragment>
+              </Switch>
             </Router>
           </Provider>
         )
@@ -43,7 +44,7 @@ describe('<PrivateRoute />', () => {
     ).toMatchSnapshot();
   });
 
-  it('If a user is not authenticated, PrivateRoute will redirect users to the login route.', () => {
+  it('If a user is not authenticated, PrivateRoute will redirect users to the specified redirect route.', () => {
     const store = configureStore()({
       user: {
         authentication: {}
@@ -55,12 +56,13 @@ describe('<PrivateRoute />', () => {
         .create(
           <Provider store={store}>
             <Router initialEntries={['/dashboard']}>
-              <Fragment>
+              <Switch>
                 <PrivateRoute
                   path="/dashboard"
+                  redirectTo="/login"
                   component={() => <div>test component</div>}
                 />
-              </Fragment>
+              </Switch>
             </Router>
           </Provider>
         )

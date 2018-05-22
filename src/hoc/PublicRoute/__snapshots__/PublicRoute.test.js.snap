@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<PublicRoute /> If a user is authenticated, PublicRoute will redirect to the user dashboard. 1`] = `null`;
+exports[`<PublicRoute /> If a user is authenticated, PublicRoute will redirect to the specified redirect location. 1`] = `null`;
 
 exports[`<PublicRoute /> If a user is not authenticated, PublicRoute will render its specified component. 1`] = `
 <div>

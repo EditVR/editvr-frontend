@@ -3,10 +3,10 @@
  * Contains tests for PublicRoute.js.
  */
 
-import React, { Fragment } from 'react';
+import React from 'react';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
-import { MemoryRouter as Router } from 'react-router-dom';
+import { MemoryRouter as Router, Switch } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
 import PublicRoute from './PublicRoute.container';
@@ -23,13 +23,14 @@ describe('<PublicRoute />', () => {
       renderer
         .create(
           <Provider store={store}>
-            <Router initialEntries={['/dashboard']}>
-              <Fragment>
+            <Router initialEntries={['/login']}>
+              <Switch>
                 <PublicRoute
-                  path="/dashboard"
+                  path="/login"
+                  redirectTo="/dashboard"
                   component={() => <div>test component</div>}
                 />
-              </Fragment>
+              </Switch>
             </Router>
           </Provider>
         )
@@ -37,7 +38,7 @@ describe('<PublicRoute />', () => {
     ).toMatchSnapshot();
   });
 
-  it('If a user is authenticated, PublicRoute will redirect to the user dashboard.', () => {
+  it('If a user is authenticated, PublicRoute will redirect to the specified redirect location.', () => {
     const store = configureStore()({
       user: {
         authentication: {
@@ -55,12 +56,13 @@ describe('<PublicRoute />', () => {
         .create(
           <Provider store={store}>
             <Router initialEntries={['/dashboard']}>
-              <Fragment>
+              <Switch>
                 <PublicRoute
-                  path="/dashboard"
+                  path="/login"
+                  redirectTo="/dashboard"
                   component={() => <div>test component</div>}
                 />
-              </Fragment>
+              </Switch>
             </Router>
           </Provider>
         )
