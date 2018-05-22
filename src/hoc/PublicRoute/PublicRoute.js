@@ -27,7 +27,7 @@ const PublicRoute = ({
       return isAuthenticated ? (
         <Redirect
           to={{
-            pathname: '/experiences',
+            pathname: '/dashboard',
             state: { from: location }
           }}
         />

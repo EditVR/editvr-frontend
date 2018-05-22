@@ -4,11 +4,11 @@
  */
 
 import React, { Fragment } from 'react';
-import { HashRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { CssBaseline } from '@material-ui/core';
 
 import { Home, Login } from './pages';
-import { PrivateRoute, PublicRoute } from './components';
+import { PrivateRoute, PublicRoute } from './hoc';
 
 const App = () => (
   <Fragment>
@@ -17,7 +17,7 @@ const App = () => (
       <Fragment>
         <Route exact path="/" component={Home} />
         <PublicRoute path="/login" component={Login} />
-        <PrivateRoute path="/experiences" component={Home} />
+        <PrivateRoute path="/dashboard" component={Home} />
       </Fragment>
     </Router>
   </Fragment>

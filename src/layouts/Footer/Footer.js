@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { Typography, withStyles } from '@material-ui/core';
 
 import FooterStyles from './Footer.style';
-import footerLogo from '../assets/4k-logo-reversed.svg';
+import footerLogo from '../../assets/4k-logo-reversed.svg';
 
 const Footer = ({ classes }) => (
   <footer className={classes.wrapper}>

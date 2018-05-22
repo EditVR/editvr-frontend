@@ -7,10 +7,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core';
 
-import { ThemeProvider } from '../hoc';
-import Footer from './Footer';
-import Header from './Header';
-import LayoutStyles from './Layout.style';
+import { ThemeProvider } from '../../hoc';
+import { Header, Footer } from '../';
+import ThinLayoutStyles from './ThinLayout.style';
 
 const ThinLayout = ({ children, classes }) => (
   <div id="layout__wrapper" className={classes.wrapper}>
@@ -34,4 +33,4 @@ ThinLayout.defaultProps = {
   children: null
 };
 
-export default ThemeProvider(withStyles(LayoutStyles)(ThinLayout));
+export default ThemeProvider(withStyles(ThinLayoutStyles)(ThinLayout));

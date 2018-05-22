@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core';
 
 import HeaderStyles from './Header.style';
-import EditVRLogo from '../assets/editvr-logo.svg';
+import EditVRLogo from '../../assets/editvr-logo.svg';
 
 const Header = ({ classes }) => (
   <header className={classes.wrapper}>

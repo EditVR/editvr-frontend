@@ -6,7 +6,7 @@
 import React from 'react';
 import { MuiThemeProvider } from '@material-ui/core';
 
-import muiTheme from '../styles/muiTheme';
+import muiTheme from '../../styles/muiTheme';
 
 const ThemeProvider = WrappedComponent => props => (
   <MuiThemeProvider theme={muiTheme}>

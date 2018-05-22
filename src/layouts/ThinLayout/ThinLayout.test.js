@@ -6,7 +6,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import { ThinLayout } from './index';
+import ThinLayout from './ThinLayout';
 
 describe('<ThinLayout />', () => {
   it('Matches its snapshot', () => {
