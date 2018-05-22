@@ -25,12 +25,7 @@ const PublicRoute = ({
       }
 
       return isAuthenticated ? (
-        <Redirect
-          to={{
-            pathname: '/dashboard',
-            state: { from: location }
-          }}
-        />
+        <Redirect push to="/dashboard" />
       ) : (
         <Component {...props} />
       );

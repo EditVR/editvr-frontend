@@ -8,11 +8,11 @@ import { Typography } from '@material-ui/core';
 
 import { ThinLayout } from '../../layouts';
 
-const Login = () => (
+const Dashboard = () => (
   <ThinLayout>
     <Typography variant="headline">Dashboard</Typography>
     <Typography>Eventually this will be a dashboard.</Typography>
   </ThinLayout>
 );
 
-export default Login;
+export default Dashboard;
