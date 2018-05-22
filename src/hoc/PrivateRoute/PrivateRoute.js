@@ -11,6 +11,7 @@ const PrivateRoute = ({
   component: Component,
   authentication,
   location,
+  redirectTo,
   ...rest
 }) => (
   <Route
@@ -27,7 +28,7 @@ const PrivateRoute = ({
       return isAuthenticated ? (
         <Component {...props} />
       ) : (
-        <Redirect push to="/login" />
+        <Redirect push to={redirectTo} />
       );
     }}
   />
@@ -35,6 +36,7 @@ const PrivateRoute = ({
 
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
+  redirectTo: PropTypes.string.isRequired,
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
     search: PropTypes.string,

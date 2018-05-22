@@ -4,21 +4,31 @@
  */
 
 import React, { Fragment } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { CssBaseline } from '@material-ui/core';
 
-import { Home, Login } from '../../pages';
+import { Home, Login, Dashboard } from '../../pages';
 import { PrivateRoute, PublicRoute } from '../../hoc';
 
 const App = () => (
   <Fragment>
     <CssBaseline />
     <Router>
-      <Fragment>
+      <Switch>
         <Route exact path="/" component={Home} />
-        <PublicRoute path="/login" component={Login} />
-        <PrivateRoute path="/dashboard" component={Home} />
-      </Fragment>
+        <PublicRoute
+          exact
+          path="/login"
+          redirectTo="/dashboard"
+          component={Login}
+        />
+        <PrivateRoute
+          exact
+          path="/dashboard"
+          redirectTo="/login"
+          component={Dashboard}
+        />
+      </Switch>
     </Router>
   </Fragment>
 );

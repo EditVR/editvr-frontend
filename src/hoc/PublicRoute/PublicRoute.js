@@ -11,6 +11,7 @@ const PublicRoute = ({
   component: Component,
   authentication,
   location,
+  redirectTo,
   ...rest
 }) => (
   <Route
@@ -25,7 +26,7 @@ const PublicRoute = ({
       }
 
       return isAuthenticated ? (
-        <Redirect push to="/dashboard" />
+        <Redirect push to={redirectTo} />
       ) : (
         <Component {...props} />
       );
@@ -35,6 +36,7 @@ const PublicRoute = ({
 
 PublicRoute.propTypes = {
   component: PropTypes.func.isRequired,
+  redirectTo: PropTypes.string.isRequired,
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
     search: PropTypes.string,
