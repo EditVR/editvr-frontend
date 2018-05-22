@@ -7,8 +7,8 @@ import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { CssBaseline } from '@material-ui/core';
 
-import { Home, Login } from './pages';
-import { PrivateRoute, PublicRoute } from './hoc';
+import { Home, Login } from '../../pages';
+import { PrivateRoute, PublicRoute } from '../../hoc';
 
 const App = () => (
   <Fragment>

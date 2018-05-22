@@ -8,8 +8,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import App from './App';
-import { Loading } from './components';
+import { App, Loading } from './components';
 import { ThemeProvider } from './hoc';
 import registerServiceWorker from './registerServiceWorker';
 import { store, persistor } from './lib/reduxStore';

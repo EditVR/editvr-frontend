@@ -30,7 +30,7 @@ exports[`<App /> Matches its snapshot 1`] = `
     <a
       aria-current={false}
       className={undefined}
-      href="#/login"
+      href="/login"
       onClick={[Function]}
       style={undefined}
     >
@@ -63,7 +63,7 @@ exports[`<App /> Matches its snapshot 1`] = `
     <a
       aria-current={false}
       className={undefined}
-      href="#/register"
+      href="/register"
       onClick={[Function]}
       style={undefined}
     >
