@@ -5,7 +5,11 @@
 
 import qs from 'qs';
 import { clientId } from '../../config';
-import { axiosRequest } from './fetch';
+import axiosInstance from './axiosInstance';
+import {
+  API_ENDPOINT_USER_LOGIN,
+  API_ENDPOINT_XCSRF_TOKEN
+} from '../../constants';
 
 /**
  * Fetches a user access token for a given username, password, and client ID.
@@ -16,24 +20,15 @@ import { axiosRequest } from './fetch';
  * @returns {object} - Promise that resolves a token or error.
  */
 export const getAccessToken = async (username, password) => {
-  const r = await axiosRequest(
-    {
-      method: 'post',
-      url: 'oauth/token',
-      data: qs.stringify({
-        grant_type: 'password',
-        client_id: clientId,
-        username,
-        password
-      })
-    },
-    {},
-    {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencode'
-      }
-    },
-    false
+  const instance = axiosInstance({}, false);
+  const r = await instance.post(
+    API_ENDPOINT_USER_LOGIN,
+    qs.stringify({
+      grant_type: 'password',
+      client_id: clientId,
+      username,
+      password
+    })
   );
 
   return {
@@ -52,12 +47,4 @@ export const getAccessToken = async (username, password) => {
  * @returns {object} - Promise that resolves a token or error.
  */
 export const getCsrfToken = async authentication =>
-  axiosRequest(
-    {
-      method: 'get',
-      url: 'rest/session/token'
-    },
-    authentication,
-    {},
-    false
-  );
+  axiosInstance(authentication, false).get(API_ENDPOINT_XCSRF_TOKEN);

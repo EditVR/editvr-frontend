@@ -108,6 +108,7 @@
     "eslint-plugin-react": "^7.8.2",
     "gh-pages": "^1.1.0",
     "husky": "^0.14.3",
+    "jest-mock-axios": "^2.1.11",
     "lint-staged": "^7.1.0",
     "prettier": "^1.12.1",
     "react-test-renderer": "^16.3.2",

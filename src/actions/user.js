@@ -9,7 +9,7 @@ import {
   USER_SET_ROLE,
   USER_ROLE_EDITOR
 } from '../constants';
-import { getAccessToken, getCsrfToken } from '../lib/fetch';
+import { getAccessToken, getCsrfToken } from '../lib/api';
 
 /**
  * Dispatches actions that grab an access and CSRF token for the specified user.
