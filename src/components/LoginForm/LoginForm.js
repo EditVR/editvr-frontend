@@ -12,6 +12,7 @@ import LoginFormStyles from './LoginForm.style';
 
 class LoginForm extends Component {
   static propTypes = {
+    submitHandler: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     classes: PropTypes.shape({
       textField: PropTypes.string.isRequired,
       button: PropTypes.string.isRequired
@@ -19,6 +20,10 @@ class LoginForm extends Component {
     actions: PropTypes.shape({
       logUserIn: PropTypes.func
     }).isRequired
+  };
+
+  static defaultProps = {
+    submitHandler: false
   };
 
   state = {
@@ -61,11 +66,11 @@ class LoginForm extends Component {
    * {@inheretdoc}
    */
   render() {
-    const { classes } = this.props;
+    const { classes, submitHandler } = this.props;
     const { apiLoading, apiMessage } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={submitHandler || this.handleSubmit}>
         {apiMessage && <FormMessage>{apiMessage}</FormMessage>}
         <TextField
           id="username"
