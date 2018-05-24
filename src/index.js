@@ -10,7 +10,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import { App, Loading } from './components';
 import { ThemeProvider } from './hoc';
-import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from './lib/registerServiceWorker';
 import { store, persistor } from './lib/reduxStore';
 
 // Create a theme-wrapped loading screen.
