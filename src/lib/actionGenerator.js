@@ -1,6 +1,6 @@
 /**
  * @file actionGenerator.js
- * Exports a method that assists in the generation of async actions.
+ * Exports a generator that assists in the construction of async saga actions.
  */
 
 import { put } from 'redux-saga/effects';
@@ -10,6 +10,14 @@ import {
   resetLoading
 } from 'react-redux-loading-bar';
 
+/**
+ * Generator that handles loading/error states.
+ *
+ * @param {string} type - This action's machine-friendly name.
+ * @param {function} actionHandler - Generator function containing loaders.
+ *
+ * @returns {undefined} nothing.
+ */
 export default function* actionGenerator(type, actionHandler) {
   try {
     yield put(resetLoading());
