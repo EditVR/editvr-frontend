@@ -9,6 +9,7 @@ import { TextField, Button, withStyles } from '@material-ui/core';
 
 import { FormLoading, FormMessage } from '../';
 import LoginFormStyles from './LoginForm.style';
+import { USER_LOG_IN } from '../../constants';
 
 class LoginForm extends Component {
   static propTypes = {
@@ -17,9 +18,7 @@ class LoginForm extends Component {
       textField: PropTypes.string.isRequired,
       button: PropTypes.string.isRequired
     }).isRequired,
-    actions: PropTypes.shape({
-      logUserIn: PropTypes.func
-    }).isRequired
+    dispatch: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -53,12 +52,12 @@ class LoginForm extends Component {
     event.preventDefault();
     this.setState({ apiLoading: true });
     const { username, password } = this.state;
-    const {
-      actions: { logUserIn }
-    } = this.props;
+    const { dispatch } = this.props;
 
-    logUserIn(username, password).catch(error => {
-      this.setState({ apiLoading: false, apiMessage: error.toString() });
+    dispatch({
+      type: USER_LOG_IN,
+      username,
+      password
     });
   };
 

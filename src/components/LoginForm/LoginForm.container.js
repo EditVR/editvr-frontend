@@ -4,13 +4,11 @@
  */
 
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import LoginForm from './LoginForm';
-import * as userActions from '../../actions/user';
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(userActions, dispatch)
+  dispatch
 });
 
 const mapState = () => ({});

@@ -61,13 +61,14 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
+    "react-redux-loading-bar": "^4.0.5",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-persist": "^5.9.1",
-    "redux-thunk": "^2.2.0"
+    "redux-saga": "^0.16.0"
   },
   "scripts": {
     "start": "react-scripts start",

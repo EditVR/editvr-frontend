@@ -10,9 +10,24 @@ import {
   USER_ROLE_ANONYMOUS
 } from '../constants';
 
-export default function user(state = { authentication: {} }, action) {
+const defaultState = {
+  username: null,
+  uid: null,
+  loading: false,
+  error: null,
+  authentication: {
+    accessToken: null,
+    expiresIn: null,
+    refreshToken: null,
+    created: null,
+    csrfToken: null,
+    role: USER_ROLE_ANONYMOUS
+  }
+};
+
+export default function user(state = defaultState, action) {
   switch (action.type) {
-    case USER_LOG_IN: {
+    case `${USER_LOG_IN}_SUCCESS`: {
       const {
         accessToken = null,
         expiresIn = null,
@@ -21,7 +36,9 @@ export default function user(state = { authentication: {} }, action) {
         username = null,
         csrfToken = null,
         role = USER_ROLE_ANONYMOUS
-      } = action;
+      } = action.payload;
+
+      const { error, loading } = action;
 
       // Parse UID out of access token.
       let uid = null;
@@ -32,6 +49,8 @@ export default function user(state = { authentication: {} }, action) {
       return {
         username,
         uid,
+        loading,
+        error,
         authentication: {
           accessToken,
           refreshToken,
@@ -41,6 +60,14 @@ export default function user(state = { authentication: {} }, action) {
           role
         }
       };
+    }
+    case `${USER_LOG_IN}_FAIL`:
+    case `${USER_LOG_IN}_LOADING`: {
+      const { error, loading } = action;
+      return Object.assign({}, defaultState, {
+        loading,
+        error
+      });
     }
     case USER_LOG_OUT: {
       return {
