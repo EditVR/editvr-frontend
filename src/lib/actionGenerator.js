@@ -19,15 +19,16 @@ import {
  * @returns {undefined} nothing.
  */
 export default function* actionGenerator(type, actionHandler) {
+  yield put(resetLoading());
+  yield put(showLoading());
+  yield put({
+    type: `${type}_LOADING`,
+    payload: {},
+    loading: true,
+    error: null
+  });
+
   try {
-    yield put(resetLoading());
-    yield put(showLoading());
-    yield put({
-      type: `${type}_LOADING`,
-      payload: {},
-      loading: true,
-      error: null
-    });
     yield* actionHandler();
   } catch (error) {
     yield put({

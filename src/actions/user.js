@@ -22,12 +22,9 @@ import actionGenerator from '../lib/actionGenerator';
  * @param {string} payload.password - Password of user that should be authenticated.
  */
 export function* userLogIn({ username, password }) {
-  yield actionGenerator(USER_LOG_IN, function* userLogInHandler() {
-    const { accessToken, refreshToken, expiresIn } = yield call(
-      getAccessToken,
-      username,
-      password
-    );
+  yield* actionGenerator(USER_LOG_IN, function* userLogInHandler() {
+    const auth = yield call(getAccessToken, username, password);
+    const { accessToken, refreshToken, expiresIn } = auth || {};
     const csrfToken = yield call(getCsrfToken, accessToken);
     yield put({
       type: `${USER_LOG_IN}_SUCCESS`,

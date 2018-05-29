@@ -11,7 +11,7 @@ import { apiURL } from '../../config';
 // axios not be mocked.
 jest.unmock('axios');
 
-describe('fetch->axiosInstance()', () => {
+describe('api->axiosInstance()', () => {
   it('Can generate an Axios instance..', () => {
     const instance = axiosInstance();
     expect(instance.interceptors.response.handlers).not.toEqual([]);

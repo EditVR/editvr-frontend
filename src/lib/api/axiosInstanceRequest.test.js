@@ -11,7 +11,7 @@ import { API_ENDPOINT_XCSRF_TOKEN } from '../../constants';
 
 afterEach(() => mockAxios.reset());
 
-describe('fetch->axiosInstance()->{method}()', () => {
+describe('api->axiosInstance()->{method}()', () => {
   // TODO: Eventually, we need to add tests for axiosInstance's error handling.
   // However, jest-mock-axios does not support interceptors at the moment. This
   // means that, since our error handling is (correctly) done in an interceptor,

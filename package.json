@@ -115,6 +115,7 @@
     "prettier": "^1.12.1",
     "react-test-renderer": "^16.3.2",
     "redux-mock-store": "^1.5.1",
+    "redux-saga-test-plan": "^3.7.0",
     "semantic-release": "^15.4.1"
   }
 }
