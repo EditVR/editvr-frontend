@@ -2,51 +2,102 @@
 
 exports[`<Dashboard /> Matches its snapshot 1`] = `
 <div
-  className="ThinLayout-wrapper-1"
+  className="ThinLayout-wrapper-2"
   id="layout__wrapper"
 >
   <div />
   <div
-    className="ThinLayout-thinWrapper-2"
+    className="ThinLayout-thinWrapper-3"
     id="layout__thin-wrapper"
   >
     <header
-      className="Header-wrapper-3"
+      className="Header-wrapper-4"
     >
       <img
         alt="EditVR logo"
-        className="Header-logo-4"
+        className="Header-logo-5"
         src="editvr-logo.svg"
       />
     </header>
     <h1
-      className="MuiTypography-root-5 MuiTypography-headline-10"
+      className="MuiTypography-root-6 MuiTypography-headline-11"
     >
-      Dashboard
+      Experiences
     </h1>
     <p
-      className="MuiTypography-root-5 MuiTypography-body1-14"
+      className="MuiTypography-root-6 MuiTypography-body1-15"
     >
-      Eventually this will be a dashboard.
+      Please select an experience below. Click the Open button to open the experience for editing.
     </p>
-    <footer
-      className="Footer-wrapper-29"
+    <div
+      className="MuiPaper-root-31 MuiPaper-elevation2-35 MuiPaper-rounded-32 MuiCard-root-30 Dashboard-card-1"
     >
       <div
-        className="Footer-elements-30"
+        className="MuiCardContent-root-58"
+      >
+        <h1
+          className="MuiTypography-root-6 MuiTypography-headline-11 MuiTypography-gutterBottom-23"
+        >
+          test experience
+        </h1>
+        <p
+          className="MuiTypography-root-6 MuiTypography-body1-15"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "this is a test experience",
+            }
+          }
+        />
+      </div>
+      <div
+        className="MuiCardActions-root-59"
+      >
+        <a
+          className="MuiButtonBase-root-77 MuiButton-root-61 MuiButton-flatPrimary-63 MuiButton-sizeSmall-74 MuiCardActions-action-60"
+          href="/edit/test"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role="button"
+          tabIndex="0"
+        >
+          <span
+            className="MuiButton-label-62"
+          >
+            Open
+          </span>
+          <span
+            className="MuiTouchRipple-root-80"
+          />
+        </a>
+      </div>
+    </div>
+    <footer
+      className="Footer-wrapper-87"
+    >
+      <div
+        className="Footer-elements-88"
       >
         <a
           href="https://fourkitchens.com"
         >
           <p
-            className="MuiTypography-root-5 MuiTypography-body1-14 Footer-text-32"
+            className="MuiTypography-root-6 MuiTypography-body1-15 Footer-text-90"
             type="body1"
           >
             EditVR is a product of
           </p>
           <img
             alt="Four Kitchens"
-            className="Footer-logo-31"
+            className="Footer-logo-89"
             src="4k-logo-reversed.svg"
           />
         </a>

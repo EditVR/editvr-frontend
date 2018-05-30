@@ -52,8 +52,6 @@ export default function user(state = defaultState, action) {
         role = USER_ROLE_ANONYMOUS
       } = action.payload;
 
-      const { error, loading } = action;
-
       // Parse UID out of access token.
       let uid = null;
       if (accessToken) {
@@ -63,8 +61,8 @@ export default function user(state = defaultState, action) {
       return {
         username,
         uid,
-        loading,
-        error,
+        loading: false,
+        error: null,
         authentication: {
           accessToken,
           refreshToken,

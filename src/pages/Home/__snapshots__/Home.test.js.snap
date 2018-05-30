@@ -29,70 +29,56 @@ exports[`<Dashboard /> Matches its snapshot 1`] = `
        that lets you produce interactive and affordable 360 tours and VR stories. EditVR makes immersive experiences available to everyone using devices they already own. Nothing to buy, download, or install!
     </p>
     <a
-      aria-current={false}
-      className={undefined}
+      className="MuiButtonBase-root-46 MuiButton-root-30 MuiButton-raised-36 MuiButton-raisedPrimary-37 Home-button-1"
       href="/login"
+      onBlur={[Function]}
       onClick={[Function]}
-      style={undefined}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      tabIndex="0"
     >
-      <button
-        className="MuiButtonBase-root-46 MuiButton-root-30 MuiButton-raised-36 MuiButton-raisedPrimary-37 Home-button-1"
-        disabled={false}
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        tabIndex="0"
-        type="button"
+      <span
+        className="MuiButton-label-31"
       >
-        <span
-          className="MuiButton-label-31"
-        >
-          Login
-        </span>
-        <span
-          className="MuiTouchRipple-root-49"
-        />
-      </button>
+        Login
+      </span>
+      <span
+        className="MuiTouchRipple-root-49"
+      />
     </a>
     <a
-      aria-current={false}
-      className={undefined}
+      className="MuiButtonBase-root-46 MuiButton-root-30 MuiButton-raised-36 MuiButton-raisedPrimary-37 Home-button-1"
       href="/register"
+      onBlur={[Function]}
       onClick={[Function]}
-      style={undefined}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      tabIndex="0"
     >
-      <button
-        className="MuiButtonBase-root-46 MuiButton-root-30 MuiButton-raised-36 MuiButton-raisedPrimary-37 Home-button-1"
-        disabled={false}
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        tabIndex="0"
-        type="button"
+      <span
+        className="MuiButton-label-31"
       >
-        <span
-          className="MuiButton-label-31"
-        >
-          Register
-        </span>
-        <span
-          className="MuiTouchRipple-root-49"
-        />
-      </button>
+        Register
+      </span>
+      <span
+        className="MuiTouchRipple-root-49"
+      />
     </a>
     <footer
       className="Footer-wrapper-56"

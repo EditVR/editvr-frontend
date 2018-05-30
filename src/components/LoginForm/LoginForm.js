@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TextField, Button, withStyles } from '@material-ui/core';
 
-import { FormMessage } from '../';
+import { Message } from '../';
 import LoginFormStyles from './LoginForm.style';
 import { USER_LOG_IN } from '../../constants';
 
@@ -56,7 +56,7 @@ class LoginForm extends Component {
     } = this.props;
     return (
       <form onSubmit={submitHandler || this.handleSubmit}>
-        {error && <FormMessage>{error}</FormMessage>}
+        {error && <Message>{error}</Message>}
         <TextField
           id="username"
           label="Username"
