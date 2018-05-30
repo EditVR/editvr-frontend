@@ -22,20 +22,17 @@ export default function* actionGenerator(type, actionHandler) {
   yield put(resetLoading());
   yield put(showLoading());
   yield put({
-    type: `${type}_LOADING`,
-    payload: {},
-    loading: true,
-    error: null
+    type: `${type}_LOADING`
   });
 
   try {
     yield* actionHandler();
   } catch (error) {
     yield put({
-      type: `${type}_ERROR`,
-      payload: {},
-      loading: false,
-      error: error.toString()
+      type: `${type}_FAIL`,
+      payload: {
+        error: error.toString()
+      }
     });
   } finally {
     yield put(hideLoading());

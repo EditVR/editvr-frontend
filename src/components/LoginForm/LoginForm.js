@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TextField, Button, withStyles } from '@material-ui/core';
 
-import { FormLoading, FormMessage } from '../';
+import { FormMessage } from '../';
 import LoginFormStyles from './LoginForm.style';
 import { USER_LOG_IN } from '../../constants';
 
@@ -18,29 +18,17 @@ class LoginForm extends Component {
       textField: PropTypes.string.isRequired,
       button: PropTypes.string.isRequired
     }).isRequired,
-    dispatch: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired,
+    user: PropTypes.shape({
+      error: PropTypes.string
+    })
   };
 
   static defaultProps = {
-    submitHandler: false
-  };
-
-  state = {
-    username: null,
-    password: null,
-    apiLoading: false,
-    apiMessage: null
-  };
-
-  /**
-   * Handles field update action.
-   *
-   * @param {object} event - Field update event.
-   */
-  handleFieldUpdate = event => {
-    const state = {};
-    state[event.target.id] = event.target.value;
-    this.setState(state);
+    submitHandler: false,
+    user: {
+      error: null
+    }
   };
 
   /**
@@ -50,14 +38,10 @@ class LoginForm extends Component {
    */
   handleSubmit = event => {
     event.preventDefault();
-    this.setState({ apiLoading: true });
-    const { username, password } = this.state;
-    const { dispatch } = this.props;
-
-    dispatch({
+    this.props.dispatch({
       type: USER_LOG_IN,
-      username,
-      password
+      username: event.target[0].value,
+      password: event.target[1].value
     });
   };
 
@@ -65,18 +49,19 @@ class LoginForm extends Component {
    * {@inheretdoc}
    */
   render() {
-    const { classes, submitHandler } = this.props;
-    const { apiLoading, apiMessage } = this.state;
-
+    const {
+      classes,
+      submitHandler,
+      user: { error }
+    } = this.props;
     return (
       <form onSubmit={submitHandler || this.handleSubmit}>
-        {apiMessage && <FormMessage>{apiMessage}</FormMessage>}
+        {error && <FormMessage>{error}</FormMessage>}
         <TextField
           id="username"
           label="Username"
           type="text"
           required
-          onChange={this.handleFieldUpdate}
           className={classes.textField}
         />
         <TextField
@@ -84,7 +69,6 @@ class LoginForm extends Component {
           label="Password"
           type="password"
           required
-          onChange={this.handleFieldUpdate}
           className={classes.textField}
         />
         <Button
@@ -95,7 +79,6 @@ class LoginForm extends Component {
         >
           Log In
         </Button>
-        {apiLoading && <FormLoading />}
       </form>
     );
   }

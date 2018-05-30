@@ -10,7 +10,7 @@ Object {
     "refreshToken": null,
     "role": "USER_ROLE_ANONYMOUS",
   },
-  "error": "Error: failed to log user in.",
+  "error": undefined,
   "loading": false,
   "uid": null,
   "username": null,

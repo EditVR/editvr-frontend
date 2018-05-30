@@ -77,12 +77,17 @@ export default function user(state = defaultState, action) {
     }
 
     /**
-     * Reducer that handles login loading and failure actions.
+     * Reducer that handles login failure actions.
      */
-    case `${USER_LOG_IN}_FAIL`:
+    case `${USER_LOG_IN}_FAIL`: {
+      return { ...state, loading: false, error: action.payload.error };
+    }
+
+    /**
+     * Reducer that handles login loading actions.
+     */
     case `${USER_LOG_IN}_LOADING`: {
-      const { error, loading } = action;
-      return { ...state, loading, error };
+      return { ...state, error: null, loading: true };
     }
 
     /**

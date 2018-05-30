@@ -11,6 +11,8 @@ const mapDispatchToProps = dispatch => ({
   dispatch
 });
 
-const mapState = () => ({});
+const mapState = ({ user }) => ({
+  user
+});
 
 export default connect(mapState, mapDispatchToProps)(LoginForm);

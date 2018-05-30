@@ -28,10 +28,7 @@ describe('lib->actionGenerator()', () => {
       .put(showLoading())
       .next()
       .put({
-        type: `${type}_LOADING`,
-        payload: {},
-        loading: true,
-        error: null
+        type: `${type}_LOADING`
       })
       .next()
       .call(action, 'test')
@@ -54,17 +51,14 @@ describe('lib->actionGenerator()', () => {
       .put(showLoading())
       .next()
       .put({
-        type: `${type}_LOADING`,
-        payload: {},
-        loading: true,
-        error: null
+        type: `${type}_LOADING`
       })
       .next()
       .put({
-        type: `${type}_ERROR`,
-        payload: {},
-        loading: false,
-        error: `Error: ${error}`
+        type: `${type}_FAIL`,
+        payload: {
+          error: `Error: ${error}`
+        }
       })
       .next()
       .put(hideLoading())

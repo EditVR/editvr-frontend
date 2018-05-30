@@ -30,10 +30,7 @@ describe('actions->user', () => {
       .put(showLoading())
       .next()
       .put({
-        type: `${USER_LOG_IN}_LOADING`,
-        payload: {},
-        loading: true,
-        error: null
+        type: `${USER_LOG_IN}_LOADING`
       })
       .next()
       .call(getAccessToken, username, password)
@@ -50,9 +47,7 @@ describe('actions->user', () => {
           csrfToken: undefined,
           expiresIn: undefined,
           role: USER_ROLE_EDITOR
-        },
-        loading: false,
-        error: null
+        }
       })
       .next()
       .put(hideLoading())
@@ -64,10 +59,7 @@ describe('actions->user', () => {
     testSaga(userLogOut)
       .next()
       .put({
-        type: USER_LOG_OUT,
-        payload: {},
-        loading: false,
-        error: null
+        type: USER_LOG_OUT
       })
       .next()
       .isDone();
@@ -80,9 +72,7 @@ describe('actions->user', () => {
         type: USER_SET_ROLE,
         payload: {
           role: USER_ROLE_EDITOR
-        },
-        loading: false,
-        error: null
+        }
       })
       .next()
       .isDone();

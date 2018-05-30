@@ -36,9 +36,7 @@ export function* userLogIn({ username, password }) {
         csrfToken,
         expiresIn,
         role: USER_ROLE_EDITOR
-      },
-      loading: false,
-      error: null
+      }
     });
   });
 }
@@ -48,10 +46,7 @@ export function* userLogIn({ username, password }) {
  */
 export function* userLogOut() {
   yield put({
-    type: USER_LOG_OUT,
-    payload: {},
-    loading: false,
-    error: null
+    type: USER_LOG_OUT
   });
 }
 
@@ -65,9 +60,7 @@ export function* userSetRole(role) {
     type: USER_SET_ROLE,
     payload: {
       role
-    },
-    loading: false,
-    error: null
+    }
   });
 }
 

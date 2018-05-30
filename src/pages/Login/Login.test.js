@@ -16,7 +16,11 @@ const ThemedLogin = ThemeProvider(Login);
 
 describe('<Login />', () => {
   it('Matches its snapshot', () => {
-    const store = configureStore()({});
+    const store = configureStore()({
+      user: {
+        error: null
+      }
+    });
 
     expect(
       renderer
