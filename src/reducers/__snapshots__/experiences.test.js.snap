@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`reducers->experiences Should handle EXPERIENCES_FETCH_FOR_USER_FAIL 1`] = `
+Object {
+  "error": undefined,
+  "items": Array [],
+  "loading": false,
+}
+`;
+
+exports[`reducers->experiences Should handle EXPERIENCES_FETCH_FOR_USER_LOADING 1`] = `
+Object {
+  "error": null,
+  "items": Array [],
+  "loading": true,
+}
+`;
+
+exports[`reducers->experiences Should handle EXPERIENCES_FETCH_FOR_USER_SUCCESS 1`] = `
+Object {
+  "error": null,
+  "items": Array [
+    Object {
+      "id": 1,
+      "title": "example experience",
+    },
+  ],
+  "loading": false,
+}
+`;
+
+exports[`reducers->experiences Should return the initial state by default 1`] = `
+Object {
+  "error": null,
+  "items": Array [],
+  "loading": false,
+}
+`;
