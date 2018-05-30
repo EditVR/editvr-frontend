@@ -10,6 +10,9 @@ import {
   USER_ROLE_ANONYMOUS
 } from '../constants';
 
+/**
+ * Default user state.
+ */
 const defaultState = {
   username: null,
   uid: null,
@@ -25,8 +28,19 @@ const defaultState = {
   }
 };
 
+/**
+ * Contains reducers for each user-related state action.
+ *
+ * @param {object} state - Current state object.
+ * @param {object} action - Object containing a payload from a reducable action.
+ *
+ * @returns {object} - New state object with modifications detailed in action.
+ */
 export default function user(state = defaultState, action) {
   switch (action.type) {
+    /**
+     * Reducer that handles user login actions.
+     */
     case `${USER_LOG_IN}_SUCCESS`: {
       const {
         accessToken = null,
@@ -61,29 +75,34 @@ export default function user(state = defaultState, action) {
         }
       };
     }
+
+    /**
+     * Reducer that handles login loading and failure actions.
+     */
     case `${USER_LOG_IN}_FAIL`:
     case `${USER_LOG_IN}_LOADING`: {
       const { error, loading } = action;
-      return Object.assign({}, defaultState, {
-        loading,
-        error
-      });
+      return { ...state, loading, error };
     }
+
+    /**
+     * Reducer that handles user logout actions.
+     */
     case USER_LOG_OUT: {
-      return {
-        authentication: {
-          accessToken: false
-        }
-      };
+      return defaultState;
     }
+
+    /**
+     * Reducer that handles setting a user's role.
+     */
     case USER_SET_ROLE: {
-      const { role } = action;
-      return Object.assign({}, state, {
-        authentication: {
-          role
-        }
-      });
+      const { role } = action.payload;
+      return { ...state, authentication: { ...state.authentication, role } };
     }
+
+    /**
+     * Default reducer that returns defaulted state.
+     */
     default:
       return state;
   }
