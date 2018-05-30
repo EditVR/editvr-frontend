@@ -55,7 +55,9 @@ describe('actions->user', () => {
         error: null
       })
       .next()
-      .put(hideLoading());
+      .put(hideLoading())
+      .next()
+      .isDone();
   });
 
   it('user->userLogOut()', () => {

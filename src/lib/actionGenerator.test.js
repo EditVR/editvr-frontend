@@ -36,7 +36,9 @@ describe('lib->actionGenerator()', () => {
       .next()
       .call(action, 'test')
       .next()
-      .put(hideLoading());
+      .put(hideLoading())
+      .next()
+      .isDone();
   });
 
   it('Yields any error it catches.', () => {
@@ -65,6 +67,8 @@ describe('lib->actionGenerator()', () => {
         error: `Error: ${error}`
       })
       .next()
-      .put(hideLoading());
+      .put(hideLoading())
+      .next()
+      .isDone();
   });
 });
