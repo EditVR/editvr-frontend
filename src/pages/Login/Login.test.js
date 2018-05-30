@@ -17,6 +17,9 @@ const ThemedLogin = ThemeProvider(Login);
 describe('<Login />', () => {
   it('Matches its snapshot', () => {
     const store = configureStore()({
+      loadingBar: {
+        default: 0
+      },
       user: {
         error: null
       }

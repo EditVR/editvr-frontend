@@ -5,6 +5,7 @@ exports[`<Login /> Matches its snapshot 1`] = `
   className="ThinLayout-wrapper-1"
   id="layout__wrapper"
 >
+  <div />
   <div
     className="ThinLayout-thinWrapper-2"
     id="layout__thin-wrapper"

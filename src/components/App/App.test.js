@@ -13,8 +13,8 @@ import App from './App';
 describe('<App />', () => {
   it('Matches its snapshot', () => {
     const store = configureStore()({
-      user: {
-        authentication: {}
+      loadingBar: {
+        default: 0
       }
     });
     expect(
