@@ -4,6 +4,7 @@
  */
 
 import axios from 'axios';
+import Jsona from 'jsona';
 
 import { apiURL } from '../../config';
 import {
@@ -66,10 +67,13 @@ const axiosInstance = (
     response => {
       let r = response;
 
-      // TODO: This method will soon contain logic for denormalizing JSON-API
-      // responses, when the content type is correct.
       if (r.data) {
         r = r.data;
+      }
+
+      if (format === 'jsonapi') {
+        const formatter = new Jsona();
+        r = formatter.deserialize(r);
       }
 
       return r;
