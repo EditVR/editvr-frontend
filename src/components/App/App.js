@@ -7,7 +7,7 @@ import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { CssBaseline } from '@material-ui/core';
 
-import { Home, Login, Dashboard } from '../../pages';
+import { Home, Login, Logout, Dashboard } from '../../pages';
 import { PrivateRoute, PublicRoute } from '../../hoc';
 
 const App = () => (
@@ -28,6 +28,7 @@ const App = () => (
           redirectTo="/login"
           component={Dashboard}
         />
+        <PrivateRoute exact path="/logout" redirectTo="/" component={Logout} />
       </Switch>
     </Router>
   </Fragment>

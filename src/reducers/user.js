@@ -92,7 +92,7 @@ export default function user(state = defaultState, action) {
      * Reducer that handles user logout actions.
      */
     case USER_LOG_OUT: {
-      return defaultState;
+      return { ...defaultState };
     }
 
     /**
