@@ -14,6 +14,7 @@ import {
   CardActions,
   withStyles
 } from '@material-ui/core';
+import { AddBox } from '@material-ui/icons';
 
 import { DashboardLayout } from '../../layouts';
 import { Message } from '../../components';
@@ -23,7 +24,9 @@ import DashboardStyles from './Dashboard.style';
 class Dashboard extends Component {
   static propTypes = {
     classes: PropTypes.shape({
-      card: PropTypes.string.isRequired
+      card: PropTypes.string.isRequired,
+      buttons: PropTypes.string.isRequired,
+      buttonIcon: PropTypes.string.isRequired
     }).isRequired,
     user: PropTypes.shape({
       uid: PropTypes.string.isRequired,
@@ -77,9 +80,20 @@ class Dashboard extends Component {
       <DashboardLayout>
         <Typography variant="headline">Experiences</Typography>
         <Typography component="p">
-          Please select an experience below. Click the Open button to open the
-          experience for editing.
+          On this page you can create an experience, or open one of your
+          existing experiences for editing by clicking the Open button.
         </Typography>
+        <div className={classes.buttons}>
+          <Button
+            variant="raised"
+            color="primary"
+            component={Link}
+            to="/experience/create"
+          >
+            Create
+            <AddBox className={classes.buttonIcon} />
+          </Button>
+        </div>
         {error && <Message>{error}</Message>}
         {Object.entries(items).map(
           ([key, { title, body, field_experience_path: path }]) => (

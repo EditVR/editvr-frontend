@@ -2,34 +2,34 @@
 
 exports[`<Dashboard /> Matches its snapshot 1`] = `
 <div
-  className="DashboardLayout-wrapper-2"
+  className="DashboardLayout-wrapper-4"
   id="layout__wrapper"
 >
   <div />
   <header
-    className="MuiPaper-root-15 MuiPaper-elevation4-21 MuiAppBar-root-7 MuiAppBar-positionFixed-8 MuiAppBar-colorPrimary-13 mui-fixed DashboardLayout-appBar-3"
+    className="MuiPaper-root-17 MuiPaper-elevation4-23 MuiAppBar-root-9 MuiAppBar-positionFixed-10 MuiAppBar-colorPrimary-15 mui-fixed DashboardLayout-appBar-5"
   >
     <div
-      className="MuiToolbar-root-42 MuiToolbar-gutters-43"
+      className="MuiToolbar-root-44 MuiToolbar-gutters-45"
     >
       <img
         alt="EditVR logo"
-        className="DashboardLayout-logo-6"
+        className="DashboardLayout-logo-8"
         src="editvr-logo.svg"
       />
     </div>
   </header>
   <div
-    className="MuiDrawer-docked-44"
+    className="MuiDrawer-docked-46"
   >
     <div
-      className="MuiPaper-root-15 MuiPaper-elevation0-17 MuiDrawer-paper-45 DashboardLayout-drawerPaper-4 MuiDrawer-paperAnchorLeft-46 MuiDrawer-paperAnchorDockedLeft-50"
+      className="MuiPaper-root-17 MuiPaper-elevation0-19 MuiDrawer-paper-47 DashboardLayout-drawerPaper-6 MuiDrawer-paperAnchorLeft-48 MuiDrawer-paperAnchorDockedLeft-52"
     >
       <ul
-        className="MuiList-root-55 MuiList-padding-56"
+        className="MuiList-root-57 MuiList-padding-58"
       >
         <a
-          className="MuiButtonBase-root-69 MuiListItem-root-59 MuiListItem-default-62 MuiListItem-gutters-66 MuiListItem-button-67"
+          className="MuiButtonBase-root-71 MuiListItem-root-61 MuiListItem-default-64 MuiListItem-gutters-68 MuiListItem-button-69"
           href="/dashboard"
           onBlur={[Function]}
           onClick={[Function]}
@@ -47,7 +47,7 @@ exports[`<Dashboard /> Matches its snapshot 1`] = `
         >
           <svg
             aria-hidden="true"
-            className="MuiSvgIcon-root-73 MuiListItemIcon-root-72"
+            className="MuiSvgIcon-root-75 MuiListItemIcon-root-74"
             color={undefined}
             focusable="false"
             viewBox="0 0 24 24"
@@ -59,20 +59,20 @@ exports[`<Dashboard /> Matches its snapshot 1`] = `
             </g>
           </svg>
           <div
-            className="MuiListItemText-root-79"
+            className="MuiListItemText-root-81"
           >
             <h3
-              className="MuiTypography-root-85 MuiTypography-subheading-92 MuiListItemText-primary-82"
+              className="MuiTypography-root-87 MuiTypography-subheading-94 MuiListItemText-primary-84"
             >
               Experiences
             </h3>
           </div>
           <span
-            className="MuiTouchRipple-root-109"
+            className="MuiTouchRipple-root-111"
           />
         </a>
         <a
-          className="MuiButtonBase-root-69 MuiListItem-root-59 MuiListItem-default-62 MuiListItem-gutters-66 MuiListItem-button-67"
+          className="MuiButtonBase-root-71 MuiListItem-root-61 MuiListItem-default-64 MuiListItem-gutters-68 MuiListItem-button-69"
           href="/logout"
           onBlur={[Function]}
           onClick={[Function]}
@@ -90,7 +90,7 @@ exports[`<Dashboard /> Matches its snapshot 1`] = `
         >
           <svg
             aria-hidden="true"
-            className="MuiSvgIcon-root-73 MuiListItemIcon-root-72"
+            className="MuiSvgIcon-root-75 MuiListItemIcon-root-74"
             color={undefined}
             focusable="false"
             viewBox="0 0 24 24"
@@ -102,47 +102,90 @@ exports[`<Dashboard /> Matches its snapshot 1`] = `
             </g>
           </svg>
           <div
-            className="MuiListItemText-root-79"
+            className="MuiListItemText-root-81"
           >
             <h3
-              className="MuiTypography-root-85 MuiTypography-subheading-92 MuiListItemText-primary-82"
+              className="MuiTypography-root-87 MuiTypography-subheading-94 MuiListItemText-primary-84"
             >
               Logout
             </h3>
           </div>
           <span
-            className="MuiTouchRipple-root-109"
+            className="MuiTouchRipple-root-111"
           />
         </a>
       </ul>
     </div>
   </div>
   <main
-    className="DashboardLayout-content-5"
+    className="DashboardLayout-content-7"
   >
     <h1
-      className="MuiTypography-root-85 MuiTypography-headline-90"
+      className="MuiTypography-root-87 MuiTypography-headline-92"
     >
       Experiences
     </h1>
     <p
-      className="MuiTypography-root-85 MuiTypography-body1-94"
+      className="MuiTypography-root-87 MuiTypography-body1-96"
     >
-      Please select an experience below. Click the Open button to open the experience for editing.
+      On this page you can create an experience, or open one of your existing experiences for editing by clicking the Open button.
     </p>
     <div
-      className="MuiPaper-root-15 MuiPaper-elevation2-19 MuiPaper-rounded-16 MuiCard-root-116 Dashboard-card-1"
+      className="Dashboard-buttons-2"
+    >
+      <a
+        className="MuiButtonBase-root-71 MuiButton-root-118 MuiButton-raised-124 MuiButton-raisedPrimary-125"
+        href="/experience/create"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        role="button"
+        tabIndex="0"
+      >
+        <span
+          className="MuiButton-label-119"
+        >
+          Create
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root-75 Dashboard-buttonIcon-3"
+            color={undefined}
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <g>
+              <path
+                d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"
+              />
+            </g>
+          </svg>
+        </span>
+        <span
+          className="MuiTouchRipple-root-111"
+        />
+      </a>
+    </div>
+    <div
+      className="MuiPaper-root-17 MuiPaper-elevation2-21 MuiPaper-rounded-18 MuiCard-root-134 Dashboard-card-1"
     >
       <div
-        className="MuiCardContent-root-117"
+        className="MuiCardContent-root-135"
       >
         <h1
-          className="MuiTypography-root-85 MuiTypography-headline-90 MuiTypography-gutterBottom-102"
+          className="MuiTypography-root-87 MuiTypography-headline-92 MuiTypography-gutterBottom-104"
         >
           test experience
         </h1>
         <p
-          className="MuiTypography-root-85 MuiTypography-body1-94"
+          className="MuiTypography-root-87 MuiTypography-body1-96"
           dangerouslySetInnerHTML={
             Object {
               "__html": "this is a test experience",
@@ -151,10 +194,10 @@ exports[`<Dashboard /> Matches its snapshot 1`] = `
         />
       </div>
       <div
-        className="MuiCardActions-root-118"
+        className="MuiCardActions-root-136"
       >
         <a
-          className="MuiButtonBase-root-69 MuiButton-root-120 MuiButton-flatPrimary-122 MuiButton-sizeSmall-133 MuiCardActions-action-119"
+          className="MuiButtonBase-root-71 MuiButton-root-118 MuiButton-flatPrimary-120 MuiButton-sizeSmall-131 MuiCardActions-action-137"
           href="/edit/test"
           onBlur={[Function]}
           onClick={[Function]}
@@ -171,12 +214,12 @@ exports[`<Dashboard /> Matches its snapshot 1`] = `
           tabIndex="0"
         >
           <span
-            className="MuiButton-label-121"
+            className="MuiButton-label-119"
           >
             Open
           </span>
           <span
-            className="MuiTouchRipple-root-109"
+            className="MuiTouchRipple-root-111"
           />
         </a>
       </div>
