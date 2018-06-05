@@ -15,7 +15,7 @@ import {
   withStyles
 } from '@material-ui/core';
 
-import { ThinLayout } from '../../layouts';
+import { DashboardLayout } from '../../layouts';
 import { Message } from '../../components';
 import { EXPERIENCES_FETCH_FOR_USER } from '../../constants';
 import DashboardStyles from './Dashboard.style';
@@ -74,7 +74,7 @@ class Dashboard extends Component {
     } = this.props;
 
     return (
-      <ThinLayout>
+      <DashboardLayout>
         <Typography variant="headline">Experiences</Typography>
         <Typography component="p">
           Please select an experience below. Click the Open button to open the
@@ -110,7 +110,7 @@ class Dashboard extends Component {
             </Card>
           )
         )}
-      </ThinLayout>
+      </DashboardLayout>
     );
   }
 }
