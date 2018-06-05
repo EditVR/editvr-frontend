@@ -5,18 +5,19 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core';
+import { withStyles, Typography } from '@material-ui/core';
 import LoadingBar from 'react-redux-loading-bar';
 
 import { ThemeProvider } from '../../hoc';
 import { Header, Footer } from '../';
 import ThinLayoutStyles from './ThinLayout.style';
 
-const ThinLayout = ({ children, classes }) => (
+const ThinLayout = ({ title, children, classes }) => (
   <div id="layout__wrapper" className={classes.wrapper}>
     <LoadingBar style={{ backgroundColor: '#FFFFFF' }} />
     <div id="layout__thin-wrapper" className={classes.thinWrapper}>
       <Header />
+      {title && <Typography variant="headline">{title}</Typography>}
       {children}
       <Footer />
     </div>
@@ -25,6 +26,7 @@ const ThinLayout = ({ children, classes }) => (
 
 ThinLayout.propTypes = {
   children: PropTypes.node,
+  title: PropTypes.string,
   classes: PropTypes.shape({
     wrapper: PropTypes.string.isRequired,
     thinWrapper: PropTypes.string.isRequired
@@ -32,7 +34,8 @@ ThinLayout.propTypes = {
 };
 
 ThinLayout.defaultProps = {
-  children: null
+  children: null,
+  title: null
 };
 
 export default ThemeProvider(withStyles(ThinLayoutStyles)(ThinLayout));

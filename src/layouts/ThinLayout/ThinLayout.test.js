@@ -22,7 +22,7 @@ describe('<ThinLayout />', () => {
       renderer
         .create(
           <Provider store={store}>
-            <ThinLayout>
+            <ThinLayout title="test title">
               <div>child</div>
             </ThinLayout>
           </Provider>
