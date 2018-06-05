@@ -1,11 +1,11 @@
 /**
- * @file Layout.style.js
+ * @file ThinLayout.style.js
  * Exports styling that's shared across many layouts.
  */
 
 export default theme => ({
   wrapper: {
-    background: theme.palette.grays['500'],
+    background: theme.palette.background.default,
     width: '100%',
     height: '100%',
     position: 'absolute',
