@@ -66,6 +66,6 @@ export function* userSetRole(role) {
 
 export function* watchUserActions() {
   yield takeLatest(USER_LOG_IN, userLogIn);
-  yield takeLatest(USER_LOG_OUT, userLogIn);
-  yield takeLatest(USER_SET_ROLE, userLogIn);
+  yield takeLatest(USER_LOG_OUT, userLogOut);
+  yield takeLatest(USER_SET_ROLE, userSetRole);
 }
