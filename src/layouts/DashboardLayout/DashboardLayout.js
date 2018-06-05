@@ -54,7 +54,11 @@ const DashboardLayout = ({ children, classes }) => (
 DashboardLayout.propTypes = {
   children: PropTypes.node,
   classes: PropTypes.shape({
-    wrapper: PropTypes.string.isRequired
+    wrapper: PropTypes.string.isRequired,
+    appBar: PropTypes.string.isRequired,
+    drawerPaper: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    logo: PropTypes.string.isRequired
   }).isRequired
 };
 
