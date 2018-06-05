@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Dashboard /> Matches its snapshot 1`] = `
+<div
+  className="ThinLayout-wrapper-2"
+  id="layout__wrapper"
+>
+  <div />
+  <div
+    className="ThinLayout-thinWrapper-3"
+    id="layout__thin-wrapper"
+  >
+    <header
+      className="Header-wrapper-4"
+    >
+      <img
+        alt="EditVR logo"
+        className="Header-logo-5"
+        src="editvr-logo.svg"
+      />
+    </header>
+    <p
+      className="MuiTypography-root-6 MuiTypography-body1-15"
+      type="body1"
+    >
+      <b>
+        EditVR is a free, open-source WebVR editor
+      </b>
+       that lets you produce interactive and affordable 360 tours and VR stories. EditVR makes immersive experiences available to everyone using devices they already own. Nothing to buy, download, or install!
+    </p>
+    <a
+      aria-current={false}
+      className={undefined}
+      href="/login"
+      onClick={[Function]}
+      style={undefined}
+    >
+      <button
+        className="MuiButtonBase-root-46 MuiButton-root-30 MuiButton-raised-36 MuiButton-raisedPrimary-37 Home-button-1"
+        disabled={false}
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex="0"
+        type="button"
+      >
+        <span
+          className="MuiButton-label-31"
+        >
+          Login
+        </span>
+        <span
+          className="MuiTouchRipple-root-49"
+        />
+      </button>
+    </a>
+    <a
+      aria-current={false}
+      className={undefined}
+      href="/register"
+      onClick={[Function]}
+      style={undefined}
+    >
+      <button
+        className="MuiButtonBase-root-46 MuiButton-root-30 MuiButton-raised-36 MuiButton-raisedPrimary-37 Home-button-1"
+        disabled={false}
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex="0"
+        type="button"
+      >
+        <span
+          className="MuiButton-label-31"
+        >
+          Register
+        </span>
+        <span
+          className="MuiTouchRipple-root-49"
+        />
+      </button>
+    </a>
+    <footer
+      className="Footer-wrapper-56"
+    >
+      <div
+        className="Footer-elements-57"
+      >
+        <a
+          href="https://fourkitchens.com"
+        >
+          <p
+            className="MuiTypography-root-6 MuiTypography-body1-15 Footer-text-59"
+            type="body1"
+          >
+            EditVR is a product of
+          </p>
+          <img
+            alt="Four Kitchens"
+            className="Footer-logo-58"
+            src="4k-logo-reversed.svg"
+          />
+        </a>
+      </div>
+    </footer>
+  </div>
+</div>
+`;

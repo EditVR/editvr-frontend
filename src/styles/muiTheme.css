@@ -1,0 +1,20 @@
+/**
+ * @file muiTheme.css
+ * Global styles for EditVR.
+ */
+
+@keyframes logoBackground {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
+a:visited,
+a:hover,
+a:link,
+a:active {
+  text-decoration: none;
+}

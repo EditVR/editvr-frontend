@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`reduxStore() Returns correctly constructed store and persistor objects. 1`] = `
+Object {
+  "dispatch": [Function],
+  "getState": [Function],
+  "replaceReducer": [Function],
+  "subscribe": [Function],
+  Symbol(observable): [Function],
+}
+`;
+
+exports[`reduxStore() Returns correctly constructed store and persistor objects. 2`] = `
+Object {
+  "dispatch": [Function],
+  "flush": [Function],
+  "getState": [Function],
+  "pause": [Function],
+  "persist": [Function],
+  "purge": [Function],
+  "replaceReducer": [Function],
+  "subscribe": [Function],
+  Symbol(observable): [Function],
+}
+`;

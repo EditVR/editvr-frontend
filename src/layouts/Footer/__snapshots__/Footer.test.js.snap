@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer /> Matches its snapshot 1`] = `
+<footer
+  className="Footer-wrapper-1"
+>
+  <div
+    className="Footer-elements-2"
+  >
+    <a
+      href="https://fourkitchens.com"
+    >
+      <p
+        className="MuiTypography-root-5 MuiTypography-body1-14 Footer-text-4"
+        type="body1"
+      >
+        EditVR is a product of
+      </p>
+      <img
+        alt="Four Kitchens"
+        className="Footer-logo-3"
+        src="4k-logo-reversed.svg"
+      />
+    </a>
+  </div>
+</footer>
+`;

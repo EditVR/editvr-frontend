@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> Matches its snapshot 1`] = `
+<header
+  className="Header-wrapper-1"
+>
+  <img
+    alt="EditVR logo"
+    className="Header-logo-2"
+    src="editvr-logo.svg"
+  />
+</header>
+`;
