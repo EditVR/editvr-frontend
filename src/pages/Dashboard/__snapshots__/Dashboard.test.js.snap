@@ -2,46 +2,147 @@
 
 exports[`<Dashboard /> Matches its snapshot 1`] = `
 <div
-  className="ThinLayout-wrapper-2"
+  className="DashboardLayout-wrapper-2"
   id="layout__wrapper"
 >
   <div />
-  <div
-    className="ThinLayout-thinWrapper-3"
-    id="layout__thin-wrapper"
+  <header
+    className="MuiPaper-root-15 MuiPaper-elevation4-21 MuiAppBar-root-7 MuiAppBar-positionFixed-8 MuiAppBar-colorPrimary-13 mui-fixed DashboardLayout-appBar-3"
   >
-    <header
-      className="Header-wrapper-4"
+    <div
+      className="MuiToolbar-root-42 MuiToolbar-gutters-43"
     >
       <img
         alt="EditVR logo"
-        className="Header-logo-5"
+        className="DashboardLayout-logo-6"
         src="editvr-logo.svg"
       />
-    </header>
+    </div>
+  </header>
+  <div
+    className="MuiDrawer-docked-44"
+  >
+    <div
+      className="MuiPaper-root-15 MuiPaper-elevation0-17 MuiDrawer-paper-45 DashboardLayout-drawerPaper-4 MuiDrawer-paperAnchorLeft-46 MuiDrawer-paperAnchorDockedLeft-50"
+    >
+      <ul
+        className="MuiList-root-55 MuiList-padding-56"
+      >
+        <a
+          className="MuiButtonBase-root-69 MuiListItem-root-59 MuiListItem-default-62 MuiListItem-gutters-66 MuiListItem-button-67"
+          href="/dashboard"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role="button"
+          tabIndex="0"
+        >
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root-73 MuiListItemIcon-root-72"
+            color={undefined}
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <g>
+              <path
+                d="M12 6c2.45 0 4.71.2 7.29.64.47 1.78.71 3.58.71 5.36 0 1.78-.24 3.58-.71 5.36-2.58.44-4.84.64-7.29.64s-4.71-.2-7.29-.64C4.24 15.58 4 13.78 4 12c0-1.78.24-3.58.71-5.36C7.29 6.2 9.55 6 12 6m0-2c-2.73 0-5.22.24-7.95.72l-.93.16-.25.9C2.29 7.85 2 9.93 2 12s.29 4.15.87 6.22l.25.89.93.16c2.73.49 5.22.73 7.95.73s5.22-.24 7.95-.72l.93-.16.25-.89c.58-2.08.87-4.16.87-6.23s-.29-4.15-.87-6.22l-.25-.89-.93-.16C17.22 4.24 14.73 4 12 4z"
+              />
+            </g>
+          </svg>
+          <div
+            className="MuiListItemText-root-79"
+          >
+            <h3
+              className="MuiTypography-root-85 MuiTypography-subheading-92 MuiListItemText-primary-82"
+            >
+              Experiences
+            </h3>
+          </div>
+          <span
+            className="MuiTouchRipple-root-109"
+          />
+        </a>
+        <a
+          className="MuiButtonBase-root-69 MuiListItem-root-59 MuiListItem-default-62 MuiListItem-gutters-66 MuiListItem-button-67"
+          href="/logout"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role="button"
+          tabIndex="0"
+        >
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root-73 MuiListItemIcon-root-72"
+            color={undefined}
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <g>
+              <path
+                d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+              />
+            </g>
+          </svg>
+          <div
+            className="MuiListItemText-root-79"
+          >
+            <h3
+              className="MuiTypography-root-85 MuiTypography-subheading-92 MuiListItemText-primary-82"
+            >
+              Logout
+            </h3>
+          </div>
+          <span
+            className="MuiTouchRipple-root-109"
+          />
+        </a>
+      </ul>
+    </div>
+  </div>
+  <main
+    className="DashboardLayout-content-5"
+  >
     <h1
-      className="MuiTypography-root-6 MuiTypography-headline-11"
+      className="MuiTypography-root-85 MuiTypography-headline-90"
     >
       Experiences
     </h1>
     <p
-      className="MuiTypography-root-6 MuiTypography-body1-15"
+      className="MuiTypography-root-85 MuiTypography-body1-94"
     >
       Please select an experience below. Click the Open button to open the experience for editing.
     </p>
     <div
-      className="MuiPaper-root-31 MuiPaper-elevation2-35 MuiPaper-rounded-32 MuiCard-root-30 Dashboard-card-1"
+      className="MuiPaper-root-15 MuiPaper-elevation2-19 MuiPaper-rounded-16 MuiCard-root-116 Dashboard-card-1"
     >
       <div
-        className="MuiCardContent-root-58"
+        className="MuiCardContent-root-117"
       >
         <h1
-          className="MuiTypography-root-6 MuiTypography-headline-11 MuiTypography-gutterBottom-23"
+          className="MuiTypography-root-85 MuiTypography-headline-90 MuiTypography-gutterBottom-102"
         >
           test experience
         </h1>
         <p
-          className="MuiTypography-root-6 MuiTypography-body1-15"
+          className="MuiTypography-root-85 MuiTypography-body1-94"
           dangerouslySetInnerHTML={
             Object {
               "__html": "this is a test experience",
@@ -50,10 +151,10 @@ exports[`<Dashboard /> Matches its snapshot 1`] = `
         />
       </div>
       <div
-        className="MuiCardActions-root-59"
+        className="MuiCardActions-root-118"
       >
         <a
-          className="MuiButtonBase-root-77 MuiButton-root-61 MuiButton-flatPrimary-63 MuiButton-sizeSmall-74 MuiCardActions-action-60"
+          className="MuiButtonBase-root-69 MuiButton-root-120 MuiButton-flatPrimary-122 MuiButton-sizeSmall-133 MuiCardActions-action-119"
           href="/edit/test"
           onBlur={[Function]}
           onClick={[Function]}
@@ -70,39 +171,16 @@ exports[`<Dashboard /> Matches its snapshot 1`] = `
           tabIndex="0"
         >
           <span
-            className="MuiButton-label-62"
+            className="MuiButton-label-121"
           >
             Open
           </span>
           <span
-            className="MuiTouchRipple-root-80"
+            className="MuiTouchRipple-root-109"
           />
         </a>
       </div>
     </div>
-    <footer
-      className="Footer-wrapper-87"
-    >
-      <div
-        className="Footer-elements-88"
-      >
-        <a
-          href="https://fourkitchens.com"
-        >
-          <p
-            className="MuiTypography-root-6 MuiTypography-body1-15 Footer-text-90"
-            type="body1"
-          >
-            EditVR is a product of
-          </p>
-          <img
-            alt="Four Kitchens"
-            className="Footer-logo-89"
-            src="4k-logo-reversed.svg"
-          />
-        </a>
-      </div>
-    </footer>
-  </div>
+  </main>
 </div>
 `;
