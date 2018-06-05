@@ -3,15 +3,12 @@
  * Exports a component that renders a given form message.
  */
 
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 
-const Message = ({ children }) => (
-  <Fragment>
-    {children && <Typography variant="subheading">{children}</Typography>}
-  </Fragment>
-);
+const Message = ({ children }) =>
+  children ? <Typography variant="subheading">{children}</Typography> : null;
 
 Message.propTypes = {
   children: PropTypes.node
