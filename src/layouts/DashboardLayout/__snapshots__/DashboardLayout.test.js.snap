@@ -120,6 +120,11 @@ exports[`<DashboardLayout /> Matches its snapshot 1`] = `
   <main
     className="DashboardLayout-content-4"
   >
+    <h1
+      className="MuiTypography-root-84 MuiTypography-headline-89"
+    >
+      test title
+    </h1>
     <div>
       child
     </div>

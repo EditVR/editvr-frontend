@@ -77,8 +77,7 @@ class Dashboard extends Component {
     } = this.props;
 
     return (
-      <DashboardLayout>
-        <Typography variant="headline">Experiences</Typography>
+      <DashboardLayout title="Experiences">
         <Typography component="p">
           On this page you can create an experience, or open one of your
           existing experiences for editing by clicking the Open button.
