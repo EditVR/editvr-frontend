@@ -6,7 +6,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography, Button, withStyles } from '@material-ui/core';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { ThinLayout } from '../../layouts';
 import HomeStyles from './Home.style';
@@ -20,16 +20,24 @@ const Home = ({ classes }) => (
       own. Nothing to buy, download, or install!
     </Typography>
 
-    <NavLink to="/login">
-      <Button className={classes.button} variant="raised" color="primary">
-        Login
-      </Button>
-    </NavLink>
-    <NavLink to="/register">
-      <Button className={classes.button} variant="raised" color="primary">
-        Register
-      </Button>
-    </NavLink>
+    <Button
+      className={classes.button}
+      variant="raised"
+      color="primary"
+      component={Link}
+      to="/login"
+    >
+      Login
+    </Button>
+    <Button
+      className={classes.button}
+      variant="raised"
+      color="primary"
+      component={Link}
+      to="/register"
+    >
+      Register
+    </Button>
   </ThinLayout>
 );
 

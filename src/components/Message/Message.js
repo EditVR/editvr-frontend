@@ -1,5 +1,5 @@
 /**
- * @file FormMessage.js
+ * @file Message.js
  * Exports a component that renders a given form message.
  */
 
@@ -7,15 +7,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 
-const FormMessage = ({ children }) =>
+const Message = ({ children }) =>
   children ? <Typography variant="subheading">{children}</Typography> : null;
 
-FormMessage.propTypes = {
+Message.propTypes = {
   children: PropTypes.node
 };
 
-FormMessage.defaultProps = {
+Message.defaultProps = {
   children: null
 };
 
-export default FormMessage;
+export default Message;

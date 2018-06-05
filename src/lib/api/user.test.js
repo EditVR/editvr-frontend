@@ -16,7 +16,7 @@ import {
 
 afterEach(() => mockAxios.reset());
 
-describe('User API Calls', () => {
+describe('api->user', () => {
   it('user->getAccessToken()', () => {
     getAccessToken('username', 'password');
     expect(mockAxios.post).toHaveBeenCalledWith(

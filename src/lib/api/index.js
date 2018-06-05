@@ -5,5 +5,6 @@
 
 import axiosInstance from './axiosInstance';
 import { getAccessToken, getCsrfToken } from './user';
+import { experiencesFetchForUser } from './experiences';
 
-export { axiosInstance, getAccessToken, getCsrfToken };
+export { axiosInstance, getAccessToken, getCsrfToken, experiencesFetchForUser };

@@ -3,16 +3,116 @@
  * Exports a React component that render's EditVR's editorial dashboard.
  */
 
-import React from 'react';
-import { Typography } from '@material-ui/core';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import {
+  Typography,
+  Button,
+  Card,
+  CardContent,
+  CardActions,
+  withStyles
+} from '@material-ui/core';
 
 import { ThinLayout } from '../../layouts';
+import { Message } from '../../components';
+import { EXPERIENCES_FETCH_FOR_USER } from '../../constants';
+import DashboardStyles from './Dashboard.style';
 
-const Dashboard = () => (
-  <ThinLayout>
-    <Typography variant="headline">Dashboard</Typography>
-    <Typography>Eventually this will be a dashboard.</Typography>
-  </ThinLayout>
-);
+class Dashboard extends Component {
+  static propTypes = {
+    classes: PropTypes.shape({
+      card: PropTypes.string.isRequired
+    }).isRequired,
+    user: PropTypes.shape({
+      uid: PropTypes.string.isRequired,
+      authentication: PropTypes.shape({
+        accessToken: PropTypes.string.isRequired,
+        csrfToken: PropTypes.string.isRequired
+      }).isRequired
+    }).isRequired,
+    experiences: PropTypes.shape({
+      error: PropTypes.string,
+      items: PropTypes.arrayOf(
+        PropTypes.shape({
+          title: PropTypes.string.isRequired,
+          body: PropTypes.shape({
+            value: PropTypes.string
+          }),
+          field_experience_path: PropTypes.string
+        })
+      )
+    }),
+    dispatch: PropTypes.func.isRequired
+  };
 
-export default Dashboard;
+  static defaultProps = {
+    experiences: {
+      error: null
+    }
+  };
+
+  /**
+   * {@inheretdoc}
+   */
+  componentWillMount() {
+    const { dispatch, user } = this.props;
+    dispatch({
+      type: EXPERIENCES_FETCH_FOR_USER,
+      user
+    });
+  }
+
+  /**
+   * {@inheretdoc}
+   */
+  render() {
+    const {
+      classes,
+      experiences: { error, items }
+    } = this.props;
+
+    return (
+      <ThinLayout>
+        <Typography variant="headline">Experiences</Typography>
+        <Typography component="p">
+          Please select an experience below. Click the Open button to open the
+          experience for editing.
+        </Typography>
+        {error && <Message>{error}</Message>}
+        {Object.entries(items).map(
+          ([key, { title, body, field_experience_path: path }]) => (
+            <Card key={key} className={classes.card}>
+              <CardContent>
+                <Typography gutterBottom variant="headline">
+                  {title}
+                </Typography>
+                <Typography
+                  component="p"
+                  dangerouslySetInnerHTML={{
+                    __html: body
+                      ? body.value
+                      : 'This experience does not yet have a description.'
+                  }}
+                />
+              </CardContent>
+              <CardActions>
+                <Button
+                  size="small"
+                  color="primary"
+                  component={Link}
+                  to={`/edit/${path}`}
+                >
+                  Open
+                </Button>
+              </CardActions>
+            </Card>
+          )
+        )}
+      </ThinLayout>
+    );
+  }
+}
+
+export default withStyles(DashboardStyles)(Dashboard);

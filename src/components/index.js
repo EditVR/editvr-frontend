@@ -6,6 +6,6 @@
 import App from './App/App';
 import LoginForm from './LoginForm/LoginForm.container';
 import Loading from './Loading/Loading';
-import FormMessage from './FormMessage/FormMessage';
+import Message from './Message/Message';
 
-export { App, LoginForm, Loading, FormMessage };
+export { App, LoginForm, Loading, Message };
