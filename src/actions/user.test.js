@@ -50,6 +50,7 @@ describe('actions->user', () => {
         }
       })
       .next()
+      .next()
       .put(hideLoading())
       .next()
       .isDone();

@@ -4,6 +4,7 @@
  */
 
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import ExperienceForm from './ExperienceForm';
 
@@ -16,4 +17,6 @@ const mapState = ({ user, experiences }) => ({
   experiences
 });
 
-export default connect(mapState, mapDispatchToProps)(ExperienceForm);
+export default connect(mapState, mapDispatchToProps)(
+  withRouter(ExperienceForm)
+);

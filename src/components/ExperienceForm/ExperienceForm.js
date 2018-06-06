@@ -19,6 +19,9 @@ class ExperienceForm extends Component {
       button: PropTypes.string.isRequired
     }).isRequired,
     dispatch: PropTypes.func.isRequired,
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired
+    }).isRequired,
     user: PropTypes.shape({
       authentication: PropTypes.shape({
         accessToken: PropTypes.string.isRequired,
@@ -44,13 +47,18 @@ class ExperienceForm extends Component {
    */
   handleCreate = event => {
     event.preventDefault();
-    const { dispatch, user } = this.props;
+    const {
+      dispatch,
+      user,
+      history: { push }
+    } = this.props;
     dispatch({
       type: EXPERIENCES_CREATE,
       user,
       title: event.target[0].value,
       field_experience_path: event.target[1].value,
-      body: event.target[2].value
+      body: event.target[2].value,
+      successHandler: () => push('/dashboard')
     });
   };
 
@@ -63,6 +71,7 @@ class ExperienceForm extends Component {
       submitHandler,
       experiences: { error }
     } = this.props;
+
     return (
       <form onSubmit={submitHandler || this.handleCreate}>
         {error && <Message>{error}</Message>}

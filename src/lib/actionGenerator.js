@@ -3,7 +3,7 @@
  * Exports a generator that assists in the construction of async saga actions.
  */
 
-import { put } from 'redux-saga/effects';
+import { put, call } from 'redux-saga/effects';
 import {
   showLoading,
   hideLoading,
@@ -15,10 +15,15 @@ import {
  *
  * @param {string} type - This action's machine-friendly name.
  * @param {function} actionHandler - Generator function containing loaders.
+ * @param {function} successHandler - Optional function that handles successes.
  *
  * @returns {undefined} nothing.
  */
-export default function* actionGenerator(type, actionHandler) {
+export default function* actionGenerator(
+  type,
+  actionHandler,
+  successHandler = () => {}
+) {
   yield put(resetLoading());
   yield put(showLoading());
   yield put({
@@ -27,6 +32,7 @@ export default function* actionGenerator(type, actionHandler) {
 
   try {
     yield* actionHandler();
+    yield call(successHandler);
   } catch (error) {
     yield put({
       type: `${type}_FAIL`,

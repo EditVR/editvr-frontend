@@ -44,6 +44,8 @@ export function* experiencesFetchForUser({ user }) {
  * @param {string} payload.title - Title of the new experience.
  * @param {string} payload.body - Description for the new experience.
  * @param {string} payload.field_experience_path - URL slug for new experience.
+ * @param {function} payload.successHandler
+ *   Function to be executed if/when this action succeeds.
  * @param {object} payload.user - Object containing user data.
  * @param {object} payload.user.authentication - Object containing auth data.
  * @param {string} payload.user.authentication.accessToken
@@ -55,7 +57,8 @@ export function* experiencesCreate({
   user,
   title,
   body = '',
-  field_experience_path
+  field_experience_path,
+  successHandler = () => {}
 }) {
   yield* actionGenerator(
     EXPERIENCES_CREATE,
@@ -69,7 +72,8 @@ export function* experiencesCreate({
         type: `${EXPERIENCES_CREATE}_SUCCESS`,
         payload: experience
       });
-    }
+    },
+    successHandler
   );
 }
 

@@ -18,10 +18,16 @@ import actionGenerator from './actionGenerator';
 describe('lib->actionGenerator()', () => {
   it('Generates a saga that yields the correct state changes.', () => {
     const action = jest.fn();
+    const successHandler = jest.fn();
     const type = 'STUB_SAGA';
-    testSaga(actionGenerator, type, function* actionStub() {
-      yield call(action, 'test');
-    })
+    testSaga(
+      actionGenerator,
+      type,
+      function* actionStub() {
+        yield call(action, 'test');
+      },
+      successHandler
+    )
       .next()
       .put(resetLoading())
       .next()
@@ -32,6 +38,8 @@ describe('lib->actionGenerator()', () => {
       })
       .next()
       .call(action, 'test')
+      .next()
+      .call(successHandler)
       .next()
       .put(hideLoading())
       .next()

@@ -37,6 +37,7 @@ describe('actions->experiencesFetchForUser()', () => {
         payload: undefined
       })
       .next()
+      .next()
       .put(hideLoading())
       .next()
       .isDone();
