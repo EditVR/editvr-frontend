@@ -20,8 +20,9 @@ import actionGenerator from '../lib/actionGenerator';
  * @param {object} payload - Payload for this saga action.
  * @param {string} payload.username - Name of the user that should be authenticated.
  * @param {string} payload.password - Password of user that should be authenticated.
+ * @param {string} payload.created - Optional creation date for this authentication.
  */
-export function* userLogIn({ username, password }) {
+export function* userLogIn({ username, password, created = Date.now() }) {
   yield* actionGenerator(USER_LOG_IN, function* userLogInHandler() {
     const auth = yield call(getAccessToken, username, password);
     const { accessToken, refreshToken, expiresIn } = auth || {};
@@ -29,7 +30,7 @@ export function* userLogIn({ username, password }) {
     yield put({
       type: `${USER_LOG_IN}_SUCCESS`,
       payload: {
-        created: Date.now(),
+        created,
         username,
         accessToken,
         refreshToken,

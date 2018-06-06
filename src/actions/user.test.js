@@ -23,7 +23,8 @@ describe('actions->user', () => {
   it('user->userLogIn()', () => {
     const username = 'test';
     const password = 'test';
-    testSaga(userLogIn, { username, password })
+    const created = Date.now();
+    testSaga(userLogIn, { username, password, created })
       .next()
       .put(resetLoading())
       .next()
@@ -40,7 +41,7 @@ describe('actions->user', () => {
       .put({
         type: `${USER_LOG_IN}_SUCCESS`,
         payload: {
-          created: Date.now(),
+          created,
           username,
           accessToken: undefined,
           refreshToken: undefined,
