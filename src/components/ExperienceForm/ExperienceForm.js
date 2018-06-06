@@ -14,6 +14,7 @@ import { EXPERIENCES_CREATE } from '../../constants';
 class ExperienceForm extends Component {
   static propTypes = {
     submitHandler: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+    experienceSlug: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     classes: PropTypes.shape({
       textField: PropTypes.string.isRequired,
       button: PropTypes.string.isRequired
@@ -29,14 +30,26 @@ class ExperienceForm extends Component {
       }).isRequired
     }).isRequired,
     experiences: PropTypes.shape({
-      error: PropTypes.string
+      error: PropTypes.string,
+      items: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          title: PropTypes.string.isRequired,
+          body: PropTypes.PropTypes.shape({
+            value: PropTypes.string
+          }),
+          field_experience_path: PropTypes.string.isRequired
+        })
+      )
     })
   };
 
   static defaultProps = {
     submitHandler: false,
+    experienceSlug: false,
     experiences: {
-      error: null
+      error: null,
+      items: []
     }
   };
 
@@ -69,8 +82,14 @@ class ExperienceForm extends Component {
     const {
       classes,
       submitHandler,
-      experiences: { error }
+      experienceSlug,
+      experiences: { error, items }
     } = this.props;
+
+    // If this is an editorial form, grab the existing experience.
+    const experience = experienceSlug
+      ? items.find(item => item.field_experience_path === experienceSlug)
+      : false;
 
     return (
       <form onSubmit={submitHandler || this.handleCreate}>
@@ -81,6 +100,7 @@ class ExperienceForm extends Component {
           type="text"
           required
           helperText="Enter a user-friendly title for your experience."
+          defaultValue={experience ? experience.title : ''}
           className={classes.textField}
         />
         <TextField
@@ -89,6 +109,7 @@ class ExperienceForm extends Component {
           type="text"
           required
           helperText="Enter a name for your experience. For example, if you enter 'my-new-experience', your experience will be published to /experience/my-new-experience."
+          defaultValue={experience ? experience.field_experience_path : ''}
           className={classes.textField}
         />
         <TextField
@@ -99,6 +120,9 @@ class ExperienceForm extends Component {
           required
           rows={6}
           helperText="Describe your experience so people will know what to expect before they enter your experience."
+          defaultValue={
+            experience && experience.body ? experience.body.value : ''
+          }
           className={classes.textField}
         />
         <Button
