@@ -59,7 +59,7 @@ describe('actions->user', () => {
     testSaga(userLogOut)
       .next()
       .put({
-        type: USER_LOG_OUT
+        type: `${USER_LOG_OUT}_SUCCESS`
       })
       .next()
       .isDone();
@@ -69,7 +69,7 @@ describe('actions->user', () => {
     testSaga(userSetRole, USER_ROLE_EDITOR)
       .next()
       .put({
-        type: USER_SET_ROLE,
+        type: `${USER_SET_ROLE}_SUCCESS`,
         payload: {
           role: USER_ROLE_EDITOR
         }

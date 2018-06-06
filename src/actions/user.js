@@ -46,7 +46,7 @@ export function* userLogIn({ username, password }) {
  */
 export function* userLogOut() {
   yield put({
-    type: USER_LOG_OUT
+    type: `${USER_LOG_OUT}_SUCCESS`
   });
 }
 
@@ -57,7 +57,7 @@ export function* userLogOut() {
  */
 export function* userSetRole(role) {
   yield put({
-    type: USER_SET_ROLE,
+    type: `${USER_SET_ROLE}_SUCCESS`,
     payload: {
       role
     }
