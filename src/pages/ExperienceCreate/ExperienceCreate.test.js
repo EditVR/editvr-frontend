@@ -19,6 +19,12 @@ describe('<ExperienceCreate />', () => {
     const store = configureStore()({
       loadingBar: {
         default: 0
+      },
+      user: {
+        authentication: {
+          accessToken: 'token',
+          csrfToken: 'token'
+        }
       }
     });
 

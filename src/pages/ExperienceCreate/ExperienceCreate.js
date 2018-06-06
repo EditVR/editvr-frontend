@@ -6,7 +6,12 @@
 import React from 'react';
 
 import { DashboardLayout } from '../../layouts';
+import { ExperienceCreateForm } from '../../components';
 
-const ExperienceCreate = () => <DashboardLayout title="Create an Experience" />;
+const ExperienceCreate = () => (
+  <DashboardLayout title="Create an Experience">
+    <ExperienceCreateForm />
+  </DashboardLayout>
+);
 
 export default ExperienceCreate;
