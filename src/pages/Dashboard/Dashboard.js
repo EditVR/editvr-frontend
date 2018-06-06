@@ -12,9 +12,10 @@ import {
   Card,
   CardContent,
   CardActions,
+  Tooltip,
   withStyles
 } from '@material-ui/core';
-import { AddBox } from '@material-ui/icons';
+import { AddBox, Edit, OpenInBrowser } from '@material-ui/icons';
 
 import { DashboardLayout } from '../../layouts';
 import { Message } from '../../components';
@@ -111,14 +112,28 @@ class Dashboard extends Component {
                 />
               </CardContent>
               <CardActions>
-                <Button
-                  size="small"
-                  color="primary"
-                  component={Link}
-                  to={`/edit/${path}`}
-                >
-                  Open
-                </Button>
+                <Tooltip title={`Open ${title} in VR editor`}>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    component={Link}
+                    className={classes.cardActionButton}
+                    to={`/experience/editvr/${path}`}
+                  >
+                    <OpenInBrowser />
+                  </Button>
+                </Tooltip>
+                <Tooltip title={`Configure ${title}`}>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    component={Link}
+                    className={classes.cardActionButton}
+                    to={`/experience/edit/${path}`}
+                  >
+                    <Edit />
+                  </Button>
+                </Tooltip>
               </CardActions>
             </Card>
           )

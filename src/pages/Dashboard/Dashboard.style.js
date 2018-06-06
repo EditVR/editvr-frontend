@@ -13,5 +13,8 @@ export default theme => ({
   },
   buttonIcon: {
     marginLeft: theme.spacing.unit
+  },
+  cardActionButton: {
+    marginRight: theme.spacing.unit
   }
 });
