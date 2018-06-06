@@ -34,6 +34,7 @@ export const experiencesFetchForUser = async ({ uid, authentication }) =>
  *
  * @param {object} experience - Object containing data for new experience.
  * @param {string} experience.title - Title of the new experience.
+ * @param {string} experience.body - Description for the new experience.
  * @param {string} experience.field_experience_path - URL slug for new experience.
  * @param {object} user - Object containing information about the current user.
  * @param {object} user.authentication - Object containing auth data.
@@ -43,7 +44,7 @@ export const experiencesFetchForUser = async ({ uid, authentication }) =>
  *   CSRF token for the current user.
  */
 export const experiencesCreate = async (
-  { title, field_experience_path },
+  { title, field_experience_path, body = '' },
   { authentication }
 ) =>
   axiosInstance(authentication).post(API_ENDPOINT_EXPERIENCES, {
@@ -51,7 +52,12 @@ export const experiencesCreate = async (
       type: API_TYPE_EXPERIENCES,
       attributes: {
         title,
-        field_experience_path
+        field_experience_path,
+        body: {
+          value: body,
+          format: 'plain_text',
+          summary: ''
+        }
       }
     }
   });

@@ -42,6 +42,7 @@ export function* experiencesFetchForUser({ user }) {
  *
  * @param {object} payload - Payload for this saga action.
  * @param {string} payload.title - Title of the new experience.
+ * @param {string} payload.body - Description for the new experience.
  * @param {string} payload.field_experience_path - URL slug for new experience.
  * @param {object} payload.user - Object containing user data.
  * @param {object} payload.user.authentication - Object containing auth data.
@@ -50,13 +51,18 @@ export function* experiencesFetchForUser({ user }) {
  * @param {string} payload.user.authentication.csrfToken
  *   CSRF token for the current user.
  */
-export function* experiencesCreate({ user, title, field_experience_path }) {
+export function* experiencesCreate({
+  user,
+  title,
+  body = '',
+  field_experience_path
+}) {
   yield* actionGenerator(
     EXPERIENCES_CREATE,
     function* experienceCreateHandler() {
       const experience = yield call(
         postExperiences,
-        { title, field_experience_path },
+        { title, body, field_experience_path },
         user
       );
       yield put({

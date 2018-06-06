@@ -6,11 +6,11 @@
 import React from 'react';
 
 import { DashboardLayout } from '../../layouts';
-import { ExperienceCreateForm } from '../../components';
+import { ExperienceForm } from '../../components';
 
 const ExperienceCreate = () => (
   <DashboardLayout title="Create an Experience">
-    <ExperienceCreateForm />
+    <ExperienceForm />
   </DashboardLayout>
 );
 

@@ -1,6 +1,6 @@
 /**
- * @file ExperienceCreateForm.js
- * Exports a component that allows users to create an EditVR experience.
+ * @file ExperienceForm.js
+ * Exports a component that allows users to operate on experiences.
  */
 
 import React, { Component } from 'react';
@@ -8,10 +8,10 @@ import PropTypes from 'prop-types';
 import { TextField, Button, withStyles } from '@material-ui/core';
 
 import { Message } from '../';
-import ExperienceCreateFormStyles from './ExperienceCreateForm.style';
+import ExperienceFormStyles from './ExperienceForm.style';
 import { EXPERIENCES_CREATE } from '../../constants';
 
-class ExperienceCreateForm extends Component {
+class ExperienceForm extends Component {
   static propTypes = {
     submitHandler: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     classes: PropTypes.shape({
@@ -38,18 +38,19 @@ class ExperienceCreateForm extends Component {
   };
 
   /**
-   * Handles a login form submit action.
+   * Handles a creating an experience.
    *
    * @param {object} event - Submit event object.
    */
-  handleSubmit = event => {
+  handleCreate = event => {
     event.preventDefault();
     const { dispatch, user } = this.props;
     dispatch({
       type: EXPERIENCES_CREATE,
       user,
       title: event.target[0].value,
-      field_experience_path: event.target[1].value
+      field_experience_path: event.target[1].value,
+      body: event.target[2].value
     });
   };
 
@@ -63,7 +64,7 @@ class ExperienceCreateForm extends Component {
       experiences: { error }
     } = this.props;
     return (
-      <form onSubmit={submitHandler || this.handleSubmit}>
+      <form onSubmit={submitHandler || this.handleCreate}>
         {error && <Message>{error}</Message>}
         <TextField
           id="title"
@@ -81,6 +82,16 @@ class ExperienceCreateForm extends Component {
           helperText="Enter a name for your experience. For example, if you enter 'my-new-experience', your experience will be published to /experience/my-new-experience."
           className={classes.textField}
         />
+        <TextField
+          id="body"
+          label="Description"
+          type="text"
+          multiline
+          required
+          rows={6}
+          helperText="Describe your experience so people will know what to expect before they enter your experience."
+          className={classes.textField}
+        />
         <Button
           variant="raised"
           color="primary"
@@ -94,4 +105,4 @@ class ExperienceCreateForm extends Component {
   }
 }
 
-export default withStyles(ExperienceCreateFormStyles)(ExperienceCreateForm);
+export default withStyles(ExperienceFormStyles)(ExperienceForm);
