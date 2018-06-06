@@ -61,18 +61,18 @@ describe('reducers->user', () => {
     ).toMatchSnapshot();
   });
 
-  it(`Should handle ${USER_LOG_OUT}`, () => {
+  it(`Should handle ${USER_LOG_OUT}_SUCCESS`, () => {
     expect(
       reducer(undefined, {
-        type: USER_LOG_OUT
+        type: `${USER_LOG_OUT}_SUCCESS`
       })
     ).toMatchSnapshot();
   });
 
-  it(`Should handle ${USER_SET_ROLE}`, () => {
+  it(`Should handle ${USER_SET_ROLE}_SUCCESS`, () => {
     expect(
       reducer(undefined, {
-        type: USER_SET_ROLE,
+        type: `${USER_SET_ROLE}_SUCCESS`,
         payload: {
           role: USER_ROLE_EDITOR
         }
