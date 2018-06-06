@@ -51,7 +51,7 @@ Object {
 }
 `;
 
-exports[`reducers->user Should handle USER_LOG_OUT 1`] = `
+exports[`reducers->user Should handle USER_LOG_OUT_SUCCESS 1`] = `
 Object {
   "authentication": Object {
     "accessToken": null,
@@ -68,7 +68,7 @@ Object {
 }
 `;
 
-exports[`reducers->user Should handle USER_SET_ROLE 1`] = `
+exports[`reducers->user Should handle USER_SET_ROLE_SUCCESS 1`] = `
 Object {
   "authentication": Object {
     "accessToken": null,

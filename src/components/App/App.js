@@ -22,13 +22,13 @@ const App = () => (
           redirectTo="/dashboard"
           component={Login}
         />
+        <PrivateRoute exact path="/logout" redirectTo="/" component={Logout} />
         <PrivateRoute
           exact
           path="/dashboard"
           redirectTo="/login"
           component={Dashboard}
         />
-        <PrivateRoute exact path="/logout" redirectTo="/" component={Logout} />
       </Switch>
     </Router>
   </Fragment>

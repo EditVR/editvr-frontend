@@ -91,14 +91,14 @@ export default function user(state = defaultState, action) {
     /**
      * Reducer that handles user logout actions.
      */
-    case USER_LOG_OUT: {
-      return { ...defaultState };
+    case `${USER_LOG_OUT}_SUCCESS`: {
+      return defaultState;
     }
 
     /**
      * Reducer that handles setting a user's role.
      */
-    case USER_SET_ROLE: {
+    case `${USER_SET_ROLE}_SUCCESS`: {
       const { role } = action.payload;
       return { ...state, authentication: { ...state.authentication, role } };
     }
