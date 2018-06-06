@@ -5,12 +5,17 @@
 
 import axiosInstance from './axiosInstance';
 import { getAccessToken, getCsrfToken } from './user';
-import { experiencesFetchForUser, experiencesCreate } from './experiences';
+import {
+  experiencesFetchForUser,
+  experiencesCreate,
+  experiencesEdit
+} from './experiences';
 
 export {
   axiosInstance,
   getAccessToken,
   getCsrfToken,
   experiencesFetchForUser,
-  experiencesCreate
+  experiencesCreate,
+  experiencesEdit
 };

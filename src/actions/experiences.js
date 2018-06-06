@@ -5,10 +5,15 @@
 
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import { EXPERIENCES_FETCH_FOR_USER, EXPERIENCES_CREATE } from '../constants';
+import {
+  EXPERIENCES_FETCH_FOR_USER,
+  EXPERIENCES_CREATE,
+  EXPERIENCES_EDIT
+} from '../constants';
 import {
   experiencesFetchForUser as getExperiencesForUser,
-  experiencesCreate as postExperiences
+  experiencesCreate as postExperiences,
+  experiencesEdit as patchExperiences
 } from '../lib/api';
 import actionGenerator from '../lib/actionGenerator';
 
@@ -77,7 +82,51 @@ export function* experiencesCreate({
   );
 }
 
+/**
+ * Edits an existing experience
+ *
+ * @param {object} payload - Payload for this saga action.
+ * @param {object} payload.id - Unique ID of experience being updated.
+ * @param {string} payload.title - Title of this experience.
+ * @param {string} payload.body - Description for this experience.
+ * @param {string} payload.field_experience_path - URL slug for this experience.
+ * @param {function} payload.successHandler
+ *   Function to be executed if/when this action succeeds.
+ * @param {object} payload.user - Object containing user data.
+ * @param {object} payload.user.authentication - Object containing auth data.
+ * @param {string} payload.user.authentication.accessToken
+ *   Access token for the current user.
+ * @param {string} payload.user.authentication.csrfToken
+ *   CSRF token for the current user.
+ */
+export function* experiencesEdit({
+  id,
+  user,
+  title,
+  body = '',
+  field_experience_path,
+  successHandler = () => {}
+}) {
+  yield* actionGenerator(
+    EXPERIENCES_EDIT,
+    function* experienceEditHandler() {
+      const experience = yield call(
+        patchExperiences,
+        { id, title, body, field_experience_path },
+        user
+      );
+
+      yield put({
+        type: `${EXPERIENCES_EDIT}_SUCCESS`,
+        payload: experience
+      });
+    },
+    successHandler
+  );
+}
+
 export function* watchExperiencesActions() {
   yield takeLatest(EXPERIENCES_FETCH_FOR_USER, experiencesFetchForUser);
   yield takeLatest(EXPERIENCES_CREATE, experiencesCreate);
+  yield takeLatest(EXPERIENCES_EDIT, experiencesEdit);
 }

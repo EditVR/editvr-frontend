@@ -9,7 +9,7 @@ import { TextField, Button, withStyles } from '@material-ui/core';
 
 import { Message } from '../';
 import ExperienceFormStyles from './ExperienceForm.style';
-import { EXPERIENCES_CREATE } from '../../constants';
+import { EXPERIENCES_CREATE, EXPERIENCES_EDIT } from '../../constants';
 
 class ExperienceForm extends Component {
   static propTypes = {
@@ -54,20 +54,35 @@ class ExperienceForm extends Component {
   };
 
   /**
-   * Handles a creating an experience.
+   * Fetches the experience that belongs to the given slug.
+   */
+  getExperience = () => {
+    const {
+      experienceSlug,
+      experiences: { items }
+    } = this.props;
+    return experienceSlug
+      ? items.find(item => item.field_experience_path === experienceSlug)
+      : false;
+  };
+
+  /**
+   * Handles dispatching create or update actions.
    *
    * @param {object} event - Submit event object.
    */
-  handleCreate = event => {
+  handleSubmit = event => {
     event.preventDefault();
     const {
       dispatch,
       user,
-      history: { push }
+      history: { push },
+      experienceSlug
     } = this.props;
     dispatch({
-      type: EXPERIENCES_CREATE,
+      type: experienceSlug ? EXPERIENCES_EDIT : EXPERIENCES_CREATE,
       user,
+      id: this.getExperience().id,
       title: event.target[0].value,
       field_experience_path: event.target[1].value,
       body: event.target[2].value,
@@ -83,16 +98,13 @@ class ExperienceForm extends Component {
       classes,
       submitHandler,
       experienceSlug,
-      experiences: { error, items }
+      experiences: { error }
     } = this.props;
 
-    // If this is an editorial form, grab the existing experience.
-    const experience = experienceSlug
-      ? items.find(item => item.field_experience_path === experienceSlug)
-      : false;
+    const experience = this.getExperience();
 
     return (
-      <form onSubmit={submitHandler || this.handleCreate}>
+      <form onSubmit={submitHandler || this.handleSubmit}>
         {error && <Message>{error}</Message>}
         <TextField
           id="title"
@@ -131,7 +143,7 @@ class ExperienceForm extends Component {
           type="submit"
           className={classes.button}
         >
-          Create
+          {experienceSlug ? 'Save' : 'Create'}
         </Button>
       </form>
     );

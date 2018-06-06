@@ -3,7 +3,11 @@
  * Exports reducers pertaining to experience state.
  */
 
-import { EXPERIENCES_FETCH_FOR_USER, EXPERIENCES_CREATE } from '../constants';
+import {
+  EXPERIENCES_FETCH_FOR_USER,
+  EXPERIENCES_CREATE,
+  EXPERIENCES_EDIT
+} from '../constants';
 
 /**
  * Default experience state.
@@ -83,6 +87,55 @@ export default function experiences(state = defaultState, action) {
      * Reducer that handles experience create failure actions.
      */
     case `${EXPERIENCES_CREATE}_FAIL`: {
+      return {
+        loading: false,
+        error: action.payload.error,
+        items: [...state.items]
+      };
+    }
+
+    /**
+     * Reducer that handles experience edit success actions.
+     */
+    case `${EXPERIENCES_EDIT}_SUCCESS`: {
+      const { payload: experience } = action;
+
+      // Filter out the outdated object, and nab it's index.
+      let index = null;
+      const newItems = [...state.items].filter((item, i) => {
+        if (item.id === experience.id) {
+          index = i;
+          return false;
+        }
+
+        return true;
+      });
+
+      // Splice the new updated object in to the array.
+      newItems.splice(index, 0, experience);
+
+      return {
+        loading: false,
+        error: null,
+        items: newItems
+      };
+    }
+
+    /**
+     * Reducer that handles experience edit loading actions.
+     */
+    case `${EXPERIENCES_EDIT}_LOADING`: {
+      return {
+        loading: true,
+        error: null,
+        items: [...state.items]
+      };
+    }
+
+    /**
+     * Reducer that handles experience edit failure actions.
+     */
+    case `${EXPERIENCES_EDIT}_FAIL`: {
       return {
         loading: false,
         error: action.payload.error,
