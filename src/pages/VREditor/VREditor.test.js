@@ -21,9 +21,15 @@ describe('<VREditor />', () => {
         default: 0
       },
       user: {
+        uid: '10',
         authentication: {
           accessToken: 'token',
           csrfToken: 'token'
+        }
+      },
+      openExperience: {
+        item: {
+          title: 'test'
         }
       }
     });
@@ -31,7 +37,7 @@ describe('<VREditor />', () => {
       renderer
         .create(
           <Provider store={store}>
-            <Router initialEntries={['/experience/edit/test/test']}>
+            <Router initialEntries={['/experience/vreditor/test/test']}>
               <Route
                 path="/experience/vreditor/:experienceSlug/:sceneSlug?"
                 component={ThemedVREditor}

@@ -1,3 +1,97 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<VREditor /> Matches its snapshot 1`] = `null`;
+exports[`<VREditor /> Matches its snapshot 1`] = `
+<div
+  align="stretch"
+  className="MuiGrid-container-8 VREditorLayout-wrapper-3"
+  id="editor__wrapper"
+>
+  <div />
+  <header
+    className="MuiPaper-root-107 MuiPaper-elevation4-113 MuiAppBar-root-99 MuiAppBar-positionFixed-100 MuiAppBar-colorPrimary-105 mui-fixed VREditorLayout-appBar-6"
+  >
+    <div
+      className="MuiToolbar-root-134 MuiToolbar-gutters-135"
+    >
+      <a
+        aria-label="Back to Dashboard"
+        className="MuiButtonBase-root-142 MuiIconButton-root-136 MuiIconButton-colorInherit-137"
+        href="/dashboard"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        role="button"
+        tabIndex="0"
+      >
+        <span
+          className="MuiIconButton-label-141"
+        >
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root-145"
+            color={undefined}
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <g>
+              <path
+                d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z"
+              />
+            </g>
+          </svg>
+        </span>
+        <span
+          className="MuiTouchRipple-root-151"
+        />
+      </a>
+      <img
+        alt="EditVR logo"
+        className="VREditorLayout-logo-7"
+        src="editvr-logo.svg"
+      />
+      <h2
+        className="MuiTypography-root-158 MuiTypography-title-164"
+      >
+        Editing test Experience
+      </h2>
+    </div>
+  </header>
+  <div
+    className="MuiGrid-item-9 MuiGrid-grid-xs-3-37 VREditorLayout-aside-4"
+  >
+    <div
+      align="stretch"
+      className="MuiGrid-container-8"
+    >
+      <div
+        className="MuiGrid-item-9 MuiGrid-grid-xs-3-37 VREditor-columnLeft-2"
+        id="column--left_aside"
+      />
+      <div
+        className="MuiGrid-item-9 MuiGrid-grid-xs-9-43 VREditor-columnRight-1"
+        id="column--left_aside"
+      >
+        <div />
+      </div>
+    </div>
+  </div>
+  <div
+    className="MuiGrid-item-9 MuiGrid-grid-xs-6-40 VREditorLayout-middle-5"
+  >
+    Hey there, this will soon be a VR scene.
+  </div>
+  <div
+    className="MuiGrid-item-9 MuiGrid-grid-xs-3-37 VREditorLayout-aside-4"
+  >
+    Right Sidebar
+  </div>
+</div>
+`;
