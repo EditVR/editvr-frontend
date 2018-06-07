@@ -42,7 +42,7 @@ export default function openExperiences(state = defaultState, action) {
       return {
         loading: true,
         error: null,
-        items: null
+        item: null
       };
     }
 
@@ -53,7 +53,7 @@ export default function openExperiences(state = defaultState, action) {
       return {
         loading: false,
         error: action.payload.error,
-        items: null
+        item: null
       };
     }
     default:
