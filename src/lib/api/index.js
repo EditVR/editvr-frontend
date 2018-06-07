@@ -11,11 +11,14 @@ import {
   experiencesEdit
 } from './experiences';
 
+import { openExperienceFetchForUser } from './openExperience';
+
 export {
   axiosInstance,
   getAccessToken,
   getCsrfToken,
   experiencesFetchForUser,
   experiencesCreate,
-  experiencesEdit
+  experiencesEdit,
+  openExperienceFetchForUser
 };

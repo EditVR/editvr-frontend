@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_FETCH_FOR_USER_FAIL 1`] = `
+Object {
+  "error": "Error: failed to fetch experiences.",
+  "items": null,
+  "loading": false,
+}
+`;
+
+exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_FETCH_FOR_USER_LOADING 1`] = `
+Object {
+  "error": null,
+  "items": null,
+  "loading": true,
+}
+`;
+
+exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_FETCH_FOR_USER_SUCCESS 1`] = `
+Object {
+  "error": null,
+  "item": Object {
+    "id": 1,
+    "title": "example experience",
+  },
+  "loading": false,
+}
+`;
+
+exports[`reducers->openExperience Should return the initial state by default 1`] = `
+Object {
+  "error": null,
+  "item": null,
+  "loading": false,
+}
+`;
