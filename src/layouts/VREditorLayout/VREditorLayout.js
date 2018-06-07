@@ -46,9 +46,7 @@ const VREditorLayout = ({
           <KeyboardArrowLeft />
         </IconButton>
         <img src={EditVRLogo} alt="EditVR logo" className={classes.logo} />
-        <Typography variant="title" className={classes.flex}>
-          {title}
-        </Typography>
+        <Typography variant="title">{title}</Typography>
       </Toolbar>
     </AppBar>
     <Grid item xs={3} className={classes.aside}>
@@ -68,7 +66,12 @@ VREditorLayout.propTypes = {
   leftAside: PropTypes.node,
   rightAside: PropTypes.node,
   title: PropTypes.string,
-  classes: PropTypes.shape({}).isRequired
+  classes: PropTypes.shape({
+    aside: PropTypes.string.isRequired,
+    middle: PropTypes.string.isRequired,
+    appBar: PropTypes.string.isRequired,
+    logo: PropTypes.string.isRequired
+  }).isRequired
 };
 
 VREditorLayout.defaultProps = {
