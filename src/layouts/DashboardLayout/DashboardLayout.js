@@ -14,7 +14,8 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  ListItemText
+  ListItemText,
+  Typography
 } from '@material-ui/core';
 import { ExitToApp, PanoramaWideAngle } from '@material-ui/icons';
 import LoadingBar from 'react-redux-loading-bar';
@@ -23,7 +24,7 @@ import { ThemeProvider } from '../../hoc';
 import DashboardLayoutStyles from './DashboardLayout.style';
 import EditVRLogo from '../../assets/editvr-logo.svg';
 
-const DashboardLayout = ({ children, classes }) => (
+const DashboardLayout = ({ title, children, classes }) => (
   <div id="layout__wrapper" className={classes.wrapper}>
     <LoadingBar style={{ backgroundColor: '#FFFFFF' }} />
     <AppBar className={classes.appBar}>
@@ -47,12 +48,16 @@ const DashboardLayout = ({ children, classes }) => (
         </ListItem>
       </List>
     </Drawer>
-    <main className={classes.content}>{children}</main>
+    <main className={classes.content}>
+      {title && <Typography variant="headline">{title}</Typography>}
+      {children}
+    </main>
   </div>
 );
 
 DashboardLayout.propTypes = {
   children: PropTypes.node,
+  title: PropTypes.string,
   classes: PropTypes.shape({
     wrapper: PropTypes.string.isRequired,
     appBar: PropTypes.string.isRequired,
@@ -63,7 +68,8 @@ DashboardLayout.propTypes = {
 };
 
 DashboardLayout.defaultProps = {
-  children: null
+  children: null,
+  title: null
 };
 
 export default ThemeProvider(

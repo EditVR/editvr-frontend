@@ -24,7 +24,7 @@ describe('<DashboardLayout />', () => {
         .create(
           <Provider store={store}>
             <Router>
-              <DashboardLayout>
+              <DashboardLayout title="test title">
                 <div>child</div>
               </DashboardLayout>
             </Router>

@@ -1,0 +1,312 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ExperienceCreate /> Matches its snapshot 1`] = `
+<div
+  className="DashboardLayout-wrapper-1"
+  id="layout__wrapper"
+>
+  <div />
+  <header
+    className="MuiPaper-root-14 MuiPaper-elevation4-20 MuiAppBar-root-6 MuiAppBar-positionFixed-7 MuiAppBar-colorPrimary-12 mui-fixed DashboardLayout-appBar-2"
+  >
+    <div
+      className="MuiToolbar-root-41 MuiToolbar-gutters-42"
+    >
+      <img
+        alt="EditVR logo"
+        className="DashboardLayout-logo-5"
+        src="editvr-logo.svg"
+      />
+    </div>
+  </header>
+  <div
+    className="MuiDrawer-docked-43"
+  >
+    <div
+      className="MuiPaper-root-14 MuiPaper-elevation0-16 MuiDrawer-paper-44 DashboardLayout-drawerPaper-3 MuiDrawer-paperAnchorLeft-45 MuiDrawer-paperAnchorDockedLeft-49"
+    >
+      <ul
+        className="MuiList-root-54 MuiList-padding-55"
+      >
+        <a
+          className="MuiButtonBase-root-68 MuiListItem-root-58 MuiListItem-default-61 MuiListItem-gutters-65 MuiListItem-button-66"
+          href="/dashboard"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role="button"
+          tabIndex="0"
+        >
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root-72 MuiListItemIcon-root-71"
+            color={undefined}
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <g>
+              <path
+                d="M12 6c2.45 0 4.71.2 7.29.64.47 1.78.71 3.58.71 5.36 0 1.78-.24 3.58-.71 5.36-2.58.44-4.84.64-7.29.64s-4.71-.2-7.29-.64C4.24 15.58 4 13.78 4 12c0-1.78.24-3.58.71-5.36C7.29 6.2 9.55 6 12 6m0-2c-2.73 0-5.22.24-7.95.72l-.93.16-.25.9C2.29 7.85 2 9.93 2 12s.29 4.15.87 6.22l.25.89.93.16c2.73.49 5.22.73 7.95.73s5.22-.24 7.95-.72l.93-.16.25-.89c.58-2.08.87-4.16.87-6.23s-.29-4.15-.87-6.22l-.25-.89-.93-.16C17.22 4.24 14.73 4 12 4z"
+              />
+            </g>
+          </svg>
+          <div
+            className="MuiListItemText-root-78"
+          >
+            <h3
+              className="MuiTypography-root-84 MuiTypography-subheading-91 MuiListItemText-primary-81"
+            >
+              Experiences
+            </h3>
+          </div>
+          <span
+            className="MuiTouchRipple-root-108"
+          />
+        </a>
+        <a
+          className="MuiButtonBase-root-68 MuiListItem-root-58 MuiListItem-default-61 MuiListItem-gutters-65 MuiListItem-button-66"
+          href="/logout"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role="button"
+          tabIndex="0"
+        >
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root-72 MuiListItemIcon-root-71"
+            color={undefined}
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <g>
+              <path
+                d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+              />
+            </g>
+          </svg>
+          <div
+            className="MuiListItemText-root-78"
+          >
+            <h3
+              className="MuiTypography-root-84 MuiTypography-subheading-91 MuiListItemText-primary-81"
+            >
+              Logout
+            </h3>
+          </div>
+          <span
+            className="MuiTouchRipple-root-108"
+          />
+        </a>
+      </ul>
+    </div>
+  </div>
+  <main
+    className="DashboardLayout-content-4"
+  >
+    <h1
+      className="MuiTypography-root-84 MuiTypography-headline-89"
+    >
+      Create an Experience
+    </h1>
+    <form
+      onSubmit={[Function]}
+    >
+      <div
+        aria-describedby="title-helper-text"
+        className="MuiFormControl-root-117 ExperienceForm-textField-115"
+        onBlur={[Function]}
+        onFocus={[Function]}
+      >
+        <label
+          className="MuiFormLabel-root-126 MuiInputLabel-root-121 MuiInputLabel-formControl-122 MuiInputLabel-animated-125"
+          data-shrink={false}
+          htmlFor="title"
+        >
+          Title
+          <span
+            className="MuiFormLabel-asterisk-130"
+          >
+             *
+          </span>
+        </label>
+        <div
+          className="MuiInput-root-131 MuiInput-formControl-132 MuiInput-underline-135"
+        >
+          <input
+            aria-invalid={false}
+            aria-required={true}
+            autoComplete={undefined}
+            autoFocus={undefined}
+            className="MuiInput-input-139"
+            defaultValue=""
+            disabled={false}
+            id="title"
+            name={undefined}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={undefined}
+            onKeyUp={undefined}
+            placeholder={undefined}
+            readOnly={undefined}
+            required={true}
+            rows={undefined}
+            type="text"
+            value={undefined}
+          />
+        </div>
+        <p
+          className="MuiFormHelperText-root-144"
+          id="title-helper-text"
+        >
+          Enter a user-friendly title for your experience.
+        </p>
+      </div>
+      <div
+        aria-describedby="field_experience_path-helper-text"
+        className="MuiFormControl-root-117 ExperienceForm-textField-115"
+        onBlur={[Function]}
+        onFocus={[Function]}
+      >
+        <label
+          className="MuiFormLabel-root-126 MuiInputLabel-root-121 MuiInputLabel-formControl-122 MuiInputLabel-animated-125"
+          data-shrink={false}
+          htmlFor="field_experience_path"
+        >
+          URL Path
+          <span
+            className="MuiFormLabel-asterisk-130"
+          >
+             *
+          </span>
+        </label>
+        <div
+          className="MuiInput-root-131 MuiInput-formControl-132 MuiInput-underline-135"
+        >
+          <input
+            aria-invalid={false}
+            aria-required={true}
+            autoComplete={undefined}
+            autoFocus={undefined}
+            className="MuiInput-input-139"
+            defaultValue=""
+            disabled={false}
+            id="field_experience_path"
+            name={undefined}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={undefined}
+            onKeyUp={undefined}
+            placeholder={undefined}
+            readOnly={undefined}
+            required={true}
+            rows={undefined}
+            type="text"
+            value={undefined}
+          />
+        </div>
+        <p
+          className="MuiFormHelperText-root-144"
+          id="field_experience_path-helper-text"
+        >
+          Enter a name for your experience. For example, if you enter 'my-new-experience', your experience will be published to /experience/my-new-experience.
+        </p>
+      </div>
+      <div
+        aria-describedby="body-helper-text"
+        className="MuiFormControl-root-117 ExperienceForm-textField-115"
+        onBlur={[Function]}
+        onFocus={[Function]}
+      >
+        <label
+          className="MuiFormLabel-root-126 MuiInputLabel-root-121 MuiInputLabel-formControl-122 MuiInputLabel-animated-125"
+          data-shrink={false}
+          htmlFor="body"
+        >
+          Description
+          <span
+            className="MuiFormLabel-asterisk-130"
+          >
+             *
+          </span>
+        </label>
+        <div
+          className="MuiInput-root-131 MuiInput-formControl-132 MuiInput-multiline-137 MuiInput-underline-135"
+        >
+          <textarea
+            aria-invalid={false}
+            aria-required={true}
+            autoComplete={undefined}
+            autoFocus={undefined}
+            className="MuiInput-input-139 MuiInput-inputMultiline-141"
+            defaultValue=""
+            disabled={false}
+            id="body"
+            name={undefined}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={undefined}
+            onKeyUp={undefined}
+            placeholder={undefined}
+            readOnly={undefined}
+            required={true}
+            rows={6}
+            type="text"
+            value={undefined}
+          />
+        </div>
+        <p
+          className="MuiFormHelperText-root-144"
+          id="body-helper-text"
+        >
+          Describe your experience so people will know what to expect before they enter your experience.
+        </p>
+      </div>
+      <button
+        className="MuiButtonBase-root-68 MuiButton-root-148 MuiButton-raised-154 MuiButton-raisedPrimary-155 ExperienceForm-button-116"
+        disabled={false}
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex="0"
+        type="submit"
+      >
+        <span
+          className="MuiButton-label-149"
+        >
+          Save
+        </span>
+        <span
+          className="MuiTouchRipple-root-108"
+        />
+      </button>
+    </form>
+  </main>
+</div>
+`;

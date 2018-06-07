@@ -14,11 +14,13 @@ import {
   ERROR_API_NOT_FOUND,
   ERROR_API_LOGIN_FAILED,
   ERROR_API_BAD_REQUEST,
+  ERROR_API_UNPROCESSABLE_ENTITY,
   AXIOS_ERROR_NETWORK,
   AXIOS_ERROR_400,
   AXIOS_ERROR_401,
   AXIOS_ERROR_403,
-  AXIOS_ERROR_404
+  AXIOS_ERROR_404,
+  AXIOS_ERROR_422
 } from '../../constants';
 
 /**
@@ -94,6 +96,9 @@ const axiosInstance = (
         }
         case AXIOS_ERROR_404: {
           throw new Error(ERROR_API_NOT_FOUND);
+        }
+        case AXIOS_ERROR_422: {
+          throw new Error(ERROR_API_UNPROCESSABLE_ENTITY);
         }
         default:
           throw new Error(ERROR_API_GENERAL);

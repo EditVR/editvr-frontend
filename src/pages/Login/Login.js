@@ -4,14 +4,12 @@
  */
 
 import React from 'react';
-import { Typography } from '@material-ui/core';
 
 import { LoginForm } from '../../components';
 import { ThinLayout } from '../../layouts';
 
 const Login = () => (
-  <ThinLayout>
-    <Typography variant="headline">Log into EditVR</Typography>
+  <ThinLayout title="Log into EditVR">
     <LoginForm />
   </ThinLayout>
 );

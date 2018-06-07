@@ -4,8 +4,8 @@
  */
 
 import React from 'react';
-import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
+import { createMount } from '@material-ui/core/test-utils';
 import { Provider } from 'react-redux';
 import { MemoryRouter as Router } from 'react-router-dom';
 
@@ -42,15 +42,13 @@ describe('<Dashboard />', () => {
       }
     });
     expect(
-      renderer
-        .create(
-          <Provider store={store}>
-            <Router>
-              <ThemedDashboard />
-            </Router>
-          </Provider>
-        )
-        .toJSON()
+      createMount()(
+        <Provider store={store}>
+          <Router>
+            <ThemedDashboard />
+          </Router>
+        </Provider>
+      ).html()
     ).toMatchSnapshot();
   });
 });
