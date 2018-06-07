@@ -11,7 +11,7 @@ import { OPEN_EXPERIENCE_FETCH_FOR_USER } from '../constants';
 const defaultState = {
   loading: false,
   error: null,
-  item: null
+  item: {}
 };
 
 /**
@@ -42,7 +42,7 @@ export default function openExperiences(state = defaultState, action) {
       return {
         loading: true,
         error: null,
-        item: null
+        item: {}
       };
     }
 
@@ -53,7 +53,7 @@ export default function openExperiences(state = defaultState, action) {
       return {
         loading: false,
         error: action.payload.error,
-        item: null
+        item: {}
       };
     }
     default:
