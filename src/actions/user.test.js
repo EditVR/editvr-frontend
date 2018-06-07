@@ -51,6 +51,8 @@ describe('actions->user', () => {
         }
       })
       .next()
+      // Next is executed twice here to step over the execution of an optional
+      // successHandler method that this implementation doesn't utilize.
       .next()
       .put(hideLoading())
       .next()

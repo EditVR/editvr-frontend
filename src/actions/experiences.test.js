@@ -14,8 +14,8 @@ import { EXPERIENCES_FETCH_FOR_USER } from '../constants';
 import { experiencesFetchForUser } from './experiences';
 import { experiencesFetchForUser as getExperiencesForUser } from '../lib/api';
 
-describe('actions->experiencesFetchForUser()', () => {
-  it('experiences->', () => {
+describe('actions->experiences', () => {
+  it('experiences->experiencesFetchForUser()', () => {
     const state = {
       uid: '1',
       authentication: { accessToken: 'test', csrfToken: 'test' }
@@ -37,6 +37,8 @@ describe('actions->experiencesFetchForUser()', () => {
         payload: undefined
       })
       .next()
+      // Next is executed twice here to step over the execution of an optional
+      // successHandler method that this implementation doesn't utilize.
       .next()
       .put(hideLoading())
       .next()
