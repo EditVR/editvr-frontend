@@ -1,6 +1,6 @@
 /**
  * @file ThinLayout.style.js
- * Exports styling that's shared across many layouts.
+ * Exports styling for the ThinLayout component.
  */
 
 export default theme => ({
