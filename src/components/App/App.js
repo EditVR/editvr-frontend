@@ -13,7 +13,8 @@ import {
   Logout,
   Dashboard,
   ExperienceCreate,
-  ExperienceEdit
+  ExperienceEdit,
+  VREditor
 } from '../../pages';
 import { PrivateRoute, PublicRoute } from '../../hoc';
 
@@ -47,6 +48,12 @@ const App = () => (
           path="/experience/edit/:experienceSlug"
           redirectTo="/login"
           component={ExperienceEdit}
+        />
+        <PrivateRoute
+          exact
+          path="/experience/vreditor/:experienceSlug/:sceneSlug?"
+          redirectTo="/login"
+          component={VREditor}
         />
       </Switch>
     </Router>
