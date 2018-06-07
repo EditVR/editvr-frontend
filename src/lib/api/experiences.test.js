@@ -6,9 +6,16 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import mockAxios from 'jest-mock-axios';
 
-import { experiencesFetchForUser } from './experiences';
+import {
+  experiencesFetchForUser,
+  experiencesCreate,
+  experiencesEdit
+} from './experiences';
 import { clientId } from '../../config';
-import { API_ENDPOINT_EXPERIENCES } from '../../constants';
+import {
+  API_ENDPOINT_EXPERIENCES,
+  API_TYPE_EXPERIENCES
+} from '../../constants';
 
 afterEach(() => mockAxios.reset());
 
@@ -29,5 +36,81 @@ describe('api->experiences', () => {
         _consumer_id: clientId
       }
     });
+  });
+
+  it('experiences->experiencesCreate()', () => {
+    const title = 'test';
+    const field_experience_path = 'test';
+    const body = 'test';
+
+    experiencesCreate(
+      {
+        title,
+        field_experience_path,
+        body
+      },
+      {
+        authentication: {
+          accessToken: 'test',
+          csrfToken: 'test'
+        }
+      }
+    );
+
+    expect(mockAxios.post).toHaveBeenCalledWith(API_ENDPOINT_EXPERIENCES, {
+      data: {
+        type: API_TYPE_EXPERIENCES,
+        attributes: {
+          title,
+          field_experience_path,
+          body: {
+            value: body,
+            format: 'plain_text',
+            summary: ''
+          }
+        }
+      }
+    });
+  });
+
+  it('experiences->experiencesEdit()', () => {
+    const id = '10';
+    const title = 'test';
+    const field_experience_path = 'test';
+    const body = 'test';
+
+    experiencesEdit(
+      {
+        id,
+        title,
+        field_experience_path,
+        body
+      },
+      {
+        authentication: {
+          accessToken: 'test',
+          csrfToken: 'test'
+        }
+      }
+    );
+
+    expect(mockAxios.post).toHaveBeenCalledWith(
+      `${API_ENDPOINT_EXPERIENCES}/${id}`,
+      {
+        data: {
+          id,
+          type: API_TYPE_EXPERIENCES,
+          attributes: {
+            title,
+            field_experience_path,
+            body: {
+              value: body,
+              format: 'plain_text',
+              summary: ''
+            }
+          }
+        }
+      }
+    );
   });
 });
