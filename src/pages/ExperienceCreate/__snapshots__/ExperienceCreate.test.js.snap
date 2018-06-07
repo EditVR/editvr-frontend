@@ -300,7 +300,7 @@ exports[`<ExperienceCreate /> Matches its snapshot 1`] = `
         <span
           className="MuiButton-label-149"
         >
-          Create
+          Save
         </span>
         <span
           className="MuiTouchRipple-root-108"

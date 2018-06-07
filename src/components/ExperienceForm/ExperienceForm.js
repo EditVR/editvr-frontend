@@ -9,7 +9,11 @@ import { TextField, Button, withStyles } from '@material-ui/core';
 
 import { Message } from '../';
 import ExperienceFormStyles from './ExperienceForm.style';
-import { EXPERIENCES_CREATE, EXPERIENCES_EDIT } from '../../constants';
+import {
+  EXPERIENCES_CREATE,
+  EXPERIENCES_EDIT,
+  FORM_BUTTON_INSERT_UPDATE
+} from '../../constants';
 
 class ExperienceForm extends Component {
   static propTypes = {
@@ -97,7 +101,6 @@ class ExperienceForm extends Component {
     const {
       classes,
       submitHandler,
-      experienceSlug,
       experiences: { error }
     } = this.props;
 
@@ -143,7 +146,7 @@ class ExperienceForm extends Component {
           type="submit"
           className={classes.button}
         >
-          {experienceSlug ? 'Save' : 'Create'}
+          {FORM_BUTTON_INSERT_UPDATE}
         </Button>
       </form>
     );
