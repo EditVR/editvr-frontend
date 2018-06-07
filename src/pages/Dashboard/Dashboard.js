@@ -118,7 +118,7 @@ class Dashboard extends Component {
                     size="small"
                     component={Link}
                     className={classes.cardActionButton}
-                    to={`/experience/editvr/${path}`}
+                    to={`/experience/vreditor/${path}`}
                   >
                     <OpenInBrowser />
                   </Button>
