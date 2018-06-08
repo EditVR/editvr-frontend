@@ -10,9 +10,20 @@ import {
   resetLoading
 } from 'react-redux-loading-bar';
 
-import { OPEN_EXPERIENCE_FETCH_FOR_USER } from '../constants';
-import { openExperienceFetchForUser } from './openExperience';
-import { openExperienceFetchForUser as getOpenExperienceForUser } from '../lib/api';
+import {
+  OPEN_EXPERIENCE_FETCH_FOR_USER,
+  OPEN_EXPERIENCE_SCENE_CREATE
+} from '../constants';
+import {
+  openExperienceFetchForUser,
+  openExperienceSceneCreate
+} from './openExperience';
+import {
+  openExperienceFetchForUser as getOpenExperienceForUser,
+  openExperienceAttachScene,
+  fileCreate,
+  sceneCreate
+} from '../lib/api';
 
 describe('actions->openExperience', () => {
   it('experiences->experiencesFetchForUser()', () => {

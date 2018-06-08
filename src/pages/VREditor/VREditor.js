@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { withStyles, Grid, Typography, Button } from '@material-ui/core';
 import { AddBox } from '@material-ui/icons';
 
-import { SceneCards } from '../../components';
+import { SceneCards, SceneForm } from '../../components';
 import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
   MODE_SCENE_CREATE
@@ -40,7 +40,8 @@ class VREditor extends Component {
     }),
     match: PropTypes.shape({
       params: PropTypes.shape({
-        experienceSlug: PropTypes.string.isRequired
+        experienceSlug: PropTypes.string.isRequired,
+        editorMode: PropTypes.string
       }).isRequired
     }).isRequired
   };
@@ -88,6 +89,20 @@ class VREditor extends Component {
       field_scenes: scenes
     } = experience;
 
+    // If the editor mode is set to scene create, the main area is the scene
+    // creation form. Otherwise, render the currently selected VR scene.
+    const mainColumn =
+      editorMode === MODE_SCENE_CREATE ? (
+        <div className={classes.mainColumn}>
+          <Typography variant="headline">Create a Scene</Typography>
+          <SceneForm />
+        </div>
+      ) : (
+        <Typography variant="headline">
+          Soon, this will be a VR scene
+        </Typography>
+      );
+
     return (
       <VREditorLayout
         title={experience.title ? `Editing ${title} Experience` : 'Loading...'}
@@ -124,9 +139,7 @@ class VREditor extends Component {
         }
         rightAside="Right Sidebar"
       >
-        {editorMode === MODE_SCENE_CREATE && (
-          <Typography>Create a scene</Typography>
-        )}
+        {mainColumn}
       </VREditorLayout>
     );
   }

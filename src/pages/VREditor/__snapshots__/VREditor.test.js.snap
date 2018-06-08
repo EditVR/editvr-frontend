@@ -3,19 +3,19 @@
 exports[`<VREditor /> Matches its snapshot 1`] = `
 <div
   align="stretch"
-  className="MuiGrid-container-10 VREditorLayout-wrapper-5"
+  className="MuiGrid-container-11 VREditorLayout-wrapper-6"
   id="editor__wrapper"
 >
   <div />
   <header
-    className="MuiPaper-root-109 MuiPaper-elevation4-115 MuiAppBar-root-101 MuiAppBar-positionFixed-102 MuiAppBar-colorPrimary-107 mui-fixed VREditorLayout-appBar-8"
+    className="MuiPaper-root-110 MuiPaper-elevation4-116 MuiAppBar-root-102 MuiAppBar-positionFixed-103 MuiAppBar-colorPrimary-108 mui-fixed VREditorLayout-appBar-9"
   >
     <div
-      className="MuiToolbar-root-136 MuiToolbar-gutters-137"
+      className="MuiToolbar-root-137 MuiToolbar-gutters-138"
     >
       <a
         aria-label="Back to Dashboard"
-        className="MuiButtonBase-root-144 MuiIconButton-root-138 MuiIconButton-colorInherit-139"
+        className="MuiButtonBase-root-145 MuiIconButton-root-139 MuiIconButton-colorInherit-140"
         href="/dashboard"
         onBlur={[Function]}
         onClick={[Function]}
@@ -32,11 +32,11 @@ exports[`<VREditor /> Matches its snapshot 1`] = `
         tabIndex="0"
       >
         <span
-          className="MuiIconButton-label-143"
+          className="MuiIconButton-label-144"
         >
           <svg
             aria-hidden="true"
-            className="MuiSvgIcon-root-147"
+            className="MuiSvgIcon-root-148"
             color={undefined}
             focusable="false"
             viewBox="0 0 24 24"
@@ -49,38 +49,38 @@ exports[`<VREditor /> Matches its snapshot 1`] = `
           </svg>
         </span>
         <span
-          className="MuiTouchRipple-root-153"
+          className="MuiTouchRipple-root-154"
         />
       </a>
       <img
         alt="EditVR logo"
-        className="VREditorLayout-logo-9"
+        className="VREditorLayout-logo-10"
         src="editvr-logo.svg"
       />
       <h2
-        className="MuiTypography-root-160 MuiTypography-title-166"
+        className="MuiTypography-root-161 MuiTypography-title-167"
       >
         Editing test Experience
       </h2>
     </div>
   </header>
   <div
-    className="MuiGrid-item-11 MuiGrid-grid-xs-3-39 VREditorLayout-aside-6"
+    className="MuiGrid-item-12 MuiGrid-grid-xs-3-40 VREditorLayout-aside-7"
   >
     <div
       align="stretch"
-      className="MuiGrid-container-10"
+      className="MuiGrid-container-11"
     >
       <div
-        className="MuiGrid-item-11 MuiGrid-grid-xs-3-39 VREditor-columnLeft-2"
+        className="MuiGrid-item-12 MuiGrid-grid-xs-3-40 VREditor-columnLeft-2"
         id="column--left_aside"
       />
       <div
-        className="MuiGrid-item-11 MuiGrid-grid-xs-9-45 VREditor-columnRight-1"
+        className="MuiGrid-item-12 MuiGrid-grid-xs-9-46 VREditor-columnRight-1"
         id="column--left_aside"
       >
         <h2
-          className="MuiTypography-root-160 MuiTypography-title-166"
+          className="MuiTypography-root-161 MuiTypography-title-167"
         >
           Scenes
         </h2>
@@ -89,10 +89,16 @@ exports[`<VREditor /> Matches its snapshot 1`] = `
     </div>
   </div>
   <div
-    className="MuiGrid-item-11 MuiGrid-grid-xs-6-42 VREditorLayout-middle-7"
-  />
+    className="MuiGrid-item-12 MuiGrid-grid-xs-6-43 VREditorLayout-middle-8"
+  >
+    <h1
+      className="MuiTypography-root-161 MuiTypography-headline-166"
+    >
+      Soon, this will be a VR scene
+    </h1>
+  </div>
   <div
-    className="MuiGrid-item-11 MuiGrid-grid-xs-3-39 VREditorLayout-aside-6"
+    className="MuiGrid-item-12 MuiGrid-grid-xs-3-40 VREditorLayout-aside-7"
   >
     Right Sidebar
   </div>

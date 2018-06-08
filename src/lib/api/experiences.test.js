@@ -12,10 +12,7 @@ import {
   experiencesEdit
 } from './experiences';
 import { clientId } from '../../config';
-import {
-  API_ENDPOINT_EXPERIENCES,
-  API_TYPE_EXPERIENCES
-} from '../../constants';
+import { API_ENDPOINT_EXPERIENCE, API_TYPE_EXPERIENCE } from '../../constants';
 
 afterEach(() => mockAxios.reset());
 
@@ -30,7 +27,7 @@ describe('api->experiences', () => {
       }
     });
 
-    expect(mockAxios.get).toHaveBeenCalledWith(API_ENDPOINT_EXPERIENCES, {
+    expect(mockAxios.get).toHaveBeenCalledWith(API_ENDPOINT_EXPERIENCE, {
       params: {
         'filter[uid.uid][value]': uid,
         _consumer_id: clientId
@@ -57,9 +54,9 @@ describe('api->experiences', () => {
       }
     );
 
-    expect(mockAxios.post).toHaveBeenCalledWith(API_ENDPOINT_EXPERIENCES, {
+    expect(mockAxios.post).toHaveBeenCalledWith(API_ENDPOINT_EXPERIENCE, {
       data: {
-        type: API_TYPE_EXPERIENCES,
+        type: API_TYPE_EXPERIENCE,
         attributes: {
           title,
           field_experience_path,
@@ -95,11 +92,11 @@ describe('api->experiences', () => {
     );
 
     expect(mockAxios.post).toHaveBeenCalledWith(
-      `${API_ENDPOINT_EXPERIENCES}/${id}`,
+      `${API_ENDPOINT_EXPERIENCE}/${id}`,
       {
         data: {
           id,
-          type: API_TYPE_EXPERIENCES,
+          type: API_TYPE_EXPERIENCE,
           attributes: {
             title,
             field_experience_path,

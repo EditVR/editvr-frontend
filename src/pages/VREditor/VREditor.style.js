@@ -15,6 +15,9 @@ export default theme => ({
     padding: theme.spacing.unit * 2,
     userSelect: 'none'
   },
+  mainColumn: {
+    padding: theme.spacing.unit * 4
+  },
   button: {
     marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit * 2

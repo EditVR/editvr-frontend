@@ -10,8 +10,13 @@ import {
   experiencesCreate,
   experiencesEdit
 } from './experiences';
+import { sceneCreate } from './scene';
+import { fileImageCreate, fileVideoCreate, fileCreate } from './file';
 
-import { openExperienceFetchForUser } from './openExperience';
+import {
+  openExperienceFetchForUser,
+  openExperienceAttachScene
+} from './openExperience';
 
 export {
   axiosInstance,
@@ -19,6 +24,11 @@ export {
   getCsrfToken,
   experiencesFetchForUser,
   experiencesCreate,
+  sceneCreate,
   experiencesEdit,
-  openExperienceFetchForUser
+  openExperienceFetchForUser,
+  openExperienceAttachScene,
+  fileImageCreate,
+  fileVideoCreate,
+  fileCreate
 };

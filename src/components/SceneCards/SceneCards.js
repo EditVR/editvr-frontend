@@ -31,7 +31,13 @@ const SceneCards = ({
   <div>
     {experience.field_scenes &&
       experience.field_scenes.map(
-        ({ id, title, body, field_slug: slug, field_photosphere: photosphere }) => (
+        ({
+          id,
+          title,
+          body,
+          field_slug: slug,
+          field_photosphere: photosphere
+        }) => (
           <Card key={id} raised={sceneSlug === slug} className={classes.card}>
             {photosphere &&
               photosphere.meta.derivatives && (
