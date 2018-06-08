@@ -227,7 +227,7 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
           className="MuiFormHelperText-root-144"
           id="field_experience_path-helper-text"
         >
-          Enter a name for your experience. For example, if you enter 'my-new-experience', your experience will be published to /experience/my-new-experience.
+          Enter a url-friendly name for your experience. For example, if you enter 'my-experience', your experience will be published to /view/undefined/experience/my-experience.
         </p>
       </div>
       <div
