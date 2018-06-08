@@ -51,7 +51,7 @@ const App = () => (
         />
         <PrivateRoute
           exact
-          path="/experience/vreditor/:experienceSlug/:sceneSlug?"
+          path="/experience/vreditor/:experienceSlug/:sceneSlug?/:editorMode?"
           redirectTo="/login"
           component={VREditor}
         />

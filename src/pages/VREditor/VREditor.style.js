@@ -14,5 +14,12 @@ export default theme => ({
   columnLeft: {
     padding: theme.spacing.unit * 2,
     userSelect: 'none'
+  },
+  button: {
+    marginTop: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit * 2
+  },
+  buttonIcon: {
+    marginLeft: theme.spacing.unit
   }
 });
