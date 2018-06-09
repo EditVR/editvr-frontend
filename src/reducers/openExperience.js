@@ -3,7 +3,10 @@
  * Exports reducers pertaining to openExperience state.
  */
 
-import { OPEN_EXPERIENCE_FETCH_FOR_USER } from '../constants';
+import {
+  OPEN_EXPERIENCE_FETCH_FOR_USER,
+  OPEN_EXPERIENCE_SCENE_CREATE
+} from '../constants';
 
 /**
  * Default experience state.
@@ -54,6 +57,39 @@ export default function openExperiences(state = defaultState, action) {
         loading: false,
         error: action.payload.error,
         item: {}
+      };
+    }
+
+    /**
+     * Reducer that handles scene create success actions.
+     */
+    case `${OPEN_EXPERIENCE_SCENE_CREATE}_SUCCESS`: {
+      return {
+        loading: false,
+        error: null,
+        item: state.item
+      };
+    }
+
+    /**
+     * Reducer that handles scene create loading actions.
+     */
+    case `${OPEN_EXPERIENCE_SCENE_CREATE}_LOADING`: {
+      return {
+        loading: true,
+        error: null,
+        item: state.item
+      };
+    }
+
+    /**
+     * Reducer that handles scene create failure actions.
+     */
+    case `${OPEN_EXPERIENCE_SCENE_CREATE}_FAIL`: {
+      return {
+        loading: false,
+        error: action.payload.error,
+        item: state.item
       };
     }
     default:
