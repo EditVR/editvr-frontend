@@ -6,6 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import {
   withStyles,
@@ -38,7 +39,13 @@ const SceneCards = ({
           field_slug: slug,
           field_photosphere: photosphere
         }) => (
-          <Card key={id} raised={sceneSlug === slug} className={classes.card}>
+          <Card
+            key={id}
+            raised={sceneSlug === slug}
+            className={classNames(classes.card, {
+              [classes.cardActive]: sceneSlug === slug
+            })}
+          >
             {photosphere &&
               photosphere.meta.derivatives && (
                 <CardMedia
