@@ -18,3 +18,11 @@ a:link,
 a:active {
   text-decoration: none;
 }
+
+#root {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}

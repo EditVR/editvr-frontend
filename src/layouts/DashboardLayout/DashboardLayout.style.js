@@ -1,6 +1,6 @@
 /**
  * @file DashboardLayout.style.js
- * Exports styling that's shared across many layouts.
+ * Exports styling for the DashboardLayout component.
  */
 
 export default theme => ({
@@ -9,10 +9,9 @@ export default theme => ({
     paddingTop: theme.spacing.unit * 8,
     flexGrow: 1,
     zIndex: 1,
-    overflow: 'hidden',
     position: 'relative',
     display: 'flex',
-    height: '100%'
+    minHeight: 'calc(100vh)'
   },
   appBar: {
     position: 'absolute',
@@ -21,7 +20,8 @@ export default theme => ({
   drawerPaper: {
     position: 'relative',
     width: 200,
-    textAlign: 'left'
+    textAlign: 'left',
+    maxHeight: '100%'
   },
   content: {
     flexGrow: 1,
