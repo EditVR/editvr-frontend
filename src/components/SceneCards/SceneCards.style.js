@@ -7,6 +7,10 @@ export default theme => ({
   card: {
     marginTop: theme.spacing.unit * 2
   },
+  cardActive: {
+    border: '1px solid',
+    borderColor: theme.palette.secondary.dark
+  },
   cardActionButton: {
     marginRight: theme.spacing.unit
   },
