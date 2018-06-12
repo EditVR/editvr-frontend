@@ -58,7 +58,8 @@ class SceneForm extends Component {
 
   state = {
     previewImage: null,
-    previewVideo: null
+    previewVideo: null,
+    validationError: null
   };
 
   /**
@@ -81,8 +82,19 @@ class SceneForm extends Component {
     this.setState(state);
   };
 
+  /**
+   * Handles submit event.
+   *
+   * @param {object} event - Object containing form data.
+   */
   handleSubmit = event => {
     event.preventDefault();
+
+    // Validate input, and exit if input isn't valid.
+    if (!this.isValid(event)) {
+      return;
+    }
+
     const {
       dispatch,
       user,
@@ -132,6 +144,24 @@ class SceneForm extends Component {
   };
 
   /**
+   * Handles validating input.
+   *
+   * @param {object} event - Object containing form data.
+   */
+  isValid = event => {
+    const file = event.target[0].files[0];
+
+    if (!file) {
+      this.setState({
+        validationError: 'You must upload a scene sky image or video.'
+      });
+      return false;
+    }
+
+    return true;
+  };
+
+  /**
    * {@inheritdoc}
    */
   render() {
@@ -142,7 +172,7 @@ class SceneForm extends Component {
       experience: { error, item: experience }
     } = this.props;
 
-    const { previewImage, previewVideo } = this.state;
+    const { previewImage, previewVideo, validationError } = this.state;
 
     // If this form is being rendered when the openExperience state has not
     // yet been loaded, render nothing.
@@ -155,6 +185,7 @@ class SceneForm extends Component {
     return (
       <form onSubmit={submitHandler || this.handleSubmit}>
         {error && <Message>{error}</Message>}
+        {validationError && <Message>{validationError}</Message>}
         <Dropzone onDrop={this.previewFile} className={classes.dropzone}>
           <FileUpload className={classes.dropzoneIcon} />
           <Typography variant="body1" className={classes.dropzoneParagraph}>
