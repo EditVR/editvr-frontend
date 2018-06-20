@@ -97,15 +97,23 @@ describe('actions->openExperience', () => {
       })
       .next()
       .call(fileCreate, fileData, uri, user)
-      .next()
-      .call(sceneCreate, {
-        title,
-        body,
-        field_slug,
-        field_photosphere: undefined
+      .next({
+        filemime: 'image/png'
       })
-      .next()
-      .call(openExperienceAttachScene, experience, undefined, user)
+      .call(
+        sceneCreate,
+        {
+          title,
+          body,
+          field_slug,
+          field_photosphere: undefined
+        },
+        user
+      )
+      .next({
+        id: '10'
+      })
+      .call(openExperienceAttachScene, experience, '10', user)
       .next()
       .put({
         type: `${OPEN_EXPERIENCE_SCENE_CREATE}_SUCCESS`,
