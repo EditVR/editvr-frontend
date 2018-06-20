@@ -42,12 +42,13 @@ This project makes use of Jest and Enzyme. Test files should be located in the s
  - To watch files and run tests: `yarn test`.
  - To see test coverage reports: `yarn coverage`.
 
-## For OSX users
-You may need to install [Watchman](https://facebook.github.io/watchman/) to support create-react-app's testing utilities. If you end up seeing `EMFILE: too many open files`  errors, run: `brew update ; brew install watchman`.
-
 For more information about tests on this project, please read this documentation:
  - [Jest Documentation](https://facebook.github.io/jest/).
  - [Enzyme Documentation](https://github.com/airbnb/enzyme).
+
+### For OSX users
+You may need to install [Watchman](https://facebook.github.io/watchman/) to support create-react-app's testing utilities. If you end up seeing `EMFILE: too many open files`  errors, run: `brew update ; brew install watchman`.
+
 
 ## Deployment
 This project is automatically deployed when changes are merged from the `develop` branch into the `master` branch.

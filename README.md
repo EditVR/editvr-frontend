@@ -5,7 +5,7 @@
 -->
 
 <!--
-  emdaerHash:6da7c5e75937eb15777d8a401d264f69
+  emdaerHash:c7e2ad999fc4f2ecad496ac3b7022866
 -->
 
 <h1 id="editvr-frontend">editvr-frontend</h1>
@@ -28,13 +28,13 @@
 <li>To watch files and run tests: <code>yarn test</code>.</li>
 <li>To see test coverage reports: <code>yarn coverage</code>.</li>
 </ul>
-<h2 id="for-osx-users">For OSX users</h2>
-<p>You may need to install <a href="https://facebook.github.io/watchman/">Watchman</a> to support create-react-app’s testing utilities. If you end up seeing <code>EMFILE: too many open files</code> errors, run: <code>brew update ; brew install watchman</code>.</p>
 <p>For more information about tests on this project, please read this documentation:</p>
 <ul>
 <li><a href="https://facebook.github.io/jest/">Jest Documentation</a>.</li>
 <li><a href="https://github.com/airbnb/enzyme">Enzyme Documentation</a>.</li>
 </ul>
+<h3 id="for-osx-users">For OSX users</h3>
+<p>You may need to install <a href="https://facebook.github.io/watchman/">Watchman</a> to support create-react-app’s testing utilities. If you end up seeing <code>EMFILE: too many open files</code> errors, run: <code>brew update ; brew install watchman</code>.</p>
 <h2 id="deployment">Deployment</h2>
 <p>This project is automatically deployed when changes are merged from the <code>develop</code> branch into the <code>master</code> branch.</p>
 <ul>
