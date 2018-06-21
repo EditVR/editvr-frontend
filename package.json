@@ -47,14 +47,23 @@
     "url": "https://github.com/editvr/editvr-frontend.git"
   },
   "release": {
-    "verifyConditions": ["@semantic-release/github"],
-    "publish": ["@semantic-release/github"],
-    "success": ["@semantic-release/github"],
-    "fail": ["@semantic-release/github"]
+    "verifyConditions": [
+      "@semantic-release/github"
+    ],
+    "publish": [
+      "@semantic-release/github"
+    ],
+    "success": [
+      "@semantic-release/github"
+    ],
+    "fail": [
+      "@semantic-release/github"
+    ]
   },
   "dependencies": {
     "@material-ui/core": "^1.0.0",
     "@material-ui/icons": "^1.1.0",
+    "aframe": "^0.8.2",
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "jsona": "^1.1.10",
@@ -89,8 +98,7 @@
     "lint": "eslint --ext .jsx,.js .",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
-    "precommit":
-      "lint-staged -c lint-staged.config.js ; yarn lint ; yarn test:ci"
+    "precommit": "lint-staged -c lint-staged.config.js ; yarn lint ; yarn test:ci"
   },
   "devDependencies": {
     "@commitlint/cli": "^6.2.0",

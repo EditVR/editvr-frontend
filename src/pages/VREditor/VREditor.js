@@ -14,6 +14,7 @@ import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
   MODE_SCENE_CREATE
 } from '../../constants';
+import Scene from '../../aframe/entities/scene';
 import { VREditorLayout } from '../../layouts';
 import VREditorStyles from './VREditor.style';
 
@@ -78,7 +79,7 @@ class VREditor extends Component {
   render() {
     const {
       match: {
-        params: { editorMode }
+        params: { sceneSlug, editorMode }
       },
       experience: { item: experience },
       classes
@@ -89,19 +90,32 @@ class VREditor extends Component {
       field_scenes: scenes
     } = experience;
 
-    // If the editor mode is set to scene create, the main area is the scene
-    // creation form. Otherwise, render the currently selected VR scene.
-    const mainColumn =
-      editorMode === MODE_SCENE_CREATE ? (
+    // The main column defaults to showing instructions to create or select a scene
+    let mainColumn = (
+      <Scene/>
+    );
+
+    // If the editor mode is scene creation, show the scene form.
+    if (editorMode === MODE_SCENE_CREATE) {
+      mainColumn = (
         <div className={classes.mainColumn}>
           <Typography variant="headline">Create a Scene</Typography>
           <SceneForm />
         </div>
-      ) : (
-        <Typography variant="headline">
-          Soon, this will be a VR scene
-        </Typography>
       );
+    }
+
+    // If no scene slug is provided, tell the user to create or select a scene.
+    if (!sceneSlug) {
+      mainColumn = (
+        <div className={classes.mainColumn}>
+          <Typography variant="headline">
+            Select or create a scene to continue.
+          </Typography>
+        </div>
+      );
+    }
+
 
     return (
       <VREditorLayout
