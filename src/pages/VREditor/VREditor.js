@@ -91,9 +91,7 @@ class VREditor extends Component {
     } = experience;
 
     // The main column defaults to showing instructions to create or select a scene
-    let mainColumn = (
-      <Scene/>
-    );
+    let mainColumn = <Scene />;
 
     // If the editor mode is scene creation, show the scene form.
     if (editorMode === MODE_SCENE_CREATE) {
@@ -115,7 +113,6 @@ class VREditor extends Component {
         </div>
       );
     }
-
 
     return (
       <VREditorLayout
