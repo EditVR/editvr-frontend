@@ -25,17 +25,17 @@ const parseMatch = (routerHistory, path = null) =>
     : {};
 
 /**
- * Attaches router state to a given component.
+ * Attaches router props to a given component.
  *
  * @param {object} aframeComponent - AFrame component object.
  * @param {string} pathPattern - React Router path pattern that is expected.
  *
- * @returns {object} - AFrame component object with router state.
+ * @returns {object} - AFrame component object with router props.
  */
 const connect = (aframeComponent, pathPattern = null) => {
   const component = aframeComponent;
 
-  // Default component state to an empty object.
+  // Default component router to an empty object.
   component.router = component.router || {};
 
   // Default component update function.
@@ -43,12 +43,12 @@ const connect = (aframeComponent, pathPattern = null) => {
     component.didReceiveProps || function didReceiveProps() {};
 
   // Default shouldComponentUpdate function. This default does a shallow
-  // equality check between the old state and the new incoming state to
-  // determine whether or not relevant state properties have changed.
-  component.shouldComponentUpdate =
-    component.shouldComponentUpdate ||
-    function shouldComponentUpdate(oldState, newState) {
-      return !shallowEqual(oldState, newState);
+  // equality check between the old props and the new incoming props to
+  // determine whether or not relevant props properties have changed.
+  component.shouldComponentUpdateRouting =
+    component.shouldComponentUpdateRouting ||
+    function shouldComponentUpdateRouting(oldProps, newProps) {
+      return !shallowEqual(oldProps, newProps);
     };
 
   // Default unsubscribeFromRouter function.
@@ -56,7 +56,7 @@ const connect = (aframeComponent, pathPattern = null) => {
 
   // Handle changes to the route.
   component.handleRouterChange = function handleRouterChange(location, action) {
-    const newState = {
+    const newProps = {
       history: {
         ...this.router.history,
         location,
@@ -68,15 +68,18 @@ const connect = (aframeComponent, pathPattern = null) => {
       }
     };
 
-    // Execute shouldComponentUpdate to determine whether or not router state
+    // Execute shouldComponentUpdate to determine whether or not router props
     // should be updated.
-    const shouldUpdate = this.shouldComponentUpdate(this.router, newState);
+    const shouldUpdate = this.shouldComponentUpdateRouting(
+      this.router,
+      newProps
+    );
 
-    // If the component needs to update, re-initialize the router state.
+    // If the component needs to update, re-initialize the router props.
     if (shouldUpdate) {
       this.router = {
         ...this.router,
-        ...newState
+        ...newProps
       };
 
       // Call the update lifecycle method.
@@ -90,7 +93,9 @@ const connect = (aframeComponent, pathPattern = null) => {
     // Connect router history and match data to the components' router property.
     this.router = {
       ...this.router,
-      history,
+      history: {
+        ...history
+      },
       match: parseMatch(history, pathPattern)
     };
 

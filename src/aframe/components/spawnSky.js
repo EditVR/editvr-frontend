@@ -1,6 +1,6 @@
 /**
  * @file spawnSky.js
- * AFrame component responsible for the sky sound components.
+ * AFrame component responsible for sky entities.
  */
 
 /* globals AFRAME */
@@ -15,6 +15,16 @@ const spawnSky = {
   multiple: false,
   init: function init() {
     this.setSkyUrl();
+  },
+  shouldComponentUpdateRouting: function shouldComponentUpdateRouting(
+    oldProps,
+    newProps
+  ) {
+    if (oldProps.history.location !== newProps.history.location) {
+      return true;
+    }
+
+    return false;
   },
   didReceiveProps: function didReceiveProps() {
     this.setSkyUrl();

@@ -34,12 +34,12 @@ const connect = (
     component.didReceiveProps || function didReceiveProps() {};
 
   // Default shouldComponentUpdate function. This default does a shallow
-  // equality check between the old state and the new incoming state to
+  // equality check between the old props and the new incoming props to
   // determine whether or not relevant state properties have changed.
   component.shouldComponentUpdate =
     component.shouldComponentUpdate ||
-    function shouldComponentUpdate(oldState, newState) {
-      return !shallowEqual(oldState, newState);
+    function shouldComponentUpdate(oldProps, newProps) {
+      return !shallowEqual(oldProps, newProps);
     };
 
   // Default unsubscribeFromState function.
@@ -49,17 +49,20 @@ const connect = (
   // subscription, so it's called when global state is updated.
   component.handleStateChange = function handleStateChange() {
     // Fetch the new state.
-    const newState = mapStateToProps(store.getState(), this.props);
+    const newProps = {
+      ...mapStateToProps(store.getState(), this.props),
+      ...mapDispatchToProps(store.dispatch, this.props)
+    };
 
     // Execute shouldComponentUpdate to determine whether or not state should
     // be re-initialized.
-    const shouldUpdate = this.shouldComponentUpdate(this.props, newState);
+    const shouldUpdate = this.shouldComponentUpdate(this.props, newProps);
 
     // If the component needs to update, re-initialize the props.
     if (shouldUpdate) {
       this.props = {
         ...this.props,
-        ...newState
+        ...newProps
       };
 
       // Call the update lifecycle method.
