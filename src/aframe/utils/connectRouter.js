@@ -4,10 +4,28 @@
  */
 
 import { matchPath } from 'react-router';
+
 import history from '../../lib/routerHistory';
+import shallowEqual from './shallowEqual';
 
 /**
- * Attaches router state to a given component's schema.
+ * Helper method that takes history and a path pattern and turns it into a match object.
+ *
+ * @param {object} routerHistory - Object containing router history.
+ * @param {string} path - React Router path pattern that is expected.
+ *
+ * @returns {object} - Match object complete with parameters.
+ */
+const parseMatch = (routerHistory, path = null) =>
+  path
+    ? matchPath(routerHistory.location.pathname, {
+        path,
+        exact: path.includes('?')
+      })
+    : {};
+
+/**
+ * Attaches router state to a given component.
  *
  * @param {object} aframeComponent - AFrame component object.
  * @param {string} pathPattern - React Router path pattern that is expected.
@@ -17,22 +35,79 @@ import history from '../../lib/routerHistory';
 const connect = (aframeComponent, pathPattern = null) => {
   const component = aframeComponent;
 
-  console.log(history);
+  // Default component state to an empty object.
+  component.router = component.router || {};
 
-  // Default component schema to an empty object.
-  component.schema = component.schema || {};
+  // Default component update function.
+  component.didReceiveProps =
+    component.didReceiveProps || function didReceiveProps() {};
 
-  component.schema = {
-    ...component.schema,
-    router: {
-      history,
-      match: pathPattern
-        ? matchPath(history.location.pathname, {
-            path: pathPattern,
-            exact: pathPattern.includes('?')
-          })
-        : null
+  // Default shouldComponentUpdate function. This default does a shallow
+  // equality check between the old state and the new incoming state to
+  // determine whether or not relevant state properties have changed.
+  component.shouldComponentUpdate =
+    component.shouldComponentUpdate ||
+    function shouldComponentUpdate(oldState, newState) {
+      return !shallowEqual(oldState, newState);
+    };
+
+  // Default unsubscribeFromRouter function.
+  component.unsubscribeFromRouter = () => {};
+
+  // Handle changes to the route.
+  component.handleRouterChange = function handleRouterChange(location, action) {
+    const newState = {
+      history: {
+        ...this.router.history,
+        location,
+        action
+      },
+      match: {
+        ...this.router.match,
+        ...parseMatch(history, pathPattern)
+      }
+    };
+
+    // Execute shouldComponentUpdate to determine whether or not router state
+    // should be updated.
+    const shouldUpdate = this.shouldComponentUpdate(this.router, newState);
+
+    // If the component needs to update, re-initialize the router state.
+    if (shouldUpdate) {
+      this.router = {
+        ...this.router,
+        ...newState
+      };
+
+      // Call the update lifecycle method.
+      this.didReceiveProps();
     }
+  };
+
+  // Initialize the component.
+  const parentInit = component.init || function init() {};
+  component.init = function componentInit() {
+    // Connect router history and match data to the components' router property.
+    this.router = {
+      ...this.router,
+      history,
+      match: parseMatch(history, pathPattern)
+    };
+
+    // Subscribe to router changes and store a reference to the unsubsription func.
+    this.unsubscribeFromRouter = history.listen(
+      this.handleRouterChange.bind(this)
+    );
+
+    // Execute the parent object's init function.
+    return parentInit.call(this);
+  };
+
+  // When the commponent is destructed, destroy it's subscription to the router.
+  const parentRemove = component.remove || function remove() {};
+  component.remove = function removeSubscription() {
+    this.unsubscribeFromRouter();
+    return parentRemove.call(this);
   };
 
   return component;

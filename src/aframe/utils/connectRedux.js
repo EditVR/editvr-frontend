@@ -5,85 +5,92 @@
 
 import { store } from '../../lib/reduxStore';
 
+import shallowEqual from './shallowEqual';
+
 /**
  * Connects a given component to Redux, and calls update handlers when global
  * states change.
  *
- * @param {func} mapStateToSchema
- *   Function responsible for mapping global state to a component's local schema.
- * @param {func} mapDispatchToSchema
+ * @param {func} mapStateToProps
+ *   Function responsible for mapping global state to a component's local props.
+ * @param {func} mapDispatchToProps
  *   Optional function that's responsible for matching dispatch actions to a
- *   component's local schema object.
+ *   component's local props object.
  *
  * @returns {func}
  *   Function that accepts an AFrame component, which will be connected to Redux.
  */
 const connect = (
-  mapStateToSchema = () => ({}),
-  mapDispatchToSchema = dispatch => ({ dispatch })
+  mapStateToProps = () => ({}),
+  mapDispatchToProps = dispatch => ({ dispatch })
 ) => aframeComponent => {
   const component = aframeComponent;
 
-  // Default component schema to an empty object.
-  component.schema = component.schema || {};
+  // Default component props to an empty object.
+  component.props = component.props || {};
 
-  // Default component update and shouldComponentUpdate functions.
-  component.update = component.update || function update() {};
+  // Default component didReceiveProps function.
+  component.didReceiveProps =
+    component.didReceiveProps || function didReceiveProps() {};
+
+  // Default shouldComponentUpdate function. This default does a shallow
+  // equality check between the old state and the new incoming state to
+  // determine whether or not relevant state properties have changed.
   component.shouldComponentUpdate =
     component.shouldComponentUpdate ||
-    function shouldComponentUpdate() {
-      return false;
+    function shouldComponentUpdate(oldState, newState) {
+      return !shallowEqual(oldState, newState);
     };
 
-  // Default unsubscribe to an empty function.
-  component.unsubscribe = () => {};
+  // Default unsubscribeFromState function.
+  component.unsubscribeFromState = () => {};
 
   // Add a state change handler. This function is the delegate of the store
   // subscription, so it's called when global state is updated.
   component.handleStateChange = function handleStateChange() {
     // Fetch the new state.
-    const newState = store.getState();
+    const newState = mapStateToProps(store.getState(), this.props);
 
     // Execute shouldComponentUpdate to determine whether or not state should
     // be re-initialized.
-    const shouldUpdate = component.shouldComponentUpdate(newState);
+    const shouldUpdate = this.shouldComponentUpdate(this.props, newState);
 
-    // If the component needs to update, re-initialize the schema state.
+    // If the component needs to update, re-initialize the props.
     if (shouldUpdate) {
-      component.schema = {
-        ...component.schema,
-        ...mapStateToSchema(newState, component.schema)
+      this.props = {
+        ...this.props,
+        ...newState
       };
-    }
 
-    // Call the update lifecycle method.
-    component.update.call(component);
+      // Call the update lifecycle method.
+      this.didReceiveProps();
+    }
   };
 
   // Initialize the component.
   const parentInit = component.init || function init() {};
   component.init = function componentInit() {
-    // Connect state and dispatch to schema props.
-    component.schema = {
-      ...component.schema,
-      ...mapStateToSchema(store.getState(), component.schema),
-      ...mapDispatchToSchema(store.dispatch, component.schema)
+    // Connect state and dispatch to props.
+    this.props = {
+      ...this.props,
+      ...mapStateToProps(store.getState(), this.props),
+      ...mapDispatchToProps(store.dispatch, this.props)
     };
 
-    // Subscribe to state changes
-    component.unsubscribe = store.subscribe(
-      component.handleStateChange.bind(component)
+    // Subscribe to state changes, and store reference to unsubscriber.
+    this.unsubscribeFromState = store.subscribe(
+      this.handleStateChange.bind(this)
     );
 
     // Execute the parent object's init function.
-    return parentInit.call(component);
+    return parentInit.call(this);
   };
 
   // When the commponent is destructed, destroy it's subscription to the store.
   const parentRemove = component.remove || function remove() {};
   component.remove = function removeSubscription() {
-    component.unsubscribe();
-    return parentRemove.call(component);
+    this.unsubscribeFromState();
+    return parentRemove.call(this);
   };
 
   return component;
