@@ -13,7 +13,6 @@ import connectRouter from '../utils/connectRouter';
  */
 const spawnSky = {
   multiple: false,
-  skyUrl: null,
   init: function init() {
     this.setSkyUrl();
   },
