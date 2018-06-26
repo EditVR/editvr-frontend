@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`aframe->utils->connectRouter() Can connect an AFrame component to React Router. 1`] = `
+Object {
+  "didReceiveProps": [Function],
+  "handleRouterChange": [Function],
+  "init": [Function],
+  "remove": [Function],
+  "router": Object {
+    "history": Object {
+      "listen": [Function],
+      "location": Object {
+        "pathname": "/experience/vreditor/experience/scene",
+      },
+    },
+    "match": Object {
+      "isExact": true,
+      "params": Object {
+        "experienceSlug": "experience",
+        "sceneSlug": "scene",
+      },
+      "path": "/experience/vreditor/:experienceSlug/:sceneSlug",
+      "url": "/experience/vreditor/experience/scene",
+    },
+  },
+  "shouldComponentUpdateRouting": [Function],
+  "unsubscribeFromRouter": [Function],
+}
+`;

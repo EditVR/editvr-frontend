@@ -6,7 +6,7 @@
 import connectRedux from './connectRedux';
 
 describe('aframe->utils->connectRedux()', () => {
-  it('Can connect an AFrame component to Redux', () => {
+  it('Can connect an AFrame component to Redux.', () => {
     const didReceiveProps = jest.fn();
     const shouldComponentUpdate = jest.fn(() => true);
     const init = jest.fn();
@@ -40,22 +40,12 @@ describe('aframe->utils->connectRedux()', () => {
     });
 
     // Expect the connected object to have a specific shape.
-    expect(connected.didReceiveProps).toBe(didReceiveProps);
-    expect(connected).toHaveProperty('props');
-    expect(connected).toHaveProperty('unsubscribeFromState');
-    expect(connected).toHaveProperty('init');
-    expect(connected).toHaveProperty('remove');
 
     // Execute the init handler, as AFrame would.
     connected.init();
     expect(init).toHaveBeenCalledTimes(1);
     expect(subscribe).toHaveBeenCalledTimes(1);
-    expect(connected.props).toEqual({
-      experience: {
-        item: {}
-      },
-      dispatch
-    });
+    expect(connected).toMatchSnapshot();
 
     // Run state change handlers.
     connected.handleStateChange.call(connected);

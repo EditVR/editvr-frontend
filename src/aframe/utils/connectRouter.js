@@ -5,20 +5,20 @@
 
 import { matchPath } from 'react-router';
 
-import history from '../../lib/routerHistory';
+import defaultHistory from '../../lib/routerHistory';
 import shallowEqual from './shallowEqual';
 
 /**
  * Helper method that takes history and a path pattern and turns it into a match object.
  *
- * @param {object} routerHistory - Object containing router history.
+ * @param {object} history - Object containing router history.
  * @param {string} path - React Router path pattern that is expected.
  *
  * @returns {object} - Match object complete with parameters.
  */
-const parseMatch = (routerHistory, path = null) =>
+const parseMatch = (history, path = null) =>
   path
-    ? matchPath(routerHistory.location.pathname, {
+    ? matchPath(history.location.pathname, {
         path,
         exact: path.includes('?')
       })
@@ -29,10 +29,15 @@ const parseMatch = (routerHistory, path = null) =>
  *
  * @param {object} aframeComponent - AFrame component object.
  * @param {string} pathPattern - React Router path pattern that is expected.
+ * @param {object} history - History object, from the history npm pkg.
  *
  * @returns {object} - AFrame component object with router props.
  */
-const connect = (aframeComponent, pathPattern = null) => {
+const connect = (
+  aframeComponent,
+  pathPattern = null,
+  history = defaultHistory
+) => {
   const component = aframeComponent;
 
   // Default component router to an empty object.
