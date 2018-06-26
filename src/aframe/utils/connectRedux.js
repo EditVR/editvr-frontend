@@ -3,7 +3,7 @@
  * Exports a connection utility that allows for AFrame components to use Redux.
  */
 
-import { store } from '../../lib/reduxStore';
+import { store as defaultStore } from '../../lib/reduxStore';
 
 import shallowEqual from './shallowEqual';
 
@@ -16,13 +16,15 @@ import shallowEqual from './shallowEqual';
  * @param {func} mapDispatchToProps
  *   Optional function that's responsible for matching dispatch actions to a
  *   component's local props object.
+ * @param {object} store - Redux store that components should be connected to.
  *
  * @returns {func}
  *   Function that accepts an AFrame component, which will be connected to Redux.
  */
 const connect = (
   mapStateToProps = () => ({}),
-  mapDispatchToProps = dispatch => ({ dispatch })
+  mapDispatchToProps = dispatch => ({ dispatch }),
+  store = defaultStore
 ) => aframeComponent => {
   const component = aframeComponent;
 
