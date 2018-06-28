@@ -9,7 +9,6 @@ import React from 'react';
 import aframe from 'aframe/src';
 
 require('aframe-look-at-component');
-require('aframe-mouse-cursor-component');
 require('../components/spawnSky');
 require('../components/spawnLinks');
 require('../components/navLink');
