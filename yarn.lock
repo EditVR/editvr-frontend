@@ -425,6 +425,10 @@ address@1.0.3, address@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/address/-/address-1.0.3.tgz#b5f50631f8d6cec8bd20c963963afb55e06cbce9"
 
+aframe-look-at-component@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/aframe-look-at-component/-/aframe-look-at-component-0.6.0.tgz#9a45e4c66110cbf4c03a110fccc1bbd992081d5f"
+
 aframe@^0.8.2:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/aframe/-/aframe-0.8.2.tgz#435dd7c7d2f059316af87f4a9783427b0617e11f"

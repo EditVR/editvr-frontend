@@ -1,6 +1,6 @@
 /**
- * @file spawnSky.js
- * AFrame component responsible for sky entities.
+ * @file spawnLinks.js
+ * AFrame component responsible for spawning links.
  */
 
 /* globals AFRAME */
@@ -8,13 +8,10 @@
 import connectRedux from '../utils/connectRedux';
 import connectRouter from '../utils/connectRouter';
 
-/**
- * AFrame component that sets the sky src attribute based on the current route.
- */
-const spawnSky = {
+const spawnLinks = {
   multiple: false,
   init: function init() {
-    this.setSkyUrl();
+    this.spawn();
   },
   shouldComponentUpdateRouting: function shouldComponentUpdateRouting(
     oldProps,
@@ -27,9 +24,9 @@ const spawnSky = {
     return false;
   },
   didReceiveProps: function didReceiveProps() {
-    this.setSkyUrl();
+    this.spawn();
   },
-  setSkyUrl: function setSkyUrl() {
+  spawn: function spawn() {
     // If there is no router or experience data, exit.
     if (!this.router || !this.props.experience.field_scenes) {
       return;
@@ -44,23 +41,27 @@ const spawnSky = {
       }
     } = this;
 
-    // If a scene exists for the given slug, render it's video or photo sphere.
     const scene = experience.field_scenes.filter(
       s => s.field_slug === sceneSlug
     )[0];
     if (scene) {
-      const sky = scene.field_videosphere || scene.field_photosphere;
-      const url = new URL(sky.links.self);
-      this.el.setAttribute('src', `${url.origin}${sky.url}`);
+      scene.field_components
+        .filter(c => c.field_component_type === 'link')
+        .forEach(component => {
+          const e = document.createElement('a-link');
+          e.setAttribute('id', component.id);
+          e.setAttribute('nav-link', '');
+          this.el.appendChild(e);
+        });
     }
   }
 };
 
 AFRAME.registerComponent(
-  'spawn-sky',
+  'spawn-links',
   connectRedux(state => ({
     experience: state.openExperience.item
   }))(
-    connectRouter(spawnSky, '/experience/vreditor/:experienceSlug/:sceneSlug')
+    connectRouter(spawnLinks, '/experience/vreditor/:experienceSlug/:sceneSlug')
   )
 );
