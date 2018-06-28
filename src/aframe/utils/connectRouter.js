@@ -44,8 +44,8 @@ const connect = (
   component.router = component.router || {};
 
   // Default component update function.
-  component.didReceiveProps =
-    component.didReceiveProps || function didReceiveProps() {};
+  component.didReceiveRoute =
+    component.didReceiveRoute || function didReceiveProps() {};
 
   // Default shouldComponentUpdate function. This default does a shallow
   // equality check between the old props and the new incoming props to
@@ -88,7 +88,7 @@ const connect = (
       };
 
       // Call the update lifecycle method.
-      this.didReceiveProps();
+      this.didReceiveRoute();
     }
   };
 

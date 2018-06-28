@@ -8,6 +8,10 @@
 import connectRedux from '../utils/connectRedux';
 import connectRouter from '../utils/connectRouter';
 
+/**
+ * AFrame component that spawns link components whenever it's initialized,
+ * or whenever the route has been changed.
+ */
 const spawnLinks = {
   multiple: false,
   init: function init() {
@@ -24,6 +28,9 @@ const spawnLinks = {
     return false;
   },
   didReceiveProps: function didReceiveProps() {
+    this.spawn();
+  },
+  didReceiveRoute: function didReceiveRoute() {
     this.spawn();
   },
   spawn: function spawn() {

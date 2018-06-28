@@ -26,6 +26,9 @@ const spawnSky = {
 
     return false;
   },
+  didReceiveRoute: function didReceiveRoute() {
+    this.setSkyUrl();
+  },
   didReceiveProps: function didReceiveProps() {
     this.setSkyUrl();
   },

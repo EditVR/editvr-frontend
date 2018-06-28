@@ -8,12 +8,12 @@ import connectRouter from './connectRouter';
 describe('aframe->utils->connectRouter()', () => {
   it('Can connect an AFrame component to React Router.', () => {
     const init = jest.fn();
-    const didReceiveProps = jest.fn();
+    const didReceiveRoute = jest.fn();
     const shouldComponentUpdateRouting = jest.fn(() => true);
     const connected = connectRouter(
       {
         init,
-        didReceiveProps,
+        didReceiveRoute,
         shouldComponentUpdateRouting
       },
       '/experience/vreditor/:experienceSlug/:sceneSlug',
@@ -33,7 +33,7 @@ describe('aframe->utils->connectRouter()', () => {
     // Run router change handlers.
     connected.handleRouterChange.call(connected);
     expect(connected.shouldComponentUpdateRouting).toHaveBeenCalledTimes(1);
-    expect(didReceiveProps).toHaveBeenCalledTimes(1);
+    expect(didReceiveRoute).toHaveBeenCalledTimes(1);
   });
 
   it('Does remove its subscription to router history when destructed..', () => {

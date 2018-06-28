@@ -8,6 +8,10 @@
 import connectRedux from '../utils/connectRedux';
 import connectRouter from '../utils/connectRouter';
 
+/**
+ * AFrame component that constructs a link entity, and destroys it when the
+ * route has changed.
+ */
 const navLink = {
   multiple: true,
   init: function init() {
@@ -25,6 +29,12 @@ const navLink = {
   },
   didReceiveProps: function didReceiveProps() {
     this.render();
+  },
+  didReceiveRoute: function didReceiveRoute() {
+    this.destroy();
+  },
+  destroy: function destroy() {
+    this.el.parentNode.removeChild(this.el);
   },
   render: function render() {
     // If there is no router or experience data, exit.

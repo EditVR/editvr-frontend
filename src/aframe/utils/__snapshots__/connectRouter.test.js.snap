@@ -2,7 +2,7 @@
 
 exports[`aframe->utils->connectRouter() Can connect an AFrame component to React Router. 1`] = `
 Object {
-  "didReceiveProps": [Function],
+  "didReceiveRoute": [Function],
   "handleRouterChange": [Function],
   "init": [Function],
   "remove": [Function],

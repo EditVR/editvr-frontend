@@ -19,7 +19,11 @@ export default () => (
     spawn-links=""
     inspector="url: https://aframe.io/releases/0.4.0/aframe-inspector.min.js"
   >
-    <a-entity id="camera" look-controls="false" cursor="rayOrigin: mouse" />
+    <a-camera
+      id="camera"
+      wasd-controls-enabled="false"
+      cursor="rayOrigin: mouse"
+    />
     <a-sky spawn-sky="" />
   </a-scene>
 );
