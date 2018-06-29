@@ -53,14 +53,14 @@ const spawnSky = {
     )[0];
     if (scene) {
       const {
-        field_sky_rotation_x: x = 0,
-        field_sky_rotation_y: y = 0,
-        field_sky_rotation_z: z = 0
+        field_sky_rotation_x: x,
+        field_sky_rotation_y: y,
+        field_sky_rotation_z: z
       } = scene;
       const sky = scene.field_videosphere || scene.field_photosphere;
       const url = new URL(sky.links.self);
       this.el.setAttribute('src', `${url.origin}${sky.url}`);
-      this.el.setAttribute('rotation', { x, y, z });
+      this.el.setAttribute('rotation', { x: x || 0, y: y || 0, z: z || 0 });
     }
   }
 };
