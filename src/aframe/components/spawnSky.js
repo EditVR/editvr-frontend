@@ -52,9 +52,15 @@ const spawnSky = {
       s => s.field_slug === sceneSlug
     )[0];
     if (scene) {
+      const {
+        field_sky_rotation_x: x = 0,
+        field_sky_rotation_y: y = 0,
+        field_sky_rotation_z: z = 0
+      } = scene;
       const sky = scene.field_videosphere || scene.field_photosphere;
       const url = new URL(sky.links.self);
       this.el.setAttribute('src', `${url.origin}${sky.url}`);
+      this.el.setAttribute('rotation', { x, y, z });
     }
   }
 };
