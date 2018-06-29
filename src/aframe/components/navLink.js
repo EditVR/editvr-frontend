@@ -7,6 +7,8 @@
 
 import connectRedux from '../utils/connectRedux';
 import connectRouter from '../utils/connectRouter';
+import parseSceneFromExperience from '../../lib/parseSceneFromExperience';
+import parseComponentFromScene from '../../lib/parseComponentFromScene';
 
 /**
  * AFrame component that constructs a link entity, and destroys it when the
@@ -51,29 +53,28 @@ const navLink = {
       }
     } = this;
 
-    const scene = experience.field_scenes.filter(
-      s => s.field_slug === sceneSlug
-    )[0];
-    if (scene) {
-      const id = this.el.getAttribute('id');
-      const component = scene.field_components.filter(c => c.id === id)[0];
-      if (component) {
-        const {
-          field_x: x,
-          field_y: y,
-          field_z: z,
-          title,
-          field_scene_link: { field_slug: to }
-        } = component;
-        this.el.setAttribute('look-at', '[camera]');
-        this.el.setAttribute('position', { x, y, z });
-        this.el.setAttribute('title', title);
-        this.el.setAttribute('color', 'white');
-        this.el.setAttribute(
-          'href',
-          `/experience/vreditor/${experienceSlug}/${to}`
-        );
-      }
+    const scene = parseSceneFromExperience(experience, sceneSlug);
+    const component = parseComponentFromScene(
+      scene,
+      this.el.getAttribute('id')
+    );
+
+    if (component) {
+      const {
+        field_x: x,
+        field_y: y,
+        field_z: z,
+        title,
+        field_scene_link: { field_slug: to }
+      } = component;
+      this.el.setAttribute('look-at', '[camera]');
+      this.el.setAttribute('position', { x, y, z });
+      this.el.setAttribute('title', title);
+      this.el.setAttribute('color', 'white');
+      this.el.setAttribute(
+        'href',
+        `/experience/vreditor/${experienceSlug}/${to}`
+      );
     }
   }
 };

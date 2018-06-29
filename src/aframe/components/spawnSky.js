@@ -7,6 +7,7 @@
 
 import connectRedux from '../utils/connectRedux';
 import connectRouter from '../utils/connectRouter';
+import parseSceneFromExperience from '../../lib/parseSceneFromExperience';
 
 /**
  * AFrame component that sets the sky src attribute based on the current route.
@@ -47,10 +48,7 @@ const spawnSky = {
       }
     } = this;
 
-    // If a scene exists for the given slug, render it's video or photo sphere.
-    const scene = experience.field_scenes.filter(
-      s => s.field_slug === sceneSlug
-    )[0];
+    const scene = parseSceneFromExperience(experience, sceneSlug);
     if (scene) {
       const {
         field_sky_rotation_x: x,
