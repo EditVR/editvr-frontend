@@ -16,29 +16,26 @@ import parseComponentFromScene from '../../lib/parseComponentFromScene';
  */
 const navLink = {
   multiple: true,
-  init: function init() {
+  init() {
     this.render();
   },
-  shouldComponentUpdateRouting: function shouldComponentUpdateRouting(
-    oldProps,
-    newProps
-  ) {
+  shouldComponentUpdateRouting(oldProps, newProps) {
     if (oldProps.history.location !== newProps.history.location) {
       return true;
     }
 
     return false;
   },
-  didReceiveProps: function didReceiveProps() {
+  didReceiveProps() {
     this.render();
   },
-  didReceiveRoute: function didReceiveRoute() {
+  didReceiveRoute() {
     this.destroy();
   },
-  destroy: function destroy() {
+  destroy() {
     this.el.parentNode.removeChild(this.el);
   },
-  render: function render() {
+  render() {
     // If there is no router or experience data, exit.
     if (!this.router || !this.props.experience.field_scenes) {
       return;

@@ -15,26 +15,23 @@ import parseSceneFromExperience from '../../lib/parseSceneFromExperience';
  */
 const spawnLinks = {
   multiple: false,
-  init: function init() {
+  init() {
     this.spawn();
   },
-  shouldComponentUpdateRouting: function shouldComponentUpdateRouting(
-    oldProps,
-    newProps
-  ) {
+  shouldComponentUpdateRouting(oldProps, newProps) {
     if (oldProps.history.location !== newProps.history.location) {
       return true;
     }
 
     return false;
   },
-  didReceiveProps: function didReceiveProps() {
+  didReceiveProps() {
     this.spawn();
   },
-  didReceiveRoute: function didReceiveRoute() {
+  didReceiveRoute() {
     this.spawn();
   },
-  spawn: function spawn() {
+  spawn() {
     // If there is no router or experience data, exit.
     if (!this.router || !this.props.experience.field_scenes) {
       return;

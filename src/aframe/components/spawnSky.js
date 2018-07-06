@@ -14,26 +14,23 @@ import parseSceneFromExperience from '../../lib/parseSceneFromExperience';
  */
 const spawnSky = {
   multiple: false,
-  init: function init() {
+  init() {
     this.setSkyUrl();
   },
-  shouldComponentUpdateRouting: function shouldComponentUpdateRouting(
-    oldProps,
-    newProps
-  ) {
+  shouldComponentUpdateRouting(oldProps, newProps) {
     if (oldProps.history.location !== newProps.history.location) {
       return true;
     }
 
     return false;
   },
-  didReceiveRoute: function didReceiveRoute() {
+  didReceiveRoute() {
     this.setSkyUrl();
   },
-  didReceiveProps: function didReceiveProps() {
+  didReceiveProps() {
     this.setSkyUrl();
   },
-  setSkyUrl: function setSkyUrl() {
+  setSkyUrl() {
     // If there is no router or experience data, exit.
     if (!this.router || !this.props.experience.field_scenes) {
       return;
