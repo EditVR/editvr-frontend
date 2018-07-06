@@ -4,7 +4,7 @@
  */
 
 import React, { Fragment } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import { CssBaseline } from '@material-ui/core';
 
 import {
@@ -17,11 +17,12 @@ import {
   VREditor
 } from '../../pages';
 import { PrivateRoute, PublicRoute } from '../../hoc';
+import history from '../../lib/routerHistory';
 
 const App = () => (
   <Fragment>
     <CssBaseline />
-    <Router>
+    <Router history={history}>
       <Switch>
         <Route exact path="/" component={Home} />
         <PublicRoute

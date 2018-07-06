@@ -14,7 +14,7 @@ import actions from '../actions';
 // Set up persisted reducers using redux-persist.
 const persistedReducer = persistReducer(
   {
-    key: 'root',
+    key: 'editvr-root',
     storage
   },
   reducers
