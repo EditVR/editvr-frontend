@@ -43,6 +43,7 @@ export const openExperienceFetchForUser = async (
         'field_scenes.field_components.field_image',
         'field_scenes.field_components.field_component_sound',
         'field_scenes.field_photosphere',
+        'field_scenes.field_videosphere',
         'field_scenes.field_slug'
       ].join(','),
       'filter[uid.uid][value]': uid,

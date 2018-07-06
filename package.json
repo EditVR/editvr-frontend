@@ -55,8 +55,11 @@
   "dependencies": {
     "@material-ui/core": "^1.0.0",
     "@material-ui/icons": "^1.1.0",
+    "aframe": "^0.8.2",
+    "aframe-look-at-component": "^0.6.0",
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
+    "history": "^4.7.2",
     "jsona": "^1.1.10",
     "prop-types": "^15.6.1",
     "qs": "^6.5.2",

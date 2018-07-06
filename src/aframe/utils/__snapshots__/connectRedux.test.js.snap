@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`aframe->utils->connectRedux() Can connect an AFrame component to Redux. 1`] = `
+Object {
+  "didReceiveProps": [Function],
+  "handleStateChange": [Function],
+  "init": [Function],
+  "props": Object {
+    "dispatch": [Function],
+    "experience": Object {
+      "item": Object {},
+    },
+  },
+  "remove": [Function],
+  "shouldComponentUpdate": [Function],
+  "unsubscribeFromState": [Function],
+}
+`;

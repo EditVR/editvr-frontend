@@ -23,4 +23,4 @@ rules:
   react/jsx-filename-extension: [1, { "extensions": [".js", ".jsx"] }]
   # The video and audio elements in this application are just previewers.
   jsx-a11y/media-has-caption: 0
-  import/prefer-default-export: [0]
+  import/prefer-default-export: 0

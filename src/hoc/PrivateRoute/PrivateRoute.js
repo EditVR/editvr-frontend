@@ -17,11 +17,15 @@ const PrivateRoute = ({
   <Route
     {...rest}
     render={props => {
-      const { accessToken, created, expiresIn } = authentication;
+      const { accessToken, csrfToken, created, expiresIn } = authentication;
 
       // If the access token does not exist, or the token has expired, false.
       let isAuthenticated = true;
-      if (!accessToken || Date.now() - created > expiresIn * 1000) {
+      if (
+        !accessToken ||
+        !csrfToken ||
+        Date.now() - created > expiresIn * 1000
+      ) {
         isAuthenticated = false;
       }
 
