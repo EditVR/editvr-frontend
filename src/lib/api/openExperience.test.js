@@ -8,7 +8,7 @@ import mockAxios from 'jest-mock-axios';
 
 import { openExperienceFetchForUser } from './openExperience';
 import { clientId } from '../../config';
-import { API_ENDPOINT_EXPERIENCES } from '../../constants';
+import { API_ENDPOINT_EXPERIENCE } from '../../constants';
 
 afterEach(() => mockAxios.reset());
 
@@ -24,7 +24,7 @@ describe('api->openExperience', () => {
       }
     });
 
-    expect(mockAxios.get).toHaveBeenCalledWith(API_ENDPOINT_EXPERIENCES, {
+    expect(mockAxios.get).toHaveBeenCalledWith(API_ENDPOINT_EXPERIENCE, {
       params: {
         include: [
           'field_ambient',

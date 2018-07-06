@@ -32,7 +32,13 @@ const SceneCards = ({
   <div>
     {experience.field_scenes &&
       experience.field_scenes.map(
-        ({ id, title, field_slug: slug, field_photosphere: photosphere }) => (
+        ({
+          id,
+          title,
+          body,
+          field_slug: slug,
+          field_photosphere: photosphere
+        }) => (
           <Card
             key={id}
             raised={sceneSlug === slug}
@@ -52,6 +58,14 @@ const SceneCards = ({
               <Typography gutterBottom variant="headline">
                 {title}
               </Typography>
+              <Typography
+                component="p"
+                dangerouslySetInnerHTML={{
+                  __html: body
+                    ? body.value
+                    : 'This scene does not yet have a description.'
+                }}
+              />
             </CardContent>
             <CardActions>
               <Tooltip title={`Open ${title}`}>

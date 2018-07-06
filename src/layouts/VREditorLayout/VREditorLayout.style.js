@@ -12,7 +12,7 @@ export default theme => ({
     backgroundColor: theme.palette.background.default
   },
   middle: {
-    background: theme.palette.primary['600'],
+    backgroundColor: theme.palette.primary['900'],
     height: '100%',
     maxHeight: '100%',
     overflow: 'hidden'

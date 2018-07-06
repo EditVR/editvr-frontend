@@ -5,8 +5,16 @@
 
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import { OPEN_EXPERIENCE_FETCH_FOR_USER } from '../constants';
-import { openExperienceFetchForUser as getOpenExperienceForUser } from '../lib/api';
+import {
+  OPEN_EXPERIENCE_FETCH_FOR_USER,
+  OPEN_EXPERIENCE_SCENE_CREATE
+} from '../constants';
+import {
+  openExperienceFetchForUser as getOpenExperienceForUser,
+  openExperienceAttachScene,
+  fileCreate,
+  sceneCreate
+} from '../lib/api';
 import actionGenerator from '../lib/actionGenerator';
 
 /**
@@ -39,6 +47,81 @@ export function* openExperienceFetchForUser({ user, experienceSlug }) {
   );
 }
 
+/**
+ * Dispatches an action that generates a new scene in the current openExperience.
+ *
+ * @param {object} payload
+ *   Payload for this saga action.
+ * @param {string} payload.title
+ *   Title of this new scene.
+ * @param {string} payload.body
+ *   Body describing this new scene.
+ * @param {string} payload.field_slug
+ *   URL slug describing this scene's URL segment.
+ * @param {string} payload.experience
+ *   Object containing experience that this scene will be attached to.
+ * @param {string} payload.fileData
+ *   Base64 file data for this scene's sky file.
+ * @param {string} payload.fileName
+ *   String name of file.
+ * @param {object} payload.user
+ *   Object containing user data.
+ * @param {object} payload.user.authentication
+ *   Object containing auth data.
+ * @param {string} payload.user.authentication.accessToken
+ *   Access token for the current user.
+ * @param {string} payload.user.authentication.csrfToken
+ *   CSRF token for the current user.
+ * @param {function} payload.successHandler
+ *   Function to be executed if/when this action succeeds.
+ */
+export function* openExperienceSceneCreate({
+  user,
+  title,
+  body = '',
+  field_slug,
+  experience,
+  fileData,
+  fileName,
+  successHandler = () => {}
+}) {
+  yield* actionGenerator(
+    OPEN_EXPERIENCE_SCENE_CREATE,
+    function* openExperienceSceneCreateHandler() {
+      // Calculate file URI, and then create the file.
+      const uri = `private://sceneSkies/${fileName}`;
+      const file = yield call(fileCreate, fileData, uri, user);
+
+      // Generate scene payload based on the type of file that was just
+      // generated, and then create the scene.
+      const skyField = file.filemime.startsWith('video')
+        ? 'field_videosphere'
+        : 'field_photosphere';
+      const payload = {
+        title,
+        body,
+        field_slug
+      };
+      payload[skyField] = file.id;
+      const scene = yield call(sceneCreate, payload, user);
+
+      // Attach the newly-created scene to it's experience.
+      const updatedExperience = yield call(
+        openExperienceAttachScene,
+        experience,
+        scene.id,
+        user
+      );
+      yield put({
+        type: `${OPEN_EXPERIENCE_SCENE_CREATE}_SUCCESS`,
+        payload: updatedExperience
+      });
+    },
+    successHandler
+  );
+}
+
 export function* watchOpenExperienceActions() {
   yield takeLatest(OPEN_EXPERIENCE_FETCH_FOR_USER, openExperienceFetchForUser);
+  yield takeLatest(OPEN_EXPERIENCE_SCENE_CREATE, openExperienceSceneCreate);
 }

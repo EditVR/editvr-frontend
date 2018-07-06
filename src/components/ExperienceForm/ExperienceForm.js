@@ -101,7 +101,8 @@ class ExperienceForm extends Component {
     const {
       classes,
       submitHandler,
-      experiences: { error }
+      experiences: { error },
+      user: { username }
     } = this.props;
 
     const experience = this.getExperience();
@@ -123,7 +124,7 @@ class ExperienceForm extends Component {
           label="URL Path"
           type="text"
           required
-          helperText="Enter a name for your experience. For example, if you enter 'my-new-experience', your experience will be published to /experience/my-new-experience."
+          helperText={`Enter a url-friendly name for your experience. For example, if you enter 'my-experience', your experience will be published to /view/${username}/experience/my-experience.`}
           defaultValue={experience ? experience.field_experience_path : ''}
           className={classes.textField}
         />

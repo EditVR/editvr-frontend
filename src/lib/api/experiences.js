@@ -5,10 +5,7 @@
 
 import { clientId } from '../../config';
 import axiosInstance from './axiosInstance';
-import {
-  API_ENDPOINT_EXPERIENCES,
-  API_TYPE_EXPERIENCES
-} from '../../constants';
+import { API_ENDPOINT_EXPERIENCE, API_TYPE_EXPERIENCE } from '../../constants';
 
 /**
  * Fetches a list of experiences that are owned by the current user.
@@ -22,7 +19,7 @@ import {
  *   CSRF token for the current user.
  */
 export const experiencesFetchForUser = async ({ uid, authentication }) =>
-  axiosInstance(authentication).get(API_ENDPOINT_EXPERIENCES, {
+  axiosInstance(authentication).get(API_ENDPOINT_EXPERIENCE, {
     params: {
       'filter[uid.uid][value]': uid,
       _consumer_id: clientId
@@ -47,9 +44,9 @@ export const experiencesCreate = async (
   { title, field_experience_path, body = '' },
   { authentication }
 ) =>
-  axiosInstance(authentication).post(API_ENDPOINT_EXPERIENCES, {
+  axiosInstance(authentication).post(API_ENDPOINT_EXPERIENCE, {
     data: {
-      type: API_TYPE_EXPERIENCES,
+      type: API_TYPE_EXPERIENCE,
       attributes: {
         title,
         field_experience_path,
@@ -82,10 +79,10 @@ export const experiencesEdit = async (
   { id, title, field_experience_path, body = '' },
   { authentication }
 ) =>
-  axiosInstance(authentication).patch(`${API_ENDPOINT_EXPERIENCES}/${id}`, {
+  axiosInstance(authentication).patch(`${API_ENDPOINT_EXPERIENCE}/${id}`, {
     data: {
       id,
-      type: API_TYPE_EXPERIENCES,
+      type: API_TYPE_EXPERIENCE,
       attributes: {
         title,
         field_experience_path,

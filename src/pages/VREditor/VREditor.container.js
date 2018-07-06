@@ -17,4 +17,4 @@ const mapState = ({ openExperience, user }) => ({
   user
 });
 
-export default connect(mapState, mapDispatchToProps)(withRouter(VREditor));
+export default withRouter(connect(mapState, mapDispatchToProps)(VREditor));

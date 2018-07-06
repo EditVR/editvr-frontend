@@ -1,6 +1,6 @@
 /**
- * @file ExperienceCreateForm.style.js
- * Exports ExperienceCreateForm component styles.
+ * @file ExperienceForm.style.js
+ * Exports ExperienceForm component styles.
  */
 
 export default theme => ({
