@@ -53,6 +53,7 @@
     "fail": ["@semantic-release/github"]
   },
   "dependencies": {
+    "@editvr/aframe-dialog-popup-component": "^1.2.0",
     "@material-ui/core": "^1.0.0",
     "@material-ui/icons": "^1.1.0",
     "aframe": "^0.8.2",

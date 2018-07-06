@@ -94,6 +94,7 @@ exports[`<VREditor /> Matches its snapshot 1`] = `
     <a-scene
       embedded={true}
       inspector="url: https://aframe.io/releases/0.4.0/aframe-inspector.min.js"
+      spawn-dialogs=""
       spawn-links=""
     >
       <a-camera
