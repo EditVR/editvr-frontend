@@ -31,7 +31,10 @@ describe('<ExperienceEdit />', () => {
           {
             id: '10',
             title: 'test',
-            field_experience_path: 'test'
+            field_experience_path: 'test',
+            body: {
+              value: 'test'
+            }
           }
         ]
       }

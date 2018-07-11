@@ -6,7 +6,7 @@ exports[`<ExperienceForm /> Can be a Create form for Experiences 1`] = `
 >
   <div
     aria-describedby="title-helper-text"
-    className="MuiFormControl-root-3 ExperienceForm-textField-1"
+    className="MuiFormControl-root-3 C-textField-1"
     onBlur={[Function]}
     onFocus={[Function]}
   >
@@ -57,7 +57,7 @@ exports[`<ExperienceForm /> Can be a Create form for Experiences 1`] = `
   </div>
   <div
     aria-describedby="field_experience_path-helper-text"
-    className="MuiFormControl-root-3 ExperienceForm-textField-1"
+    className="MuiFormControl-root-3 C-textField-1"
     onBlur={[Function]}
     onFocus={[Function]}
   >
@@ -108,7 +108,7 @@ exports[`<ExperienceForm /> Can be a Create form for Experiences 1`] = `
   </div>
   <div
     aria-describedby="body-helper-text"
-    className="MuiFormControl-root-3 ExperienceForm-textField-1"
+    className="MuiFormControl-root-3 C-textField-1"
     onBlur={[Function]}
     onFocus={[Function]}
   >
@@ -158,7 +158,7 @@ exports[`<ExperienceForm /> Can be a Create form for Experiences 1`] = `
     </p>
   </div>
   <button
-    className="MuiButtonBase-root-50 MuiButton-root-34 MuiButton-raised-40 MuiButton-raisedPrimary-41 ExperienceForm-button-2"
+    className="MuiButtonBase-root-50 MuiButton-root-34 MuiButton-raised-40 MuiButton-raisedPrimary-41 C-button-2"
     disabled={false}
     onBlur={[Function]}
     onFocus={[Function]}
@@ -191,7 +191,7 @@ exports[`<ExperienceForm /> Can be an Edit form for Experiences 1`] = `
 >
   <div
     aria-describedby="title-helper-text"
-    className="MuiFormControl-root-3 ExperienceForm-textField-1"
+    className="MuiFormControl-root-3 C-textField-1"
     onBlur={[Function]}
     onFocus={[Function]}
   >
@@ -242,7 +242,7 @@ exports[`<ExperienceForm /> Can be an Edit form for Experiences 1`] = `
   </div>
   <div
     aria-describedby="field_experience_path-helper-text"
-    className="MuiFormControl-root-3 ExperienceForm-textField-1"
+    className="MuiFormControl-root-3 C-textField-1"
     onBlur={[Function]}
     onFocus={[Function]}
   >
@@ -293,7 +293,7 @@ exports[`<ExperienceForm /> Can be an Edit form for Experiences 1`] = `
   </div>
   <div
     aria-describedby="body-helper-text"
-    className="MuiFormControl-root-3 ExperienceForm-textField-1"
+    className="MuiFormControl-root-3 C-textField-1"
     onBlur={[Function]}
     onFocus={[Function]}
   >
@@ -343,7 +343,7 @@ exports[`<ExperienceForm /> Can be an Edit form for Experiences 1`] = `
     </p>
   </div>
   <button
-    className="MuiButtonBase-root-50 MuiButton-root-34 MuiButton-raised-40 MuiButton-raisedPrimary-41 ExperienceForm-button-2"
+    className="MuiButtonBase-root-50 MuiButton-root-34 MuiButton-raised-40 MuiButton-raisedPrimary-41 C-button-2"
     disabled={false}
     onBlur={[Function]}
     onFocus={[Function]}

@@ -130,7 +130,7 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
     >
       <div
         aria-describedby="title-helper-text"
-        className="MuiFormControl-root-117 ExperienceForm-textField-115"
+        className="MuiFormControl-root-117 C-textField-115"
         onBlur={[Function]}
         onFocus={[Function]}
       >
@@ -181,7 +181,7 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
       </div>
       <div
         aria-describedby="field_experience_path-helper-text"
-        className="MuiFormControl-root-117 ExperienceForm-textField-115"
+        className="MuiFormControl-root-117 C-textField-115"
         onBlur={[Function]}
         onFocus={[Function]}
       >
@@ -232,7 +232,7 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
       </div>
       <div
         aria-describedby="body-helper-text"
-        className="MuiFormControl-root-117 ExperienceForm-textField-115"
+        className="MuiFormControl-root-117 C-textField-115"
         onBlur={[Function]}
         onFocus={[Function]}
       >
@@ -257,7 +257,7 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
             autoComplete={undefined}
             autoFocus={undefined}
             className="MuiInput-input-139 MuiInput-inputMultiline-141"
-            defaultValue=""
+            defaultValue="test"
             disabled={false}
             id="body"
             name={undefined}
@@ -282,7 +282,7 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
         </p>
       </div>
       <button
-        className="MuiButtonBase-root-68 MuiButton-root-148 MuiButton-raised-154 MuiButton-raisedPrimary-155 ExperienceForm-button-116"
+        className="MuiButtonBase-root-68 MuiButton-root-148 MuiButton-raised-154 MuiButton-raisedPrimary-155 C-button-116"
         disabled={false}
         onBlur={[Function]}
         onFocus={[Function]}
