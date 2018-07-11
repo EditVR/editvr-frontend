@@ -24,14 +24,13 @@ const parseComponentFromScene = (scene = {}, id = null) => {
   }
 
   // Filter the component array, only include components with the specified ID.
-  const component = scene.field_components.filter(c => c.id === id);
+  const component = scene.field_components.find(c => c.id === id);
 
-  // If no component is found, return null.
-  if (!component || component.length < 1) {
+  if (!component) {
     return null;
   }
 
-  return component[0];
+  return component;
 };
 
 export default parseComponentFromScene;

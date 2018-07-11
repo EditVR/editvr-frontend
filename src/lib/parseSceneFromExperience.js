@@ -24,14 +24,13 @@ const parseSceneFromExperience = (experience = {}, sceneSlug = null) => {
   }
 
   // Filter the scene array, only include scenes with the correct slug.
-  const scene = experience.field_scenes.filter(s => s.field_slug === sceneSlug);
+  const scene = experience.field_scenes.find(s => s.field_slug === sceneSlug);
 
-  // If no scene is found, return null.
-  if (!scene || scene.length < 1) {
+  if (!scene) {
     return null;
   }
 
-  return scene[0];
+  return scene;
 };
 
 export default parseSceneFromExperience;
