@@ -18,9 +18,10 @@ import {
   Button,
   Tooltip
 } from '@material-ui/core';
-import { OpenInBrowser } from '@material-ui/icons';
+import { OpenInBrowser, Edit } from '@material-ui/icons';
 
 import SceneCardsStyles from './SceneCards.style';
+import { MODE_SCENE_EDIT } from '../../constants';
 
 const SceneCards = ({
   experience: { item: experience },
@@ -73,13 +74,25 @@ const SceneCards = ({
                   variant="outlined"
                   size="small"
                   component={Link}
-                  disabled={sceneSlug === slug}
                   className={classes.cardActionButton}
                   to={`/experience/vreditor/${
                     experience.field_experience_path
                   }/${slug}`}
                 >
                   <OpenInBrowser />
+                </Button>
+              </Tooltip>
+              <Tooltip title={`Configure ${title}`}>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  component={Link}
+                  className={classes.cardActionButton}
+                  to={`/experience/vreditor/${
+                    experience.field_experience_path
+                  }/${slug}/${MODE_SCENE_EDIT}`}
+                >
+                  <Edit />
                 </Button>
               </Tooltip>
             </CardActions>

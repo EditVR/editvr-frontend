@@ -4,3 +4,4 @@
  */
 
 export const MODE_SCENE_CREATE = 'mode-scene-create';
+export const MODE_SCENE_EDIT = 'mode-scene-edit';

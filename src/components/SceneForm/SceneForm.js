@@ -15,8 +15,10 @@ import {
   FORM_BUTTON_INSERT_UPDATE,
   FORM_INPUT_VALIDATION_REGEX_URL_SEGMENT,
   OPEN_EXPERIENCE_SCENE_CREATE,
+  OPEN_EXPERIENCE_SCENE_EDIT,
   OPEN_EXPERIENCE_FETCH_FOR_USER
 } from '../../constants';
+import parseSceneFromExperience from '../../lib/parseSceneFromExperience';
 import SceneFormStyles from './SceneForm.style';
 import { Message } from '../';
 
@@ -128,6 +130,14 @@ class SceneForm extends Component {
             equirectangular.
           </Typography>
         </Dropzone>
+        {!previewImage &&
+          values.skyUrl && (
+            <img
+              src={values.skyUrl}
+              className={classes.previewImage}
+              alt="Preview of this scene's sky"
+            />
+          )}
         {previewImage && (
           <img
             src={previewImage}
@@ -203,14 +213,38 @@ class SceneForm extends Component {
 }
 
 const FormikSceneForm = withFormik({
-  mapPropsToValues: () => {
+  mapPropsToValues: ({ sceneSlug, experience: { item: experience } }) => {
+    const scene = parseSceneFromExperience(experience, sceneSlug);
+
     const values = {
       title: '',
       field_slug: '',
       body: '',
       sky: null,
+      skyUrl: null,
       fileName: null
     };
+
+    if (scene) {
+      const {
+        title,
+        field_slug,
+        body,
+        field_photosphere,
+        field_videosphere
+      } = scene;
+      const sky = field_videosphere || field_photosphere;
+      const url = new URL(sky.links.self);
+      const skyUrl = `${url.origin}${sky.url}`;
+
+      Object.assign(values, {
+        title,
+        field_slug,
+        body: body ? body.value : null,
+        skyUrl,
+        sky: skyUrl
+      });
+    }
 
     return values;
   },
@@ -240,6 +274,7 @@ const FormikSceneForm = withFormik({
     const {
       dispatch,
       user,
+      sceneSlug,
       experience: { item: experience },
       history: { push },
       match: {
@@ -249,7 +284,9 @@ const FormikSceneForm = withFormik({
 
     // Extract the file data and construct a payload object.
     dispatch({
-      type: OPEN_EXPERIENCE_SCENE_CREATE,
+      type: sceneSlug
+        ? OPEN_EXPERIENCE_SCENE_EDIT
+        : OPEN_EXPERIENCE_SCENE_CREATE,
       title,
       body,
       field_slug,
