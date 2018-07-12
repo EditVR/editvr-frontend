@@ -15,7 +15,8 @@ import parseExperience from '../../lib/parseExperience';
 import {
   EXPERIENCES_CREATE,
   EXPERIENCES_EDIT,
-  FORM_BUTTON_INSERT_UPDATE
+  FORM_BUTTON_INSERT_UPDATE,
+  FORM_INPUT_VALIDATION_REGEX_URL_SEGMENT
 } from '../../constants';
 
 const ExperienceForm = ({
@@ -181,7 +182,7 @@ const FormikExperienceForm = withFormik({
       .required()
       .min(3)
       .max(100)
-      .matches(/^[a-zA-Z0-9_-]*$/, {
+      .matches(FORM_INPUT_VALIDATION_REGEX_URL_SEGMENT, {
         message:
           'Value must be URL-friendly. No spaces, no special characters, just letters, numbers, and dashes'
       })

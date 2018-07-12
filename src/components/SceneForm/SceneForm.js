@@ -7,10 +7,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TextField, Button, Typography, withStyles } from '@material-ui/core';
 import { FileUpload } from '@material-ui/icons';
+import { withFormik } from 'formik';
+import { string, object } from 'yup';
 import Dropzone from 'react-dropzone';
 
 import {
   FORM_BUTTON_INSERT_UPDATE,
+  FORM_INPUT_VALIDATION_REGEX_URL_SEGMENT,
   OPEN_EXPERIENCE_SCENE_CREATE,
   OPEN_EXPERIENCE_FETCH_FOR_USER
 } from '../../constants';
@@ -19,20 +22,24 @@ import { Message } from '../';
 
 class SceneForm extends Component {
   static propTypes = {
-    submitHandler: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
-    dispatch: PropTypes.func.isRequired,
     classes: PropTypes.shape({
       textField: PropTypes.string.isRequired,
       button: PropTypes.string.isRequired,
       previewImage: PropTypes.string.isRequired
     }).isRequired,
-    history: PropTypes.shape({
-      push: PropTypes.func.isRequired
+    setFieldValue: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    isSubmitting: PropTypes.bool.isRequired,
+    values: PropTypes.shape({
+      title: PropTypes.string,
+      body: PropTypes.string,
+      field_slug: PropTypes.string
     }).isRequired,
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        experienceSlug: PropTypes.string.isRequired
-      }).isRequired
+    errors: PropTypes.shape({
+      title: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+      field_slug: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+      body: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
     }).isRequired,
     experience: PropTypes.shape({
       item: PropTypes.shape({
@@ -52,14 +59,9 @@ class SceneForm extends Component {
     }).isRequired
   };
 
-  static defaultProps = {
-    submitHandler: false
-  };
-
   state = {
     previewImage: null,
-    previewVideo: null,
-    validationError: null
+    previewVideo: null
   };
 
   /**
@@ -80,85 +82,14 @@ class SceneForm extends Component {
     }
 
     this.setState(state);
-  };
+    this.props.setFieldValue('fileName', file.name);
 
-  /**
-   * Handles submit event.
-   *
-   * @param {object} event - Object containing form data.
-   */
-  handleSubmit = event => {
-    event.preventDefault();
-
-    // Validate input, and exit if input isn't valid.
-    if (!this.isValid(event)) {
-      return;
-    }
-
-    const {
-      dispatch,
-      user,
-      experience: { item: experience },
-      history,
-      match: {
-        params: { experienceSlug }
-      }
-    } = this.props;
-
-    // Extract the file data and construct a payload object.
-    const file = event.target[0].files[0];
-    const sceneSlug = event.target[2].value;
-    const payload = {
-      type: OPEN_EXPERIENCE_SCENE_CREATE,
-      fileName: file.name,
-      title: event.target[1].value,
-      field_slug: sceneSlug,
-      body: event.target[3].value,
-      experience,
-      user,
-      successHandler: () => {
-        // After a new scene is added, we need to re-load the open experience
-        // so that all the new scene fields can be pulled in.
-        dispatch({
-          type: OPEN_EXPERIENCE_FETCH_FOR_USER,
-          experienceSlug,
-          user
-        });
-
-        // Redirect to the newly created scene.
-        history.push(
-          `/experience/vreditor/${
-            experience.field_experience_path
-          }/${sceneSlug}`
-        );
-      }
-    };
-
-    // Read the uploaded file into a base64 string, and dispatch payload.
+    // Read the file into a binary string and set the sky field.
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      payload.fileData = reader.result;
-      dispatch(payload);
+      this.props.setFieldValue('sky', reader.result);
     };
-  };
-
-  /**
-   * Handles validating input.
-   *
-   * @param {object} event - Object containing form data.
-   */
-  isValid = event => {
-    const file = event.target[0].files[0];
-
-    if (!file) {
-      this.setState({
-        validationError: 'You must upload a scene sky image or video.'
-      });
-      return false;
-    }
-
-    return true;
   };
 
   /**
@@ -166,13 +97,17 @@ class SceneForm extends Component {
    */
   render() {
     const {
-      submitHandler,
       classes,
       user: { username },
-      experience: { error, item: experience }
+      experience: { error: apiError, item: experience },
+      values,
+      errors,
+      isSubmitting,
+      handleSubmit,
+      handleChange
     } = this.props;
 
-    const { previewImage, previewVideo, validationError } = this.state;
+    const { previewImage, previewVideo } = this.state;
 
     // If this form is being rendered when the openExperience state has not
     // yet been loaded, render nothing.
@@ -183,14 +118,14 @@ class SceneForm extends Component {
     const { field_experience_path: experienceSlug } = experience;
 
     return (
-      <form onSubmit={submitHandler || this.handleSubmit}>
-        {error && <Message>{error}</Message>}
-        {validationError && <Message>{validationError}</Message>}
+      <form onSubmit={handleSubmit}>
+        {apiError && <Message>{apiError}</Message>}
         <Dropzone onDrop={this.previewFile} className={classes.dropzone}>
           <FileUpload className={classes.dropzoneIcon} />
           <Typography variant="body1" className={classes.dropzoneParagraph}>
             Drag images and drop them here, or click here to upload scene sky
-            images (jpg, png) or videos (mp4).
+            images (jpg, png) or videos (mp4). These images or videos should be
+            equirectangular.
           </Typography>
         </Dropzone>
         {previewImage && (
@@ -203,12 +138,21 @@ class SceneForm extends Component {
         {previewVideo && (
           <video controls className={classes.previewImage} src={previewVideo} />
         )}
+        {errors.sky && <Message type="error">{errors.sky}</Message>}
         <TextField
           id="title"
           label="Title"
           type="text"
           required
-          helperText="Enter a user-friendly title for your scene."
+          helperText={
+            errors.title
+              ? errors.title
+              : 'Enter a user-friendly title for your scene.'
+          }
+          defaultValue={values.title}
+          onChange={handleChange}
+          error={!!errors.title}
+          disabled={isSubmitting}
           className={classes.textField}
         />
         <TextField
@@ -216,7 +160,15 @@ class SceneForm extends Component {
           label="URL Path"
           type="text"
           required
-          helperText={`Enter a url-friendly name for your scene. For example, if you enter 'my-scene', your scene will be published at: /view/${username}/${experienceSlug}/my-scene`}
+          helperText={
+            errors.field_slug
+              ? errors.field_slug
+              : `Enter a url-friendly name for your scene. For example, if you enter 'my-scene', your scene will be published at: /view/${username}/${experienceSlug}/my-scene`
+          }
+          defaultValue={values.field_slug}
+          onChange={handleChange}
+          error={!!errors.field_slug}
+          disabled={isSubmitting}
           className={classes.textField}
         />
         <TextField
@@ -226,7 +178,15 @@ class SceneForm extends Component {
           multiline
           required
           rows={6}
-          helperText="Describe your experience so people will know what to expect before they enter your scene."
+          helperText={
+            errors.body
+              ? errors.body
+              : 'Describe your experience so people will know what to expect before they enter your scene.'
+          }
+          defaultValue={values.body}
+          onChange={handleChange}
+          error={!!errors.body}
+          disabled={isSubmitting}
           className={classes.textField}
         />
         <Button
@@ -242,4 +202,78 @@ class SceneForm extends Component {
   }
 }
 
-export default withStyles(SceneFormStyles)(SceneForm);
+const FormikSceneForm = withFormik({
+  mapPropsToValues: () => {
+    const values = {
+      title: '',
+      field_slug: '',
+      body: '',
+      sky: null,
+      fileName: null
+    };
+
+    return values;
+  },
+  validationSchema: object().shape({
+    title: string()
+      .required()
+      .min(3)
+      .max(50),
+    body: string()
+      .required()
+      .min(3)
+      .max(200),
+    sky: string()
+      .required('You must upload an equirectangular image or video file.')
+      .nullable(),
+    field_slug: string()
+      .required()
+      .min(3)
+      .max(100)
+      .matches(FORM_INPUT_VALIDATION_REGEX_URL_SEGMENT, {
+        message:
+          'Value must be URL-friendly. No spaces, no special characters, just letters, numbers, and dashes'
+      })
+  }),
+  handleSubmit: (values, { props, setSubmitting }) => {
+    const { title, field_slug, body, sky, fileName } = values;
+    const {
+      dispatch,
+      user,
+      experience: { item: experience },
+      history: { push },
+      match: {
+        params: { experienceSlug }
+      }
+    } = props;
+
+    // Extract the file data and construct a payload object.
+    dispatch({
+      type: OPEN_EXPERIENCE_SCENE_CREATE,
+      title,
+      body,
+      field_slug,
+      experience,
+      user,
+      fileData: sky,
+      fileName: `${user.username}-${fileName}`,
+      successHandler: () => {
+        setSubmitting(false);
+        dispatch({
+          type: OPEN_EXPERIENCE_FETCH_FOR_USER,
+          experienceSlug,
+          user
+        });
+
+        // Redirect to the newly created scene.
+        push(
+          `/experience/vreditor/${
+            experience.field_experience_path
+          }/${field_slug}`
+        );
+      }
+    });
+  }
+})(SceneForm);
+
+export default withStyles(SceneFormStyles)(FormikSceneForm);
