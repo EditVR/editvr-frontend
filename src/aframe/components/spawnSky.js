@@ -8,6 +8,7 @@
 import connectRedux from '../utils/connectRedux';
 import connectRouter from '../utils/connectRouter';
 import parseSceneFromExperience from '../../lib/parseSceneFromExperience';
+import parseSkyFromScene from '../../lib/parseSkyFromScene';
 
 /**
  * AFrame component that sets the sky src attribute based on the current route.
@@ -52,9 +53,8 @@ const spawnSky = {
         field_sky_rotation_y: y,
         field_sky_rotation_z: z
       } = scene;
-      const sky = scene.field_videosphere || scene.field_photosphere;
-      const url = new URL(sky.links.self);
-      this.el.setAttribute('src', `${url.origin}${sky.url}`);
+      const sky = parseSkyFromScene(scene);
+      this.el.setAttribute('src', sky.url);
       this.el.setAttribute('rotation', { x: x || 0, y: y || 0, z: z || 0 });
     }
   }

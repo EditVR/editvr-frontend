@@ -19,6 +19,7 @@ import {
   OPEN_EXPERIENCE_FETCH_FOR_USER
 } from '../../constants';
 import parseSceneFromExperience from '../../lib/parseSceneFromExperience';
+import parseSkyFromScene from '../../lib/parseSkyFromScene';
 import SceneFormStyles from './SceneForm.style';
 import { Message } from '../';
 
@@ -34,6 +35,7 @@ class SceneForm extends Component {
     handleChange: PropTypes.func.isRequired,
     handleBlur: PropTypes.func.isRequired,
     isSubmitting: PropTypes.bool.isRequired,
+    sceneSlug: PropTypes.string,
     values: PropTypes.shape({
       title: PropTypes.string,
       body: PropTypes.string,
@@ -67,9 +69,51 @@ class SceneForm extends Component {
     }).isRequired
   };
 
+  static defaultProps = {
+    sceneSlug: null
+  };
+
   state = {
-    previewImage: null,
-    previewVideo: null
+    previewSky: null,
+    previewSkyType: 'image'
+  };
+
+  /**
+   * Helper method that returns a sky preview video or image.
+   */
+  createSkyPreview = () => {
+    const { previewSky, previewSkyType } = this.state;
+    const {
+      classes,
+      values: { skyUrl, skyType },
+      sceneSlug
+    } = this.props;
+
+    // Depending on the type of sky, return a preview element.
+    switch (sceneSlug ? skyType : previewSkyType) {
+      case 'photosphere': {
+        return (
+          <img
+            src={sceneSlug ? skyUrl : previewSky}
+            className={classes.previewImage}
+            alt="Preview of this scene's sky"
+          />
+        );
+      }
+      case 'videosphere': {
+        return (
+          <video
+            controls
+            className={classes.previewImage}
+            src={sceneSlug ? skyType : previewSkyType}
+          />
+        );
+      }
+      default:
+        break;
+    }
+
+    return null;
   };
 
   /**
@@ -77,16 +121,13 @@ class SceneForm extends Component {
    */
   previewFile = files => {
     const file = files[0];
-    let state = {
-      previewImage: file.preview,
-      previewVideo: null
+    const state = {
+      previewSky: file.preview,
+      previewSkyType: 'photosphere'
     };
 
     if (file.type.startsWith('video')) {
-      state = {
-        previewImage: null,
-        previewVideo: file.preview
-      };
+      state.previewSkyType = 'videosphere';
     }
 
     this.setState(state);
@@ -117,8 +158,6 @@ class SceneForm extends Component {
       handleBlur
     } = this.props;
 
-    const { previewImage, previewVideo } = this.state;
-
     // If this form is being rendered when the openExperience state has not
     // yet been loaded, render nothing.
     if (!experience.field_scenes) {
@@ -130,32 +169,17 @@ class SceneForm extends Component {
     return (
       <form onSubmit={handleSubmit}>
         {apiError && <Message>{apiError}</Message>}
-        <Dropzone onDrop={this.previewFile} className={classes.dropzone}>
-          <FileUpload className={classes.dropzoneIcon} />
-          <Typography variant="body1" className={classes.dropzoneParagraph}>
-            Drag images and drop them here, or click here to upload scene sky
-            images (jpg, png) or videos (mp4). These images or videos should be
-            equirectangular.
-          </Typography>
-        </Dropzone>
-        {!previewImage &&
-          values.skyUrl && (
-            <img
-              src={values.skyUrl}
-              className={classes.previewImage}
-              alt="Preview of this scene's sky"
-            />
-          )}
-        {previewImage && (
-          <img
-            src={previewImage}
-            className={classes.previewImage}
-            alt="Preview of this scene's sky"
-          />
+        {!values.skyUrl && (
+          <Dropzone onDrop={this.previewFile} className={classes.dropzone}>
+            <FileUpload className={classes.dropzoneIcon} />
+            <Typography variant="body1" className={classes.dropzoneParagraph}>
+              Drag images and drop them here, or click here to upload scene sky
+              images (jpg, png) or videos (mp4). These images or videos should
+              be equirectangular.
+            </Typography>
+          </Dropzone>
         )}
-        {previewVideo && (
-          <video controls className={classes.previewImage} src={previewVideo} />
-        )}
+        {this.createSkyPreview()}
         {errors.sky && <Message type="error">{errors.sky}</Message>}
         <TextField
           id="title"
@@ -235,27 +259,21 @@ const FormikSceneForm = withFormik({
       body: '',
       sky: null,
       skyUrl: null,
+      skyType: 'image',
       fileName: null
     };
 
     if (scene) {
-      const {
-        title,
-        field_slug,
-        body,
-        field_photosphere,
-        field_videosphere
-      } = scene;
-      const sky = field_videosphere || field_photosphere;
-      const url = new URL(sky.links.self);
-      const skyUrl = `${url.origin}${sky.url}`;
+      const sky = parseSkyFromScene(scene, true);
+      const { title, field_slug, body } = scene;
 
       Object.assign(values, {
         title,
         field_slug,
         body: body ? body.value : '',
-        skyUrl,
-        sky: skyUrl
+        skyUrl: sky.url,
+        skyType: sky.type,
+        sky: 'disabled'
       });
     }
 
