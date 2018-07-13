@@ -341,10 +341,12 @@ const FormikSceneForm = withFormik({
       }
     };
 
-    // If this is a new scene, add file data...
+    // If this is a new scene, add file data and experience to which this scene
+    // is being added...
     if (!sceneSlug) {
       payload.fileData = sky;
       payload.fileName = `${user.username}-${fileName}`;
+      payload.experience = experience;
     }
     // ... Otherwise add the ID.
     else {
