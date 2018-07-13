@@ -254,6 +254,7 @@ const FormikSceneForm = withFormik({
     const scene = parseSceneFromExperience(experience, sceneSlug);
 
     const values = {
+      id: null,
       title: '',
       field_slug: '',
       body: '',
@@ -265,9 +266,10 @@ const FormikSceneForm = withFormik({
 
     if (scene) {
       const sky = parseSkyFromScene(scene, true);
-      const { title, field_slug, body } = scene;
+      const { title, field_slug, body, id } = scene;
 
       Object.assign(values, {
+        id,
         title,
         field_slug,
         body: body ? body.value : '',
@@ -301,7 +303,8 @@ const FormikSceneForm = withFormik({
       })
   }),
   handleSubmit: (values, { props, setSubmitting }) => {
-    const { title, field_slug, body, sky, fileName } = values;
+    const { id, title, field_slug, body, sky, fileName } = values;
+
     const {
       dispatch,
       user,
@@ -313,18 +316,14 @@ const FormikSceneForm = withFormik({
       }
     } = props;
 
-    // Extract the file data and construct a payload object.
-    dispatch({
+    const payload = {
       type: sceneSlug
         ? OPEN_EXPERIENCE_SCENE_EDIT
         : OPEN_EXPERIENCE_SCENE_CREATE,
       title,
       body,
       field_slug,
-      experience,
       user,
-      fileData: sky,
-      fileName: `${user.username}-${fileName}`,
       successHandler: () => {
         setSubmitting(false);
         dispatch({
@@ -340,7 +339,19 @@ const FormikSceneForm = withFormik({
           }/${field_slug}`
         );
       }
-    });
+    };
+
+    // If this is a new scene, add file data...
+    if (!sceneSlug) {
+      payload.fileData = sky;
+      payload.fileName = `${user.username}-${fileName}`;
+    }
+    // ... Otherwise add the ID.
+    else {
+      payload.id = id;
+    }
+
+    dispatch(payload);
   }
 })(SceneForm);
 

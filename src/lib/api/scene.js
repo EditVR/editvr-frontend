@@ -14,14 +14,22 @@ import {
 /**
  * Takes new scene data and POSTs it to the API.
  *
- * @param {object} scene - Object containing data for the new scene
- * @param {string} scene.title - Title of the new scene.
- * @param {string} scene.body - Description for the new scene.
- * @param {string} scene.field_slug - URL slug for new scene.
- * @param {string} scene.field_photosphere - ID of this scene's photosphere file.
- * @param {string} scene.video_sphere - ID of this scene's photosphere file.
- * @param {object} user - Object containing information about the current user.
- * @param {object} user.authentication - Object containing auth data.
+ * @param {object} scene
+ *   Object containing data for the new scene.
+ * @param {string} scene.title
+ *   Title of the new scene.
+ * @param {string} scene.body
+ *   Description for the new scene.
+ * @param {string} scene.field_slug
+ *   URL slug for new scene.
+ * @param {string} scene.field_photosphere
+ *   ID of this scene's photosphere file.
+ * @param {string} scene.field_videosphere
+ *   ID of this scene's videosphere file.
+ * @param {object} user
+ *   Object containing information about the current user.
+ * @param {object} user.authentication
+ *   Object containing auth data.
  * @param {string} user.authentication.accessToken
  *   Access token for the current user.
  * @param {string} user.authentication.csrfToken
@@ -76,3 +84,45 @@ export const sceneCreate = async (
     }
   });
 };
+
+/**
+ * Takes updated scene data and PATCHes it to the API.
+ *
+ * @param {object} scene
+ *   Object containing data for this updated scene.
+ * @param {string} scene.id
+ *   ID of scene being updated.
+ * @param {string} scene.title
+ *   Updated title of the scene.
+ * @param {string} scene.body
+ *   Updated description for the scene.
+ * @param {string} scene.field_slug
+ *   Updated URL slug for scene.
+ * @param {object} user
+ *   Object containing information about the current user.
+ * @param {object} user.authentication
+ *   Object containing auth data.
+ * @param {string} user.authentication.accessToken
+ *   Access token for the current user.
+ * @param {string} user.authentication.csrfToken
+ *   CSRF token for the current user.
+ */
+export const sceneEdit = async (
+  { id, title, field_slug, body = '' },
+  { authentication }
+) =>
+  axiosInstance(authentication).patch(`${API_ENDPOINT_SCENE}/${id}`, {
+    data: {
+      id,
+      type: API_TYPE_SCENE,
+      attributes: {
+        title,
+        field_slug,
+        body: {
+          value: body,
+          format: 'plain_text',
+          summary: ''
+        }
+      }
+    }
+  });

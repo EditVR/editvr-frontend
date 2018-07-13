@@ -5,7 +5,8 @@
 
 import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
-  OPEN_EXPERIENCE_SCENE_CREATE
+  OPEN_EXPERIENCE_SCENE_CREATE,
+  OPEN_EXPERIENCE_SCENE_EDIT
 } from '../constants';
 
 /**
@@ -86,6 +87,58 @@ export default function openExperiences(state = defaultState, action) {
      * Reducer that handles scene create failure actions.
      */
     case `${OPEN_EXPERIENCE_SCENE_CREATE}_FAIL`: {
+      return {
+        loading: false,
+        error: action.payload.error,
+        item: state.item
+      };
+    }
+
+    /**
+     * Reducer that handles scene edit success actions.
+     */
+    case `${OPEN_EXPERIENCE_SCENE_EDIT}_SUCCESS`: {
+      const { payload: scene } = action;
+      const {
+        title,
+        body: { value: body },
+        field_slug
+      } = scene;
+      const sceneIndex = state.item.field_scenes.findIndex(
+        s => s.field_slug === scene.field_slug
+      );
+
+      const newItem = Object.assign({}, state.item);
+      const newScene = Object.assign({}, newItem.field_scenes[sceneIndex], {
+        title,
+        body,
+        field_slug
+      });
+
+      newItem.field_scenes[sceneIndex] = newScene;
+
+      return {
+        loading: false,
+        error: null,
+        item: newItem
+      };
+    }
+
+    /**
+     * Reducer that handles scene edit loading actions.
+     */
+    case `${OPEN_EXPERIENCE_SCENE_EDIT}_LOADING`: {
+      return {
+        loading: true,
+        error: null,
+        item: state.item
+      };
+    }
+
+    /**
+     * Reducer that handles scene edit failure actions.
+     */
+    case `${OPEN_EXPERIENCE_SCENE_EDIT}_FAIL`: {
       return {
         loading: false,
         error: action.payload.error,
