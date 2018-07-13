@@ -5,11 +5,11 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { withStyles, Grid, Typography, Button } from '@material-ui/core';
 import { AddBox } from '@material-ui/icons';
 
-import { SceneCards, SceneForm } from '../../components';
+import { SceneCards, SceneForm, ToolsMenu } from '../../components';
 import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
   MODE_SCENE_CREATE,
@@ -86,6 +86,12 @@ class VREditor extends Component {
       experience: { item: experience },
       classes
     } = this.props;
+
+    // If no experience is provided, redirect to the dashboard.
+    if (!experience) {
+      return <Redirect to="/dashboard" />;
+    }
+
     const {
       title,
       field_experience_path: path,
@@ -118,8 +124,9 @@ class VREditor extends Component {
       }
     }
 
-    // If no scene slug is provided, tell the user to create or select a scene.
-    if (!sceneSlug) {
+    // If no scene slug is selected, or if the editor is in it's default mode
+    // and the sceneSlug is 'scene', tell the user to select or add a scene.
+    if (!sceneSlug || (!editorMode && sceneSlug === 'scene')) {
       mainColumn = (
         <div className={classes.mainColumn}>
           <Typography variant="headline">
@@ -139,7 +146,10 @@ class VREditor extends Component {
               xs={3}
               id="column--left_aside"
               className={classes.columnLeft}
-            />
+            >
+              <Typography variant="title">Tools</Typography>
+              <ToolsMenu />
+            </Grid>
             <Grid
               item
               xs={9}

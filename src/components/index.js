@@ -10,6 +10,7 @@ import SceneForm from './SceneForm/SceneForm.container';
 import Loading from './Loading/Loading';
 import Message from './Message/Message';
 import SceneCards from './SceneCards/SceneCards.container';
+import ToolsMenu from './ToolsMenu/ToolsMenu.container';
 
 export {
   App,
@@ -18,5 +19,6 @@ export {
   Loading,
   Message,
   SceneCards,
+  ToolsMenu,
   SceneForm
 };

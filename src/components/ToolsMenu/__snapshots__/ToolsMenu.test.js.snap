@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ToolsMenu /> Matches its snapshot 1`] = `"<a tabindex=\\"-1\\" class=\\"MuiButtonBase-root-26 MuiButtonBase-disabled-27 MuiButton-root-10 MuiButton-raised-16 MuiButton-fab-21 MuiButton-raisedPrimary-17 MuiButton-disabled-20 ToolsMenu-toolButton-1\\" role=\\"button\\" href=\\"/experience/vreditor/test/test\\"><span class=\\"MuiButton-label-11\\"><svg class=\\"MuiSvgIcon-root-29\\" focusable=\\"false\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\"><g><path d=\\"M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z\\"></path></g></svg></span></a>"`;
