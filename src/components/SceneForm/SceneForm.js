@@ -32,6 +32,7 @@ class SceneForm extends Component {
     setFieldValue: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
+    handleBlur: PropTypes.func.isRequired,
     isSubmitting: PropTypes.bool.isRequired,
     values: PropTypes.shape({
       title: PropTypes.string,
@@ -42,6 +43,11 @@ class SceneForm extends Component {
       title: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
       field_slug: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
       body: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
+    }).isRequired,
+    touched: PropTypes.shape({
+      title: PropTypes.bool,
+      field_slug: PropTypes.bool,
+      body: PropTypes.bool
     }).isRequired,
     experience: PropTypes.shape({
       item: PropTypes.shape({
@@ -104,9 +110,11 @@ class SceneForm extends Component {
       experience: { error: apiError, item: experience },
       values,
       errors,
+      touched,
       isSubmitting,
       handleSubmit,
-      handleChange
+      handleChange,
+      handleBlur
     } = this.props;
 
     const { previewImage, previewVideo } = this.state;
@@ -159,9 +167,10 @@ class SceneForm extends Component {
               ? errors.title
               : 'Enter a user-friendly title for your scene.'
           }
-          defaultValue={values.title}
+          value={values.title}
           onChange={handleChange}
-          error={!!errors.title}
+          onBlur={handleBlur}
+          error={!!errors.title && touched.title}
           disabled={isSubmitting}
           className={classes.textField}
         />
@@ -175,9 +184,10 @@ class SceneForm extends Component {
               ? errors.field_slug
               : `Enter a url-friendly name for your scene. For example, if you enter 'my-scene', your scene will be published at: /view/${username}/${experienceSlug}/my-scene`
           }
-          defaultValue={values.field_slug}
+          value={values.field_slug}
           onChange={handleChange}
-          error={!!errors.field_slug}
+          onBlur={handleBlur}
+          error={!!errors.field_slug && touched.field_slug}
           disabled={isSubmitting}
           className={classes.textField}
         />
@@ -193,9 +203,10 @@ class SceneForm extends Component {
               ? errors.body
               : 'Describe your experience so people will know what to expect before they enter your scene.'
           }
-          defaultValue={values.body}
+          value={values.body}
           onChange={handleChange}
-          error={!!errors.body}
+          onBlur={handleBlur}
+          error={!!errors.body && touched.body}
           disabled={isSubmitting}
           className={classes.textField}
         />
@@ -213,6 +224,8 @@ class SceneForm extends Component {
 }
 
 const FormikSceneForm = withFormik({
+  displayName: 'SceneForm',
+  enableReinitialize: true,
   mapPropsToValues: ({ sceneSlug, experience: { item: experience } }) => {
     const scene = parseSceneFromExperience(experience, sceneSlug);
 
@@ -240,7 +253,7 @@ const FormikSceneForm = withFormik({
       Object.assign(values, {
         title,
         field_slug,
-        body: body ? body.value : null,
+        body: body ? body.value : '',
         skyUrl,
         sky: skyUrl
       });

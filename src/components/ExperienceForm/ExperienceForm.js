@@ -25,9 +25,11 @@ const ExperienceForm = ({
   user: { username },
   values,
   errors,
+  touched,
   isSubmitting,
   handleSubmit,
-  handleChange
+  handleChange,
+  handleBlur
 }) => (
   <form onSubmit={handleSubmit}>
     {apiError && <Message>{apiError}</Message>}
@@ -41,9 +43,10 @@ const ExperienceForm = ({
           ? errors.title
           : 'Enter a user-friendly title for your experience.'
       }
-      defaultValue={values.title}
+      value={values.title}
       onChange={handleChange}
-      error={!!errors.title}
+      onBlur={handleBlur}
+      error={!!errors.title && touched.title}
       disabled={isSubmitting}
       className={classes.textField}
     />
@@ -57,9 +60,10 @@ const ExperienceForm = ({
           ? errors.field_experience_path
           : `Enter a url-friendly name for your experience. For example, if you enter 'my-experience', your experience will be published to /view/${username}/experience/my-experience.`
       }
-      defaultValue={values.field_experience_path}
+      value={values.field_experience_path}
       onChange={handleChange}
-      error={!!errors.field_experience_path}
+      onBlur={handleBlur}
+      error={!!errors.field_experience_path && touched.field_experience_path}
       disabled={isSubmitting}
       className={classes.textField}
     />
@@ -75,9 +79,10 @@ const ExperienceForm = ({
           ? errors.body
           : 'Describe your experience so people will know what to expect before they enter your experience.'
       }
-      defaultValue={values.body}
+      value={values.body}
       onChange={handleChange}
-      error={!!errors.body}
+      onBlur={handleBlur}
+      error={!!errors.body && touched.body}
       disabled={isSubmitting}
       className={classes.textField}
     />
@@ -96,6 +101,7 @@ const ExperienceForm = ({
 ExperienceForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
+  handleBlur: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool,
   values: PropTypes.shape({
     title: PropTypes.string,
@@ -109,6 +115,11 @@ ExperienceForm.propTypes = {
       PropTypes.bool
     ]),
     body: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
+  }).isRequired,
+  touched: PropTypes.shape({
+    title: PropTypes.bool,
+    field_experience_path: PropTypes.bool,
+    body: PropTypes.bool
   }).isRequired,
   classes: PropTypes.shape({
     textField: PropTypes.string.isRequired,
@@ -144,6 +155,8 @@ ExperienceForm.defaultProps = {
 };
 
 const FormikExperienceForm = withFormik({
+  displayName: 'ExperienceForm',
+  enableReinitialize: true,
   mapPropsToValues: props => {
     const { experienceSlug, experiences } = props;
     const experience = parseExperience(experiences, experienceSlug);
@@ -155,15 +168,11 @@ const FormikExperienceForm = withFormik({
     };
 
     if (experience) {
-      const {
-        title,
-        field_experience_path,
-        body: { value: body }
-      } = experience;
+      const { title, field_experience_path, body } = experience;
       Object.assign(values, {
         title,
         field_experience_path,
-        body
+        body: body ? body.value : ''
       });
     }
 

@@ -135,8 +135,8 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
         onFocus={[Function]}
       >
         <label
-          className="MuiFormLabel-root-126 MuiInputLabel-root-121 MuiInputLabel-formControl-122 MuiInputLabel-animated-125"
-          data-shrink={false}
+          className="MuiFormLabel-root-126 MuiInputLabel-root-121 MuiInputLabel-formControl-122 MuiInputLabel-animated-125 MuiInputLabel-shrink-124"
+          data-shrink={true}
           htmlFor="title"
         >
           Title
@@ -155,7 +155,7 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
             autoComplete={undefined}
             autoFocus={undefined}
             className="MuiInput-input-139"
-            defaultValue="test"
+            defaultValue={undefined}
             disabled={false}
             id="title"
             name={undefined}
@@ -169,7 +169,7 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
             required={true}
             rows={undefined}
             type="text"
-            value={undefined}
+            value="test"
           />
         </div>
         <p
@@ -186,8 +186,8 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
         onFocus={[Function]}
       >
         <label
-          className="MuiFormLabel-root-126 MuiInputLabel-root-121 MuiInputLabel-formControl-122 MuiInputLabel-animated-125"
-          data-shrink={false}
+          className="MuiFormLabel-root-126 MuiInputLabel-root-121 MuiInputLabel-formControl-122 MuiInputLabel-animated-125 MuiInputLabel-shrink-124"
+          data-shrink={true}
           htmlFor="field_experience_path"
         >
           URL Path
@@ -206,7 +206,7 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
             autoComplete={undefined}
             autoFocus={undefined}
             className="MuiInput-input-139"
-            defaultValue="test"
+            defaultValue={undefined}
             disabled={false}
             id="field_experience_path"
             name={undefined}
@@ -220,7 +220,7 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
             required={true}
             rows={undefined}
             type="text"
-            value={undefined}
+            value="test"
           />
         </div>
         <p
@@ -237,8 +237,8 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
         onFocus={[Function]}
       >
         <label
-          className="MuiFormLabel-root-126 MuiInputLabel-root-121 MuiInputLabel-formControl-122 MuiInputLabel-animated-125"
-          data-shrink={false}
+          className="MuiFormLabel-root-126 MuiInputLabel-root-121 MuiInputLabel-formControl-122 MuiInputLabel-animated-125 MuiInputLabel-shrink-124"
+          data-shrink={true}
           htmlFor="body"
         >
           Description
@@ -257,7 +257,7 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
             autoComplete={undefined}
             autoFocus={undefined}
             className="MuiInput-input-139 MuiInput-inputMultiline-141"
-            defaultValue="test"
+            defaultValue={undefined}
             disabled={false}
             id="body"
             name={undefined}
@@ -271,7 +271,7 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
             required={true}
             rows={6}
             type="text"
-            value={undefined}
+            value="test"
           />
         </div>
         <p
