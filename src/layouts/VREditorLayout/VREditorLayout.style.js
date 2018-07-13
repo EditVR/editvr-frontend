@@ -15,7 +15,7 @@ export default theme => ({
     backgroundColor: theme.palette.primary['900'],
     height: '100%',
     maxHeight: '100%',
-    overflow: 'scroll'
+    overflowY: 'scroll'
   },
   appBar: {
     position: 'absolute',
