@@ -7,6 +7,7 @@ import App from './App/App';
 import LoginForm from './LoginForm/LoginForm.container';
 import ExperienceForm from './ExperienceForm/ExperienceForm.container';
 import SceneForm from './SceneForm/SceneForm.container';
+import ComponentForm from './ComponentForm/ComponentForm.container';
 import Loading from './Loading/Loading';
 import Message from './Message/Message';
 import SceneCards from './SceneCards/SceneCards.container';
@@ -20,5 +21,6 @@ export {
   Message,
   SceneCards,
   ToolsMenu,
-  SceneForm
+  SceneForm,
+  ComponentForm
 };

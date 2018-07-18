@@ -14,6 +14,7 @@ require('../components/spawnSky');
 require('../components/spawnLinks');
 require('../components/spawnDialogs');
 require('../components/navLink');
+require('../components/isEditable');
 
 export default () => (
   <a-scene

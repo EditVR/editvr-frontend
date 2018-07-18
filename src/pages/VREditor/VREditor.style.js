@@ -15,6 +15,14 @@ export default theme => ({
     padding: theme.spacing.unit * 2,
     userSelect: 'none'
   },
+  columnRightTitle: {
+    marginTop: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit * 2
+  },
+  columnRightIcon: {
+    marginLeft: 6,
+    marginBottom: -6
+  },
   mainColumn: {
     padding: theme.spacing.unit * 4
   },
