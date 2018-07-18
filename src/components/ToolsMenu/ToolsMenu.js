@@ -6,7 +6,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Typography, withStyles, Button, Tooltip } from '@material-ui/core';
+import { withStyles, Button, Tooltip } from '@material-ui/core';
 import { OpenWith, TouchApp } from '@material-ui/icons';
 
 import { MODE_COMPONENT_SELECTING } from '../../constants';
@@ -26,12 +26,7 @@ const ToolsMenu = ({
   const selectingPath = `${basePath}/${sceneSlug}/${MODE_COMPONENT_SELECTING}`;
 
   if (!sceneSlug || sceneSlug === 'scene') {
-    return (
-      <Typography>
-        You must create or select an existing scene before being able to use
-        scene editing tools.
-      </Typography>
-    );
+    return null;
   }
 
   return (
