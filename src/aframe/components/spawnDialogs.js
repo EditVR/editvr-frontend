@@ -77,6 +77,7 @@ const spawnDialogs = {
           const e = document.createElement('a-entity');
           e.setAttribute('id', component.id);
           e.setAttribute('look-at', '#camera');
+          e.setAttribute('is-editable', true);
           e.setAttribute('position', { x, y, z });
 
           const dialogPopup = {
@@ -102,6 +103,7 @@ const spawnDialogs = {
             dialogPopup.image = `${url.origin}${path}`;
           }
 
+          e.setAttribute('dialog-popup', dialogPopup);
           e.setAttribute('dialog-popup', dialogPopup);
           this.el.appendChild(e);
           this.dialogs.push(e);

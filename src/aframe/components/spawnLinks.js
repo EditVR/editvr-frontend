@@ -53,7 +53,7 @@ const spawnLinks = {
         .forEach(component => {
           const e = document.createElement('a-link');
           e.setAttribute('id', component.id);
-          e.setAttribute('nav-link', '');
+          e.setAttribute('is-editable', true);
           this.el.appendChild(e);
         });
     }
