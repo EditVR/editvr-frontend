@@ -18,8 +18,12 @@ import parseSceneFromExperience from '../../lib/parseSceneFromExperience';
  */
 const spawnDialogs = {
   multiple: false,
+  dialogs: [],
   init() {
     this.spawn();
+  },
+  remove() {
+    this.deSpawn();
   },
   shouldComponentUpdateRouting(oldProps, newProps) {
     if (oldProps.history.location !== newProps.history.location) {
@@ -34,11 +38,19 @@ const spawnDialogs = {
   didReceiveRoute() {
     this.spawn();
   },
+  deSpawn() {
+    this.dialogs.forEach(dialog => {
+      this.el.removeChild(dialog);
+    });
+    this.dialogs = [];
+  },
   spawn() {
     // If there is no router or experience data, exit.
     if (!this.router || !this.props.experience.field_scenes) {
       return;
     }
+
+    this.deSpawn();
 
     const {
       props: { experience },
@@ -92,6 +104,7 @@ const spawnDialogs = {
 
           e.setAttribute('dialog-popup', dialogPopup);
           this.el.appendChild(e);
+          this.dialogs.push(e);
         });
     }
   }
