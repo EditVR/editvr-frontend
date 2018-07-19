@@ -32,6 +32,14 @@ const spawnDialogs = {
 
     return false;
   },
+  shouldComponentUpdate(oldProps, newProps) {
+    // If scenes objects are loaded in, update.
+    if (!oldProps.experience.field_scenes && newProps.experience.field_scenes) {
+      return true;
+    }
+
+    return false;
+  },
   didReceiveProps() {
     this.spawn();
   },
