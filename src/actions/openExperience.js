@@ -8,7 +8,8 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
   OPEN_EXPERIENCE_SCENE_CREATE,
-  OPEN_EXPERIENCE_SCENE_EDIT
+  OPEN_EXPERIENCE_SCENE_EDIT,
+  OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE
 } from '../constants';
 import {
   openExperienceFetchForUser as getOpenExperienceForUser,
@@ -177,8 +178,28 @@ export function* openExperienceSceneEdit({
   );
 }
 
+/**
+ * Handles pre-saving a component within the current openExperience.
+ *
+ * @param {object} payload - Payload for this saga action.
+ * @param {string} payload.sceneSlug - Slug of scene containing component.
+ * @param {string} payload.component - ID of component to be presaved.
+ * @param {string} payload.fieldName - Name of field who's value is changing.
+ * @param {string} payload.fieldValue - New value for {fieldName}.
+ */
+export function* openExperienceComponentFieldPresave(payload) {
+  yield put({
+    type: `${OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE}_SUCCESS`,
+    payload
+  });
+}
+
 export function* watchOpenExperienceActions() {
   yield takeLatest(OPEN_EXPERIENCE_FETCH_FOR_USER, openExperienceFetchForUser);
   yield takeLatest(OPEN_EXPERIENCE_SCENE_CREATE, openExperienceSceneCreate);
   yield takeLatest(OPEN_EXPERIENCE_SCENE_EDIT, openExperienceSceneEdit);
+  yield takeLatest(
+    OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
+    openExperienceComponentFieldPresave
+  );
 }

@@ -13,12 +13,14 @@ import {
 import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
   OPEN_EXPERIENCE_SCENE_CREATE,
-  OPEN_EXPERIENCE_SCENE_EDIT
+  OPEN_EXPERIENCE_SCENE_EDIT,
+  OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE
 } from '../constants';
 import {
   openExperienceFetchForUser,
   openExperienceSceneCreate,
-  openExperienceSceneEdit
+  openExperienceSceneEdit,
+  openExperienceComponentFieldPresave
 } from './openExperience';
 import {
   openExperienceFetchForUser as getOpenExperienceForUser,
@@ -60,7 +62,7 @@ describe('actions->openExperience', () => {
       .isDone();
   });
 
-  it('experiences->openExperienceSceneCreate()', () => {
+  it('openExperience->openExperienceSceneCreate()', () => {
     const fileData = 'test';
     const fileName = 'test';
     const title = 'test';
@@ -130,7 +132,7 @@ describe('actions->openExperience', () => {
       .isDone();
   });
 
-  it('experiences->openExperienceSceneEdit()', () => {
+  it('openExperience->openExperienceSceneEdit()', () => {
     const id = '10';
     const title = 'test';
     const field_slug = 'test';
@@ -178,6 +180,23 @@ describe('actions->openExperience', () => {
       .call(successHandler)
       .next()
       .put(hideLoading())
+      .next()
+      .isDone();
+  });
+
+  it('openExperience->openExperienceComponentFieldPresave', () => {
+    const payload = {
+      sceneSlug: 'test',
+      component: 'testComponent',
+      fieldValue: 'value',
+      fieldName: 'field_test'
+    };
+    testSaga(openExperienceComponentFieldPresave, payload)
+      .next()
+      .put({
+        type: `${OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE}_SUCCESS`,
+        payload
+      })
       .next()
       .isDone();
   });

@@ -8,7 +8,8 @@ import reducer from './openExperience';
 import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
   OPEN_EXPERIENCE_SCENE_CREATE,
-  OPEN_EXPERIENCE_SCENE_EDIT
+  OPEN_EXPERIENCE_SCENE_EDIT,
+  OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE
 } from '../constants';
 
 describe('reducers->openExperience', () => {
@@ -132,6 +133,39 @@ describe('reducers->openExperience', () => {
               value: 'test description'
             },
             field_slug: 'my-test'
+          }
+        }
+      )
+    ).toMatchSnapshot();
+  });
+
+  it(`Should handle ${OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE}_SUCCESS`, () => {
+    expect(
+      reducer(
+        {
+          item: {
+            field_scenes: [
+              {
+                field_slug: 'testScene',
+                field_components: [
+                  {
+                    id: 'testComponent',
+                    title: 'My Old Value'
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          type: `${OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE}_SUCCESS`,
+          loading: false,
+          error: null,
+          payload: {
+            sceneSlug: 'testScene',
+            component: 'testComponent',
+            fieldName: 'title',
+            fieldValue: 'My New Value'
           }
         }
       )

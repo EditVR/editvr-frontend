@@ -1,5 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE_SUCCESS 1`] = `
+Object {
+  "error": null,
+  "item": Object {
+    "field_scenes": Array [
+      Object {
+        "field_components": Array [
+          Object {
+            "id": "testComponent",
+            "title": "My New Value",
+          },
+        ],
+        "field_slug": "testScene",
+      },
+    ],
+  },
+  "loading": false,
+}
+`;
+
 exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_FETCH_FOR_USER_FAIL 1`] = `
 Object {
   "error": "Error: failed to fetch experiences.",
