@@ -1,6 +1,6 @@
 /**
  * @file scene.js
- * Exports methods that execute operations pertaining scenes.
+ * Exports methods that execute API operations pertaining to scenes.
  */
 
 import axiosInstance from './axiosInstance';

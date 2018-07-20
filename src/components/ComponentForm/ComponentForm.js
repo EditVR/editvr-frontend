@@ -5,13 +5,14 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { string, object, number } from 'yup';
+import { string, object  } from 'yup';
 import { withFormik } from 'formik';
 import { withStyles, TextField, Button } from '@material-ui/core';
 
 import {
   FORM_BUTTON_INSERT_UPDATE,
-  OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE
+  OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
+  OPEN_EXPERIENCE_COMPONENT_EDIT
 } from '../../constants';
 import parseSceneFromExperience from '../../lib/parseSceneFromExperience';
 import parseComponentFromScene from '../../lib/parseComponentFromScene';
@@ -33,9 +34,9 @@ class ComponentForm extends Component {
     values: PropTypes.shape({
       title: PropTypes.string,
       field_body: PropTypes.string,
-      field_x: PropTypes.number,
-      field_y: PropTypes.number,
-      field_z: PropTypes.number
+      field_x: PropTypes.string,
+      field_y: PropTypes.string,
+      field_z: PropTypes.string
     }).isRequired,
     errors: PropTypes.shape({
       title: PropTypes.string,
@@ -87,7 +88,7 @@ class ComponentForm extends Component {
    * @param {object} event - Event object.
    * @param {object} event.target - Event's target field.
    */
-  handleChange = ({ target: { id, value } }) => {
+  handleChange = ({ target: { id, type, value } }) => {
     this.presaveField(id, value);
     this.props.setFieldValue(id, value);
   };
@@ -103,7 +104,7 @@ class ComponentForm extends Component {
       touched,
       isSubmitting,
       handleBlur,
-      handleSubmit
+      handleSubmit,
     } = this.props;
 
     return (
@@ -146,7 +147,7 @@ class ComponentForm extends Component {
         <TextField
           id="field_x"
           label="Position: X coordinate"
-          type="number"
+          type="text"
           required
           helperText={
             errors.field_x
@@ -163,7 +164,7 @@ class ComponentForm extends Component {
         <TextField
           id="field_y"
           label="Position: Y coordinate"
-          type="number"
+          type="text"
           required
           helperText={
             errors.field_y
@@ -180,7 +181,7 @@ class ComponentForm extends Component {
         <TextField
           id="field_z"
           label="Position: Z coordinate"
-          type="number"
+          type="text"
           required
           helperText={
             errors.field_z
@@ -225,9 +226,9 @@ const FormikComponentForm = withFormik({
     const values = {
       title: '',
       field_body: '',
-      field_x: 0,
-      field_y: 0,
-      field_z: 0
+      field_x: '0',
+      field_y: '0',
+      field_z: '0'
     };
 
     if (component) {
@@ -235,13 +236,16 @@ const FormikComponentForm = withFormik({
       Object.assign(values, {
         title,
         field_body,
-        field_x,
-        field_y,
-        field_z
+        field_x: '0',
+        field_y: '0',
+        field_z: '0',
       });
     }
 
     return values;
+  },
+  handleSubmit: (values, { props, setSubmitting }) => {
+    console.log('I AM CALLEd');
   },
   validationSchema: object().shape({
     title: string()
@@ -252,9 +256,9 @@ const FormikComponentForm = withFormik({
       .required()
       .min(3)
       .max(200),
-    field_x: number().required(),
-    field_y: number().required(),
-    field_z: number().required()
+    field_x: string(),
+    field_y: string(),
+    field_z: string()
   })
 })(ComponentForm);
 
