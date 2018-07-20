@@ -162,8 +162,8 @@
     find-up "^2.1.0"
 
 "@editvr/aframe-dialog-popup-component@^1.2.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@editvr/aframe-dialog-popup-component/-/aframe-dialog-popup-component-1.5.0.tgz#e2e2dae3818fa092fd66ac69ac9d51f1fa7633bd"
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/@editvr/aframe-dialog-popup-component/-/aframe-dialog-popup-component-1.5.2.tgz#06751e862fcdf3a6218975075e0ab9997cbca7f2"
   dependencies:
     "@commitlint/config-angular" "^7.0.1"
 
