@@ -14,20 +14,23 @@ import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
   OPEN_EXPERIENCE_SCENE_CREATE,
   OPEN_EXPERIENCE_SCENE_EDIT,
-  OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE
+  OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
+  OPEN_EXPERIENCE_COMPONENT_EDIT
 } from '../constants';
 import {
   openExperienceFetchForUser,
   openExperienceSceneCreate,
   openExperienceSceneEdit,
-  openExperienceComponentFieldPresave
+  openExperienceComponentFieldPresave,
+  openExperienceComponentEdit
 } from './openExperience';
 import {
   openExperienceFetchForUser as getOpenExperienceForUser,
   openExperienceAttachScene,
   fileCreate,
   sceneCreate,
-  sceneEdit
+  sceneEdit,
+  componentEdit
 } from '../lib/api';
 
 describe('actions->openExperience', () => {
@@ -197,6 +200,53 @@ describe('actions->openExperience', () => {
         type: `${OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE}_SUCCESS`,
         payload
       })
+      .next()
+      .isDone();
+  });
+
+  it('openExperience->openExperienceComponentEdit', () => {
+    const successHandler = jest.fn();
+    const id = 10;
+    const sceneSlug = 'test';
+    const payload = {
+      field_body: 'test body',
+      title: 'test title',
+      field_x: 0,
+      field_y: 0,
+      field_z: 0
+    };
+    const user = {
+      authentication: { accessToken: 'test', csrfToken: 'test' }
+    };
+
+    testSaga(openExperienceComponentEdit, {
+      ...payload,
+      id,
+      successHandler,
+      user,
+      sceneSlug
+    })
+      .next()
+      .put(resetLoading())
+      .next()
+      .put(showLoading())
+      .next()
+      .put({
+        type: `${OPEN_EXPERIENCE_COMPONENT_EDIT}_LOADING`
+      })
+      .next()
+      .call(componentEdit, { ...payload, id }, user)
+      .next()
+      .put({
+        type: `${OPEN_EXPERIENCE_COMPONENT_EDIT}_SUCCESS`,
+        payload: {
+          sceneSlug
+        }
+      })
+      .next()
+      .call(successHandler)
+      .next()
+      .put(hideLoading())
       .next()
       .isDone();
   });
