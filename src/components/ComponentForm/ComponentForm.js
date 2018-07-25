@@ -59,16 +59,16 @@ class ComponentForm extends Component {
       button: PropTypes.string.isRequired
     }).isRequired,
     experience: PropTypes.shape({
-      error: PropTypes.string,
+      error: PropTypes.string
     })
   };
 
   static defaultProps = {
     isSubmitting: false,
-    experiences: {
-      error: null,
+    experience: {
+      error: null
     }
-  }
+  };
 
   /**
    * Dispatches an action that updates the component's state.
@@ -117,7 +117,7 @@ class ComponentForm extends Component {
       isSubmitting,
       handleBlur,
       handleSubmit,
-      experiences: { error: apiError },
+      experience: { error: apiError }
     } = this.props;
 
     return (

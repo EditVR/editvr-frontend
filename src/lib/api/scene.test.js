@@ -1,6 +1,6 @@
 /**
- * @file file.test.js
- * Contains tests for file.js.
+ * @file scene.test.js
+ * Contains tests for scene.js.
  */
 
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -24,12 +24,14 @@ describe('api->scene', () => {
     };
     const body = 'test';
     const field_photosphere = '10';
-    const authentication = {
-      accessToken: 'test',
-      csrfToken: 'test'
+    const user = {
+      authentication: {
+        accessToken: 'test',
+        csrfToken: 'test'
+      }
     };
 
-    sceneCreate({ ...scene, body, field_photosphere }, authentication);
+    sceneCreate({ ...scene, body, field_photosphere }, user);
     expect(mockAxios.post).toHaveBeenCalledWith(API_ENDPOINT_SCENE, {
       data: {
         type: API_TYPE_SCENE,
