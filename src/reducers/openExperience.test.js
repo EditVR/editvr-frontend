@@ -9,7 +9,8 @@ import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
   OPEN_EXPERIENCE_SCENE_CREATE,
   OPEN_EXPERIENCE_SCENE_EDIT,
-  OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE
+  OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
+  OPEN_EXPERIENCE_COMPONENT_EDIT
 } from '../constants';
 
 describe('reducers->openExperience', () => {
@@ -166,6 +167,66 @@ describe('reducers->openExperience', () => {
             component: 'testComponent',
             fieldName: 'title',
             fieldValue: 'My New Value'
+          }
+        }
+      )
+    ).toMatchSnapshot();
+  });
+
+  it(`Should handle ${OPEN_EXPERIENCE_COMPONENT_EDIT}_LOADING`, () => {
+    expect(
+      reducer(undefined, {
+        type: `${OPEN_EXPERIENCE_COMPONENT_EDIT}_LOADING`,
+        loading: true,
+        error: null,
+        payload: {}
+      })
+    ).toMatchSnapshot();
+  });
+
+  it(`Should handle ${OPEN_EXPERIENCE_COMPONENT_EDIT}_FAIL`, () => {
+    const error = 'Error: failed to update component.';
+    expect(
+      reducer(undefined, {
+        type: `${OPEN_EXPERIENCE_COMPONENT_EDIT}_FAIL`,
+        loading: false,
+        payload: { error }
+      })
+    ).toMatchSnapshot();
+  });
+
+  it(`Should handle ${OPEN_EXPERIENCE_COMPONENT_EDIT}_SUCCESS`, () => {
+    const id = 10;
+    const sceneSlug = 'testScene';
+    expect(
+      reducer(
+        {
+          item: {
+            field_scenes: [
+              {
+                field_slug: sceneSlug,
+                field_components: [
+                  {
+                    id,
+                    title: 'My Old Value'
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          type: `${OPEN_EXPERIENCE_COMPONENT_EDIT}_SUCCESS`,
+          loading: false,
+          error: null,
+          payload: {
+            id,
+            sceneSlug,
+            field_body: 'test body',
+            title: 'My New Slug',
+            field_x: 0,
+            field_y: 0,
+            field_z: 0
           }
         }
       )

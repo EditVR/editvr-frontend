@@ -1,5 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_COMPONENT_EDIT_FAIL 1`] = `
+Object {
+  "error": "Error: failed to update component.",
+  "item": Object {},
+  "loading": false,
+}
+`;
+
+exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_COMPONENT_EDIT_LOADING 1`] = `
+Object {
+  "error": null,
+  "item": Object {},
+  "loading": true,
+}
+`;
+
+exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_COMPONENT_EDIT_SUCCESS 1`] = `
+Object {
+  "error": null,
+  "item": Object {
+    "field_scenes": Array [
+      Object {
+        "field_components": Array [
+          Object {
+            "field_body": "test body",
+            "field_x": 0,
+            "field_y": 0,
+            "field_z": 0,
+            "id": 10,
+            "title": "My New Slug",
+          },
+        ],
+        "field_slug": "testScene",
+      },
+    ],
+  },
+  "loading": false,
+}
+`;
+
 exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE_SUCCESS 1`] = `
 Object {
   "error": null,
