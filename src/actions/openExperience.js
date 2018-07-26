@@ -251,7 +251,7 @@ export function* openExperienceComponentEdit({
 
       const component = yield call(componentEdit, payload, user);
       yield put({
-        type: `${OPEN_EXPERIENCE_SCENE_EDIT}_SUCCESS`,
+        type: `${OPEN_EXPERIENCE_COMPONENT_EDIT}_SUCCESS`,
         payload: {
           ...component,
           sceneSlug
@@ -270,8 +270,5 @@ export function* watchOpenExperienceActions() {
     OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
     openExperienceComponentFieldPresave
   );
-  yield takeLatest(
-    OPEN_EXPERIENCE_COMPONENT_EDIT,
-    openExperienceComponentEdit
-  );
+  yield takeLatest(OPEN_EXPERIENCE_COMPONENT_EDIT, openExperienceComponentEdit);
 }

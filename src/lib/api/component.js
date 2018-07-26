@@ -4,10 +4,7 @@
  */
 
 import axiosInstance from './axiosInstance';
-import {
-  API_ENDPOINT_COMPONENT,
-  API_TYPE_COMPONENT
-} from '../../constants';
+import { API_ENDPOINT_COMPONENT, API_TYPE_COMPONENT } from '../../constants';
 
 /**
  * Takes updated component data and PATCHes it to the API.

@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => ({
 const mapState = ({ user, openExperience, component }) => ({
   user,
   selectedComponent: component.id,
-  experience: openExperience.item
+  experience: openExperience
 });
 
 export default connect(mapState, mapDispatchToProps)(withRouter(ComponentForm));

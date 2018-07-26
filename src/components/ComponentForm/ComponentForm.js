@@ -5,15 +5,17 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { string, object  } from 'yup';
+import { string, object, mixed } from 'yup';
 import { withFormik } from 'formik';
 import { withStyles, TextField, Button } from '@material-ui/core';
 
 import {
+  COMPONENT_SELECT,
   FORM_BUTTON_INSERT_UPDATE,
   OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
   OPEN_EXPERIENCE_COMPONENT_EDIT
 } from '../../constants';
+import { Message } from '../';
 import parseSceneFromExperience from '../../lib/parseSceneFromExperience';
 import parseComponentFromScene from '../../lib/parseComponentFromScene';
 import ComponentFormStyles from './ComponentForm.style';
@@ -30,13 +32,13 @@ class ComponentForm extends Component {
     }).isRequired,
     handleSubmit: PropTypes.func.isRequired,
     handleBlur: PropTypes.func.isRequired,
-    isSubmitting: PropTypes.bool.isRequired,
+    isSubmitting: PropTypes.bool,
     values: PropTypes.shape({
       title: PropTypes.string,
       field_body: PropTypes.string,
-      field_x: PropTypes.string,
-      field_y: PropTypes.string,
-      field_z: PropTypes.string
+      field_x: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      field_y: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      field_z: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     }).isRequired,
     errors: PropTypes.shape({
       title: PropTypes.string,
@@ -55,8 +57,18 @@ class ComponentForm extends Component {
     classes: PropTypes.shape({
       textField: PropTypes.string.isRequired,
       button: PropTypes.string.isRequired
-    }).isRequired
+    }).isRequired,
+    experience: PropTypes.shape({
+      error: PropTypes.string,
+    })
   };
+
+  static defaultProps = {
+    isSubmitting: false,
+    experiences: {
+      error: null,
+    }
+  }
 
   /**
    * Dispatches an action that updates the component's state.
@@ -88,7 +100,7 @@ class ComponentForm extends Component {
    * @param {object} event - Event object.
    * @param {object} event.target - Event's target field.
    */
-  handleChange = ({ target: { id, type, value } }) => {
+  handleChange = ({ target: { id, value } }) => {
     this.presaveField(id, value);
     this.props.setFieldValue(id, value);
   };
@@ -105,10 +117,12 @@ class ComponentForm extends Component {
       isSubmitting,
       handleBlur,
       handleSubmit,
+      experiences: { error: apiError },
     } = this.props;
 
     return (
       <form onSubmit={handleSubmit}>
+        {apiError && <Message>{apiError}</Message>}
         <TextField
           id="title"
           label="Title"
@@ -147,7 +161,7 @@ class ComponentForm extends Component {
         <TextField
           id="field_x"
           label="Position: X coordinate"
-          type="text"
+          type="number"
           required
           helperText={
             errors.field_x
@@ -164,7 +178,7 @@ class ComponentForm extends Component {
         <TextField
           id="field_y"
           label="Position: Y coordinate"
-          type="text"
+          type="number"
           required
           helperText={
             errors.field_y
@@ -181,7 +195,7 @@ class ComponentForm extends Component {
         <TextField
           id="field_z"
           label="Position: Z coordinate"
-          type="text"
+          type="number"
           required
           helperText={
             errors.field_z
@@ -214,7 +228,7 @@ const FormikComponentForm = withFormik({
   enableReinitialize: true,
   mapPropsToValues: props => {
     const {
-      experience,
+      experience: { item: experience },
       match: {
         params: { sceneSlug }
       },
@@ -226,9 +240,9 @@ const FormikComponentForm = withFormik({
     const values = {
       title: '',
       field_body: '',
-      field_x: '0',
-      field_y: '0',
-      field_z: '0'
+      field_x: 0,
+      field_y: 0,
+      field_z: 0
     };
 
     if (component) {
@@ -236,30 +250,57 @@ const FormikComponentForm = withFormik({
       Object.assign(values, {
         title,
         field_body,
-        field_x: '0',
-        field_y: '0',
-        field_z: '0',
+        field_x,
+        field_y,
+        field_z
       });
     }
 
     return values;
-  },
-  handleSubmit: (values, { props, setSubmitting }) => {
-    console.log('I AM CALLEd');
   },
   validationSchema: object().shape({
     title: string()
       .required()
       .min(3)
       .max(50),
-    body: string()
+    field_body: string()
       .required()
       .min(3)
       .max(200),
-    field_x: string(),
-    field_y: string(),
-    field_z: string()
-  })
+    field_x: mixed(),
+    field_y: mixed(),
+    field_z: mixed()
+  }),
+  handleSubmit: (values, { props, setSubmitting }) => {
+    const {
+      dispatch,
+      user,
+      selectedComponent,
+      match: {
+        params: { sceneSlug }
+      }
+    } = props;
+    const { title, field_body, field_x, field_y, field_z } = values;
+    dispatch({
+      type: OPEN_EXPERIENCE_COMPONENT_EDIT,
+      id: selectedComponent,
+      user,
+      title,
+      field_body,
+      field_x,
+      field_y,
+      field_z,
+      sceneSlug,
+      successHandler: () => {
+        setSubmitting(false);
+        // Dispatch an action that de-selects the current component.
+        dispatch({
+          type: COMPONENT_SELECT,
+          id: null
+        });
+      }
+    });
+  }
 })(ComponentForm);
 
 export default withStyles(ComponentFormStyles)(FormikComponentForm);

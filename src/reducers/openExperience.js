@@ -7,7 +7,8 @@ import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
   OPEN_EXPERIENCE_SCENE_CREATE,
   OPEN_EXPERIENCE_SCENE_EDIT,
-  OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE
+  OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
+  OPEN_EXPERIENCE_COMPONENT_EDIT
 } from '../constants';
 
 /**
@@ -184,6 +185,79 @@ export default function openExperiences(state = defaultState, action) {
         error: null,
         item: newItem
       };
+    }
+
+    /**
+     * Reducer that handles component edit loading actions.
+     */
+    case `${OPEN_EXPERIENCE_COMPONENT_EDIT}_LOADING`: {
+      return {
+        loading: true,
+        error: null,
+        item: state.item
+      };
+    }
+
+    /**
+     * Reducer that handles component field edits.
+     */
+    case `${OPEN_EXPERIENCE_COMPONENT_EDIT}_SUCCESS`: {
+      const {
+        id,
+        field_x,
+        field_y,
+        field_z,
+        title,
+        field_body,
+        sceneSlug
+      } = action.payload;
+
+      // Find the index of the specified scene.
+      const sceneIndex = state.item.field_scenes.findIndex(
+        s => s.field_slug === sceneSlug
+      );
+
+      // Find the index of the specified component in the specified scene.
+      const componentIndex = state.item.field_scenes[
+        sceneIndex
+      ].field_components.findIndex(c => c.id === id);
+
+      // Create a new component based on the old one, and pass in a new value
+      // for the field that is being pre-saved.
+      const newItem = Object.assign({}, state.item);
+      const newComponent = Object.assign(
+        {},
+        newItem.field_scenes[sceneIndex].field_components[componentIndex],
+        {
+          title,
+          field_body,
+          field_x,
+          field_y,
+          field_z
+        }
+      );
+
+      // Swap out the old component for the new.
+      newItem.field_scenes[sceneIndex].field_components[
+        componentIndex
+      ] = newComponent;
+
+      return {
+        loading: false,
+        error: null,
+        item: newItem
+      };
+    }
+
+    /**
+     * Reducer that handles component field edit failure.
+     */
+    case `${OPEN_EXPERIENCE_COMPONENT_EDIT}_FAIL`: {
+      return {
+        loading: false,
+        error: action.payload.error,
+        item: state.item
+      }
     }
     default:
       return state;
