@@ -10,7 +10,6 @@ import closeIconImage from '../../assets/icons/close.jpg';
 
 import connectRedux from '../utils/connectRedux';
 import connectRouter from '../utils/connectRouter';
-import parseSceneFromExperience from '../../lib/parseSceneFromExperience';
 
 /**
  * AFrame component that spawns dialog components whenever it's initialized,
@@ -34,7 +33,7 @@ const spawnDialogs = {
   },
   shouldComponentUpdate(oldProps, newProps) {
     // If scenes objects are loaded in, update.
-    if (!oldProps.experience.field_scenes && newProps.experience.field_scenes) {
+    if (!oldProps.experience.scenes && newProps.experience.scenes) {
       return true;
     }
 
@@ -54,7 +53,7 @@ const spawnDialogs = {
   },
   spawn() {
     // If there is no router or experience data, exit.
-    if (!this.router || !this.props.experience.field_scenes) {
+    if (!this.router || !this.props.experience.scenes) {
       return;
     }
 
@@ -69,7 +68,7 @@ const spawnDialogs = {
       }
     } = this;
 
-    const scene = parseSceneFromExperience(experience, sceneSlug);
+    const scene = experience.scenes[sceneSlug] || null;
     if (scene) {
       scene.field_components
         .filter(c => c.field_component_type === 'panelimage')

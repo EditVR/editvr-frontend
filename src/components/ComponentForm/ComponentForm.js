@@ -16,8 +16,6 @@ import {
   OPEN_EXPERIENCE_COMPONENT_EDIT
 } from '../../constants';
 import { Message } from '../';
-import parseSceneFromExperience from '../../lib/parseSceneFromExperience';
-import parseComponentFromScene from '../../lib/parseComponentFromScene';
 import ComponentFormStyles from './ComponentForm.style';
 
 class ComponentForm extends Component {
@@ -234,8 +232,8 @@ const FormikComponentForm = withFormik({
       },
       selectedComponent
     } = props;
-    const scene = parseSceneFromExperience(experience, sceneSlug);
-    const component = parseComponentFromScene(scene, selectedComponent);
+    const scene = experience.scenes ? experience.scenes[sceneSlug] : null;
+    const component = scene ? scene.components[selectedComponent] : null;
 
     const values = {
       title: '',

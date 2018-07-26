@@ -7,8 +7,6 @@
 
 import connectRedux from '../utils/connectRedux';
 import connectRouter from '../utils/connectRouter';
-import parseSceneFromExperience from '../../lib/parseSceneFromExperience';
-import parseComponentFromScene from '../../lib/parseComponentFromScene';
 
 /**
  * AFrame component that constructs a link entity, and destroys it when the
@@ -37,7 +35,7 @@ const navLink = {
   },
   render() {
     // If there is no router or experience data, exit.
-    if (!this.router || !this.props.experience.field_scenes) {
+    if (!this.router || !this.props.experience.scenes) {
       return;
     }
 
@@ -50,12 +48,9 @@ const navLink = {
       }
     } = this;
 
-    const scene = parseSceneFromExperience(experience, sceneSlug);
-    const component = parseComponentFromScene(
-      scene,
-      this.el.getAttribute('id')
-    );
-
+    const component =
+      experience.scenes[sceneSlug].components[this.el.getAttribute('id')] ||
+      null;
     if (component) {
       const {
         field_x: x,

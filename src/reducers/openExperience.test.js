@@ -116,12 +116,12 @@ describe('reducers->openExperience', () => {
       reducer(
         {
           item: {
-            field_scenes: [
-              {
+            scenes: {
+              test: {
                 title: 'old title',
-                field_slug: 'my-test'
+                field_slug: 'test'
               }
-            ]
+            }
           }
         },
         {
@@ -133,7 +133,7 @@ describe('reducers->openExperience', () => {
             body: {
               value: 'test description'
             },
-            field_slug: 'my-test'
+            field_slug: 'test'
           }
         }
       )
@@ -145,17 +145,17 @@ describe('reducers->openExperience', () => {
       reducer(
         {
           item: {
-            field_scenes: [
-              {
-                field_slug: 'testScene',
-                field_components: [
-                  {
-                    id: 'testComponent',
+            scenes: {
+              test: {
+                field_slug: 'test',
+                components: {
+                  test: {
+                    id: 'test',
                     title: 'My Old Value'
                   }
-                ]
+                }
               }
-            ]
+            }
           }
         },
         {
@@ -163,8 +163,8 @@ describe('reducers->openExperience', () => {
           loading: false,
           error: null,
           payload: {
-            sceneSlug: 'testScene',
-            component: 'testComponent',
+            sceneSlug: 'test',
+            component: 'test',
             fieldName: 'title',
             fieldValue: 'My New Value'
           }
@@ -202,17 +202,17 @@ describe('reducers->openExperience', () => {
       reducer(
         {
           item: {
-            field_scenes: [
-              {
+            scenes: {
+              [sceneSlug]: {
                 field_slug: sceneSlug,
-                field_components: [
-                  {
+                components: {
+                  [id]: {
                     id,
                     title: 'My Old Value'
                   }
-                ]
+                }
               }
-            ]
+            }
           }
         },
         {

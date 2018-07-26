@@ -21,8 +21,6 @@ import {
   MODE_SCENE_EDIT,
   MODE_COMPONENT_SELECTING
 } from '../../constants';
-import parseSceneFromExperience from '../../lib/parseSceneFromExperience';
-import parseComponentFromScene from '../../lib/parseComponentFromScene';
 import Scene from '../../aframe/entities/scene';
 import { VREditorLayout } from '../../layouts';
 import VREditorStyles from './VREditor.style';
@@ -106,17 +104,9 @@ class VREditor extends Component {
       return <Redirect to="/dashboard" />;
     }
 
-    const {
-      title,
-      field_experience_path: path,
-      field_scenes: scenes
-    } = experience;
+    const { title, field_experience_path: path, scenes } = experience;
 
-    let scene = null;
-    if (sceneSlug) {
-      scene = parseSceneFromExperience(experience, sceneSlug);
-    }
-
+    const scene = sceneSlug && scenes ? scenes[sceneSlug] : null;
     // TODO: The logic for determining what to render in the main and right
     // columns should likely be extracted from this file and placed into another
     // component, just to make this component less cluttered. This isn't a
@@ -196,7 +186,7 @@ class VREditor extends Component {
     // If the current mode is selecting, and a component has been selected,
     // show the component editorial form.
     if (editorMode === MODE_COMPONENT_SELECTING && component) {
-      const selected = parseComponentFromScene(scene, component);
+      const selected = scene ? scene.components[component] : null;
       if (selected) {
         rightColumn = (
           <Fragment>

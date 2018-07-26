@@ -17,7 +17,7 @@ import {
 const defaultState = {
   loading: false,
   error: null,
-  item: {}
+  item: null
 };
 
 /**
@@ -106,19 +106,15 @@ export default function openExperiences(state = defaultState, action) {
         body: { value: body },
         field_slug
       } = scene;
-      const sceneIndex = state.item.field_scenes.findIndex(
-        s => s.field_slug === scene.field_slug
-      );
 
       const newItem = Object.assign({}, state.item);
-      const newScene = Object.assign({}, newItem.field_scenes[sceneIndex], {
+      const newScene = Object.assign({}, newItem.scenes[field_slug], {
         title,
         body,
         field_slug
       });
 
-      newItem.field_scenes[sceneIndex] = newScene;
-
+      newItem.scenes[field_slug] = newScene;
       return {
         loading: false,
         error: null,
@@ -153,33 +149,19 @@ export default function openExperiences(state = defaultState, action) {
      */
     case `${OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE}_SUCCESS`: {
       const { fieldName, fieldValue, sceneSlug, component } = action.payload;
-
-      // Find the index of the specified scene.
-      const sceneIndex = state.item.field_scenes.findIndex(
-        s => s.field_slug === sceneSlug
-      );
-
-      // Find the index of the specified component in the specified scene.
-      const componentIndex = state.item.field_scenes[
-        sceneIndex
-      ].field_components.findIndex(c => c.id === component);
-
       // Create a new component based on the old one, and pass in a new value
       // for the field that is being pre-saved.
       const newItem = Object.assign({}, state.item);
       const newComponent = Object.assign(
         {},
-        newItem.field_scenes[sceneIndex].field_components[componentIndex],
+        newItem.scenes[sceneSlug].components[component],
         {
           [fieldName]: fieldValue
         }
       );
 
       // Swap out the old component for the new.
-      newItem.field_scenes[sceneIndex].field_components[
-        componentIndex
-      ] = newComponent;
-
+      newItem.scenes[sceneSlug].components[component] = newComponent;
       return {
         loading: false,
         error: null,
@@ -212,22 +194,10 @@ export default function openExperiences(state = defaultState, action) {
         sceneSlug
       } = action.payload;
 
-      // Find the index of the specified scene.
-      const sceneIndex = state.item.field_scenes.findIndex(
-        s => s.field_slug === sceneSlug
-      );
-
-      // Find the index of the specified component in the specified scene.
-      const componentIndex = state.item.field_scenes[
-        sceneIndex
-      ].field_components.findIndex(c => c.id === id);
-
-      // Create a new component based on the old one, and pass in a new value
-      // for the field that is being pre-saved.
       const newItem = Object.assign({}, state.item);
       const newComponent = Object.assign(
         {},
-        newItem.field_scenes[sceneIndex].field_components[componentIndex],
+        newItem.scenes[sceneSlug].components[id],
         {
           title,
           field_body,
@@ -238,10 +208,7 @@ export default function openExperiences(state = defaultState, action) {
       );
 
       // Swap out the old component for the new.
-      newItem.field_scenes[sceneIndex].field_components[
-        componentIndex
-      ] = newComponent;
-
+      newItem.scenes[sceneSlug].components[id] = newComponent;
       return {
         loading: false,
         error: null,
@@ -257,7 +224,7 @@ export default function openExperiences(state = defaultState, action) {
         loading: false,
         error: action.payload.error,
         item: state.item
-      }
+      };
     }
     default:
       return state;

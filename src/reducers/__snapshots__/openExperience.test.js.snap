@@ -3,7 +3,7 @@
 exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_COMPONENT_EDIT_FAIL 1`] = `
 Object {
   "error": "Error: failed to update component.",
-  "item": Object {},
+  "item": null,
   "loading": false,
 }
 `;
@@ -11,7 +11,7 @@ Object {
 exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_COMPONENT_EDIT_LOADING 1`] = `
 Object {
   "error": null,
-  "item": Object {},
+  "item": null,
   "loading": true,
 }
 `;
@@ -20,10 +20,10 @@ exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_COMPONENT_EDIT_S
 Object {
   "error": null,
   "item": Object {
-    "field_scenes": Array [
-      Object {
-        "field_components": Array [
-          Object {
+    "scenes": Object {
+      "testScene": Object {
+        "components": Object {
+          "10": Object {
             "field_body": "test body",
             "field_x": 0,
             "field_y": 0,
@@ -31,10 +31,10 @@ Object {
             "id": 10,
             "title": "My New Slug",
           },
-        ],
+        },
         "field_slug": "testScene",
       },
-    ],
+    },
   },
   "loading": false,
 }
@@ -44,17 +44,17 @@ exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_COMPONENT_FIELD_
 Object {
   "error": null,
   "item": Object {
-    "field_scenes": Array [
-      Object {
-        "field_components": Array [
-          Object {
-            "id": "testComponent",
+    "scenes": Object {
+      "test": Object {
+        "components": Object {
+          "test": Object {
+            "id": "test",
             "title": "My New Value",
           },
-        ],
-        "field_slug": "testScene",
+        },
+        "field_slug": "test",
       },
-    ],
+    },
   },
   "loading": false,
 }
@@ -90,7 +90,7 @@ Object {
 exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_SCENE_CREATE_FAIL 1`] = `
 Object {
   "error": "Error: failed to create scene.",
-  "item": Object {},
+  "item": null,
   "loading": false,
 }
 `;
@@ -98,7 +98,7 @@ Object {
 exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_SCENE_CREATE_LOADING 1`] = `
 Object {
   "error": null,
-  "item": Object {},
+  "item": null,
   "loading": true,
 }
 `;
@@ -106,7 +106,7 @@ Object {
 exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_SCENE_CREATE_SUCCESS 1`] = `
 Object {
   "error": null,
-  "item": Object {},
+  "item": null,
   "loading": false,
 }
 `;
@@ -114,7 +114,7 @@ Object {
 exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_SCENE_EDIT_FAIL 1`] = `
 Object {
   "error": "Error: failed to update scene.",
-  "item": Object {},
+  "item": null,
   "loading": false,
 }
 `;
@@ -122,7 +122,7 @@ Object {
 exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_SCENE_EDIT_LOADING 1`] = `
 Object {
   "error": null,
-  "item": Object {},
+  "item": null,
   "loading": true,
 }
 `;
@@ -131,13 +131,13 @@ exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_SCENE_EDIT_SUCCE
 Object {
   "error": null,
   "item": Object {
-    "field_scenes": Array [
-      Object {
+    "scenes": Object {
+      "test": Object {
         "body": "test description",
-        "field_slug": "my-test",
+        "field_slug": "test",
         "title": "test",
       },
-    ],
+    },
   },
   "loading": false,
 }
@@ -146,7 +146,7 @@ Object {
 exports[`reducers->openExperience Should return the initial state by default 1`] = `
 Object {
   "error": null,
-  "item": Object {},
+  "item": null,
   "loading": false,
 }
 `;
