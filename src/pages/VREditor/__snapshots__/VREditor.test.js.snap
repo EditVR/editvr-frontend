@@ -66,6 +66,7 @@ exports[`<VREditor /> Matches its snapshot 1`] = `
   </header>
   <div
     className="MuiGrid-item-12 MuiGrid-grid-xs-3-40 VREditorLayout-aside-7"
+    id="VREditorLayout--left"
   >
     <div
       align="stretch"
@@ -90,6 +91,7 @@ exports[`<VREditor /> Matches its snapshot 1`] = `
   </div>
   <div
     className="MuiGrid-item-12 MuiGrid-grid-xs-6-43 VREditorLayout-middle-8"
+    id="VREditorLayout--middle"
   >
     <a-scene
       embedded={true}
@@ -109,6 +111,7 @@ exports[`<VREditor /> Matches its snapshot 1`] = `
   </div>
   <div
     className="MuiGrid-item-12 MuiGrid-grid-xs-3-40 VREditorLayout-aside-7"
+    id="VREditorLayout--right"
   >
     Right Sidebar
   </div>

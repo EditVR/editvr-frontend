@@ -27,6 +27,62 @@ Object {
 }
 `;
 
+exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_SCENE_CREATE_FAIL 1`] = `
+Object {
+  "error": "Error: failed to create scene.",
+  "item": Object {},
+  "loading": false,
+}
+`;
+
+exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_SCENE_CREATE_LOADING 1`] = `
+Object {
+  "error": null,
+  "item": Object {},
+  "loading": true,
+}
+`;
+
+exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_SCENE_CREATE_SUCCESS 1`] = `
+Object {
+  "error": null,
+  "item": Object {},
+  "loading": false,
+}
+`;
+
+exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_SCENE_EDIT_FAIL 1`] = `
+Object {
+  "error": "Error: failed to update scene.",
+  "item": Object {},
+  "loading": false,
+}
+`;
+
+exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_SCENE_EDIT_LOADING 1`] = `
+Object {
+  "error": null,
+  "item": Object {},
+  "loading": true,
+}
+`;
+
+exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_SCENE_EDIT_SUCCESS 1`] = `
+Object {
+  "error": null,
+  "item": Object {
+    "field_scenes": Array [
+      Object {
+        "body": "test description",
+        "field_slug": "my-test",
+        "title": "test",
+      },
+    ],
+  },
+  "loading": false,
+}
+`;
+
 exports[`reducers->openExperience Should return the initial state by default 1`] = `
 Object {
   "error": null,

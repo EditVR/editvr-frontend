@@ -18,27 +18,35 @@ import {
   Button,
   Tooltip
 } from '@material-ui/core';
-import { OpenInBrowser } from '@material-ui/icons';
+import { OpenInBrowser, Edit } from '@material-ui/icons';
 
 import SceneCardsStyles from './SceneCards.style';
+import { MODE_SCENE_EDIT } from '../../constants';
+import parseSkyFromScene from '../../lib/parseSkyFromScene';
 
 const SceneCards = ({
   experience: { item: experience },
   classes,
+  history: {
+    location: { pathname: location }
+  },
   match: {
     params: { sceneSlug }
   }
 }) => (
   <div>
     {experience.field_scenes &&
-      experience.field_scenes.map(
-        ({
-          id,
-          title,
-          body,
-          field_slug: slug,
-          field_photosphere: photosphere
-        }) => (
+      experience.field_scenes.map(scene => {
+        const { id, title, body, field_slug: slug } = scene;
+        const openPath = `/experience/vreditor/${
+          experience.field_experience_path
+        }/${slug}`;
+        const editPath = `/experience/vreditor/${
+          experience.field_experience_path
+        }/${slug}/${MODE_SCENE_EDIT}`;
+        const sky = parseSkyFromScene(scene, true);
+
+        return (
           <Card
             key={id}
             raised={sceneSlug === slug}
@@ -46,14 +54,13 @@ const SceneCards = ({
               [classes.cardActive]: sceneSlug === slug
             })}
           >
-            {photosphere &&
-              photosphere.meta.derivatives && (
-                <CardMedia
-                  className={classes.cardMedia}
-                  title={title}
-                  image={photosphere.meta.derivatives.sc}
-                />
-              )}
+            {sky && (
+              <CardMedia
+                className={classes.cardMedia}
+                title={title}
+                image={sky.url}
+              />
+            )}
             <CardContent>
               <Typography gutterBottom variant="headline">
                 {title}
@@ -73,19 +80,29 @@ const SceneCards = ({
                   variant="outlined"
                   size="small"
                   component={Link}
-                  disabled={sceneSlug === slug}
                   className={classes.cardActionButton}
-                  to={`/experience/vreditor/${
-                    experience.field_experience_path
-                  }/${slug}`}
+                  disabled={location === openPath}
+                  to={openPath}
                 >
                   <OpenInBrowser />
                 </Button>
               </Tooltip>
+              <Tooltip title={`Configure ${title}`}>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  component={Link}
+                  className={classes.cardActionButton}
+                  disabled={location === editPath}
+                  to={editPath}
+                >
+                  <Edit />
+                </Button>
+              </Tooltip>
             </CardActions>
           </Card>
-        )
-      )}
+        );
+      })}
   </div>
 );
 
@@ -108,6 +125,11 @@ SceneCards.propTypes = {
         })
       )
     })
+  }).isRequired,
+  history: PropTypes.shape({
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired
+    }).isRequired
   }).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({

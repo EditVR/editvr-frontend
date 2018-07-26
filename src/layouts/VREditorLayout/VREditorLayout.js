@@ -49,13 +49,13 @@ const VREditorLayout = ({
         <Typography variant="title">{title}</Typography>
       </Toolbar>
     </AppBar>
-    <Grid item xs={3} className={classes.aside}>
+    <Grid item xs={3} id="VREditorLayout--left" className={classes.aside}>
       {leftAside}
     </Grid>
-    <Grid item xs={6} className={classes.middle}>
+    <Grid item xs={6} id="VREditorLayout--middle" className={classes.middle}>
       {children}
     </Grid>
-    <Grid item xs={3} className={classes.aside}>
+    <Grid item xs={3} id="VREditorLayout--right" className={classes.aside}>
       {rightAside}
     </Grid>
   </Grid>

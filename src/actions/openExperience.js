@@ -7,13 +7,15 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 
 import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
-  OPEN_EXPERIENCE_SCENE_CREATE
+  OPEN_EXPERIENCE_SCENE_CREATE,
+  OPEN_EXPERIENCE_SCENE_EDIT
 } from '../constants';
 import {
   openExperienceFetchForUser as getOpenExperienceForUser,
   openExperienceAttachScene,
   fileCreate,
-  sceneCreate
+  sceneCreate,
+  sceneEdit
 } from '../lib/api';
 import actionGenerator from '../lib/actionGenerator';
 
@@ -121,7 +123,62 @@ export function* openExperienceSceneCreate({
   );
 }
 
+/**
+ * Dispatches an action that updates a scene in the current openExperience.
+ *
+ * @param {object} payload
+ *   Payload for this saga action.
+ * @param {string} payload.id
+ *   ID of this scene.
+ * @param {string} payload.title
+ *   Title of this new scene.
+ * @param {string} payload.body
+ *   Body describing this new scene.
+ * @param {string} payload.field_slug
+ *   URL slug describing this scene's URL segment.
+ * @param {string} payload.experience
+ *   Object containing experience that this scene will be attached to.
+ * @param {object} payload.user
+ *   Object containing user data.
+ * @param {object} payload.user.authentication
+ *   Object containing auth data.
+ * @param {string} payload.user.authentication.accessToken
+ *   Access token for the current user.
+ * @param {string} payload.user.authentication.csrfToken
+ *   CSRF token for the current user.
+ * @param {function} payload.successHandler
+ *   Function to be executed if/when this action succeeds.
+ */
+export function* openExperienceSceneEdit({
+  id,
+  user,
+  title,
+  body = '',
+  field_slug,
+  successHandler = () => {}
+}) {
+  yield* actionGenerator(
+    OPEN_EXPERIENCE_SCENE_EDIT,
+    function* openExperienceSceneEditHandler() {
+      const payload = {
+        id,
+        title,
+        body,
+        field_slug
+      };
+
+      const scene = yield call(sceneEdit, payload, user);
+      yield put({
+        type: `${OPEN_EXPERIENCE_SCENE_EDIT}_SUCCESS`,
+        payload: scene
+      });
+    },
+    successHandler
+  );
+}
+
 export function* watchOpenExperienceActions() {
   yield takeLatest(OPEN_EXPERIENCE_FETCH_FOR_USER, openExperienceFetchForUser);
   yield takeLatest(OPEN_EXPERIENCE_SCENE_CREATE, openExperienceSceneCreate);
+  yield takeLatest(OPEN_EXPERIENCE_SCENE_EDIT, openExperienceSceneEdit);
 }

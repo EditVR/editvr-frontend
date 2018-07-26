@@ -66,16 +66,19 @@ exports[`<VREditorLayout /> Matches its snapshot 1`] = `
   </header>
   <div
     className="MuiGrid-item-7 MuiGrid-grid-xs-3-35 VREditorLayout-aside-2"
+    id="VREditorLayout--left"
   >
     Left Sidebar
   </div>
   <div
     className="MuiGrid-item-7 MuiGrid-grid-xs-6-38 VREditorLayout-middle-3"
+    id="VREditorLayout--middle"
   >
     Middle Area (for VR scenes woot!).
   </div>
   <div
     className="MuiGrid-item-7 MuiGrid-grid-xs-3-35 VREditorLayout-aside-2"
+    id="VREditorLayout--right"
   >
     Right Sidebar
   </div>

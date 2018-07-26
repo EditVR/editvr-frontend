@@ -130,13 +130,13 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
     >
       <div
         aria-describedby="title-helper-text"
-        className="MuiFormControl-root-117 ExperienceForm-textField-115"
+        className="MuiFormControl-root-117 C-textField-115"
         onBlur={[Function]}
         onFocus={[Function]}
       >
         <label
-          className="MuiFormLabel-root-126 MuiInputLabel-root-121 MuiInputLabel-formControl-122 MuiInputLabel-animated-125"
-          data-shrink={false}
+          className="MuiFormLabel-root-126 MuiInputLabel-root-121 MuiInputLabel-formControl-122 MuiInputLabel-animated-125 MuiInputLabel-shrink-124"
+          data-shrink={true}
           htmlFor="title"
         >
           Title
@@ -155,7 +155,7 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
             autoComplete={undefined}
             autoFocus={undefined}
             className="MuiInput-input-139"
-            defaultValue="test"
+            defaultValue={undefined}
             disabled={false}
             id="title"
             name={undefined}
@@ -169,7 +169,7 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
             required={true}
             rows={undefined}
             type="text"
-            value={undefined}
+            value="test"
           />
         </div>
         <p
@@ -181,13 +181,13 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
       </div>
       <div
         aria-describedby="field_experience_path-helper-text"
-        className="MuiFormControl-root-117 ExperienceForm-textField-115"
+        className="MuiFormControl-root-117 C-textField-115"
         onBlur={[Function]}
         onFocus={[Function]}
       >
         <label
-          className="MuiFormLabel-root-126 MuiInputLabel-root-121 MuiInputLabel-formControl-122 MuiInputLabel-animated-125"
-          data-shrink={false}
+          className="MuiFormLabel-root-126 MuiInputLabel-root-121 MuiInputLabel-formControl-122 MuiInputLabel-animated-125 MuiInputLabel-shrink-124"
+          data-shrink={true}
           htmlFor="field_experience_path"
         >
           URL Path
@@ -206,7 +206,7 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
             autoComplete={undefined}
             autoFocus={undefined}
             className="MuiInput-input-139"
-            defaultValue="test"
+            defaultValue={undefined}
             disabled={false}
             id="field_experience_path"
             name={undefined}
@@ -220,7 +220,7 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
             required={true}
             rows={undefined}
             type="text"
-            value={undefined}
+            value="test"
           />
         </div>
         <p
@@ -232,13 +232,13 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
       </div>
       <div
         aria-describedby="body-helper-text"
-        className="MuiFormControl-root-117 ExperienceForm-textField-115"
+        className="MuiFormControl-root-117 C-textField-115"
         onBlur={[Function]}
         onFocus={[Function]}
       >
         <label
-          className="MuiFormLabel-root-126 MuiInputLabel-root-121 MuiInputLabel-formControl-122 MuiInputLabel-animated-125"
-          data-shrink={false}
+          className="MuiFormLabel-root-126 MuiInputLabel-root-121 MuiInputLabel-formControl-122 MuiInputLabel-animated-125 MuiInputLabel-shrink-124"
+          data-shrink={true}
           htmlFor="body"
         >
           Description
@@ -257,7 +257,7 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
             autoComplete={undefined}
             autoFocus={undefined}
             className="MuiInput-input-139 MuiInput-inputMultiline-141"
-            defaultValue=""
+            defaultValue={undefined}
             disabled={false}
             id="body"
             name={undefined}
@@ -271,7 +271,7 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
             required={true}
             rows={6}
             type="text"
-            value={undefined}
+            value="test"
           />
         </div>
         <p
@@ -282,7 +282,7 @@ exports[`<ExperienceEdit /> Matches its snapshot 1`] = `
         </p>
       </div>
       <button
-        className="MuiButtonBase-root-68 MuiButton-root-148 MuiButton-raised-154 MuiButton-raisedPrimary-155 ExperienceForm-button-116"
+        className="MuiButtonBase-root-68 MuiButton-root-148 MuiButton-raised-154 MuiButton-raisedPrimary-155 C-button-116"
         disabled={false}
         onBlur={[Function]}
         onFocus={[Function]}

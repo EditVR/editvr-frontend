@@ -12,8 +12,10 @@ import { AddBox } from '@material-ui/icons';
 import { SceneCards, SceneForm } from '../../components';
 import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
-  MODE_SCENE_CREATE
+  MODE_SCENE_CREATE,
+  MODE_SCENE_EDIT
 } from '../../constants';
+import parseSceneFromExperience from '../../lib/parseSceneFromExperience';
 import Scene from '../../aframe/entities/scene';
 import { VREditorLayout } from '../../layouts';
 import VREditorStyles from './VREditor.style';
@@ -101,6 +103,19 @@ class VREditor extends Component {
           <SceneForm />
         </div>
       );
+    }
+
+    // If the editor mode is scene edit, return the scene form.
+    if (editorMode === MODE_SCENE_EDIT) {
+      const scene = parseSceneFromExperience(experience, sceneSlug);
+      if (scene) {
+        mainColumn = (
+          <div className={classes.mainColumn}>
+            <Typography variant="headline">{`Edit ${scene.title}`}</Typography>
+            <SceneForm sceneSlug={sceneSlug} />
+          </div>
+        );
+      }
     }
 
     // If no scene slug is provided, tell the user to create or select a scene.

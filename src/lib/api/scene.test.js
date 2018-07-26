@@ -6,7 +6,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import mockAxios from 'jest-mock-axios';
 
-import { sceneCreate } from './scene';
+import { sceneCreate, sceneEdit } from './scene';
 import {
   API_ENDPOINT_SCENE,
   API_TYPE_SCENE,
@@ -83,6 +83,44 @@ describe('api->scene', () => {
               id: field_videosphere,
               type: API_TYPE_FILE_VIDEO
             }
+          }
+        }
+      }
+    });
+  });
+
+  it('scene->sceneEdit()', () => {
+    const id = '10';
+    const title = 'test';
+    const field_slug = 'test';
+    const body = 'test';
+
+    sceneEdit(
+      {
+        id,
+        title,
+        field_slug,
+        body
+      },
+      {
+        authentication: {
+          accessToken: 'test',
+          csrfToken: 'test'
+        }
+      }
+    );
+
+    expect(mockAxios.post).toHaveBeenCalledWith(`${API_ENDPOINT_SCENE}/${id}`, {
+      data: {
+        id,
+        type: API_TYPE_SCENE,
+        attributes: {
+          title,
+          field_slug,
+          body: {
+            value: body,
+            format: 'plain_text',
+            summary: ''
           }
         }
       }

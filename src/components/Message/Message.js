@@ -5,17 +5,37 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Typography } from '@material-ui/core';
+import classNames from 'classnames';
+import { Typography, withStyles } from '@material-ui/core';
 
-const Message = ({ children }) =>
-  children ? <Typography variant="subheading">{children}</Typography> : null;
+import MessageStyles from './Message.style';
+
+const Message = ({ children, classes, type }) =>
+  children ? (
+    <Typography
+      variant="subheading"
+      className={classNames(classes.message, {
+        [classes.error]: type === 'error',
+        [classes.info]: type === 'info'
+      })}
+    >
+      {children}
+    </Typography>
+  ) : null;
 
 Message.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  classes: PropTypes.shape({
+    message: PropTypes.string.isRequired,
+    error: PropTypes.string.isRequired,
+    info: PropTypes.string.isRequired
+  }).isRequired,
+  type: PropTypes.oneOf(['error', 'info'])
 };
 
 Message.defaultProps = {
-  children: null
+  children: null,
+  type: 'info'
 };
 
-export default Message;
+export default withStyles(MessageStyles)(Message);

@@ -47,18 +47,10 @@
     "url": "https://github.com/editvr/editvr-frontend.git"
   },
   "release": {
-    "verifyConditions": [
-      "@semantic-release/github"
-    ],
-    "publish": [
-      "@semantic-release/github"
-    ],
-    "success": [
-      "@semantic-release/github"
-    ],
-    "fail": [
-      "@semantic-release/github"
-    ]
+    "verifyConditions": ["@semantic-release/github"],
+    "publish": ["@semantic-release/github"],
+    "success": ["@semantic-release/github"],
+    "fail": ["@semantic-release/github"]
   },
   "dependencies": {
     "@editvr/aframe-dialog-popup-component": "^1.2.0",
@@ -68,6 +60,7 @@
     "aframe-look-at-component": "^0.6.0",
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
+    "formik": "^0.11.11",
     "history": "^4.7.2",
     "jsona": "^1.1.10",
     "prop-types": "^15.6.1",
@@ -83,7 +76,8 @@
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-persist": "^5.9.1",
-    "redux-saga": "^0.16.0"
+    "redux-saga": "^0.16.0",
+    "yup": "^0.25.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -101,7 +95,8 @@
     "lint": "eslint --ext .jsx,.js .",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
-    "precommit": "lint-staged -c lint-staged.config.js ; yarn lint ; yarn test:ci"
+    "precommit":
+      "lint-staged -c lint-staged.config.js ; yarn lint ; yarn test:ci"
   },
   "devDependencies": {
     "@commitlint/cli": "^6.2.0",
