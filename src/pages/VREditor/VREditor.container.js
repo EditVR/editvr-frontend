@@ -12,8 +12,9 @@ const mapDispatchToProps = dispatch => ({
   dispatch
 });
 
-const mapState = ({ openExperience, user }) => ({
+const mapState = ({ openExperience, user, component }) => ({
   experience: openExperience,
+  component,
   user
 });
 

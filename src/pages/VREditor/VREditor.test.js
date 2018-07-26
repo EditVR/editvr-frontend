@@ -4,8 +4,8 @@
  */
 
 import React from 'react';
-import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
+import { createMount } from '@material-ui/core/test-utils';
 import { Provider } from 'react-redux';
 import { MemoryRouter as Router, Route } from 'react-router-dom';
 
@@ -34,18 +34,16 @@ describe('<VREditor />', () => {
       }
     });
     expect(
-      renderer
-        .create(
-          <Provider store={store}>
-            <Router initialEntries={['/experience/vreditor/test/test']}>
-              <Route
-                path="/experience/vreditor/:experienceSlug/:sceneSlug?"
-                component={ThemedVREditor}
-              />
-            </Router>
-          </Provider>
-        )
-        .toJSON()
+      createMount()(
+        <Provider store={store}>
+          <Router initialEntries={['/experience/vreditor/test']}>
+            <Route
+              path="/experience/vreditor/:experienceSlug"
+              component={ThemedVREditor}
+            />
+          </Router>
+        </Provider>
+      ).html()
     ).toMatchSnapshot();
   });
 });

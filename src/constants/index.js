@@ -10,3 +10,4 @@ export * from './modes';
 export * from './form';
 export * from './experiences';
 export * from './openExperience';
+export * from './component';
