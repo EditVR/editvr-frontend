@@ -68,6 +68,8 @@ class ComponentForm extends Component {
     }
   };
 
+  inputTimeout = null;
+
   /**
    * Dispatches an action that updates the component's state.
    *
@@ -75,21 +77,24 @@ class ComponentForm extends Component {
    * @param {string} fieldValue - New value for {fieldName}.
    */
   presaveField = (fieldName, fieldValue) => {
-    const {
-      dispatch,
-      selectedComponent,
-      match: {
-        params: { sceneSlug }
-      }
-    } = this.props;
+    clearTimeout(this.inputTimeout);
+    this.inputTimeout = setTimeout(() => {
+      const {
+        dispatch,
+        selectedComponent,
+        match: {
+          params: { sceneSlug }
+        }
+      } = this.props;
 
-    dispatch({
-      type: OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
-      sceneSlug,
-      component: selectedComponent,
-      fieldName,
-      fieldValue
-    });
+      dispatch({
+        type: OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
+        sceneSlug,
+        component: selectedComponent,
+        fieldName,
+        fieldValue
+      });
+    }, 200);
   };
 
   /**
@@ -131,7 +136,7 @@ class ComponentForm extends Component {
               ? errors.title
               : 'Enter a user-friendly title for your component.'
           }
-          value={values.title}
+          defaultValue={values.title}
           onChange={this.handleChange}
           onBlur={handleBlur}
           error={!!errors.title && touched.title}
@@ -149,7 +154,7 @@ class ComponentForm extends Component {
               ? errors.field_body
               : 'Enter a body for your component.'
           }
-          value={values.field_body}
+          defaultValue={values.field_body}
           onChange={this.handleChange}
           onBlur={handleBlur}
           error={!!errors.field_body && touched.field_body}
@@ -166,7 +171,7 @@ class ComponentForm extends Component {
               ? errors.field_x
               : 'Use this field to set the positional X coordinate for this component'
           }
-          value={values.field_x}
+          defaultValue={values.field_x}
           onChange={this.handleChange}
           onBlur={handleBlur}
           error={!!errors.field_x && touched.field_x}
@@ -183,7 +188,7 @@ class ComponentForm extends Component {
               ? errors.field_y
               : 'Use this field to set the positional Y coordinate for this component'
           }
-          value={values.field_y}
+          defaultValue={values.field_y}
           onChange={this.handleChange}
           onBlur={handleBlur}
           error={!!errors.field_y && touched.field_y}
@@ -200,7 +205,7 @@ class ComponentForm extends Component {
               ? errors.field_z
               : 'Use this field to set the positional Z coordinate for this component'
           }
-          value={values.field_z}
+          defaultValue={values.field_z}
           onChange={this.handleChange}
           onBlur={handleBlur}
           error={!!errors.field_z && touched.field_z}

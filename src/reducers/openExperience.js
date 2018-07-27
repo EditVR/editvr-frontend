@@ -3,6 +3,7 @@
  * Exports reducers pertaining to openExperience state.
  */
 
+import { clone } from 'ramda';
 import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
   OPEN_EXPERIENCE_SCENE_CREATE,
@@ -149,19 +150,8 @@ export default function openExperiences(state = defaultState, action) {
      */
     case `${OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE}_SUCCESS`: {
       const { fieldName, fieldValue, sceneSlug, component } = action.payload;
-      // Create a new component based on the old one, and pass in a new value
-      // for the field that is being pre-saved.
-      const newItem = Object.assign({}, state.item);
-      const newComponent = Object.assign(
-        {},
-        newItem.scenes[sceneSlug].components[component],
-        {
-          [fieldName]: fieldValue
-        }
-      );
-
-      // Swap out the old component for the new.
-      newItem.scenes[sceneSlug].components[component] = newComponent;
+      const newItem = clone(state.item);
+      newItem.scenes[sceneSlug].components[component][fieldName] = fieldValue;
       return {
         loading: false,
         error: null,
@@ -194,21 +184,15 @@ export default function openExperiences(state = defaultState, action) {
         sceneSlug
       } = action.payload;
 
-      const newItem = Object.assign({}, state.item);
-      const newComponent = Object.assign(
-        {},
-        newItem.scenes[sceneSlug].components[id],
-        {
-          title,
-          field_body,
-          field_x,
-          field_y,
-          field_z
-        }
-      );
+      const newItem = clone(state.item);
+      Object.assign(newItem.scenes[sceneSlug].components[id], {
+        title,
+        field_body,
+        field_x,
+        field_y,
+        field_z
+      });
 
-      // Swap out the old component for the new.
-      newItem.scenes[sceneSlug].components[id] = newComponent;
       return {
         loading: false,
         error: null,
