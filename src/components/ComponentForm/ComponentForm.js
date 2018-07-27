@@ -68,6 +68,13 @@ class ComponentForm extends Component {
     }
   };
 
+  /**
+   * {@inheritdoc}
+   */
+  componentWillUnmount() {
+    clearTimeout(this.inputTimeout);
+  }
+
   inputTimeout = null;
 
   /**
