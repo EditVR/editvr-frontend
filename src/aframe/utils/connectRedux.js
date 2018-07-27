@@ -3,9 +3,8 @@
  * Exports a connection utility that allows for AFrame components to use Redux.
  */
 
+import { clone, equals } from 'ramda';
 import { store as defaultStore } from '../../lib/reduxStore';
-
-import shallowEqual from './shallowEqual';
 
 /**
  * Connects a given component to Redux, and calls update handlers when global
@@ -41,7 +40,7 @@ const connect = (
   component.shouldComponentUpdate =
     component.shouldComponentUpdate ||
     function shouldComponentUpdate(oldProps, newProps) {
-      return !shallowEqual(oldProps, newProps);
+      return !equals(oldProps, newProps);
     };
 
   // Default unsubscribeFromState function.
@@ -62,10 +61,10 @@ const connect = (
 
     // If the component needs to update, re-initialize the props.
     if (shouldUpdate) {
-      this.props = {
+      this.props = clone({
         ...this.props,
         ...newProps
-      };
+      });
 
       // Call the update lifecycle method.
       this.didReceiveProps();
@@ -76,11 +75,11 @@ const connect = (
   const parentInit = component.init || function init() {};
   component.init = function componentInit() {
     // Connect state and dispatch to props.
-    this.props = {
+    this.props = clone({
       ...this.props,
       ...mapStateToProps(store.getState(), this.props),
       ...mapDispatchToProps(store.dispatch, this.props)
-    };
+    });
 
     // Subscribe to state changes, and store reference to unsubscriber.
     this.unsubscribeFromState = store.subscribe(
