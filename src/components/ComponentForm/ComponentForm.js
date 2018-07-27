@@ -143,7 +143,7 @@ class ComponentForm extends Component {
               ? errors.title
               : 'Enter a user-friendly title for your component.'
           }
-          defaultValue={values.title}
+          value={values.title}
           onChange={this.handleChange}
           onBlur={handleBlur}
           error={!!errors.title && touched.title}
@@ -161,7 +161,7 @@ class ComponentForm extends Component {
               ? errors.field_body
               : 'Enter a body for your component.'
           }
-          defaultValue={values.field_body}
+          value={values.field_body}
           onChange={this.handleChange}
           onBlur={handleBlur}
           error={!!errors.field_body && touched.field_body}
@@ -178,7 +178,7 @@ class ComponentForm extends Component {
               ? errors.field_x
               : 'Use this field to set the positional X coordinate for this component'
           }
-          defaultValue={values.field_x}
+          value={values.field_x}
           onChange={this.handleChange}
           onBlur={handleBlur}
           error={!!errors.field_x && touched.field_x}
@@ -195,7 +195,7 @@ class ComponentForm extends Component {
               ? errors.field_y
               : 'Use this field to set the positional Y coordinate for this component'
           }
-          defaultValue={values.field_y}
+          value={values.field_y}
           onChange={this.handleChange}
           onBlur={handleBlur}
           error={!!errors.field_y && touched.field_y}
@@ -212,7 +212,7 @@ class ComponentForm extends Component {
               ? errors.field_z
               : 'Use this field to set the positional Z coordinate for this component'
           }
-          defaultValue={values.field_z}
+          value={values.field_z}
           onChange={this.handleChange}
           onBlur={handleBlur}
           error={!!errors.field_z && touched.field_z}

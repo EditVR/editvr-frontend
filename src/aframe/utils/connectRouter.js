@@ -3,10 +3,10 @@
  * Utility that assists in connecting AFrame components to React Router.
  */
 
+import { clone, equals } from 'ramda';
 import { matchPath } from 'react-router';
 
 import defaultHistory from '../../lib/routerHistory';
-import shallowEqual from './shallowEqual';
 
 /**
  * Helper method that takes history and a path pattern and turns it into a match object.
@@ -53,7 +53,7 @@ const connect = (
   component.shouldComponentUpdateRouting =
     component.shouldComponentUpdateRouting ||
     function shouldComponentUpdateRouting(oldProps, newProps) {
-      return !shallowEqual(oldProps, newProps);
+      return !equals(oldProps, newProps);
     };
 
   // Default unsubscribeFromRouter function.
@@ -82,10 +82,10 @@ const connect = (
 
     // If the component needs to update, re-initialize the router props.
     if (shouldUpdate) {
-      this.router = {
+      this.router = clone({
         ...this.router,
         ...newProps
-      };
+      });
 
       // Call the update lifecycle method.
       this.didReceiveRoute();
@@ -96,13 +96,13 @@ const connect = (
   const parentInit = component.init || function init() {};
   component.init = function componentInit() {
     // Connect router history and match data to the components' router property.
-    this.router = {
+    this.router = clone({
       ...this.router,
       history: {
         ...history
       },
       match: parseMatch(history, pathPattern)
-    };
+    });
 
     // Subscribe to router changes and store a reference to the unsubsription func.
     this.unsubscribeFromRouter = history.listen(
