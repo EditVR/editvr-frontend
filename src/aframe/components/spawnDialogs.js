@@ -22,8 +22,16 @@ const spawnDialogs = {
     this.deSpawn();
   },
   shouldComponentUpdateRouting(oldProps, newProps) {
-    const { match: { params: { sceneSlug: oldSceneSlug } } } = oldProps;
-    const { match: { params: { sceneSlug } } } = newProps;
+    const {
+      match: {
+        params: { sceneSlug: oldSceneSlug }
+      }
+    } = oldProps;
+    const {
+      match: {
+        params: { sceneSlug }
+      }
+    } = newProps;
     if (oldSceneSlug !== sceneSlug) {
       return true;
     }
@@ -76,6 +84,7 @@ const spawnDialogs = {
           e.setAttribute('id', component.id);
           e.setAttribute('look-at', '#camera');
           e.setAttribute('is-editable', true);
+          e.setAttribute('is-draggable', true);
           e.setAttribute('dialog-popup-container', true);
           this.el.appendChild(e);
           this.dialogs.push(e);

@@ -208,7 +208,7 @@ describe('actions->openExperience', () => {
     const successHandler = jest.fn();
     const id = 10;
     const sceneSlug = 'test';
-    const payload = {
+    const fields = {
       field_body: 'test body',
       title: 'test title',
       field_x: 0,
@@ -220,7 +220,7 @@ describe('actions->openExperience', () => {
     };
 
     testSaga(openExperienceComponentEdit, {
-      ...payload,
+      fields,
       id,
       successHandler,
       user,
@@ -235,7 +235,7 @@ describe('actions->openExperience', () => {
         type: `${OPEN_EXPERIENCE_COMPONENT_EDIT}_LOADING`
       })
       .next()
-      .call(componentEdit, { ...payload, id }, user)
+      .call(componentEdit, { ...fields, id }, user)
       .next()
       .put({
         type: `${OPEN_EXPERIENCE_COMPONENT_EDIT}_SUCCESS`,

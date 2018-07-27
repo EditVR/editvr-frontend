@@ -295,11 +295,13 @@ const FormikComponentForm = withFormik({
       type: OPEN_EXPERIENCE_COMPONENT_EDIT,
       id: selectedComponent,
       user,
-      title,
-      field_body,
-      field_x,
-      field_y,
-      field_z,
+      fields: {
+        title,
+        field_body,
+        field_x,
+        field_y,
+        field_z
+      },
       sceneSlug,
       successHandler: () => {
         setSubmitting(false);

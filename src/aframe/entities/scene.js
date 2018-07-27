@@ -8,6 +8,8 @@
 import React from 'react';
 import aframe from 'aframe/src';
 
+import registerClickDrag from '../components/clickDrag';
+
 require('@editvr/aframe-dialog-popup-component');
 require('aframe-look-at-component');
 require('../components/spawnSky');
@@ -16,6 +18,9 @@ require('../components/spawnDialogs');
 require('../components/dialogPopup.container');
 require('../components/navLink');
 require('../components/isEditable');
+require('../components/isDraggable');
+
+registerClickDrag(aframe);
 
 export default () => (
   <a-scene
