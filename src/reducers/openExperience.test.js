@@ -8,7 +8,9 @@ import reducer from './openExperience';
 import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
   OPEN_EXPERIENCE_SCENE_CREATE,
-  OPEN_EXPERIENCE_SCENE_EDIT
+  OPEN_EXPERIENCE_SCENE_EDIT,
+  OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
+  OPEN_EXPERIENCE_COMPONENT_EDIT
 } from '../constants';
 
 describe('reducers->openExperience', () => {
@@ -114,12 +116,12 @@ describe('reducers->openExperience', () => {
       reducer(
         {
           item: {
-            field_scenes: [
-              {
+            scenes: {
+              test: {
                 title: 'old title',
-                field_slug: 'my-test'
+                field_slug: 'test'
               }
-            ]
+            }
           }
         },
         {
@@ -131,7 +133,100 @@ describe('reducers->openExperience', () => {
             body: {
               value: 'test description'
             },
-            field_slug: 'my-test'
+            field_slug: 'test'
+          }
+        }
+      )
+    ).toMatchSnapshot();
+  });
+
+  it(`Should handle ${OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE}_SUCCESS`, () => {
+    expect(
+      reducer(
+        {
+          item: {
+            scenes: {
+              test: {
+                field_slug: 'test',
+                components: {
+                  test: {
+                    id: 'test',
+                    title: 'My Old Value'
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          type: `${OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE}_SUCCESS`,
+          loading: false,
+          error: null,
+          payload: {
+            sceneSlug: 'test',
+            component: 'test',
+            fieldName: 'title',
+            fieldValue: 'My New Value'
+          }
+        }
+      )
+    ).toMatchSnapshot();
+  });
+
+  it(`Should handle ${OPEN_EXPERIENCE_COMPONENT_EDIT}_LOADING`, () => {
+    expect(
+      reducer(undefined, {
+        type: `${OPEN_EXPERIENCE_COMPONENT_EDIT}_LOADING`,
+        loading: true,
+        error: null,
+        payload: {}
+      })
+    ).toMatchSnapshot();
+  });
+
+  it(`Should handle ${OPEN_EXPERIENCE_COMPONENT_EDIT}_FAIL`, () => {
+    const error = 'Error: failed to update component.';
+    expect(
+      reducer(undefined, {
+        type: `${OPEN_EXPERIENCE_COMPONENT_EDIT}_FAIL`,
+        loading: false,
+        payload: { error }
+      })
+    ).toMatchSnapshot();
+  });
+
+  it(`Should handle ${OPEN_EXPERIENCE_COMPONENT_EDIT}_SUCCESS`, () => {
+    const id = 10;
+    const sceneSlug = 'testScene';
+    expect(
+      reducer(
+        {
+          item: {
+            scenes: {
+              [sceneSlug]: {
+                field_slug: sceneSlug,
+                components: {
+                  [id]: {
+                    id,
+                    title: 'My Old Value'
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          type: `${OPEN_EXPERIENCE_COMPONENT_EDIT}_SUCCESS`,
+          loading: false,
+          error: null,
+          payload: {
+            id,
+            sceneSlug,
+            field_body: 'test body',
+            title: 'My New Slug',
+            field_x: 0,
+            field_y: 0,
+            field_z: 0
           }
         }
       )

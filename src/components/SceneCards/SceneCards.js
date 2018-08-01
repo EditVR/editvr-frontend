@@ -35,9 +35,9 @@ const SceneCards = ({
   }
 }) => (
   <div>
-    {experience.field_scenes &&
-      experience.field_scenes.map(scene => {
-        const { id, title, body, field_slug: slug } = scene;
+    {experience.scenes &&
+      Object.entries(experience.scenes).map(([id, scene]) => {
+        const { title, body, field_slug: slug } = scene;
         const openPath = `/experience/vreditor/${
           experience.field_experience_path
         }/${slug}`;
@@ -110,7 +110,7 @@ SceneCards.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   experience: PropTypes.shape({
     item: PropTypes.shape({
-      field_scenes: PropTypes.arrayOf(
+      scenes: PropTypes.objectOf(
         PropTypes.shape({
           id: PropTypes.string,
           title: PropTypes.string,

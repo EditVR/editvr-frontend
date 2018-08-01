@@ -7,7 +7,6 @@
 
 import connectRedux from '../utils/connectRedux';
 import connectRouter from '../utils/connectRouter';
-import parseSceneFromExperience from '../../lib/parseSceneFromExperience';
 import parseSkyFromScene from '../../lib/parseSkyFromScene';
 
 /**
@@ -33,7 +32,7 @@ const spawnSky = {
   },
   setSkyUrl() {
     // If there is no router or experience data, exit.
-    if (!this.router || !this.props.experience.field_scenes) {
+    if (!this.router || !this.props.experience.scenes) {
       return;
     }
 
@@ -46,7 +45,7 @@ const spawnSky = {
       }
     } = this;
 
-    const scene = parseSceneFromExperience(experience, sceneSlug);
+    const scene = experience.scenes[sceneSlug] || null;
     if (scene) {
       const {
         field_sky_rotation_x: x,

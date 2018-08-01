@@ -18,7 +18,6 @@ import {
   OPEN_EXPERIENCE_SCENE_EDIT,
   OPEN_EXPERIENCE_FETCH_FOR_USER
 } from '../../constants';
-import parseSceneFromExperience from '../../lib/parseSceneFromExperience';
 import parseSkyFromScene from '../../lib/parseSkyFromScene';
 import SceneFormStyles from './SceneForm.style';
 import { Message } from '../';
@@ -54,7 +53,7 @@ class SceneForm extends Component {
     experience: PropTypes.shape({
       item: PropTypes.shape({
         field_experience_path: PropTypes.string,
-        field_scenes: PropTypes.arrayOf(
+        scenes: PropTypes.objectOf(
           PropTypes.shape({
             id: PropTypes.string.isRequired
           })
@@ -160,7 +159,7 @@ class SceneForm extends Component {
 
     // If this form is being rendered when the openExperience state has not
     // yet been loaded, render nothing.
-    if (!experience.field_scenes) {
+    if (!experience.scenes) {
       return null;
     }
 
@@ -251,7 +250,7 @@ const FormikSceneForm = withFormik({
   displayName: 'SceneForm',
   enableReinitialize: true,
   mapPropsToValues: ({ sceneSlug, experience: { item: experience } }) => {
-    const scene = parseSceneFromExperience(experience, sceneSlug);
+    const scene = experience.scenes ? experience.scenes[sceneSlug] : null;
 
     const values = {
       id: null,

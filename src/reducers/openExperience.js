@@ -3,10 +3,13 @@
  * Exports reducers pertaining to openExperience state.
  */
 
+import { clone } from 'ramda';
 import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
   OPEN_EXPERIENCE_SCENE_CREATE,
-  OPEN_EXPERIENCE_SCENE_EDIT
+  OPEN_EXPERIENCE_SCENE_EDIT,
+  OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
+  OPEN_EXPERIENCE_COMPONENT_EDIT
 } from '../constants';
 
 /**
@@ -15,7 +18,7 @@ import {
 const defaultState = {
   loading: false,
   error: null,
-  item: {}
+  item: null
 };
 
 /**
@@ -104,19 +107,15 @@ export default function openExperiences(state = defaultState, action) {
         body: { value: body },
         field_slug
       } = scene;
-      const sceneIndex = state.item.field_scenes.findIndex(
-        s => s.field_slug === scene.field_slug
-      );
 
       const newItem = Object.assign({}, state.item);
-      const newScene = Object.assign({}, newItem.field_scenes[sceneIndex], {
+      const newScene = Object.assign({}, newItem.scenes[field_slug], {
         title,
         body,
         field_slug
       });
 
-      newItem.field_scenes[sceneIndex] = newScene;
-
+      newItem.scenes[field_slug] = newScene;
       return {
         loading: false,
         error: null,
@@ -139,6 +138,72 @@ export default function openExperiences(state = defaultState, action) {
      * Reducer that handles scene edit failure actions.
      */
     case `${OPEN_EXPERIENCE_SCENE_EDIT}_FAIL`: {
+      return {
+        loading: false,
+        error: action.payload.error,
+        item: state.item
+      };
+    }
+
+    /**
+     * Reducer that handles component field presaves.
+     */
+    case `${OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE}_SUCCESS`: {
+      const { fieldName, fieldValue, sceneSlug, component } = action.payload;
+      const newItem = clone(state.item);
+      newItem.scenes[sceneSlug].components[component][fieldName] = fieldValue;
+      return {
+        loading: false,
+        error: null,
+        item: newItem
+      };
+    }
+
+    /**
+     * Reducer that handles component edit loading actions.
+     */
+    case `${OPEN_EXPERIENCE_COMPONENT_EDIT}_LOADING`: {
+      return {
+        loading: true,
+        error: null,
+        item: state.item
+      };
+    }
+
+    /**
+     * Reducer that handles component field edits.
+     */
+    case `${OPEN_EXPERIENCE_COMPONENT_EDIT}_SUCCESS`: {
+      const {
+        id,
+        field_x,
+        field_y,
+        field_z,
+        title,
+        field_body,
+        sceneSlug
+      } = action.payload;
+
+      const newItem = clone(state.item);
+      Object.assign(newItem.scenes[sceneSlug].components[id], {
+        title,
+        field_body,
+        field_x,
+        field_y,
+        field_z
+      });
+
+      return {
+        loading: false,
+        error: null,
+        item: newItem
+      };
+    }
+
+    /**
+     * Reducer that handles component field edit failure.
+     */
+    case `${OPEN_EXPERIENCE_COMPONENT_EDIT}_FAIL`: {
       return {
         loading: false,
         error: action.payload.error,

@@ -1,6 +1,6 @@
 /**
  * @file parseExperience.test.js
- * Contains tests for parseSceneFromExperience.js.
+ * Contains tests for parseExperience.js.
  */
 
 import parseExperience from './parseExperience';
