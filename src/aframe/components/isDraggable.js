@@ -75,9 +75,11 @@ const isDraggable = {
 
       const id = this.el.getAttribute('uuid');
       if (id && editorMode === MODE_COMPONENT_PLACING) {
-        const { x: field_x, y: field_y, z: field_z } = this.el.getAttribute(
-          'position'
-        );
+        const {
+          x: field_x,
+          y: field_y,
+          z: field_z
+        } = this.targetEl.getAttribute('position');
         dispatch({
           type: OPEN_EXPERIENCE_COMPONENT_EDIT,
           user,

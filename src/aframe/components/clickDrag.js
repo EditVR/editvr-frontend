@@ -92,7 +92,7 @@ const { unproject } = (function unprojectFunction() {
 
       initialized = initialized || initialize(THREE);
 
-      vector.applyProjection(matrix.getInverse(threeCamera.projectionMatrix));
+      vector.applyMatrix4(matrix.getInverse(threeCamera.projectionMatrix));
 
       return localToWorld(THREE, threeCamera, vector);
     }
@@ -540,6 +540,7 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 
       removeDragListeners && removeDragListeners(); // eslint-disable-line no-unused-expressions
       removeDragListeners = undefined;
+      draggedElement = null;
     }
 
     function onTouchStart({ changedTouches: [touchInfo] }) {
