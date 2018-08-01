@@ -81,10 +81,13 @@ const spawnDialogs = {
         .filter(c => c.field_component_type === 'panelimage')
         .forEach(component => {
           const e = document.createElement('a-entity');
-          e.setAttribute('id', component.id);
+          e.setAttribute('id', `component--${component.id}`);
+          e.setAttribute('uuid', component.id);
           e.setAttribute('look-at', '#camera');
           e.setAttribute('is-editable', true);
-          e.setAttribute('is-draggable', true);
+          e.setAttribute('is-draggable', {
+            target: `component--${component.id}--open-icon`
+          });
           e.setAttribute('dialog-popup-container', true);
           this.el.appendChild(e);
           this.dialogs.push(e);

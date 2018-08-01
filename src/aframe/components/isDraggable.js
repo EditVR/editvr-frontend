@@ -13,10 +13,22 @@ import connectRedux from '../utils/connectRedux';
 import connectRouter from '../utils/connectRouter';
 
 const isDraggable = {
+  schema: {
+    target: {
+      type: 'string',
+      default: ''
+    }
+  },
   multiple: true,
   timeout: null,
+  targetEl: null,
   init() {
-    this.updateDraggable();
+    this.el.addEventListener('loaded', () => {
+      if (this.data.target.length > 0) {
+        this.targetEl = this.el.querySelector(`#${this.data.target}`);
+      }
+      this.updateDraggable();
+    });
   },
   remove() {
     this.setNotDraggable();
@@ -39,12 +51,16 @@ const isDraggable = {
     }
   },
   setDraggable() {
-    this.el.setAttribute('click-drag', true);
-    this.el.addEventListener('dragend', this.dropHandler.bind(this));
+    if (this.targetEl) {
+      this.targetEl.setAttribute('click-drag', true);
+      this.targetEl.addEventListener('dragend', this.dropHandler.bind(this));
+    }
   },
   setNotDraggable() {
-    this.el.removeAttribute('click-drag');
-    this.el.removeEventListener('dragend', this.dropHandler.bind(this));
+    if (this.targetEl) {
+      this.targetEl.removeAttribute('click-drag');
+      this.targetEl.removeEventListener('dragend', this.dropHandler.bind(this));
+    }
     clearTimeout(this.timeout);
   },
   dropHandler() {
@@ -57,7 +73,7 @@ const isDraggable = {
         }
       } = this.router;
 
-      const id = this.el.getAttribute('id');
+      const id = this.el.getAttribute('uuid');
       if (id && editorMode === MODE_COMPONENT_PLACING) {
         const { x: field_x, y: field_y, z: field_z } = this.el.getAttribute(
           'position'
