@@ -21,8 +21,8 @@ describe('<SceneCards />', () => {
         item: {
           title: 'test',
           field_experience_path: 'test',
-          field_scenes: [
-            {
+          scenes: {
+            test: {
               id: '10',
               title: 'test',
               field_slug: 'test',
@@ -34,7 +34,7 @@ describe('<SceneCards />', () => {
                 }
               }
             }
-          ]
+          }
         }
       }
     });

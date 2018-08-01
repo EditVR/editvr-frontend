@@ -13,6 +13,7 @@ require('aframe-look-at-component');
 require('../components/spawnSky');
 require('../components/spawnLinks');
 require('../components/spawnDialogs');
+require('../components/dialogPopup.container');
 require('../components/navLink');
 require('../components/isEditable');
 

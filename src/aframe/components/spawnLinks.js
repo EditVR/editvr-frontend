@@ -7,7 +7,6 @@
 
 import connectRedux from '../utils/connectRedux';
 import connectRouter from '../utils/connectRouter';
-import parseSceneFromExperience from '../../lib/parseSceneFromExperience';
 
 /**
  * AFrame component that spawns link components whenever it's initialized,
@@ -33,7 +32,7 @@ const spawnLinks = {
   },
   spawn() {
     // If there is no router or experience data, exit.
-    if (!this.router || !this.props.experience.field_scenes) {
+    if (!this.router || !this.props.experience.scenes) {
       return;
     }
 
@@ -46,7 +45,7 @@ const spawnLinks = {
       }
     } = this;
 
-    const scene = parseSceneFromExperience(experience, sceneSlug);
+    const scene = experience.scenes[sceneSlug];
     if (scene) {
       scene.field_components
         .filter(c => c.field_component_type === 'link')

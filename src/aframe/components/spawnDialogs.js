@@ -5,16 +5,12 @@
 
 /* globals AFRAME */
 
-import openIconImage from '../../assets/icons/info.jpg';
-import closeIconImage from '../../assets/icons/close.jpg';
-
 import connectRedux from '../utils/connectRedux';
 import connectRouter from '../utils/connectRouter';
-import parseSceneFromExperience from '../../lib/parseSceneFromExperience';
 
 /**
  * AFrame component that spawns dialog components whenever it's initialized,
- * or whenever the route has been changed.
+ * or whenever the current scene is changed.
  */
 const spawnDialogs = {
   multiple: false,
@@ -26,7 +22,9 @@ const spawnDialogs = {
     this.deSpawn();
   },
   shouldComponentUpdateRouting(oldProps, newProps) {
-    if (oldProps.history.location !== newProps.history.location) {
+    const { match: { params: { sceneSlug: oldSceneSlug } } } = oldProps;
+    const { match: { params: { sceneSlug } } } = newProps;
+    if (oldSceneSlug !== sceneSlug) {
       return true;
     }
 
@@ -34,7 +32,7 @@ const spawnDialogs = {
   },
   shouldComponentUpdate(oldProps, newProps) {
     // If scenes objects are loaded in, update.
-    if (!oldProps.experience.field_scenes && newProps.experience.field_scenes) {
+    if (!oldProps.experience.scenes && newProps.experience.scenes) {
       return true;
     }
 
@@ -54,7 +52,7 @@ const spawnDialogs = {
   },
   spawn() {
     // If there is no router or experience data, exit.
-    if (!this.router || !this.props.experience.field_scenes) {
+    if (!this.router || !this.props.experience.scenes) {
       return;
     }
 
@@ -69,50 +67,16 @@ const spawnDialogs = {
       }
     } = this;
 
-    const scene = parseSceneFromExperience(experience, sceneSlug);
+    const scene = experience.scenes[sceneSlug] || null;
     if (scene) {
       scene.field_components
         .filter(c => c.field_component_type === 'panelimage')
         .forEach(component => {
-          const {
-            field_x: x,
-            field_y: y,
-            field_z: z,
-            title,
-            field_body: body
-          } = component;
-
           const e = document.createElement('a-entity');
           e.setAttribute('id', component.id);
           e.setAttribute('look-at', '#camera');
           e.setAttribute('is-editable', true);
-          e.setAttribute('position', { x, y, z });
-
-          const dialogPopup = {
-            title,
-            titleColor: 'white',
-            titleFont: 'roboto',
-            body,
-            bodyColor: 'white',
-            bodyFont: 'roboto',
-            dialogBoxColor: '#127218',
-            openIconImage,
-            closeIconImage
-          };
-
-          if (component.field_image) {
-            const {
-              field_image: {
-                url: path,
-                links: { self }
-              }
-            } = component;
-            const url = new URL(self);
-            dialogPopup.image = `${url.origin}${path}`;
-          }
-
-          e.setAttribute('dialog-popup', dialogPopup);
-          e.setAttribute('dialog-popup', dialogPopup);
+          e.setAttribute('dialog-popup-container', true);
           this.el.appendChild(e);
           this.dialogs.push(e);
         });

@@ -78,7 +78,7 @@ describe('actions->openExperience', () => {
     const successHandler = jest.fn();
     const experience = {
       item: {
-        field_scenes: [],
+        scenes: {},
         field_experience_path: 'test'
       }
     };

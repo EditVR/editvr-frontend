@@ -4,7 +4,7 @@
  */
 
 import axios from 'axios';
-import Jsona from 'jsona';
+import Jsona, { JsonPropertiesMapper } from 'jsona';
 
 import { apiURL } from '../../config';
 import {
@@ -22,6 +22,52 @@ import {
   AXIOS_ERROR_404,
   AXIOS_ERROR_422
 } from '../../constants';
+
+/**
+ * Property mapper that assists mapping scenes and components by slug and id.
+ */
+class EditVRJsonPropertiesMapper extends JsonPropertiesMapper {
+  setRelationships(model, relationships) {
+    switch (model.type) {
+      // If we're de-serializing an experience, ensure the field_scenes prop
+      // is an object keyed by scene slugs.
+      case 'node--experience': {
+        /* eslint-disable-next-line no-param-reassign */
+        model.scenes = {};
+        if (
+          relationships.field_scenes &&
+          relationships.field_scenes.length > 0
+        ) {
+          relationships.field_scenes.forEach(scene => {
+            /* eslint-disable-next-line no-param-reassign */
+            model.scenes[scene.field_slug] = scene;
+          });
+        }
+        break;
+      }
+      // If we're de-serializing a scene, ensure the field_components prop is
+      // an object keyed by the component's id.
+      case 'node--scene': {
+        /* eslint-disable-next-line no-param-reassign */
+        model.components = {};
+        if (
+          relationships.field_components &&
+          relationships.field_components.length > 0
+        ) {
+          relationships.field_components.forEach(component => {
+            /* eslint-disable-next-line no-param-reassign */
+            model.components[component.id] = component;
+          });
+        }
+        break;
+      }
+      default:
+        break;
+    }
+
+    super.setRelationships(model, relationships);
+  }
+}
 
 /**
  * Creates an Axios instance configured to connect to the EditVR API.
@@ -74,7 +120,9 @@ const axiosInstance = (
       }
 
       if (format === 'jsonapi') {
-        const formatter = new Jsona();
+        const formatter = new Jsona({
+          jsonPropertiesMapper: new EditVRJsonPropertiesMapper()
+        });
         r = formatter.deserialize(r);
       }
 

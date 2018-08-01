@@ -27,11 +27,11 @@ describe('<SceneForm />', () => {
       openExperience: {
         item: {
           field_experience_path: 'test',
-          field_scenes: [
-            {
+          scenes: {
+            test: {
               id: '10'
             }
-          ]
+          }
         }
       }
     });

@@ -16,8 +16,6 @@ import {
   OPEN_EXPERIENCE_COMPONENT_EDIT
 } from '../../constants';
 import { Message } from '../';
-import parseSceneFromExperience from '../../lib/parseSceneFromExperience';
-import parseComponentFromScene from '../../lib/parseComponentFromScene';
 import ComponentFormStyles from './ComponentForm.style';
 
 class ComponentForm extends Component {
@@ -71,27 +69,39 @@ class ComponentForm extends Component {
   };
 
   /**
+   * {@inheritdoc}
+   */
+  componentWillUnmount() {
+    clearTimeout(this.inputTimeout);
+  }
+
+  inputTimeout = null;
+
+  /**
    * Dispatches an action that updates the component's state.
    *
    * @param {string} fieldName - Name of field to be updated.
    * @param {string} fieldValue - New value for {fieldName}.
    */
   presaveField = (fieldName, fieldValue) => {
-    const {
-      dispatch,
-      selectedComponent,
-      match: {
-        params: { sceneSlug }
-      }
-    } = this.props;
+    clearTimeout(this.inputTimeout);
+    this.inputTimeout = setTimeout(() => {
+      const {
+        dispatch,
+        selectedComponent,
+        match: {
+          params: { sceneSlug }
+        }
+      } = this.props;
 
-    dispatch({
-      type: OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
-      sceneSlug,
-      component: selectedComponent,
-      fieldName,
-      fieldValue
-    });
+      dispatch({
+        type: OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
+        sceneSlug,
+        component: selectedComponent,
+        fieldName,
+        fieldValue
+      });
+    }, 200);
   };
 
   /**
@@ -234,8 +244,8 @@ const FormikComponentForm = withFormik({
       },
       selectedComponent
     } = props;
-    const scene = parseSceneFromExperience(experience, sceneSlug);
-    const component = parseComponentFromScene(scene, selectedComponent);
+    const scene = experience.scenes ? experience.scenes[sceneSlug] : null;
+    const component = scene ? scene.components[selectedComponent] : null;
 
     const values = {
       title: '',
