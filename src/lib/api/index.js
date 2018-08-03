@@ -12,7 +12,7 @@ import {
 } from './experiences';
 import { sceneCreate, sceneEdit } from './scene';
 import { fileImageCreate, fileVideoCreate, fileCreate } from './file';
-import { componentEdit } from './component';
+import { componentEdit, componentCreate } from './component';
 
 import {
   openExperienceFetchForUser,
@@ -27,6 +27,7 @@ export {
   experiencesCreate,
   sceneCreate,
   sceneEdit,
+  componentCreate,
   componentEdit,
   experiencesEdit,
   openExperienceFetchForUser,

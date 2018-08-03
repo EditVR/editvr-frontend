@@ -86,7 +86,7 @@ const dialogPopupContainer = {
         dialogBoxColor: '#127218',
         active: true,
         openIconImage,
-        closeIconImage,
+        closeIconImage
       };
 
       if (editorMode === MODE_COMPONENT_PLACING) {
