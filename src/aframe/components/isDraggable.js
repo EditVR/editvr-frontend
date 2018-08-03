@@ -24,9 +24,10 @@ const isDraggable = {
   targetEl: null,
   init() {
     this.el.addEventListener('loaded', () => {
-      if (this.data.target.length > 0) {
-        this.targetEl = this.el.querySelector(`#${this.data.target}`);
-      }
+      this.targetEl =
+        this.data.target.length > 0
+          ? this.el.querySelector(`#${this.data.target}`)
+          : this.el;
       this.updateDraggable();
     });
   },

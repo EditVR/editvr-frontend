@@ -85,9 +85,7 @@ const spawnDialogs = {
           e.setAttribute('uuid', component.id);
           e.setAttribute('look-at', '#camera');
           e.setAttribute('is-editable', true);
-          e.setAttribute('is-draggable', {
-            target: `component--${component.id}--open-icon`
-          });
+          e.setAttribute('is-draggable', true);
           e.setAttribute('dialog-popup-container', true);
           this.el.appendChild(e);
           this.dialogs.push(e);
