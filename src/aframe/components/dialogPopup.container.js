@@ -6,11 +6,11 @@
 /* globals AFRAME */
 import { equals } from 'ramda';
 
-import openIconImage from '../../assets/icons/info.jpg';
-import closeIconImage from '../../assets/icons/close.jpg';
-
+import { MODE_COMPONENT_PLACING } from '../../constants';
 import connectRedux from '../utils/connectRedux';
 import connectRouter from '../utils/connectRouter';
+import openIconImage from '../../assets/icons/info.jpg';
+import closeIconImage from '../../assets/icons/close.jpg';
 
 /**
  * AFrame component that spawns dialog components whenever it's initialized,
@@ -62,7 +62,7 @@ const dialogPopupContainer = {
       },
       router: {
         match: {
-          params: { sceneSlug }
+          params: { sceneSlug, editorMode }
         }
       }
     } = this;
@@ -84,9 +84,14 @@ const dialogPopupContainer = {
         bodyColor: 'white',
         bodyFont: 'roboto',
         dialogBoxColor: '#127218',
+        active: true,
         openIconImage,
-        closeIconImage
+        closeIconImage,
       };
+
+      if (editorMode === MODE_COMPONENT_PLACING) {
+        dialogPopup.active = false;
+      }
 
       if (component.field_image) {
         const {
@@ -112,7 +117,7 @@ AFRAME.registerComponent(
   }))(
     connectRouter(
       dialogPopupContainer,
-      '/experience/vreditor/:experienceSlug/:sceneSlug'
+      '/experience/vreditor/:experienceSlug/:sceneSlug/:editorMode?'
     )
   )
 );
