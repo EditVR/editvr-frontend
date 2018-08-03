@@ -5,7 +5,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withStyles, Grid, Typography, Button } from '@material-ui/core';
 import { AddBox, OpenWith, TouchApp, PanTool } from '@material-ui/icons';
 
@@ -13,7 +13,8 @@ import {
   SceneCards,
   SceneForm,
   ToolsMenu,
-  ComponentForm
+  ComponentForm,
+  Loading
 } from '../../components';
 import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
@@ -100,13 +101,11 @@ class VREditor extends Component {
       classes
     } = this.props;
 
-    // If no experience is provided, redirect to the dashboard.
     if (!experience) {
-      return <Redirect to="/dashboard" />;
+      return <Loading />;
     }
 
     const { title, field_experience_path: path, scenes } = experience;
-
     const scene = sceneSlug && scenes ? scenes[sceneSlug] : null;
     // TODO: The logic for determining what to render in the main and right
     // columns should likely be extracted from this file and placed into another
