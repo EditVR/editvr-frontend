@@ -225,7 +225,7 @@ export function* openExperienceComponentCreate({
       yield put({
         type: `${OPEN_EXPERIENCE_COMPONENT_CREATE}_SUCCESS`,
         payload: {
-          ...component,
+          component,
           sceneSlug: scene.field_slug
         }
       });
