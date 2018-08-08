@@ -15,14 +15,16 @@ import {
   OPEN_EXPERIENCE_SCENE_CREATE,
   OPEN_EXPERIENCE_SCENE_EDIT,
   OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
-  OPEN_EXPERIENCE_COMPONENT_EDIT
+  OPEN_EXPERIENCE_COMPONENT_EDIT,
+  OPEN_EXPERIENCE_COMPONENT_CREATE
 } from '../constants';
 import {
   openExperienceFetchForUser,
   openExperienceSceneCreate,
   openExperienceSceneEdit,
   openExperienceComponentFieldPresave,
-  openExperienceComponentEdit
+  openExperienceComponentEdit,
+  openExperienceComponentCreate
 } from './openExperience';
 import {
   openExperienceFetchForUser as getOpenExperienceForUser,
@@ -30,7 +32,9 @@ import {
   fileCreate,
   sceneCreate,
   sceneEdit,
-  componentEdit
+  componentEdit,
+  componentCreate,
+  sceneAttachComponent
 } from '../lib/api';
 
 describe('actions->openExperience', () => {
@@ -200,6 +204,63 @@ describe('actions->openExperience', () => {
         type: `${OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE}_SUCCESS`,
         payload
       })
+      .next()
+      .isDone();
+  });
+
+  it('openExperience->openExperienceComponentCreate', () => {
+    const successHandler = jest.fn();
+    const componentType = 'panelimage';
+    const newComponent = {
+      id: '20'
+    };
+    const scene = {
+      id: '10',
+      field_slug: 'test',
+      components: {}
+    };
+    const fields = {
+      field_body: 'test body',
+      title: 'test title',
+      field_x: 0,
+      field_y: 0,
+      field_z: 0
+    };
+    const user = {
+      authentication: { accessToken: 'test', csrfToken: 'test' }
+    };
+
+    testSaga(openExperienceComponentCreate, {
+      scene,
+      componentType,
+      fields,
+      successHandler,
+      user
+    })
+      .next()
+      .put(resetLoading())
+      .next()
+      .put(showLoading())
+      .next()
+      .put({
+        type: `${OPEN_EXPERIENCE_COMPONENT_CREATE}_LOADING`
+      })
+      .next()
+      .call(componentCreate, componentType, fields, user)
+      .next(newComponent)
+      .call(sceneAttachComponent, scene, newComponent.id, user)
+      .next()
+      .put({
+        type: `${OPEN_EXPERIENCE_COMPONENT_CREATE}_SUCCESS`,
+        payload: {
+          component: newComponent,
+          sceneSlug: scene.field_slug
+        }
+      })
+      .next()
+      .call(successHandler)
+      .next()
+      .put(hideLoading())
       .next()
       .isDone();
   });
