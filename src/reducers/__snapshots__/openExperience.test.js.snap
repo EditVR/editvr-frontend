@@ -1,5 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_COMPONENT_CREATE_FAIL 1`] = `
+Object {
+  "error": "Error: failed to create component.",
+  "item": null,
+  "loading": false,
+}
+`;
+
+exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_COMPONENT_CREATE_LOADING 1`] = `
+Object {
+  "error": null,
+  "item": null,
+  "loading": true,
+}
+`;
+
+exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_COMPONENT_CREATE_SUCCESS 1`] = `
+Object {
+  "error": null,
+  "item": Object {
+    "scenes": Object {
+      "testScene": Object {
+        "components": Object {
+          "10": Object {
+            "id": "10",
+          },
+        },
+        "field_slug": "testScene",
+      },
+    },
+  },
+  "loading": false,
+}
+`;
+
 exports[`reducers->openExperience Should handle OPEN_EXPERIENCE_COMPONENT_EDIT_FAIL 1`] = `
 Object {
   "error": "Error: failed to update component.",
