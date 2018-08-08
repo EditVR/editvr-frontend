@@ -4,6 +4,8 @@
  */
 
 import React from 'react';
+import configureStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
 import { MemoryRouter as Router, Route } from 'react-router-dom';
 import { createMount } from '@material-ui/core/test-utils';
 
@@ -14,14 +16,37 @@ const ThemedToolsMenu = ThemeProvider(ToolsMenu);
 
 describe('<ToolsMenu />', () => {
   it('Matches its snapshot', () => {
+    const store = configureStore()({
+      user: {
+        authentication: {
+          accessToken: 'test',
+          csrfToken: 'test'
+        }
+      },
+      openExperience: {
+        item: {
+          title: 'test',
+          field_experience_path: 'test',
+          scenes: {
+            test: {
+              id: '10',
+              field_slug: 'test'
+            }
+          }
+        }
+      }
+    });
+
     expect(
       createMount()(
-        <Router initialEntries={['/experience/vreditor/test/test']}>
-          <Route
-            path="/experience/vreditor/:experienceSlug/:sceneSlug?"
-            component={ThemedToolsMenu}
-          />
-        </Router>
+        <Provider store={store}>
+          <Router initialEntries={['/experience/vreditor/test/test']}>
+            <Route
+              path="/experience/vreditor/:experienceSlug/:sceneSlug?"
+              component={ThemedToolsMenu}
+            />
+          </Router>
+        </Provider>
       ).html()
     ).toMatchSnapshot();
   });

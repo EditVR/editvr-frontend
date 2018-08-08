@@ -159,11 +159,14 @@ export const sceneAttachComponent = async (
     }
   };
 
-  return axiosInstance(authentication).patch(`${API_ENDPOINT_SCENE}/${scene.id}`, {
-    data: {
-      type: API_TYPE_SCENE,
-      id: scene.id,
-      relationships,
+  return axiosInstance(authentication).patch(
+    `${API_ENDPOINT_SCENE}/${scene.id}`,
+    {
+      data: {
+        type: API_TYPE_SCENE,
+        id: scene.id,
+        relationships
+      }
     }
-  });
-}
+  );
+};

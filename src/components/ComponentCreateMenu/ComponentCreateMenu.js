@@ -7,7 +7,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Menu, MenuItem, Button } from '@material-ui/core';
+import { Menu, MenuItem } from '@material-ui/core';
 
 import {
   OPEN_EXPERIENCE_COMPONENT_CREATE,
@@ -18,7 +18,27 @@ class ComponentCreateMenu extends Component {
   static propTypes = {
     anchorElement: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     handleClose: PropTypes.func,
-    depthIndex: PropTypes.number
+    depthIndex: PropTypes.number,
+    dispatch: PropTypes.func.isRequired,
+    experience: PropTypes.shape({
+      scenes: PropTypes.objectOf(
+        PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          field_slug: PropTypes.string.isRequired
+        })
+      )
+    }).isRequired,
+    user: PropTypes.shape({
+      authentication: PropTypes.shape({
+        accessToken: PropTypes.string.isRequired,
+        csrfToken: PropTypes.string.isRequired
+      }).isRequired
+    }).isRequired,
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        sceneSlug: PropTypes.string.isRequired
+      }).isRequired
+    }).isRequired
   };
 
   static defaultProps = {
@@ -50,7 +70,7 @@ class ComponentCreateMenu extends Component {
         params: { sceneSlug }
       }
     } = this.props;
-    console.log(experience);
+
     const scene = experience.scenes[sceneSlug];
     const { x: field_x, y: field_y, z: field_z } = this.getCameraPosition();
     dispatch({

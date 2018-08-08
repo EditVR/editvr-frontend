@@ -19,13 +19,11 @@ import { ComponentCreateMenu } from '../';
 
 class ToolsMenu extends Component {
   state = {
-    componentMenuIsOpen: false
+    componentMenuAnchor: false
   };
 
   /**
    * Helper method that opens the component menu.
-   *
-   * @param {object} event - Object of event spawned to call this method.
    */
   openComponentMenu = event => {
     this.setState({ componentMenuAnchor: event.currentTarget });
@@ -34,7 +32,7 @@ class ToolsMenu extends Component {
   /**
    * Helper method that closes the component menu.
    */
-  closeComponentMenu = event => {
+  closeComponentMenu = () => {
     this.setState({ componentMenuAnchor: false });
   };
 
