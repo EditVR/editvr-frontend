@@ -20,7 +20,8 @@ import {
   sceneCreate,
   sceneEdit,
   componentEdit,
-  componentCreate
+  componentCreate,
+  sceneAttachComponent
 } from '../lib/api';
 import actionGenerator from '../lib/actionGenerator';
 
@@ -191,7 +192,7 @@ export function* openExperienceSceneEdit({
  *   Type of component that's being created. (constant COMPONENT_TYPE_DIALOG).
  * @param {object} payload.fields
  *   Object who's keys are field names, and values are new values for the field.
- * @param {string} payload.sceneSlug
+ * @param {object} payload.scene
  *   Slug of scene in which this component is located.
  * @param {object} payload.user
  *   Object containing user data.
@@ -205,7 +206,7 @@ export function* openExperienceSceneEdit({
  *   Function to be executed if/when this action succeeds.
  */
 export function* openExperienceComponentCreate({
-  sceneSlug,
+  scene,
   componentType,
   user,
   fields,
@@ -220,11 +221,12 @@ export function* openExperienceComponentCreate({
         fields,
         user
       );
+      yield call(sceneAttachComponent, scene, component.id, user);
       yield put({
         type: `${OPEN_EXPERIENCE_COMPONENT_CREATE}_SUCCESS`,
         payload: {
           ...component,
-          sceneSlug
+          sceneSlug: scene.field_slug
         }
       });
     },

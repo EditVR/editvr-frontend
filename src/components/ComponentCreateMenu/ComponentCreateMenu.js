@@ -45,10 +45,13 @@ class ComponentCreateMenu extends Component {
       user,
       handleClose,
       dispatch,
+      experience,
       match: {
         params: { sceneSlug }
       }
     } = this.props;
+    console.log(experience);
+    const scene = experience.scenes[sceneSlug];
     const { x: field_x, y: field_y, z: field_z } = this.getCameraPosition();
     dispatch({
       type: OPEN_EXPERIENCE_COMPONENT_CREATE,
@@ -61,7 +64,7 @@ class ComponentCreateMenu extends Component {
         field_y,
         field_z
       },
-      sceneSlug,
+      scene,
       successHandler: () => {
         handleClose();
       }

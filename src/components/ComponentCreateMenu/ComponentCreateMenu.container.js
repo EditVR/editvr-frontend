@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapState = ({ user, openExperience }) => ({
   user,
-  experience: openExperience
+  experience: openExperience.item
 });
 
 export default withRouter(
