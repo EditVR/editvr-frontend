@@ -84,6 +84,7 @@ class ComponentCreateMenu extends Component {
 
     // If this component is a dialog, add a default body.
     if (componentType === COMPONENT_TYPE_DIALOG) {
+      fields.title = 'Link';
       fields.field_body = 'Please create information text for this component.';
     }
 
