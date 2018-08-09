@@ -8,6 +8,7 @@ import { clientId } from '../../config';
 import axiosInstance from './axiosInstance';
 import {
   API_ENDPOINT_USER_LOGIN,
+  API_ENDPOINT_USER_REGISTER,
   API_ENDPOINT_XCSRF_TOKEN
 } from '../../constants';
 
@@ -28,6 +29,32 @@ export const getAccessToken = async (username, password) => {
       client_id: clientId,
       username,
       password
+    })
+  );
+
+  return {
+    accessToken: r.access_token || null,
+    refreshToken: r.refresh_token || null,
+    expiresIn: r.expires_in || null
+  };
+};
+
+/**
+ * Register a user account given by email and password.
+ *
+ * @param {string} email - Email of user to register.
+ * @param {string} password - Password of user to register.
+ *
+ * @returns {object} - Promise that resolves a token or error.
+ */
+export const registerUserAccount = async (email, password) => {
+  const instance = axiosInstance({}, false);
+  const r = await instance.post(
+    API_ENDPOINT_USER_REGISTER,
+    qs.stringify({
+      name: {value: email},
+      mail: {value: email},
+      pass: {value: password}
     })
   );
 
