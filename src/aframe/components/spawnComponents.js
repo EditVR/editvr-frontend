@@ -1,22 +1,23 @@
 /**
- * @file spawnDialogs.js
- * AFrame component responsible for spawning dialogs.
+ * @file spawnComponents.js
+ * AFrame component responsible for experience components.
  */
 
 /* globals AFRAME */
 
-import { forEachObjIndexed, filter } from 'ramda';
+import { forEachObjIndexed } from 'ramda';
 
+import { COMPONENT_TYPE_DIALOG, COMPONENT_TYPE_LINK } from '../../constants';
 import connectRedux from '../utils/connectRedux';
 import connectRouter from '../utils/connectRouter';
 
 /**
- * AFrame component that spawns dialog components whenever it's initialized,
+ * AFrame component that spawns experience components whenever it's initialized,
  * or whenever the current scene is changed.
  */
-const spawnDialogs = {
+const spawnComponents = {
   multiple: false,
-  dialogs: [],
+  components: [],
   init() {
     this.spawn();
   },
@@ -73,10 +74,10 @@ const spawnDialogs = {
     this.spawn();
   },
   deSpawn() {
-    this.dialogs.forEach(dialog => {
-      this.el.removeChild(dialog);
+    this.components.forEach(component => {
+      this.el.removeChild(component);
     });
-    this.dialogs = [];
+    this.components = [];
   },
   spawn() {
     // If there is no router or experience data, exit.
@@ -95,10 +96,6 @@ const spawnDialogs = {
 
     const scene = experience.scenes[sceneSlug] || null;
     if (scene) {
-      const dialogs = filter(
-        c => c.field_component_type === 'panelimage',
-        scene.components
-      );
       forEachObjIndexed(component => {
         const e = document.createElement('a-entity');
         e.setAttribute('id', `component--${component.id}`);
@@ -106,21 +103,32 @@ const spawnDialogs = {
         e.setAttribute('look-at', '#camera');
         e.setAttribute('is-editable', true);
         e.setAttribute('is-draggable', true);
-        e.setAttribute('dialog-popup-container', true);
+
+        switch (component.field_component_type) {
+          case COMPONENT_TYPE_DIALOG:
+            e.setAttribute('dialog-popup-container', true);
+            break;
+          case COMPONENT_TYPE_LINK:
+            e.setAttribute('simple-link-container', true);
+            break;
+          default:
+            break;
+        }
+
         this.el.appendChild(e);
-        this.dialogs.push(e);
-      }, dialogs);
+        this.components.push(e);
+      }, scene.components);
     }
   }
 };
 
 AFRAME.registerComponent(
-  'spawn-dialogs',
+  'spawn-components',
   connectRedux(state => ({
     experience: state.openExperience.item
   }))(
     connectRouter(
-      spawnDialogs,
+      spawnComponents,
       '/experience/vreditor/:experienceSlug/:sceneSlug'
     )
   )

@@ -4,7 +4,7 @@
  */
 
 import axiosInstance from './axiosInstance';
-import { API_ENDPOINT_COMPONENT, API_TYPE_COMPONENT } from '../../constants';
+import { API_ENDPOINT_COMPONENT, API_TYPE_SCENE, API_TYPE_COMPONENT, COMPONENT_TYPE_LINK, COMPONENT_TYPE_DIALOG } from '../../constants';
 
 /**
  * Creates a brand new component.
@@ -23,6 +23,8 @@ import { API_ENDPOINT_COMPONENT, API_TYPE_COMPONENT } from '../../constants';
  *   Y coordinate for this component's position.
  * @param {string} component.field_z
  *   Z coordinate for this component's position.
+ * @param {object} component.field_scene_link
+ *   Optional scene object that this component should link to.
  * @param {object} user
  *   Object containing information about the current user.
  * @param {object} user.authentication
@@ -34,23 +36,43 @@ import { API_ENDPOINT_COMPONENT, API_TYPE_COMPONENT } from '../../constants';
  */
 export const componentCreate = async (
   componentType,
-  { id, title, field_body, field_x, field_y, field_z },
+  { id, title, field_body = null, field_x, field_y, field_z, field_scene_link = null },
   { authentication }
-) =>
-  axiosInstance(authentication).post(API_ENDPOINT_COMPONENT, {
+) => {
+
+  const attributes = {
+    title,
+    field_component_type: componentType,
+    field_x,
+    field_y,
+    field_z
+  }
+
+  const relationships = {};
+
+  // If this is a link component, add the relationship to the destination scene.
+  if (componentType === COMPONENT_TYPE_LINK && field_scene_link) {
+    relationships.field_scene_link = {
+      type: API_TYPE_SCENE,
+      id: field_scene_link,
+    }
+  }
+
+  // If this is a dialog component, add the body field.
+  if (componentType === COMPONENT_TYPE_DIALOG) {
+    attributes.field_body = field_body;
+  }
+
+  return axiosInstance(authentication).post(API_ENDPOINT_COMPONENT, {
     data: {
       id,
       type: API_TYPE_COMPONENT,
-      attributes: {
-        title,
-        field_component_type: componentType,
-        field_body,
-        field_x,
-        field_y,
-        field_z
-      }
+      attributes,
+      relationships
     }
   });
+}
+
 /**
  * Takes updated component data and PATCHes it to the API.
  *

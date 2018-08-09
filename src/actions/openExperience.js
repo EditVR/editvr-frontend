@@ -192,6 +192,8 @@ export function* openExperienceSceneEdit({
  *   Type of component that's being created. (constant COMPONENT_TYPE_DIALOG).
  * @param {object} payload.fields
  *   Object who's keys are field names, and values are new values for the field.
+ * @param {object} payload.relationships
+ *   Optional object that should specify any relationships this component needs.
  * @param {object} payload.scene
  *   Slug of scene in which this component is located.
  * @param {object} payload.user
@@ -210,6 +212,7 @@ export function* openExperienceComponentCreate({
   componentType,
   user,
   fields,
+  relationships = {},
   successHandler = () => {}
 }) {
   yield* actionGenerator(
@@ -219,6 +222,7 @@ export function* openExperienceComponentCreate({
         componentCreate,
         componentType,
         fields,
+        relationships,
         user
       );
       yield call(sceneAttachComponent, scene, component.id, user);
