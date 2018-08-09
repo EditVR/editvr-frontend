@@ -84,12 +84,12 @@ class ComponentCreateMenu extends Component {
 
     // If this component is a dialog, add a default body.
     if (componentType === COMPONENT_TYPE_DIALOG) {
-      fields.title = 'Link';
       fields.field_body = 'Please create information text for this component.';
     }
 
     // If this component is a link, add a default destination.
     if (componentType === COMPONENT_TYPE_LINK) {
+      fields.title = 'Link';
       // Default destination is the last scene.
       const keys = Object.keys(scenes);
       fields.field_scene_link = scenes[keys[keys.length - 1]];
