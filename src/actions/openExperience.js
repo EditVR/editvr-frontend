@@ -212,7 +212,6 @@ export function* openExperienceComponentCreate({
   componentType,
   user,
   fields,
-  relationships = {},
   successHandler = () => {}
 }) {
   yield* actionGenerator(
@@ -222,7 +221,6 @@ export function* openExperienceComponentCreate({
         componentCreate,
         componentType,
         fields,
-        relationships,
         user
       );
       yield call(sceneAttachComponent, scene, component.id, user);

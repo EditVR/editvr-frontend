@@ -57,7 +57,7 @@ const simpleLinkContainer = {
 
     const {
       props: {
-        experience: { scenes, field_experience_path },
+        experience: { scenes, field_experience_path }
       },
       router: {
         match: {
@@ -73,12 +73,14 @@ const simpleLinkContainer = {
         field_y: y,
         field_z: z,
         title,
-        field_scene_link: { field_slug },
+        field_scene_link: { field_slug }
       } = component;
 
       const simpleLink = {
         title,
-        href: `/experience/vreditor/${field_experience_path}/${field_slug}`,
+        href: field_slug
+          ? `/experience/vreditor/${field_experience_path}/${field_slug}`
+          : null,
         image: navigateIcon,
         active: true
       };

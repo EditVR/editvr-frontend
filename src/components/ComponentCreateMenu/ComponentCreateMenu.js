@@ -79,10 +79,8 @@ class ComponentCreateMenu extends Component {
       title: 'New Component',
       field_x,
       field_y,
-      field_z,
+      field_z
     };
-
-    const relationships = {}
 
     // If this component is a dialog, add a default body.
     if (componentType === COMPONENT_TYPE_DIALOG) {
@@ -92,7 +90,8 @@ class ComponentCreateMenu extends Component {
     // If this component is a link, add a default destination.
     if (componentType === COMPONENT_TYPE_LINK) {
       // Default destination is the last scene.
-      relationships.field_scene_link = scenes[Object.keys(scenes).length - 1].id;
+      const keys = Object.keys(scenes);
+      fields.field_scene_link = scenes[keys[keys.length - 1]];
     }
 
     dispatch({
@@ -101,7 +100,6 @@ class ComponentCreateMenu extends Component {
       user,
       fields,
       scene,
-      relationships,
       successHandler: () => {
         handleClose();
       }
@@ -109,7 +107,11 @@ class ComponentCreateMenu extends Component {
   };
 
   render() {
-    const { anchorElement, handleClose, experience: { scenes } } = this.props;
+    const {
+      anchorElement,
+      handleClose,
+      experience: { scenes }
+    } = this.props;
 
     return (
       <Menu
@@ -117,8 +119,15 @@ class ComponentCreateMenu extends Component {
         open={Boolean(anchorElement)}
         onClose={handleClose}
       >
-        <MenuItem onClick={() => this.createComponent(COMPONENT_TYPE_DIALOG)}>Create a Dialog</MenuItem>
-        {scenes && Object.keys(scenes).length > 1 && <MenuItem onClick={() => this.createComponent(COMPONENT_TYPE_LINK)}>Create a Link</MenuItem>}
+        <MenuItem onClick={() => this.createComponent(COMPONENT_TYPE_DIALOG)}>
+          Create a Dialog
+        </MenuItem>
+        {scenes &&
+          Object.keys(scenes).length > 1 && (
+            <MenuItem onClick={() => this.createComponent(COMPONENT_TYPE_LINK)}>
+              Create a Link
+            </MenuItem>
+          )}
       </Menu>
     );
   }
