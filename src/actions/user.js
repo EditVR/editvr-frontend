@@ -62,7 +62,7 @@ export function* userLogOut() {
  */
 export function* userRegister({ username, email, password }) {
   yield* actionGenerator(USER_REGISTER, function* userRegisterHandler() {
-    const user = yield call(registerUserAccount, username, password);
+    const user = yield call(registerUserAccount, username, email, password);
     yield put({
       type: `${USER_REGISTER}_SUCCESS`,
       payload: {

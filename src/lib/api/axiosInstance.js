@@ -84,7 +84,7 @@ const axiosInstance = (
   format = 'jsonapi'
 ) => {
   const config = {
-    baseURL: `${apiURL}/${format || ''}`,
+    baseURL: apiURL,
     timeout: 30 * 1000,
     headers: {},
     withCredentials: false,
@@ -101,9 +101,16 @@ const axiosInstance = (
     config.headers['X-CSRF-Token'] = csrfToken;
   }
 
-  // If the format is set to jsonapi, add content-type headers.
+  // If the format is set to jsonapi, add content-type headers and adjust
+  // API's base path.
   if (format === 'jsonapi') {
+    config.baseURL = `${apiURL}/${format}`;
     config.headers['Content-Type'] = 'application/vnd.api+json';
+  }
+
+  // If the format is json, set the appropriate content type header.
+  if (format === 'json') {
+    config.headers['Content-Type'] = 'application/json';
   }
 
   // Generate an axios instance.
