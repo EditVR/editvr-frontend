@@ -18,5 +18,8 @@ export default theme => ({
     height: 0,
     // 16/9 ratio.
     paddingTop: '56.25%'
+  },
+  share: {
+    marginTop: theme.spacing.unit
   }
 });

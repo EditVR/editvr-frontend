@@ -16,7 +16,8 @@ import {
   CardActions,
   CardMedia,
   Button,
-  Tooltip
+  Tooltip,
+  TextField
 } from '@material-ui/core';
 import { OpenInBrowser, Edit } from '@material-ui/icons';
 
@@ -26,6 +27,7 @@ import parseSkyFromScene from '../../lib/parseSkyFromScene';
 
 const SceneCards = ({
   experience: { item: experience },
+  user: { username },
   classes,
   history: {
     location: { pathname: location }
@@ -44,6 +46,9 @@ const SceneCards = ({
         const editPath = `/experience/vreditor/${
           experience.field_experience_path
         }/${slug}/${MODE_SCENE_EDIT}`;
+        const sharePath = `${window.location.origin}/experience/${username}/${
+          experience.field_experience_path
+        }/${slug}`;
         const sky = parseSkyFromScene(scene, true);
 
         return (
@@ -72,6 +77,11 @@ const SceneCards = ({
                     ? body.value
                     : 'This scene does not yet have a description.'
                 }}
+              />
+              <TextField
+                className={classes.share}
+                label="Share Link"
+                value={sharePath}
               />
             </CardContent>
             <CardActions>
@@ -108,6 +118,9 @@ const SceneCards = ({
 
 SceneCards.propTypes = {
   classes: PropTypes.shape({}).isRequired,
+  user: PropTypes.shape({
+    username: PropTypes.string.isRequired
+  }).isRequired,
   experience: PropTypes.shape({
     item: PropTypes.shape({
       scenes: PropTypes.objectOf(

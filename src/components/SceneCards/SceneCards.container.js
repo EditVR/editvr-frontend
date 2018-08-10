@@ -12,8 +12,9 @@ const mapDispatchToProps = dispatch => ({
   dispatch
 });
 
-const mapState = ({ openExperience }) => ({
-  experience: openExperience
+const mapState = ({ openExperience, user }) => ({
+  experience: openExperience,
+  user
 });
 
 export default withRouter(connect(mapState, mapDispatchToProps)(SceneCards));
