@@ -7,9 +7,12 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withStyles, Button, Tooltip } from '@material-ui/core';
-import { OpenWith, TouchApp } from '@material-ui/icons';
+import { OpenWith, TouchApp, PanTool } from '@material-ui/icons';
 
-import { MODE_COMPONENT_SELECTING } from '../../constants';
+import {
+  MODE_COMPONENT_SELECTING,
+  MODE_COMPONENT_PLACING
+} from '../../constants';
 import ToolsMenuStyles from './ToolsMenu.style';
 
 const ToolsMenu = ({
@@ -24,6 +27,7 @@ const ToolsMenu = ({
   const basePath = `/experience/vreditor/${experienceSlug}`;
   const previewPath = `${basePath}/${sceneSlug !== 'scene' ? sceneSlug : ''}`;
   const selectingPath = `${basePath}/${sceneSlug}/${MODE_COMPONENT_SELECTING}`;
+  const placingPath = `${basePath}/${sceneSlug}/${MODE_COMPONENT_PLACING}`;
 
   if (!sceneSlug || sceneSlug === 'scene') {
     return null;
@@ -53,6 +57,21 @@ const ToolsMenu = ({
           to={selectingPath}
         >
           <TouchApp />
+        </Button>
+      </Tooltip>
+      <Tooltip
+        title="Position components by dragging and dropping them"
+        placement="right-start"
+      >
+        <Button
+          className={classes.toolButton}
+          variant="fab"
+          component={Link}
+          disabled={location === placingPath}
+          color="primary"
+          to={placingPath}
+        >
+          <PanTool />
         </Button>
       </Tooltip>
     </Fragment>

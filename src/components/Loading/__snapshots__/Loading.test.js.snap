@@ -17,11 +17,10 @@ exports[`<Loading /> Matches its snapshot 1`] = `
       style={Object {}}
     />
   </div>
-  <p
-    className="MuiTypography-root-20 MuiTypography-body1-29 Loading-title-3"
-    type="display1"
+  <h1
+    className="MuiTypography-root-20 MuiTypography-headline-25 Loading-title-3"
   >
     Loading...
-  </p>
+  </h1>
 </div>
 `;

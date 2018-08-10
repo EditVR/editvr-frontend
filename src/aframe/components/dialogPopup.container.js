@@ -6,11 +6,11 @@
 /* globals AFRAME */
 import { equals } from 'ramda';
 
-import openIconImage from '../../assets/icons/info.jpg';
-import closeIconImage from '../../assets/icons/close.jpg';
-
+import { MODE_COMPONENT_PLACING } from '../../constants';
 import connectRedux from '../utils/connectRedux';
 import connectRouter from '../utils/connectRouter';
+import openIconImage from '../../assets/icons/info.jpg';
+import closeIconImage from '../../assets/icons/close.jpg';
 
 /**
  * AFrame component that spawns dialog components whenever it's initialized,
@@ -18,7 +18,9 @@ import connectRouter from '../utils/connectRouter';
  */
 const dialogPopupContainer = {
   multiple: true,
+  uuid: null,
   init() {
+    this.uuid = this.el.getAttribute('uuid');
     this.render();
   },
   didReceiveProps() {
@@ -37,15 +39,15 @@ const dialogPopupContainer = {
     } = this;
 
     const {
-      experience: { scenes: oldScenes },
+      experience: { scenes: oldScenes }
     } = oldProps;
 
     const {
-      experience: { scenes: newScenes },
+      experience: { scenes: newScenes }
     } = newProps;
 
-    const oldComponent = oldScenes[sceneSlug].components[this.el.getAttribute('id')] || null;
-    const newComponent = newScenes[sceneSlug].components[this.el.getAttribute('id')] || null;
+    const oldComponent = oldScenes[sceneSlug].components[this.uuid] || null;
+    const newComponent = newScenes[sceneSlug].components[this.uuid] || null;
     return !equals(oldComponent, newComponent);
   },
   render() {
@@ -55,17 +57,25 @@ const dialogPopupContainer = {
     }
 
     const {
-      props: { experience: { scenes } },
+      props: {
+        experience: { scenes }
+      },
       router: {
         match: {
-          params: { sceneSlug }
+          params: { sceneSlug, editorMode }
         }
       }
     } = this;
 
-    const component = scenes[sceneSlug].components[this.el.getAttribute('id')] || null;
+    const component = scenes[sceneSlug].components[this.uuid] || null;
     if (component) {
-      const { field_x: x, field_y: y, field_z: z, title, field_body: body } = component;
+      const {
+        field_x: x,
+        field_y: y,
+        field_z: z,
+        title,
+        field_body: body
+      } = component;
       const dialogPopup = {
         title,
         titleColor: 'white',
@@ -74,9 +84,14 @@ const dialogPopupContainer = {
         bodyColor: 'white',
         bodyFont: 'roboto',
         dialogBoxColor: '#127218',
+        active: true,
         openIconImage,
         closeIconImage,
       };
+
+      if (editorMode === MODE_COMPONENT_PLACING) {
+        dialogPopup.active = false;
+      }
 
       if (component.field_image) {
         const {
@@ -93,7 +108,7 @@ const dialogPopupContainer = {
       this.el.setAttribute('dialog-popup', dialogPopup);
     }
   }
-}
+};
 
 AFRAME.registerComponent(
   'dialog-popup-container',
@@ -102,7 +117,7 @@ AFRAME.registerComponent(
   }))(
     connectRouter(
       dialogPopupContainer,
-      '/experience/vreditor/:experienceSlug/:sceneSlug'
+      '/experience/vreditor/:experienceSlug/:sceneSlug/:editorMode?'
     )
   )
 );

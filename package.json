@@ -68,6 +68,7 @@
     "aframe-look-at-component": "^0.6.0",
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
+    "deep-equal": "^1.0.1",
     "formik": "^0.11.11",
     "history": "^4.7.2",
     "jsona": "^1.1.10",

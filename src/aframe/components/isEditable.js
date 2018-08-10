@@ -12,7 +12,7 @@ import connectRouter from '../utils/connectRouter';
 const isEditable = {
   multiple: true,
   clickHandler() {
-    const id = this.el.getAttribute('id');
+    const id = this.el.getAttribute('uuid');
     const { dispatch } = this.props;
     const {
       match: {

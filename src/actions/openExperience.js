@@ -203,20 +203,12 @@ export function* openExperienceComponentFieldPresave(payload) {
  *   Payload for this saga action.
  * @param {string} payload.id
  *   ID of this component.
+ * @param {object} payload.fields
+ *   Object who's keys are field names, and values are new values for the field.
  * @param {string} payload.sceneSlug
  *   Slug of scene in which this component is located.
- * @param {string} payload.title
- *   Title of this component.
- * @param {string} payload.field_body
- *   Body describing this component.
  * @param {object} payload.user
  *   Object containing user data.
- * @param {string} payload.field_x
- *   X coordinate for this component's position.
- * @param {string} payload.field_y
- *   Y coordinate for this component's position.
- * @param {string} payload.field_z
- *   Z coordinate for this component's position.
  * @param {object} payload.user.authentication
  *   Object containing auth data.
  * @param {string} payload.user.authentication.accessToken
@@ -230,11 +222,7 @@ export function* openExperienceComponentEdit({
   id,
   sceneSlug,
   user,
-  title,
-  field_body = '',
-  field_x,
-  field_y,
-  field_z,
+  fields,
   successHandler = () => {}
 }) {
   yield* actionGenerator(
@@ -242,11 +230,7 @@ export function* openExperienceComponentEdit({
     function* openExperienceComponentEditHandler() {
       const payload = {
         id,
-        title,
-        field_body,
-        field_x,
-        field_y,
-        field_z
+        ...fields
       };
 
       const component = yield call(componentEdit, payload, user);
