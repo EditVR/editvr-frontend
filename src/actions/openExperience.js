@@ -9,6 +9,7 @@ import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
   OPEN_EXPERIENCE_SCENE_CREATE,
   OPEN_EXPERIENCE_SCENE_EDIT,
+  OPEN_EXPERIENCE_COMPONENT_CREATE,
   OPEN_EXPERIENCE_COMPONENT_EDIT,
   OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE
 } from '../constants';
@@ -18,7 +19,9 @@ import {
   fileCreate,
   sceneCreate,
   sceneEdit,
-  componentEdit
+  componentEdit,
+  componentCreate,
+  sceneAttachComponent
 } from '../lib/api';
 import actionGenerator from '../lib/actionGenerator';
 
@@ -181,6 +184,57 @@ export function* openExperienceSceneEdit({
 }
 
 /**
+ * Dispatches an action that creates a new component.
+ *
+ * @param {object} payload
+ *   Payload for this saga action.
+ * @param {object} payload.componentType
+ *   Type of component that's being created. (constant COMPONENT_TYPE_DIALOG).
+ * @param {object} payload.fields
+ *   Object who's keys are field names, and values are new values for the field.
+ * @param {object} payload.scene
+ *   Slug of scene in which this component is located.
+ * @param {object} payload.user
+ *   Object containing user data.
+ * @param {object} payload.user.authentication
+ *   Object containing auth data.
+ * @param {string} payload.user.authentication.accessToken
+ *   Access token for the current user.
+ * @param {string} payload.user.authentication.csrfToken
+ *   CSRF token for the current user.
+ * @param {function} payload.successHandler
+ *   Function to be executed if/when this action succeeds.
+ */
+export function* openExperienceComponentCreate({
+  scene,
+  componentType,
+  user,
+  fields,
+  successHandler = () => {}
+}) {
+  yield* actionGenerator(
+    OPEN_EXPERIENCE_COMPONENT_CREATE,
+    function* openExperienceComponentCreateHandler() {
+      const component = yield call(
+        componentCreate,
+        componentType,
+        fields,
+        user
+      );
+      yield call(sceneAttachComponent, scene, component.id, user);
+      yield put({
+        type: `${OPEN_EXPERIENCE_COMPONENT_CREATE}_SUCCESS`,
+        payload: {
+          component,
+          sceneSlug: scene.field_slug
+        }
+      });
+    },
+    successHandler
+  );
+}
+
+/**
  * Handles pre-saving a component within the current openExperience.
  *
  * @param {object} payload - Payload for this saga action.
@@ -250,6 +304,10 @@ export function* watchOpenExperienceActions() {
   yield takeLatest(OPEN_EXPERIENCE_FETCH_FOR_USER, openExperienceFetchForUser);
   yield takeLatest(OPEN_EXPERIENCE_SCENE_CREATE, openExperienceSceneCreate);
   yield takeLatest(OPEN_EXPERIENCE_SCENE_EDIT, openExperienceSceneEdit);
+  yield takeLatest(
+    OPEN_EXPERIENCE_COMPONENT_CREATE,
+    openExperienceComponentCreate
+  );
   yield takeLatest(
     OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
     openExperienceComponentFieldPresave

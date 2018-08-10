@@ -9,7 +9,8 @@ import {
   OPEN_EXPERIENCE_SCENE_CREATE,
   OPEN_EXPERIENCE_SCENE_EDIT,
   OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
-  OPEN_EXPERIENCE_COMPONENT_EDIT
+  OPEN_EXPERIENCE_COMPONENT_EDIT,
+  OPEN_EXPERIENCE_COMPONENT_CREATE
 } from '../constants';
 
 /**
@@ -171,7 +172,7 @@ export default function openExperiences(state = defaultState, action) {
     }
 
     /**
-     * Reducer that handles component field edits.
+     * Reducer that handles component edits.
      */
     case `${OPEN_EXPERIENCE_COMPONENT_EDIT}_SUCCESS`: {
       const {
@@ -201,9 +202,47 @@ export default function openExperiences(state = defaultState, action) {
     }
 
     /**
-     * Reducer that handles component field edit failure.
+     * Reducer that handles component edit failure.
      */
     case `${OPEN_EXPERIENCE_COMPONENT_EDIT}_FAIL`: {
+      return {
+        loading: false,
+        error: action.payload.error,
+        item: state.item
+      };
+    }
+
+    /**
+     * Reducer that handles component creation loading.
+     */
+    case `${OPEN_EXPERIENCE_COMPONENT_CREATE}_LOADING`: {
+      return {
+        loading: true,
+        error: null,
+        item: state.item
+      };
+    }
+
+    /**
+     * Reducer that handles component creation success.
+     */
+    case `${OPEN_EXPERIENCE_COMPONENT_CREATE}_SUCCESS`: {
+      const { component, sceneSlug } = action.payload;
+
+      const newItem = clone(state.item);
+      newItem.scenes[sceneSlug].components[component.id] = component;
+
+      return {
+        loading: false,
+        error: null,
+        item: newItem
+      };
+    }
+
+    /**
+     * Reducer that handles component creation failure.
+     */
+    case `${OPEN_EXPERIENCE_COMPONENT_CREATE}_FAIL`: {
       return {
         loading: false,
         error: action.payload.error,

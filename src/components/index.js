@@ -12,6 +12,7 @@ import Loading from './Loading/Loading';
 import Message from './Message/Message';
 import SceneCards from './SceneCards/SceneCards.container';
 import ToolsMenu from './ToolsMenu/ToolsMenu.container';
+import ComponentCreateMenu from './ComponentCreateMenu/ComponentCreateMenu.container';
 
 export {
   App,
@@ -21,6 +22,7 @@ export {
   Message,
   SceneCards,
   ToolsMenu,
+  ComponentCreateMenu,
   SceneForm,
   ComponentForm
 };

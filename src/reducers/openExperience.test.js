@@ -10,7 +10,8 @@ import {
   OPEN_EXPERIENCE_SCENE_CREATE,
   OPEN_EXPERIENCE_SCENE_EDIT,
   OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
-  OPEN_EXPERIENCE_COMPONENT_EDIT
+  OPEN_EXPERIENCE_COMPONENT_EDIT,
+  OPEN_EXPERIENCE_COMPONENT_CREATE
 } from '../constants';
 
 describe('reducers->openExperience', () => {
@@ -227,6 +228,57 @@ describe('reducers->openExperience', () => {
             field_x: 0,
             field_y: 0,
             field_z: 0
+          }
+        }
+      )
+    ).toMatchSnapshot();
+  });
+
+  it(`Should handle ${OPEN_EXPERIENCE_COMPONENT_CREATE}_LOADING`, () => {
+    expect(
+      reducer(undefined, {
+        type: `${OPEN_EXPERIENCE_COMPONENT_CREATE}_LOADING`,
+        loading: true,
+        error: null,
+        payload: {}
+      })
+    ).toMatchSnapshot();
+  });
+
+  it(`Should handle ${OPEN_EXPERIENCE_COMPONENT_CREATE}_FAIL`, () => {
+    const error = 'Error: failed to create component.';
+    expect(
+      reducer(undefined, {
+        type: `${OPEN_EXPERIENCE_COMPONENT_CREATE}_FAIL`,
+        loading: false,
+        payload: { error }
+      })
+    ).toMatchSnapshot();
+  });
+
+  it(`Should handle ${OPEN_EXPERIENCE_COMPONENT_CREATE}_SUCCESS`, () => {
+    const sceneSlug = 'testScene';
+    expect(
+      reducer(
+        {
+          item: {
+            scenes: {
+              [sceneSlug]: {
+                field_slug: sceneSlug,
+                components: {}
+              }
+            }
+          }
+        },
+        {
+          type: `${OPEN_EXPERIENCE_COMPONENT_CREATE}_SUCCESS`,
+          loading: false,
+          error: null,
+          payload: {
+            sceneSlug,
+            component: {
+              id: '10'
+            }
           }
         }
       )

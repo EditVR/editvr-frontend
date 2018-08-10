@@ -5,6 +5,8 @@
 
 /* globals AFRAME */
 
+import { forEachObjIndexed, filter } from 'ramda';
+
 import connectRedux from '../utils/connectRedux';
 import connectRouter from '../utils/connectRouter';
 
@@ -44,12 +46,30 @@ const spawnDialogs = {
       return true;
     }
 
+    const {
+      router: {
+        match: {
+          params: { sceneSlug }
+        }
+      }
+    } = this;
+
+    // If a new component has been added to the scene, update.
+    if (
+      Object.keys(oldProps.experience.scenes[sceneSlug].components).length !==
+      Object.keys(newProps.experience.scenes[sceneSlug].components).length
+    ) {
+      return true;
+    }
+
     return false;
   },
   didReceiveProps() {
+    this.deSpawn();
     this.spawn();
   },
   didReceiveRoute() {
+    this.deSpawn();
     this.spawn();
   },
   deSpawn() {
@@ -64,8 +84,6 @@ const spawnDialogs = {
       return;
     }
 
-    this.deSpawn();
-
     const {
       props: { experience },
       router: {
@@ -77,19 +95,21 @@ const spawnDialogs = {
 
     const scene = experience.scenes[sceneSlug] || null;
     if (scene) {
-      scene.field_components
-        .filter(c => c.field_component_type === 'panelimage')
-        .forEach(component => {
-          const e = document.createElement('a-entity');
-          e.setAttribute('id', `component--${component.id}`);
-          e.setAttribute('uuid', component.id);
-          e.setAttribute('look-at', '#camera');
-          e.setAttribute('is-editable', true);
-          e.setAttribute('is-draggable', true);
-          e.setAttribute('dialog-popup-container', true);
-          this.el.appendChild(e);
-          this.dialogs.push(e);
-        });
+      const dialogs = filter(
+        c => c.field_component_type === 'panelimage',
+        scene.components
+      );
+      forEachObjIndexed(component => {
+        const e = document.createElement('a-entity');
+        e.setAttribute('id', `component--${component.id}`);
+        e.setAttribute('uuid', component.id);
+        e.setAttribute('look-at', '#camera');
+        e.setAttribute('is-editable', true);
+        e.setAttribute('is-draggable', true);
+        e.setAttribute('dialog-popup-container', true);
+        this.el.appendChild(e);
+        this.dialogs.push(e);
+      }, dialogs);
     }
   }
 };
