@@ -12,6 +12,7 @@ import ExperienceCreate from './ExperienceCreate/ExperienceCreate';
 import ExperienceEdit from './ExperienceEdit/ExperienceEdit.container';
 import VREditor from './VREditor/VREditor.container';
 import VRViewer from './VRViewer/VRViewer.container';
+import NotFound from './NotFound/NotFound';
 
 export {
   Home,
@@ -22,5 +23,6 @@ export {
   ExperienceCreate,
   ExperienceEdit,
   VREditor,
-  VRViewer
+  VRViewer,
+  NotFound
 };

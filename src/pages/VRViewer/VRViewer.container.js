@@ -13,7 +13,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapState = ({ openExperience }) => ({
-  experience: openExperience
+  experience: openExperience.item
 });
 
 export default withRouter(connect(mapState, mapDispatchToProps)(VRViewer));
