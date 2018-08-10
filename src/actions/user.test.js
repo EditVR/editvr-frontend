@@ -10,9 +10,10 @@ import {
   resetLoading
 } from 'react-redux-loading-bar';
 
-import { userLogIn, userLogOut, userSetRole } from './user';
-import { getAccessToken, getCsrfToken } from '../lib/api';
+import { userLogIn, userLogOut, userRegister, userSetRole } from './user';
+import { getAccessToken, getCsrfToken, registerUserAccount } from '../lib/api';
 import {
+  USER_REGISTER,
   USER_LOG_IN,
   USER_LOG_OUT,
   USER_SET_ROLE,
@@ -65,6 +66,38 @@ describe('actions->user', () => {
       .put({
         type: `${USER_LOG_OUT}_SUCCESS`
       })
+      .next()
+      .isDone();
+  });
+
+  it('user->userRegister()', () => {
+    const username = 'Bender';
+    const email = 'bender@moms-robots.com';
+    const password = 'shutupbabyiknowit';
+    testSaga(userRegister, { username, email, password })
+      .next()
+      .put(resetLoading())
+      .next()
+      .put(showLoading())
+      .next()
+      .put({
+        type: `${USER_REGISTER}_LOADING`
+      })
+      .next()
+      .call(registerUserAccount, username, email, password)
+      .next()
+      .put({
+        type: `${USER_REGISTER}_SUCCESS`,
+        payload: {
+          username,
+          email
+        }
+      })
+      .next()
+      // Next is executed twice here to step over the execution of an optional
+      // successHandler method.
+      .next()
+      .put(hideLoading())
       .next()
       .isDone();
   });
