@@ -5,7 +5,7 @@
 
 export default theme => ({
   wrapper: {
-    background: theme.palette.grays['500'],
+    background: theme.palette.background.default,
     height: '100vh',
     maxHeight: '100%'
   },

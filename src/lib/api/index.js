@@ -10,9 +10,9 @@ import {
   experiencesCreate,
   experiencesEdit
 } from './experiences';
-import { sceneCreate, sceneEdit } from './scene';
+import { sceneCreate, sceneEdit, sceneAttachComponent } from './scene';
 import { fileImageCreate, fileVideoCreate, fileCreate } from './file';
-import { componentEdit } from './component';
+import { componentEdit, componentCreate } from './component';
 
 import {
   openExperienceFetchForUser,
@@ -28,6 +28,8 @@ export {
   experiencesCreate,
   sceneCreate,
   sceneEdit,
+  sceneAttachComponent,
+  componentCreate,
   componentEdit,
   experiencesEdit,
   openExperienceFetchForUser,

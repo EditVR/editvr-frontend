@@ -3,65 +3,125 @@
  * Exports a component that renders EditVR's tools.
  */
 
-import React, { Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 import { withStyles, Button, Tooltip } from '@material-ui/core';
-import { OpenWith, TouchApp } from '@material-ui/icons';
+import { OpenWith, TouchApp, PanTool, AddCircle } from '@material-ui/icons';
 
-import { MODE_COMPONENT_SELECTING } from '../../constants';
+import {
+  MODE_COMPONENT_SELECTING,
+  MODE_COMPONENT_PLACING
+} from '../../constants';
 import ToolsMenuStyles from './ToolsMenu.style';
+import { ComponentCreateMenu } from '../';
 
-const ToolsMenu = ({
-  classes,
-  history: {
-    location: { pathname: location }
-  },
-  match: {
-    params: { experienceSlug, sceneSlug }
-  }
-}) => {
-  const basePath = `/experience/vreditor/${experienceSlug}`;
-  const previewPath = `${basePath}/${sceneSlug !== 'scene' ? sceneSlug : ''}`;
-  const selectingPath = `${basePath}/${sceneSlug}/${MODE_COMPONENT_SELECTING}`;
+class ToolsMenu extends Component {
+  state = {
+    componentMenuAnchor: false
+  };
 
-  if (!sceneSlug || sceneSlug === 'scene') {
-    return null;
-  }
+  /**
+   * Helper method that opens the component menu.
+   */
+  openComponentMenu = event => {
+    this.setState({ componentMenuAnchor: event.currentTarget });
+  };
 
-  return (
-    <Fragment>
-      <Tooltip title="Preview" placement="right-start">
-        <Button
-          className={classes.toolButton}
-          variant="fab"
-          component={Link}
-          disabled={location === previewPath}
-          color="primary"
-          to={previewPath}
+  /**
+   * Helper method that closes the component menu.
+   */
+  closeComponentMenu = () => {
+    this.setState({ componentMenuAnchor: false });
+  };
+
+  /**
+   * {@inheritdoc}
+   */
+  render() {
+    const {
+      classes,
+      history: {
+        location: { pathname: location }
+      },
+      match: {
+        params: { experienceSlug, sceneSlug }
+      }
+    } = this.props;
+    const basePath = `/experience/vreditor/${experienceSlug}`;
+    const previewPath = `${basePath}/${sceneSlug !== 'scene' ? sceneSlug : ''}`;
+    const selectingPath = `${basePath}/${sceneSlug}/${MODE_COMPONENT_SELECTING}`;
+    const placingPath = `${basePath}/${sceneSlug}/${MODE_COMPONENT_PLACING}`;
+
+    if (!sceneSlug || sceneSlug === 'scene') {
+      return null;
+    }
+
+    return (
+      <div className={classes.wrapper}>
+        <Tooltip title="Preview" placement="right">
+          <Button
+            className={classNames(classes.button, classes.link)}
+            variant="fab"
+            component={Link}
+            disabled={location === previewPath}
+            color="primary"
+            to={previewPath}
+          >
+            <OpenWith />
+          </Button>
+        </Tooltip>
+        <Tooltip title="Select components for editing" placement="right-start">
+          <Button
+            className={classNames(classes.button, classes.link)}
+            variant="fab"
+            component={Link}
+            disabled={location === selectingPath}
+            color="primary"
+            to={selectingPath}
+          >
+            <TouchApp />
+          </Button>
+        </Tooltip>
+        <Tooltip
+          title="Position components by dragging and dropping them"
+          placement="right"
         >
-          <OpenWith />
-        </Button>
-      </Tooltip>
-      <Tooltip title="Select components for editing" placement="right-start">
-        <Button
-          className={classes.toolButton}
-          variant="fab"
-          component={Link}
-          disabled={location === selectingPath}
-          color="primary"
-          to={selectingPath}
-        >
-          <TouchApp />
-        </Button>
-      </Tooltip>
-    </Fragment>
-  );
-};
+          <Button
+            className={classNames(classes.button, classes.link)}
+            variant="fab"
+            component={Link}
+            disabled={location === placingPath}
+            color="primary"
+            to={placingPath}
+          >
+            <PanTool />
+          </Button>
+        </Tooltip>
+        <Tooltip title="Create a new component" placement="right">
+          <Button
+            className={classes.button}
+            variant="fab"
+            color="primary"
+            onClick={this.openComponentMenu}
+          >
+            <AddCircle />
+          </Button>
+        </Tooltip>
+        <ComponentCreateMenu
+          anchorElement={this.state.componentMenuAnchor}
+          handleClose={this.closeComponentMenu}
+        />
+      </div>
+    );
+  }
+}
 
 ToolsMenu.propTypes = {
   classes: PropTypes.shape({
-    toolButton: PropTypes.string.isRequired
+    button: PropTypes.string.isRequired,
+    wrapper: PropTypes.string.isRequired
   }).isRequired,
   history: PropTypes.shape({
     location: PropTypes.shape({

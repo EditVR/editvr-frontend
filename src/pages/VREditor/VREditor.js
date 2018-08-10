@@ -5,21 +5,23 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withStyles, Grid, Typography, Button } from '@material-ui/core';
-import { AddBox, OpenWith, TouchApp } from '@material-ui/icons';
+import { AddBox, OpenWith, TouchApp, PanTool } from '@material-ui/icons';
 
 import {
   SceneCards,
   SceneForm,
   ToolsMenu,
-  ComponentForm
+  ComponentForm,
+  Loading
 } from '../../components';
 import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
   MODE_SCENE_CREATE,
   MODE_SCENE_EDIT,
-  MODE_COMPONENT_SELECTING
+  MODE_COMPONENT_SELECTING,
+  MODE_COMPONENT_PLACING
 } from '../../constants';
 import Scene from '../../aframe/entities/scene';
 import { VREditorLayout } from '../../layouts';
@@ -99,13 +101,11 @@ class VREditor extends Component {
       classes
     } = this.props;
 
-    // If no experience is provided, redirect to the dashboard.
     if (!experience) {
-      return <Redirect to="/dashboard" />;
+      return <Loading />;
     }
 
     const { title, field_experience_path: path, scenes } = experience;
-
     const scene = sceneSlug && scenes ? scenes[sceneSlug] : null;
     // TODO: The logic for determining what to render in the main and right
     // columns should likely be extracted from this file and placed into another
@@ -197,6 +197,22 @@ class VREditor extends Component {
           </Fragment>
         );
       }
+    }
+
+    // If the current mode is placing, show placing documentation.
+    if (editorMode === MODE_COMPONENT_PLACING) {
+      rightColumn = (
+        <Fragment>
+          <Typography variant="title" className={classes.columnRightTitle}>
+            Placing
+            <PanTool className={classes.columnRightIcon} />
+          </Typography>
+          <Typography>
+            You are currently in the placing mode. You can use your mouse to
+            drag components around your scene and place them by dropping them.
+          </Typography>
+        </Fragment>
+      );
     }
 
     return (

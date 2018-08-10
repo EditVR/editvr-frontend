@@ -1,6 +1,6 @@
 /**
- * @file ToolsMenu.test.js
- * Contains tests for ToolsMenu.js.
+ * @file ComponentCreateMenu.test.js
+ * Contains tests for ComponentCreateMenu.js.
  */
 
 import React from 'react';
@@ -10,9 +10,9 @@ import { MemoryRouter as Router, Route } from 'react-router-dom';
 import { createMount } from '@material-ui/core/test-utils';
 
 import { ThemeProvider } from '../../hoc';
-import ToolsMenu from './ToolsMenu.container';
+import ComponentCreateMenu from './ComponentCreateMenu.container';
 
-const ThemedToolsMenu = ThemeProvider(ToolsMenu);
+const ThemedComponentCreateMenu = ThemeProvider(ComponentCreateMenu);
 
 describe('<ToolsMenu />', () => {
   it('Matches its snapshot', () => {
@@ -43,7 +43,7 @@ describe('<ToolsMenu />', () => {
           <Router initialEntries={['/experience/vreditor/test/test']}>
             <Route
               path="/experience/vreditor/:experienceSlug/:sceneSlug?"
-              component={ThemedToolsMenu}
+              component={ThemedComponentCreateMenu}
             />
           </Router>
         </Provider>

@@ -7,6 +7,7 @@ import axiosInstance from './axiosInstance';
 import {
   API_ENDPOINT_SCENE,
   API_TYPE_SCENE,
+  API_TYPE_COMPONENT,
   API_TYPE_FILE_IMAGE,
   API_TYPE_FILE_VIDEO
 } from '../../constants';
@@ -126,3 +127,46 @@ export const sceneEdit = async (
       }
     }
   });
+
+/**
+ * Forms a relationship between a given component and scene.
+ *
+ * @param {object} scene
+ *   Scene to which a component will be attached.
+ * @param {string} componentId
+ *   ID of component that will be attached to the given scene.
+ * @param {object} user.authentication
+ *   Object containing auth data.
+ * @param {string} user.authentication.accessToken
+ *   Access token for the current user.
+ * @param {string} user.authentication.csrfToken
+ *   CSRF token for the current user.
+ */
+export const sceneAttachComponent = async (
+  scene,
+  componentId,
+  { authentication }
+) => {
+  const relationships = {
+    field_components: {
+      data: [
+        ...scene.field_components.map(component => ({
+          id: component.id,
+          type: API_TYPE_SCENE
+        })),
+        { id: componentId, type: API_TYPE_COMPONENT }
+      ]
+    }
+  };
+
+  return axiosInstance(authentication).patch(
+    `${API_ENDPOINT_SCENE}/${scene.id}`,
+    {
+      data: {
+        type: API_TYPE_SCENE,
+        id: scene.id,
+        relationships
+      }
+    }
+  );
+};

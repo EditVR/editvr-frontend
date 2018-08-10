@@ -15,14 +15,16 @@ import {
   OPEN_EXPERIENCE_SCENE_CREATE,
   OPEN_EXPERIENCE_SCENE_EDIT,
   OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
-  OPEN_EXPERIENCE_COMPONENT_EDIT
+  OPEN_EXPERIENCE_COMPONENT_EDIT,
+  OPEN_EXPERIENCE_COMPONENT_CREATE
 } from '../constants';
 import {
   openExperienceFetchForUser,
   openExperienceSceneCreate,
   openExperienceSceneEdit,
   openExperienceComponentFieldPresave,
-  openExperienceComponentEdit
+  openExperienceComponentEdit,
+  openExperienceComponentCreate
 } from './openExperience';
 import {
   openExperienceFetchForUser as getOpenExperienceForUser,
@@ -30,7 +32,9 @@ import {
   fileCreate,
   sceneCreate,
   sceneEdit,
-  componentEdit
+  componentEdit,
+  componentCreate,
+  sceneAttachComponent
 } from '../lib/api';
 
 describe('actions->openExperience', () => {
@@ -204,11 +208,68 @@ describe('actions->openExperience', () => {
       .isDone();
   });
 
+  it('openExperience->openExperienceComponentCreate', () => {
+    const successHandler = jest.fn();
+    const componentType = 'panelimage';
+    const newComponent = {
+      id: '20'
+    };
+    const scene = {
+      id: '10',
+      field_slug: 'test',
+      components: {}
+    };
+    const fields = {
+      field_body: 'test body',
+      title: 'test title',
+      field_x: 0,
+      field_y: 0,
+      field_z: 0
+    };
+    const user = {
+      authentication: { accessToken: 'test', csrfToken: 'test' }
+    };
+
+    testSaga(openExperienceComponentCreate, {
+      scene,
+      componentType,
+      fields,
+      successHandler,
+      user
+    })
+      .next()
+      .put(resetLoading())
+      .next()
+      .put(showLoading())
+      .next()
+      .put({
+        type: `${OPEN_EXPERIENCE_COMPONENT_CREATE}_LOADING`
+      })
+      .next()
+      .call(componentCreate, componentType, fields, user)
+      .next(newComponent)
+      .call(sceneAttachComponent, scene, newComponent.id, user)
+      .next()
+      .put({
+        type: `${OPEN_EXPERIENCE_COMPONENT_CREATE}_SUCCESS`,
+        payload: {
+          component: newComponent,
+          sceneSlug: scene.field_slug
+        }
+      })
+      .next()
+      .call(successHandler)
+      .next()
+      .put(hideLoading())
+      .next()
+      .isDone();
+  });
+
   it('openExperience->openExperienceComponentEdit', () => {
     const successHandler = jest.fn();
     const id = 10;
     const sceneSlug = 'test';
-    const payload = {
+    const fields = {
       field_body: 'test body',
       title: 'test title',
       field_x: 0,
@@ -220,7 +281,7 @@ describe('actions->openExperience', () => {
     };
 
     testSaga(openExperienceComponentEdit, {
-      ...payload,
+      fields,
       id,
       successHandler,
       user,
@@ -235,7 +296,7 @@ describe('actions->openExperience', () => {
         type: `${OPEN_EXPERIENCE_COMPONENT_EDIT}_LOADING`
       })
       .next()
-      .call(componentEdit, { ...payload, id }, user)
+      .call(componentEdit, { ...fields, id }, user)
       .next()
       .put({
         type: `${OPEN_EXPERIENCE_COMPONENT_EDIT}_SUCCESS`,

@@ -13,7 +13,8 @@ export default theme => ({
   },
   columnLeft: {
     padding: theme.spacing.unit * 2,
-    userSelect: 'none'
+    userSelect: 'none',
+    textAlign: 'center'
   },
   columnRightTitle: {
     marginTop: theme.spacing.unit * 2,

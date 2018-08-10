@@ -169,10 +169,14 @@
     find-up "^2.1.0"
 
 "@editvr/aframe-dialog-popup-component@^1.2.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@editvr/aframe-dialog-popup-component/-/aframe-dialog-popup-component-1.6.0.tgz#d9399100831678cc6d7b7f4d6d8d6813c407e88b"
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/@editvr/aframe-dialog-popup-component/-/aframe-dialog-popup-component-1.7.3.tgz#e956c30ea6f98115b178a89df461b34618e32c43"
   dependencies:
     "@commitlint/config-angular" "^7.0.1"
+
+"@editvr/aframe-simple-link-component@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@editvr/aframe-simple-link-component/-/aframe-simple-link-component-1.4.0.tgz#15303dbcd096552a13cd5fe367e17e647593f7ee"
 
 "@emdaer/cli@^3.0.0":
   version "3.0.0"
