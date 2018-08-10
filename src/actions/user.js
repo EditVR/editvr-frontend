@@ -22,25 +22,35 @@ import actionGenerator from '../lib/actionGenerator';
  * @param {string} payload.username - Name of the user that should be authenticated.
  * @param {string} payload.password - Password of user that should be authenticated.
  * @param {string} payload.created - Optional creation date for this authentication.
+ * @param {function} payload.successHandler - Function to be executed on success.
  */
-export function* userLogIn({ username, password, created = Date.now() }) {
-  yield* actionGenerator(USER_LOG_IN, function* userLogInHandler() {
-    const auth = yield call(getAccessToken, username, password);
-    const { accessToken, refreshToken, expiresIn } = auth || {};
-    const csrfToken = yield call(getCsrfToken, accessToken);
-    yield put({
-      type: `${USER_LOG_IN}_SUCCESS`,
-      payload: {
-        created,
-        username,
-        accessToken,
-        refreshToken,
-        csrfToken,
-        expiresIn,
-        role: USER_ROLE_EDITOR
-      }
-    });
-  });
+export function* userLogIn({
+  username,
+  password,
+  created = Date.now(),
+  successHandler = () => {}
+}) {
+  yield* actionGenerator(
+    USER_LOG_IN,
+    function* userLogInHandler() {
+      const auth = yield call(getAccessToken, username, password);
+      const { accessToken, refreshToken, expiresIn } = auth || {};
+      const csrfToken = yield call(getCsrfToken, accessToken);
+      yield put({
+        type: `${USER_LOG_IN}_SUCCESS`,
+        payload: {
+          created,
+          username,
+          accessToken,
+          refreshToken,
+          csrfToken,
+          expiresIn,
+          role: USER_ROLE_EDITOR
+        }
+      });
+    },
+    successHandler
+  );
 }
 
 /**
@@ -59,18 +69,28 @@ export function* userLogOut() {
  * @param {string} payload.username - Name of the user that will be registered.
  * @param {string} payload.email - Email of the user that will be registered.
  * @param {string} payload.password - Password of user that will be registered.
+ * @param {function} payload.successHandler - Function to be executed on success.
  */
-export function* userRegister({ username, email, password }) {
-  yield* actionGenerator(USER_REGISTER, function* userRegisterHandler() {
-    const user = yield call(registerUserAccount, username, email, password);
-    yield put({
-      type: `${USER_REGISTER}_SUCCESS`,
-      payload: {
-        username,
-        email
-      }
-    });
-  });
+export function* userRegister({
+  username,
+  email,
+  password,
+  successHandler = () => {}
+}) {
+  yield* actionGenerator(
+    USER_REGISTER,
+    function* userRegisterHandler() {
+      yield call(registerUserAccount, username, email, password);
+      yield put({
+        type: `${USER_REGISTER}_SUCCESS`,
+        payload: {
+          username,
+          email
+        }
+      });
+    },
+    successHandler
+  );
 }
 
 /**

@@ -3,7 +3,7 @@
  * Exports a component that allows users to register for an EditVR account.
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField, Button, withStyles } from '@material-ui/core';
 import { withFormik } from 'formik';
@@ -12,6 +12,7 @@ import { string, object } from 'yup';
 import { Message } from '../';
 import RegisterFormStyles from './RegisterForm.style';
 import {
+  USER_LOG_IN,
   USER_REGISTER,
   FORM_BUTTON_LOGIN,
   FORM_BUTTON_REGISTER,
@@ -21,7 +22,6 @@ import {
 const RegisterForm = ({
   classes,
   user: { error },
-  values,
   errors,
   touched,
   isSubmitting,
@@ -55,9 +55,7 @@ const RegisterForm = ({
       onBlur={handleBlur}
       error={!!errors.email && touched.email}
       disabled={isSubmitting}
-      helperText={
-        errors.email ? errors.email : 'Enter your email address.'
-      }
+      helperText={errors.email ? errors.email : 'Enter your email address.'}
     />
     <TextField
       required
@@ -87,12 +85,10 @@ const RegisterForm = ({
 );
 
 RegisterForm.propTypes = {
-  submitHandler: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
   classes: PropTypes.shape({
     textField: PropTypes.string.isRequired,
     button: PropTypes.string.isRequired
   }).isRequired,
-  dispatch: PropTypes.func.isRequired,
   user: PropTypes.shape({
     error: PropTypes.string
   }),
@@ -100,27 +96,20 @@ RegisterForm.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleBlur: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool,
-  values: PropTypes.shape({
-    title: PropTypes.string,
-    body: PropTypes.string,
-    field_experience_path: PropTypes.string
-  }).isRequired,
   errors: PropTypes.shape({
-    title: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-    field_experience_path: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.bool
-    ]),
-    body: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
+    username: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+    email: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+    password: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
   }).isRequired,
   touched: PropTypes.shape({
-    title: PropTypes.bool,
-    field_experience_path: PropTypes.bool,
-    body: PropTypes.bool
+    username: PropTypes.bool,
+    email: PropTypes.bool,
+    password: PropTypes.bool
   }).isRequired
 };
 
 RegisterForm.defaultProps = {
+  isSubmitting: false,
   user: {
     error: null
   }
@@ -149,13 +138,22 @@ const FormikRegisterForm = withFormik({
       .max(24)
   }),
   handleSubmit: (values, { props, setSubmitting }) => {
-    const { user, dispatch } = props;
+    const { dispatch } = props;
     const { username, email, password } = values;
     dispatch({
       type: USER_REGISTER,
       username,
       email,
-      password
+      password,
+      successHandler: () => {
+        // After registration, log the user in.
+        dispatch({
+          type: USER_LOG_IN,
+          username,
+          password,
+          successHandler: () => setSubmitting(false)
+        });
+      }
     });
   }
 })(RegisterForm);

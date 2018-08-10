@@ -84,7 +84,7 @@ const axiosInstance = (
   format = 'jsonapi'
 ) => {
   const config = {
-    baseURL: apiURL,
+    baseURL: `${apiURL}/`,
     timeout: 30 * 1000,
     headers: {},
     withCredentials: false,

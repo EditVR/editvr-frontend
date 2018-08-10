@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<LoginForm /> Matches its snapshot 1`] = `
+exports[`<RegisterForm /> Matches its snapshot 1`] = `
 <form
   onSubmit={[Function]}
 >
   <div
-    aria-describedby={undefined}
-    className="MuiFormControl-root-3 LoginForm-textField-1"
+    aria-describedby="username-helper-text"
+    className="MuiFormControl-root-3 C-textField-1"
     onBlur={[Function]}
     onFocus={[Function]}
   >
@@ -48,10 +48,67 @@ exports[`<LoginForm /> Matches its snapshot 1`] = `
         value={undefined}
       />
     </div>
+    <p
+      className="MuiFormHelperText-root-30"
+      id="username-helper-text"
+    >
+      Enter a URL-friendly username.
+    </p>
   </div>
   <div
-    aria-describedby={undefined}
-    className="MuiFormControl-root-3 LoginForm-textField-1"
+    aria-describedby="email-helper-text"
+    className="MuiFormControl-root-3 C-textField-1"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-12 MuiInputLabel-root-7 MuiInputLabel-formControl-8 MuiInputLabel-animated-11"
+      data-shrink={false}
+      htmlFor="email"
+    >
+      Email
+      <span
+        className="MuiFormLabel-asterisk-16"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-17 MuiInput-formControl-18 MuiInput-underline-21"
+    >
+      <input
+        aria-invalid={false}
+        aria-required={true}
+        autoComplete={undefined}
+        autoFocus={undefined}
+        className="MuiInput-input-25 MuiInput-inputType-28"
+        defaultValue={undefined}
+        disabled={false}
+        id="email"
+        name={undefined}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder={undefined}
+        readOnly={undefined}
+        required={true}
+        rows={undefined}
+        type="email"
+        value={undefined}
+      />
+    </div>
+    <p
+      className="MuiFormHelperText-root-30"
+      id="email-helper-text"
+    >
+      Enter your email address.
+    </p>
+  </div>
+  <div
+    aria-describedby="password-helper-text"
+    className="MuiFormControl-root-3 C-textField-1"
     onBlur={[Function]}
     onFocus={[Function]}
   >
@@ -93,9 +150,15 @@ exports[`<LoginForm /> Matches its snapshot 1`] = `
         value={undefined}
       />
     </div>
+    <p
+      className="MuiFormHelperText-root-30"
+      id="password-helper-text"
+    >
+      Enter a nice, long, unique password.
+    </p>
   </div>
   <button
-    className="MuiButtonBase-root-46 MuiButton-root-30 MuiButton-raised-36 MuiButton-raisedPrimary-37 LoginForm-button-2"
+    className="MuiButtonBase-root-50 MuiButton-root-34 MuiButton-raised-40 MuiButton-raisedPrimary-41 C-button-2"
     disabled={false}
     onBlur={[Function]}
     onFocus={[Function]}
@@ -111,12 +174,12 @@ exports[`<LoginForm /> Matches its snapshot 1`] = `
     type="submit"
   >
     <span
-      className="MuiButton-label-31"
+      className="MuiButton-label-35"
     >
-      Login
+      Register & Login
     </span>
     <span
-      className="MuiTouchRipple-root-49"
+      className="MuiTouchRipple-root-53"
     />
   </button>
 </form>
