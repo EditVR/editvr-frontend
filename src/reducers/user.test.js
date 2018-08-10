@@ -5,6 +5,7 @@
 
 import reducer from './user';
 import {
+  USER_REGISTER,
   USER_LOG_IN,
   USER_LOG_OUT,
   USER_SET_ROLE,
@@ -33,8 +34,7 @@ describe('reducers->user', () => {
       reducer(undefined, {
         type: `${USER_LOG_IN}_FAIL`,
         loading: false,
-        error,
-        payload: {}
+        payload: { error }
       })
     ).toMatchSnapshot();
   });
@@ -57,6 +57,39 @@ describe('reducers->user', () => {
         loading: false,
         error: null,
         payload
+      })
+    ).toMatchSnapshot();
+  });
+
+  it(`Should handle ${USER_REGISTER}_LOADING`, () => {
+    expect(
+      reducer(undefined, {
+        type: `${USER_REGISTER}_LOADING`,
+        loading: true,
+        error: null,
+        payload: {}
+      })
+    ).toMatchSnapshot();
+  });
+
+  it(`Should handle ${USER_REGISTER}_FAIL`, () => {
+    const error = 'Error: failed to log user in.';
+    expect(
+      reducer(undefined, {
+        type: `${USER_REGISTER}_FAIL`,
+        loading: false,
+        payload: { error }
+      })
+    ).toMatchSnapshot();
+  });
+
+  it(`Should handle ${USER_REGISTER}_SUCCESS`, () => {
+    expect(
+      reducer(undefined, {
+        type: `${USER_REGISTER}_SUCCESS`,
+        loading: false,
+        error: null,
+        payload: {}
       })
     ).toMatchSnapshot();
   });

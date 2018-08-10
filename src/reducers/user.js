@@ -7,6 +7,7 @@ import {
   USER_LOG_IN,
   USER_LOG_OUT,
   USER_SET_ROLE,
+  USER_REGISTER,
   USER_ROLE_ANONYMOUS
 } from '../constants';
 
@@ -85,6 +86,28 @@ export default function user(state = defaultState, action) {
      * Reducer that handles login loading actions.
      */
     case `${USER_LOG_IN}_LOADING`: {
+      return { ...state, error: null, loading: true };
+    }
+
+    /**
+     * Reducer that handles user registration actions.
+     */
+    case `${USER_REGISTER}_SUCCESS`: {
+      // When a user registers, they must then log in.
+      return defaultState;
+    }
+
+    /**
+     * Reducer that handles register failure actions.
+     */
+    case `${USER_REGISTER}_FAIL`: {
+      return { ...state, loading: false, error: action.payload.error };
+    }
+
+    /**
+     * Reducer that handles register loading actions.
+     */
+    case `${USER_REGISTER}_LOADING`: {
       return { ...state, error: null, loading: true };
     }
 

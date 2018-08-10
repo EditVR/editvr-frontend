@@ -10,7 +10,7 @@ Object {
     "refreshToken": null,
     "role": "USER_ROLE_ANONYMOUS",
   },
-  "error": undefined,
+  "error": "Error: failed to log user in.",
   "loading": false,
   "uid": null,
   "username": null,
@@ -52,6 +52,57 @@ Object {
 `;
 
 exports[`reducers->user Should handle USER_LOG_OUT_SUCCESS 1`] = `
+Object {
+  "authentication": Object {
+    "accessToken": null,
+    "created": null,
+    "csrfToken": null,
+    "expiresIn": null,
+    "refreshToken": null,
+    "role": "USER_ROLE_ANONYMOUS",
+  },
+  "error": null,
+  "loading": false,
+  "uid": null,
+  "username": null,
+}
+`;
+
+exports[`reducers->user Should handle USER_REGISTER_FAIL 1`] = `
+Object {
+  "authentication": Object {
+    "accessToken": null,
+    "created": null,
+    "csrfToken": null,
+    "expiresIn": null,
+    "refreshToken": null,
+    "role": "USER_ROLE_ANONYMOUS",
+  },
+  "error": "Error: failed to log user in.",
+  "loading": false,
+  "uid": null,
+  "username": null,
+}
+`;
+
+exports[`reducers->user Should handle USER_REGISTER_LOADING 1`] = `
+Object {
+  "authentication": Object {
+    "accessToken": null,
+    "created": null,
+    "csrfToken": null,
+    "expiresIn": null,
+    "refreshToken": null,
+    "role": "USER_ROLE_ANONYMOUS",
+  },
+  "error": null,
+  "loading": true,
+  "uid": null,
+  "username": null,
+}
+`;
+
+exports[`reducers->user Should handle USER_REGISTER_SUCCESS 1`] = `
 Object {
   "authentication": Object {
     "accessToken": null,
