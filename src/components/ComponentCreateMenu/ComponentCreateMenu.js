@@ -11,7 +11,8 @@ import { Menu, MenuItem } from '@material-ui/core';
 
 import {
   OPEN_EXPERIENCE_COMPONENT_CREATE,
-  COMPONENT_TYPE_DIALOG
+  COMPONENT_TYPE_DIALOG,
+  COMPONENT_TYPE_LINK
 } from '../../constants';
 
 class ComponentCreateMenu extends Component {
@@ -60,30 +61,45 @@ class ComponentCreateMenu extends Component {
   /**
    * Dispatches an action that creates a Dialog component.
    */
-  createDialog = () => {
+  createComponent = componentType => {
     const {
       user,
       handleClose,
       dispatch,
-      experience,
+      experience: { scenes },
       match: {
         params: { sceneSlug }
       }
     } = this.props;
 
-    const scene = experience.scenes[sceneSlug];
+    const scene = scenes[sceneSlug];
     const { x: field_x, y: field_y, z: field_z } = this.getCameraPosition();
+
+    const fields = {
+      title: 'New Component',
+      field_x,
+      field_y,
+      field_z
+    };
+
+    // If this component is a dialog, add a default body.
+    if (componentType === COMPONENT_TYPE_DIALOG) {
+      fields.field_body = 'Please create information text for this component.';
+    }
+
+    // If this component is a link, add a default destination.
+    if (componentType === COMPONENT_TYPE_LINK) {
+      fields.title = 'Link';
+      // Default destination is the last scene.
+      const keys = Object.keys(scenes);
+      fields.field_scene_link = scenes[keys[keys.length - 1]];
+    }
+
     dispatch({
       type: OPEN_EXPERIENCE_COMPONENT_CREATE,
-      componentType: COMPONENT_TYPE_DIALOG,
+      componentType,
       user,
-      fields: {
-        title: 'New Component',
-        field_body: 'Please create information text for this component.',
-        field_x,
-        field_y,
-        field_z
-      },
+      fields,
       scene,
       successHandler: () => {
         handleClose();
@@ -92,16 +108,27 @@ class ComponentCreateMenu extends Component {
   };
 
   render() {
-    const { anchorElement, handleClose } = this.props;
+    const {
+      anchorElement,
+      handleClose,
+      experience: { scenes }
+    } = this.props;
+
     return (
       <Menu
         anchorEl={anchorElement || null}
         open={Boolean(anchorElement)}
         onClose={handleClose}
       >
-        <MenuItem onClick={this.createDialog}>Create a Dialog</MenuItem>
-        <MenuItem>Create a Link</MenuItem>
-        <MenuItem>Create a Sound</MenuItem>
+        <MenuItem onClick={() => this.createComponent(COMPONENT_TYPE_DIALOG)}>
+          Create a Dialog
+        </MenuItem>
+        {scenes &&
+          Object.keys(scenes).length > 1 && (
+            <MenuItem onClick={() => this.createComponent(COMPONENT_TYPE_LINK)}>
+              Create a Link
+            </MenuItem>
+          )}
       </Menu>
     );
   }
