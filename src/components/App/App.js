@@ -15,7 +15,8 @@ import {
   Dashboard,
   ExperienceCreate,
   ExperienceEdit,
-  VREditor
+  VREditor,
+  VRViewer
 } from '../../pages';
 import { PrivateRoute, PublicRoute } from '../../hoc';
 import history from '../../lib/routerHistory';
@@ -62,6 +63,11 @@ const App = () => (
           path="/experience/vreditor/:experienceSlug/:sceneSlug?/:editorMode?"
           redirectTo="/login"
           component={VREditor}
+        />
+        <Route
+          exact
+          path="/experience/:username/:experienceSlug/:sceneSlug"
+          component={VRViewer}
         />
       </Switch>
     </Router>

@@ -32,6 +32,7 @@ import actionGenerator from '../lib/actionGenerator';
  * @param {string} payload.experienceSlug - Slug of experience to load.
  * @param {object} payload.user - Object containing user data.
  * @param {object} payload.user.uid - ID of the current user.
+ * @param {object} payload.user.username - Name of the current user (optional).
  * @param {object} payload.user.authentication - Object containing auth data.
  * @param {string} payload.user.authentication.accessToken
  *   Access token for the current user.

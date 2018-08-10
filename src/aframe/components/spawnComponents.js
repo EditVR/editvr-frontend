@@ -129,7 +129,7 @@ AFRAME.registerComponent(
   }))(
     connectRouter(
       spawnComponents,
-      '/experience/vreditor/:experienceSlug/:sceneSlug'
+      '/experience/:viewer/:experienceSlug/:sceneSlug'
     )
   )
 );

@@ -104,7 +104,7 @@ AFRAME.registerComponent(
   }))(
     connectRouter(
       isDraggable,
-      '/experience/vreditor/:experienceSlug/:sceneSlug/:editorMode?'
+      '/experience/:viewer/:experienceSlug/:sceneSlug/:editorMode?'
     )
   )
 );

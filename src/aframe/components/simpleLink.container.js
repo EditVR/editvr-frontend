@@ -61,7 +61,7 @@ const simpleLinkContainer = {
       },
       router: {
         match: {
-          params: { sceneSlug, editorMode }
+          params: { viewer, sceneSlug, editorMode }
         }
       }
     } = this;
@@ -79,7 +79,7 @@ const simpleLinkContainer = {
       const simpleLink = {
         title,
         href: field_slug
-          ? `/experience/vreditor/${field_experience_path}/${field_slug}`
+          ? `/experience/${viewer}/${field_experience_path}/${field_slug}`
           : null,
         image: navigateIcon,
         active: true
@@ -102,7 +102,7 @@ AFRAME.registerComponent(
   }))(
     connectRouter(
       simpleLinkContainer,
-      '/experience/vreditor/:experienceSlug/:sceneSlug/:editorMode?'
+      '/experience/:viewer/:experienceSlug/:sceneSlug/:editorMode?'
     )
   )
 );
