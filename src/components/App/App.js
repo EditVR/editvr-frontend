@@ -11,6 +11,7 @@ import {
   Home,
   Login,
   Logout,
+  Register,
   Dashboard,
   ExperienceCreate,
   ExperienceEdit,
@@ -30,6 +31,12 @@ const App = () => (
           path="/login"
           redirectTo="/dashboard"
           component={Login}
+        />
+        <PublicRoute
+          exact
+          path="/register"
+          redirectTo="/dashboard"
+          component={Register}
         />
         <PrivateRoute exact path="/logout" redirectTo="/" component={Logout} />
         <PrivateRoute

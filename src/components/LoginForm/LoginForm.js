@@ -9,7 +9,7 @@ import { TextField, Button, withStyles } from '@material-ui/core';
 
 import { Message } from '../';
 import LoginFormStyles from './LoginForm.style';
-import { USER_LOG_IN } from '../../constants';
+import { USER_LOG_IN, FORM_BUTTON_LOGIN } from '../../constants';
 
 class LoginForm extends Component {
   static propTypes = {
@@ -77,7 +77,7 @@ class LoginForm extends Component {
           type="submit"
           className={classes.button}
         >
-          Log In
+          {FORM_BUTTON_LOGIN}
         </Button>
       </form>
     );

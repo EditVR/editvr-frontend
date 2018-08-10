@@ -4,6 +4,7 @@
  */
 
 export const API_ENDPOINT_USER_LOGIN = 'oauth/token';
+export const API_ENDPOINT_USER_REGISTER = 'user/register';
 export const API_ENDPOINT_XCSRF_TOKEN = 'rest/session/token';
 export const API_ENDPOINT_EXPERIENCE = 'node/experience';
 export const API_ENDPOINT_FILE_IMAGE = 'file/image';

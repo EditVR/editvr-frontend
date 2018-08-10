@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 
 import { ThinLayout } from '../../layouts';
 import HomeStyles from './Home.style';
+import { FORM_BUTTON_LOGIN, FORM_BUTTON_REGISTER } from '../../constants';
 
 const Home = ({ classes }) => (
   <ThinLayout>
@@ -27,7 +28,7 @@ const Home = ({ classes }) => (
       component={Link}
       to="/login"
     >
-      Login
+      {FORM_BUTTON_LOGIN}
     </Button>
     <Button
       className={classes.button}
@@ -36,7 +37,7 @@ const Home = ({ classes }) => (
       component={Link}
       to="/register"
     >
-      Register
+      {FORM_BUTTON_REGISTER}
     </Button>
   </ThinLayout>
 );
