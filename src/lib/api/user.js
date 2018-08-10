@@ -42,28 +42,21 @@ export const getAccessToken = async (username, password) => {
 /**
  * Register a user account given by email and password.
  *
+ * @param {string} username - Username of user to register.
  * @param {string} email - Email of user to register.
  * @param {string} password - Password of user to register.
  *
  * @returns {object} - Promise that resolves a token or error.
  */
-export const registerUserAccount = async (email, password) => {
-  const instance = axiosInstance({}, false);
-  const r = await instance.post(
-    API_ENDPOINT_USER_REGISTER,
+export const registerUserAccount = async (username, email, password) =>
+  axiosInstance({}, false).post(
+    `${API_ENDPOINT_USER_REGISTER}?_format=json`,
     qs.stringify({
-      name: {value: email},
-      mail: {value: email},
-      pass: {value: password}
+      name: { value: username },
+      mail: { value: email },
+      pass: { value: password }
     })
   );
-
-  return {
-    accessToken: r.access_token || null,
-    refreshToken: r.refresh_token || null,
-    expiresIn: r.expires_in || null
-  };
-};
 
 /**
  * Fetches a user access token for a given username, password, and client ID.

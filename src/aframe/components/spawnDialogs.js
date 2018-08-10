@@ -22,8 +22,16 @@ const spawnDialogs = {
     this.deSpawn();
   },
   shouldComponentUpdateRouting(oldProps, newProps) {
-    const { match: { params: { sceneSlug: oldSceneSlug } } } = oldProps;
-    const { match: { params: { sceneSlug } } } = newProps;
+    const {
+      match: {
+        params: { sceneSlug: oldSceneSlug }
+      }
+    } = oldProps;
+    const {
+      match: {
+        params: { sceneSlug }
+      }
+    } = newProps;
     if (oldSceneSlug !== sceneSlug) {
       return true;
     }

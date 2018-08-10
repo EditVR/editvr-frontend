@@ -9,9 +9,10 @@ import {
   USER_LOG_IN,
   USER_LOG_OUT,
   USER_SET_ROLE,
-  USER_ROLE_EDITOR
+  USER_ROLE_EDITOR,
+  USER_REGISTER
 } from '../constants';
-import { getAccessToken, getCsrfToken } from '../lib/api';
+import { getAccessToken, getCsrfToken, registerUserAccount } from '../lib/api';
 import actionGenerator from '../lib/actionGenerator';
 
 /**
@@ -52,6 +53,27 @@ export function* userLogOut() {
 }
 
 /**
+ * Registers a user.
+ *
+ * @param {object} payload - Payload for this saga action.
+ * @param {string} payload.username - Name of the user that will be registered.
+ * @param {string} payload.email - Email of the user that will be registered.
+ * @param {string} payload.password - Password of user that will be registered.
+ */
+export function* userRegister({ username, email, password }) {
+  yield* actionGenerator(USER_REGISTER, function* userRegisterHandler() {
+    const user = yield call(registerUserAccount, username, password);
+    yield put({
+      type: `${USER_REGISTER}_SUCCESS`,
+      payload: {
+        username,
+        email
+      }
+    });
+  });
+}
+
+/**
  * Sets the user role.
  *
  * @param {string} role - Role that should be assigned to the current user.
@@ -69,4 +91,5 @@ export function* watchUserActions() {
   yield takeLatest(USER_LOG_IN, userLogIn);
   yield takeLatest(USER_LOG_OUT, userLogOut);
   yield takeLatest(USER_SET_ROLE, userSetRole);
+  yield takeLatest(USER_REGISTER, userRegister);
 }
