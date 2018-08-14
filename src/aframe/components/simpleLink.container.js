@@ -6,7 +6,10 @@
 /* globals AFRAME */
 import { equals } from 'ramda';
 
-import { MODE_COMPONENT_PLACING } from '../../constants';
+import {
+  MODE_COMPONENT_PLACING,
+  MODE_COMPONENT_SELECTING
+} from '../../constants';
 import connectRedux from '../utils/connectRedux';
 import connectRouter from '../utils/connectRouter';
 import navigateIcon from '../../assets/icons/navigate.jpg';
@@ -85,7 +88,10 @@ const simpleLinkContainer = {
         active: true
       };
 
-      if (editorMode === MODE_COMPONENT_PLACING) {
+      if (
+        editorMode === MODE_COMPONENT_PLACING ||
+        editorMode === MODE_COMPONENT_SELECTING
+      ) {
         simpleLink.active = false;
       }
 
