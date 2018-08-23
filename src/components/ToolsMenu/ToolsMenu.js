@@ -8,11 +8,18 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { withStyles, Button, Tooltip } from '@material-ui/core';
-import { OpenWith, TouchApp, PanTool, AddCircle } from '@material-ui/icons';
+import {
+  OpenWith,
+  TouchApp,
+  PanTool,
+  AddCircle,
+  RotateLeft
+} from '@material-ui/icons';
 
 import {
   MODE_COMPONENT_SELECTING,
-  MODE_COMPONENT_PLACING
+  MODE_COMPONENT_PLACING,
+  MODE_SCENE_ROTATE
 } from '../../constants';
 import ToolsMenuStyles from './ToolsMenu.style';
 import { ComponentCreateMenu } from '../';
@@ -53,6 +60,7 @@ class ToolsMenu extends Component {
     const previewPath = `${basePath}/${sceneSlug !== 'scene' ? sceneSlug : ''}`;
     const selectingPath = `${basePath}/${sceneSlug}/${MODE_COMPONENT_SELECTING}`;
     const placingPath = `${basePath}/${sceneSlug}/${MODE_COMPONENT_PLACING}`;
+    const rotatePath = `${basePath}/${sceneSlug}/${MODE_SCENE_ROTATE}`;
 
     if (!sceneSlug || sceneSlug === 'scene') {
       return null;
@@ -72,7 +80,7 @@ class ToolsMenu extends Component {
             <OpenWith />
           </Button>
         </Tooltip>
-        <Tooltip title="Select components for editing" placement="right-start">
+        <Tooltip title="Select components for editing" placement="right">
           <Button
             className={classNames(classes.button, classes.link)}
             variant="fab"
@@ -97,6 +105,21 @@ class ToolsMenu extends Component {
             to={placingPath}
           >
             <PanTool />
+          </Button>
+        </Tooltip>
+        <Tooltip
+          title="Set the rotation of this scene's sky image."
+          placement="right"
+        >
+          <Button
+            className={classNames(classes.button, classes.link)}
+            variant="fab"
+            component={Link}
+            disabled={location === rotatePath}
+            color="primary"
+            to={rotatePath}
+          >
+            <RotateLeft />
           </Button>
         </Tooltip>
         <Tooltip title="Create a new component" placement="right">
