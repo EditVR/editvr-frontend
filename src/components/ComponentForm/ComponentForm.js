@@ -7,7 +7,14 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { string, object, mixed } from 'yup';
 import { withFormik } from 'formik';
-import { withStyles, TextField, Button, Select, MenuItem, InputLabel } from '@material-ui/core';
+import {
+  withStyles,
+  TextField,
+  Button,
+  Select,
+  MenuItem,
+  InputLabel
+} from '@material-ui/core';
 
 import {
   COMPONENT_SELECT,
@@ -94,7 +101,9 @@ class ComponentForm extends Component {
 
     return (
       <Fragment>
-        <InputLabel className={classes.selectLabel} htmlFor="field_scene_link">Link To:</InputLabel>
+        <InputLabel className={classes.selectLabel} htmlFor="field_scene_link">
+          Link To:
+        </InputLabel>
         <Select
           id="field_scene_link"
           value={values.field_scene_link}
@@ -110,7 +119,7 @@ class ComponentForm extends Component {
         </Select>
       </Fragment>
     );
-  }
+  };
 
   /**
    * Handles field changes.
@@ -149,7 +158,6 @@ class ComponentForm extends Component {
       });
     }, 200);
   };
-
 
   inputTimeout = null;
 
@@ -257,7 +265,8 @@ class ComponentForm extends Component {
           disabled={isSubmitting}
           className={classes.textField}
         />
-        {values.field_component_type === COMPONENT_TYPE_LINK && this.getLinkFields()}
+        {values.field_component_type === COMPONENT_TYPE_LINK &&
+          this.getLinkFields()}
         <Button
           variant="raised"
           color="primary"
@@ -291,11 +300,19 @@ const FormikComponentForm = withFormik({
       field_body: '',
       field_x: 0,
       field_y: 0,
-      field_z: 0,
+      field_z: 0
     };
 
     if (component) {
-      const { title, field_body, field_x, field_y, field_z, field_component_type, field_scene_link } = component;
+      const {
+        title,
+        field_body,
+        field_x,
+        field_y,
+        field_z,
+        field_component_type,
+        field_scene_link
+      } = component;
       Object.assign(values, {
         title,
         field_body,
@@ -303,7 +320,7 @@ const FormikComponentForm = withFormik({
         field_y,
         field_z,
         field_component_type,
-        field_scene_link: field_scene_link ? field_scene_link.field_slug : null,
+        field_scene_link: field_scene_link ? field_scene_link.field_slug : null
       });
     }
 
@@ -332,7 +349,15 @@ const FormikComponentForm = withFormik({
         params: { sceneSlug }
       }
     } = props;
-    const { title, field_body, field_x, field_y, field_z, field_scene_link, field_component_type } = values;
+    const {
+      title,
+      field_body,
+      field_x,
+      field_y,
+      field_z,
+      field_scene_link,
+      field_component_type
+    } = values;
 
     const fields = {
       title,
@@ -344,12 +369,13 @@ const FormikComponentForm = withFormik({
 
     // If this is a link component, specify a value for field_scene_link.
     if (field_component_type === COMPONENT_TYPE_LINK) {
-      fields.field_component_link = experience.scenes[field_scene_link];
+      fields.field_scene_link = experience.scenes[field_scene_link];
     }
 
     dispatch({
       type: OPEN_EXPERIENCE_COMPONENT_EDIT,
       id: selectedComponent,
+      componentType: field_component_type,
       user,
       fields,
       sceneSlug,

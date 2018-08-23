@@ -5,12 +5,12 @@
 
 export default theme => ({
   select: {
-    width: '100%',
+    width: '100%'
   },
   selectLabel: {
     fontSize: '12px',
     marginTop: theme.spacing.unit * 2,
-    display: 'block',
+    display: 'block'
   },
   textField: {
     width: '100%',
