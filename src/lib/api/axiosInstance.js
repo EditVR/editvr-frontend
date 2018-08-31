@@ -8,11 +8,14 @@ import Jsona, { JsonPropertiesMapper } from 'jsona';
 
 import { apiURL } from '../../config';
 import {
+  API_ENDPOINT_USER_REGISTER,
   ERROR_API_CONNECTION_FAILED,
   ERROR_API_FORBIDDEN,
   ERROR_API_GENERAL,
   ERROR_API_NOT_FOUND,
   ERROR_API_LOGIN_FAILED,
+  ERROR_API_REGISTER_FAILED_EMAIL,
+  ERROR_API_REGISTER_FAILED_USERNAME,
   ERROR_API_BAD_REQUEST,
   ERROR_API_UNPROCESSABLE_ENTITY,
   AXIOS_ERROR_NETWORK,
@@ -153,6 +156,17 @@ const axiosInstance = (
           throw new Error(ERROR_API_NOT_FOUND);
         }
         case AXIOS_ERROR_422: {
+          // Add in specific sub-errors for user registration.
+          if (error.response.config.url.includes(API_ENDPOINT_USER_REGISTER) && error.response.data.message) {
+            const { response: {data: {message} } } = error;
+            if (message.includes('mail:')) {
+              throw new Error(ERROR_API_REGISTER_FAILED_EMAIL);
+            }
+            else if (message.includes('name:')) {
+              throw new Error(ERROR_API_REGISTER_FAILED_USERNAME);
+            }
+          }
+
           throw new Error(ERROR_API_UNPROCESSABLE_ENTITY);
         }
         default:

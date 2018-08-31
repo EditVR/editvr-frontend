@@ -75,7 +75,8 @@ export function* userRegister({
   username,
   email,
   password,
-  successHandler = () => {}
+  successHandler = () => {},
+  errorHandler = () => {},
 }) {
   yield* actionGenerator(
     USER_REGISTER,
@@ -89,7 +90,8 @@ export function* userRegister({
         }
       });
     },
-    successHandler
+    successHandler,
+    errorHandler
   );
 }
 
