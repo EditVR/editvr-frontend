@@ -9,6 +9,7 @@ import {
   OPEN_EXPERIENCE_SCENE_CREATE,
   OPEN_EXPERIENCE_SCENE_EDIT,
   OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
+  OPEN_EXPERIENCE_SCENE_FIELD_PRESAVE,
   OPEN_EXPERIENCE_COMPONENT_EDIT,
   OPEN_EXPERIENCE_COMPONENT_CREATE
 } from '../constants';
@@ -153,6 +154,20 @@ export default function openExperiences(state = defaultState, action) {
       const { fieldName, fieldValue, sceneSlug, component } = action.payload;
       const newItem = clone(state.item);
       newItem.scenes[sceneSlug].components[component][fieldName] = fieldValue;
+      return {
+        loading: false,
+        error: null,
+        item: newItem
+      };
+    }
+
+    /**
+     * Reducer that handles scene field presaves.
+     */
+    case `${OPEN_EXPERIENCE_SCENE_FIELD_PRESAVE}_SUCCESS`: {
+      const { fieldName, fieldValue, sceneSlug } = action.payload;
+      const newItem = clone(state.item);
+      newItem.scenes[sceneSlug][fieldName] = fieldValue;
       return {
         loading: false,
         error: null,

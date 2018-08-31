@@ -7,19 +7,27 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withStyles, Grid, Typography, Button } from '@material-ui/core';
-import { AddBox, OpenWith, TouchApp, PanTool } from '@material-ui/icons';
+import {
+  AddBox,
+  OpenWith,
+  TouchApp,
+  PanTool,
+  RotateLeft
+} from '@material-ui/icons';
 
 import {
   SceneCards,
   SceneForm,
   ToolsMenu,
   ComponentForm,
-  Loading
+  Loading,
+  SceneRotationForm
 } from '../../components';
 import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
   MODE_SCENE_CREATE,
   MODE_SCENE_EDIT,
+  MODE_SCENE_ROTATE,
   MODE_COMPONENT_SELECTING,
   MODE_COMPONENT_PLACING
 } from '../../constants';
@@ -164,6 +172,19 @@ class VREditor extends Component {
         </Typography>
       </Fragment>
     );
+
+    // If the current mode is scene rotation, show the scene rotation form.
+    if (editorMode === MODE_SCENE_ROTATE) {
+      rightColumn = (
+        <Fragment>
+          <Typography variant="title" className={classes.columnRightTitle}>
+            Sky Rotation
+            <RotateLeft className={classes.columnRightIcon} />
+          </Typography>
+          <SceneRotationForm />
+        </Fragment>
+      );
+    }
 
     // If the current mode is selecting, but no component has been selected,
     // show selection documentation in the right column.

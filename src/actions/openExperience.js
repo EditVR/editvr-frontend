@@ -11,7 +11,8 @@ import {
   OPEN_EXPERIENCE_SCENE_EDIT,
   OPEN_EXPERIENCE_COMPONENT_CREATE,
   OPEN_EXPERIENCE_COMPONENT_EDIT,
-  OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE
+  OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
+  OPEN_EXPERIENCE_SCENE_FIELD_PRESAVE
 } from '../constants';
 import {
   openExperienceFetchForUser as getOpenExperienceForUser,
@@ -254,6 +255,21 @@ export function* openExperienceComponentFieldPresave(payload) {
 }
 
 /**
+ * Handles pre-saving a scene within the current openExperience.
+ *
+ * @param {object} payload - Payload for this saga action.
+ * @param {string} payload.sceneSlug - Slug of scene containing component.
+ * @param {string} payload.fieldName - Name of field who's value is changing.
+ * @param {string} payload.fieldValue - New value for {fieldName}.
+ */
+export function* openExperienceSceneFieldPresave(payload) {
+  yield put({
+    type: `${OPEN_EXPERIENCE_SCENE_FIELD_PRESAVE}_SUCCESS`,
+    payload
+  });
+}
+
+/**
  * Dispatches an action that updates a component in the currently open scene.
  *
  * @param {object} payload
@@ -317,6 +333,10 @@ export function* watchOpenExperienceActions() {
   yield takeLatest(
     OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
     openExperienceComponentFieldPresave
+  );
+  yield takeLatest(
+    OPEN_EXPERIENCE_SCENE_FIELD_PRESAVE,
+    openExperienceSceneFieldPresave
   );
   yield takeLatest(OPEN_EXPERIENCE_COMPONENT_EDIT, openExperienceComponentEdit);
 }
