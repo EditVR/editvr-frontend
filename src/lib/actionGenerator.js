@@ -22,7 +22,8 @@ import {
 export default function* actionGenerator(
   type,
   actionHandler,
-  successHandler = () => {}
+  successHandler = () => {},
+  errorHandler = () => {},
 ) {
   yield put(resetLoading());
   yield put(showLoading());
@@ -40,6 +41,7 @@ export default function* actionGenerator(
         error: error.toString()
       }
     });
+    yield call(errorHandler, error);
   } finally {
     yield put(hideLoading());
   }
