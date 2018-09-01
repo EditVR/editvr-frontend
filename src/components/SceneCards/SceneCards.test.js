@@ -17,9 +17,6 @@ const ThemedSceneCards = ThemeProvider(SceneCards);
 describe('<SceneCards />', () => {
   it('Matches its snapshot', () => {
     const store = configureStore()({
-      user: {
-        username: 'bender'
-      },
       openExperience: {
         item: {
           title: 'test',
@@ -29,6 +26,9 @@ describe('<SceneCards />', () => {
               id: '10',
               title: 'test',
               field_slug: 'test',
+              body: {
+                value: 'This is my test description'
+              },
               field_photosphere: {
                 meta: {
                   derivatives: {
@@ -39,6 +39,9 @@ describe('<SceneCards />', () => {
             }
           }
         }
+      },
+      user: {
+        username: 'bender'
       }
     });
 

@@ -181,19 +181,29 @@ export default function openExperiences(state = defaultState, action) {
         field_y,
         field_z,
         title,
+        field_scene_link,
         field_body,
         sceneSlug
       } = action.payload;
 
       const newItem = clone(state.item);
-      Object.assign(newItem.scenes[sceneSlug].components[id], {
+      const newProps = {
         title,
         field_body,
         field_x,
         field_y,
         field_z
-      });
+      };
 
+      // If a scene link field was provided, be sure to pull in the full
+      // scene object.
+      if (field_scene_link) {
+        newProps.field_scene_link = newItem.field_scenes.find(
+          scene => scene.id === field_scene_link.id
+        );
+      }
+
+      Object.assign(newItem.scenes[sceneSlug].components[id], newProps);
       return {
         loading: false,
         error: null,

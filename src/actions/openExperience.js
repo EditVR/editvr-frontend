@@ -258,6 +258,8 @@ export function* openExperienceComponentFieldPresave(payload) {
  *
  * @param {object} payload
  *   Payload for this saga action.
+ * @param {object} payload.componentType
+ *   Type of component that's being updated. (constant COMPONENT_TYPE_DIALOG).
  * @param {string} payload.id
  *   ID of this component.
  * @param {object} payload.fields
@@ -277,6 +279,7 @@ export function* openExperienceComponentFieldPresave(payload) {
  */
 export function* openExperienceComponentEdit({
   id,
+  componentType,
   sceneSlug,
   user,
   fields,
@@ -290,7 +293,7 @@ export function* openExperienceComponentEdit({
         ...fields
       };
 
-      const component = yield call(componentEdit, payload, user);
+      const component = yield call(componentEdit, componentType, payload, user);
       yield put({
         type: `${OPEN_EXPERIENCE_COMPONENT_EDIT}_SUCCESS`,
         payload: {

@@ -21,6 +21,7 @@ describe('<VREditor />', () => {
         default: 0
       },
       user: {
+        username: 'bender',
         uid: '10',
         authentication: {
           accessToken: 'token',
