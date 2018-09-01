@@ -117,7 +117,7 @@ AFRAME.registerComponent(
   }))(
     connectRouter(
       dialogPopupContainer,
-      '/experience/vreditor/:experienceSlug/:sceneSlug/:editorMode?'
+      '/experience/:viewer/:experienceSlug/:sceneSlug/:editorMode?'
     )
   )
 );

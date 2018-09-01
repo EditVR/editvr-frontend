@@ -19,8 +19,10 @@ import {
  *   Slug of experience to load.
  * @param {object} user
  *   Object containing information about the current user.
- * @param {string} user.id
+ * @param {string} user.uid
  *   ID of the authoring user.
+ * @param {string} user.username
+ *   Name of the authoring user.
  * @param {object} user.authentication
  *   Object containing auth data.
  * @param {string} user.authentication.accessToken
@@ -30,9 +32,9 @@ import {
  */
 export const openExperienceFetchForUser = async (
   experienceSlug,
-  { uid, authentication }
-) =>
-  axiosInstance(authentication).get(API_ENDPOINT_EXPERIENCE, {
+  { uid, authentication, username = null }
+) => {
+  const data = {
     params: {
       include: [
         'field_ambient',
@@ -46,11 +48,22 @@ export const openExperienceFetchForUser = async (
         'field_scenes.field_videosphere',
         'field_scenes.field_slug'
       ].join(','),
-      'filter[uid.uid][value]': uid,
       'filter[field_experience_path][value]': experienceSlug,
       _consumer_id: clientId
     }
-  });
+  };
+
+  // If a uid is provided, filter experiences by authors with that id.
+  if (uid) {
+    data.params['filter[uid.uid][value]'] = uid;
+  }
+  // ... Otherwise, filter by the name.
+  else {
+    data.params['filter[uid.name][value]'] = username;
+  }
+
+  return axiosInstance(authentication).get(API_ENDPOINT_EXPERIENCE, data);
+};
 
 /**
  * Updates a given experience object and attaches a given scene.

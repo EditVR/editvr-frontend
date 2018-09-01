@@ -42,7 +42,7 @@ AFRAME.registerComponent(
   }))(
     connectRouter(
       isEditable,
-      '/experience/vreditor/:experienceSlug/:sceneSlug/:editorMode?'
+      '/experience/:viewer/:experienceSlug/:sceneSlug/:editorMode?'
     )
   )
 );

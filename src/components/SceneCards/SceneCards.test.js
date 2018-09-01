@@ -17,6 +17,9 @@ const ThemedSceneCards = ThemeProvider(SceneCards);
 describe('<SceneCards />', () => {
   it('Matches its snapshot', () => {
     const store = configureStore()({
+      user: {
+        username: 'bender'
+      },
       openExperience: {
         item: {
           title: 'test',

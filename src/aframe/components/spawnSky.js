@@ -63,7 +63,5 @@ AFRAME.registerComponent(
   'spawn-sky',
   connectRedux(state => ({
     experience: state.openExperience.item
-  }))(
-    connectRouter(spawnSky, '/experience/vreditor/:experienceSlug/:sceneSlug')
-  )
+  }))(connectRouter(spawnSky, '/experience/:viewer/:experienceSlug/:sceneSlug'))
 );
