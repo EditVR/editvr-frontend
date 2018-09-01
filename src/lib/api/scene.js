@@ -102,28 +102,24 @@ export const sceneCreate = async (
  * @param {string} user.authentication.csrfToken
  *   CSRF token for the current user.
  */
-export const sceneEdit = async (
-  id,
-  fields,
-  { authentication }
-) => {
+export const sceneEdit = async (id, fields, { authentication }) => {
   const attributes = fields;
   if (fields.body) {
     attributes.body = {
       value: fields.body,
       format: 'plain_text',
-      summary: '',
-    }
+      summary: ''
+    };
   }
 
   return axiosInstance(authentication).patch(`${API_ENDPOINT_SCENE}/${id}`, {
     data: {
       id,
       type: API_TYPE_SCENE,
-      attributes,
+      attributes
     }
   });
-}
+};
 
 /**
  * Forms a relationship between a given component and scene.

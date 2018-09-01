@@ -31,9 +31,18 @@ class SceneRotationForm extends Component {
     handleBlur: PropTypes.func.isRequired,
     isSubmitting: PropTypes.bool,
     values: PropTypes.shape({
-      field_sky_rotation_x: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      field_sky_rotation_y: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      field_sky_rotation_z: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      field_sky_rotation_x: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+      ]),
+      field_sky_rotation_y: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+      ]),
+      field_sky_rotation_z: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+      ])
     }).isRequired,
     errors: PropTypes.shape({
       field_sky_rotation_x: PropTypes.string,
@@ -212,6 +221,7 @@ const FormikSceneRotationForm = withFormik({
       dispatch,
       user,
       experience: { item: experience },
+      history: { push },
       match: {
         params: { sceneSlug }
       }
@@ -232,7 +242,15 @@ const FormikSceneRotationForm = withFormik({
         field_sky_rotation_y,
         field_sky_rotation_z
       },
-      user
+      user,
+      successHandler: () => {
+        setSubmitting(false);
+        push(
+          `/experience/vreditor/${
+            experience.field_experience_path
+          }/${sceneSlug}`
+        );
+      }
     });
   }
 })(SceneRotationForm);

@@ -98,8 +98,8 @@ describe('api->scene', () => {
     const body = 'test';
 
     sceneEdit(
+      id,
       {
-        id,
         title,
         field_slug,
         body
