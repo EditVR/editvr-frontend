@@ -89,16 +89,10 @@ export const sceneCreate = async (
 /**
  * Takes updated scene data and PATCHes it to the API.
  *
- * @param {object} scene
- *   Object containing data for this updated scene.
- * @param {string} scene.id
- *   ID of scene being updated.
- * @param {string} scene.title
- *   Updated title of the scene.
- * @param {string} scene.body
- *   Updated description for the scene.
- * @param {string} scene.field_slug
- *   Updated URL slug for scene.
+ * @param {string} id
+ *   ID of scene that is being updated.
+ * @param {object} fields
+ *   Object containing the fields that need to be updated.
  * @param {object} user
  *   Object containing information about the current user.
  * @param {object} user.authentication
@@ -109,24 +103,27 @@ export const sceneCreate = async (
  *   CSRF token for the current user.
  */
 export const sceneEdit = async (
-  { id, title, field_slug, body = '' },
+  id,
+  fields,
   { authentication }
-) =>
-  axiosInstance(authentication).patch(`${API_ENDPOINT_SCENE}/${id}`, {
+) => {
+  const attributes = fields;
+  if (fields.body) {
+    attributes.body = {
+      value: fields.body,
+      format: 'plain_text',
+      summary: '',
+    }
+  }
+
+  return axiosInstance(authentication).patch(`${API_ENDPOINT_SCENE}/${id}`, {
     data: {
       id,
       type: API_TYPE_SCENE,
-      attributes: {
-        title,
-        field_slug,
-        body: {
-          value: body,
-          format: 'plain_text',
-          summary: ''
-        }
-      }
+      attributes,
     }
   });
+}
 
 /**
  * Forms a relationship between a given component and scene.

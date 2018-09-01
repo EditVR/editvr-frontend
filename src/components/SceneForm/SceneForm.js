@@ -318,10 +318,12 @@ const FormikSceneForm = withFormik({
     const payload = {
       type: sceneSlug
         ? OPEN_EXPERIENCE_SCENE_EDIT
-        : OPEN_EXPERIENCE_SCENE_CREATE,
-      title,
-      body,
-      field_slug,
+      : OPEN_EXPERIENCE_SCENE_CREATE,
+      fields: {
+        title,
+        body,
+        field_slug,
+      },
       user,
       successHandler: () => {
         setSubmitting(false);
