@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Loading /> Matches its snapshot 1`] = `
+<div
+  className="Loading-wrapper-1"
+>
+  <div
+    className="MuiLinearProgress-root-4 MuiLinearProgress-colorPrimary-5 Loading-spinner-2"
+    role="progressbar"
+  >
+    <div
+      className="MuiLinearProgress-bar-12 MuiLinearProgress-barColorPrimary-13 MuiLinearProgress-bar1Indeterminate-15"
+      style={Object {}}
+    />
+    <div
+      className="MuiLinearProgress-bar-12 MuiLinearProgress-barColorPrimary-13 MuiLinearProgress-bar2Indeterminate-16"
+      style={Object {}}
+    />
+  </div>
+  <h1
+    className="MuiTypography-root-20 MuiTypography-headline-25 Loading-title-3"
+  >
+    Loading...
+  </h1>
+</div>
+`;

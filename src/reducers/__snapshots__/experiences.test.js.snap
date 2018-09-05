@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`reducers->experiences Should handle EXPERIENCES_CREATE_FAIL 1`] = `
+Object {
+  "error": "Error: failed to fetch experiences.",
+  "items": Array [],
+  "loading": false,
+}
+`;
+
+exports[`reducers->experiences Should handle EXPERIENCES_CREATE_LOADING 1`] = `
+Object {
+  "error": null,
+  "items": Array [],
+  "loading": true,
+}
+`;
+
+exports[`reducers->experiences Should handle EXPERIENCES_CREATE_SUCCESS 1`] = `
+Object {
+  "error": null,
+  "items": Array [
+    Array [
+      Object {
+        "id": 1,
+        "title": "example experience",
+      },
+    ],
+  ],
+  "loading": false,
+}
+`;
+
+exports[`reducers->experiences Should handle EXPERIENCES_EDIT_FAIL 1`] = `
+Object {
+  "error": "Error: failed to fetch experiences.",
+  "items": Array [],
+  "loading": false,
+}
+`;
+
+exports[`reducers->experiences Should handle EXPERIENCES_EDIT_LOADING 1`] = `
+Object {
+  "error": null,
+  "items": Array [],
+  "loading": true,
+}
+`;
+
+exports[`reducers->experiences Should handle EXPERIENCES_EDIT_SUCCESS 1`] = `
+Object {
+  "error": null,
+  "items": Array [
+    Object {
+      "id": 0,
+    },
+    Object {
+      "id": 3,
+    },
+    Object {
+      "id": 1,
+      "title": "example experience",
+    },
+    Object {
+      "id": 2,
+    },
+  ],
+  "loading": false,
+}
+`;
+
+exports[`reducers->experiences Should handle EXPERIENCES_FETCH_FOR_USER_FAIL 1`] = `
+Object {
+  "error": "Error: failed to fetch experiences.",
+  "items": Array [],
+  "loading": false,
+}
+`;
+
+exports[`reducers->experiences Should handle EXPERIENCES_FETCH_FOR_USER_LOADING 1`] = `
+Object {
+  "error": null,
+  "items": Array [],
+  "loading": true,
+}
+`;
+
+exports[`reducers->experiences Should handle EXPERIENCES_FETCH_FOR_USER_SUCCESS 1`] = `
+Object {
+  "error": null,
+  "items": Array [
+    Object {
+      "id": 1,
+      "title": "example experience",
+    },
+  ],
+  "loading": false,
+}
+`;
+
+exports[`reducers->experiences Should return the initial state by default 1`] = `
+Object {
+  "error": null,
+  "items": Array [],
+  "loading": false,
+}
+`;

@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ThinLayout /> Matches its snapshot 1`] = `
+<div
+  className="ThinLayout-wrapper-1"
+  id="layout__wrapper"
+>
+  <div />
+  <div
+    className="ThinLayout-thinWrapper-2"
+    id="layout__thin-wrapper"
+  >
+    <header
+      className="Header-wrapper-3"
+    >
+      <img
+        alt="EditVR logo"
+        className="Header-logo-4"
+        src="editvr-logo.svg"
+      />
+    </header>
+    <h1
+      className="MuiTypography-root-5 MuiTypography-headline-10"
+    >
+      test title
+    </h1>
+    <div>
+      child
+    </div>
+    <footer
+      className="Footer-wrapper-29"
+    >
+      <div
+        className="Footer-elements-30"
+      >
+        <a
+          href="https://fourkitchens.com"
+        >
+          <p
+            className="MuiTypography-root-5 MuiTypography-body1-14 Footer-text-32"
+            type="body1"
+          >
+            EditVR is a product of
+          </p>
+          <img
+            alt="Four Kitchens"
+            className="Footer-logo-31"
+            src="4k-logo-reversed.svg"
+          />
+        </a>
+      </div>
+    </footer>
+  </div>
+</div>
+`;

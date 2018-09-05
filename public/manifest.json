@@ -1,11 +1,12 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "EditVR",
+  "name":
+    "EditVR is a free, open-source WebVR editor that lets you produce interactive and affordable 360 tours and VR stories. Brought to you with love by Four Kitchens.",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "sizes": "192x192",
+      "type": "image/png"
     }
   ],
   "start_url": "./index.html",

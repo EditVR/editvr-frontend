@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Message /> Can render an error message 1`] = `
+<h3
+  className="MuiTypography-root-4 MuiTypography-subheading-11 Message-message-1 Message-error-2"
+>
+  Error: your input is borked lol
+</h3>
+`;
+
+exports[`<Message /> Can render an info message 1`] = `
+<h3
+  className="MuiTypography-root-4 MuiTypography-subheading-11 Message-message-1 Message-info-3"
+>
+  Hey: you might want to know about this lol
+</h3>
+`;
+
+exports[`<Message /> Matches its snapshot 1`] = `
+<h3
+  className="MuiTypography-root-4 MuiTypography-subheading-11 Message-message-1 Message-info-3"
+>
+  Error: your input is borked lol
+</h3>
+`;

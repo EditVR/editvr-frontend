@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PrivateRoute /> If a user is authenticated, PrivateRoute will render its specified component. 1`] = `
+<div>
+  test component
+</div>
+`;
+
+exports[`<PrivateRoute /> If a user is not authenticated, PrivateRoute will redirect users to the specified redirect route. 1`] = `null`;

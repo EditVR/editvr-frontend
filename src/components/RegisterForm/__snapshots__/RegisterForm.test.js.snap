@@ -1,0 +1,186 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RegisterForm /> Matches its snapshot 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <div
+    aria-describedby="username-helper-text"
+    className="MuiFormControl-root-3 C-textField-1"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-12 MuiInputLabel-root-7 MuiInputLabel-formControl-8 MuiInputLabel-animated-11"
+      data-shrink={false}
+      htmlFor="username"
+    >
+      Username
+      <span
+        className="MuiFormLabel-asterisk-16"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-17 MuiInput-formControl-18 MuiInput-underline-21"
+    >
+      <input
+        aria-invalid={false}
+        aria-required={true}
+        autoComplete={undefined}
+        autoFocus={undefined}
+        className="MuiInput-input-25"
+        defaultValue={undefined}
+        disabled={false}
+        id="username"
+        name={undefined}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder={undefined}
+        readOnly={undefined}
+        required={true}
+        rows={undefined}
+        type="text"
+        value={undefined}
+      />
+    </div>
+    <p
+      className="MuiFormHelperText-root-30"
+      id="username-helper-text"
+    >
+      Enter a URL-friendly username.
+    </p>
+  </div>
+  <div
+    aria-describedby="email-helper-text"
+    className="MuiFormControl-root-3 C-textField-1"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-12 MuiInputLabel-root-7 MuiInputLabel-formControl-8 MuiInputLabel-animated-11"
+      data-shrink={false}
+      htmlFor="email"
+    >
+      Email
+      <span
+        className="MuiFormLabel-asterisk-16"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-17 MuiInput-formControl-18 MuiInput-underline-21"
+    >
+      <input
+        aria-invalid={false}
+        aria-required={true}
+        autoComplete={undefined}
+        autoFocus={undefined}
+        className="MuiInput-input-25 MuiInput-inputType-28"
+        defaultValue={undefined}
+        disabled={false}
+        id="email"
+        name={undefined}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder={undefined}
+        readOnly={undefined}
+        required={true}
+        rows={undefined}
+        type="email"
+        value={undefined}
+      />
+    </div>
+    <p
+      className="MuiFormHelperText-root-30"
+      id="email-helper-text"
+    >
+      Enter your email address.
+    </p>
+  </div>
+  <div
+    aria-describedby="password-helper-text"
+    className="MuiFormControl-root-3 C-textField-1"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-12 MuiInputLabel-root-7 MuiInputLabel-formControl-8 MuiInputLabel-animated-11"
+      data-shrink={false}
+      htmlFor="password"
+    >
+      Password
+      <span
+        className="MuiFormLabel-asterisk-16"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-17 MuiInput-formControl-18 MuiInput-underline-21"
+    >
+      <input
+        aria-invalid={false}
+        aria-required={true}
+        autoComplete={undefined}
+        autoFocus={undefined}
+        className="MuiInput-input-25 MuiInput-inputType-28"
+        defaultValue={undefined}
+        disabled={false}
+        id="password"
+        name={undefined}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder={undefined}
+        readOnly={undefined}
+        required={true}
+        rows={undefined}
+        type="password"
+        value={undefined}
+      />
+    </div>
+    <p
+      className="MuiFormHelperText-root-30"
+      id="password-helper-text"
+    >
+      Enter a nice, long, unique password.
+    </p>
+  </div>
+  <button
+    className="MuiButtonBase-root-50 MuiButton-root-34 MuiButton-raised-40 MuiButton-raisedPrimary-41 C-button-2"
+    disabled={false}
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex="0"
+    type="submit"
+  >
+    <span
+      className="MuiButton-label-35"
+    >
+      Register & Login
+    </span>
+    <span
+      className="MuiTouchRipple-root-53"
+    />
+  </button>
+</form>
+`;

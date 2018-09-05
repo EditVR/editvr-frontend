@@ -1,0 +1,371 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ExperienceForm /> Can be a Create form for Experiences 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <div
+    aria-describedby="title-helper-text"
+    className="MuiFormControl-root-3 C-textField-1"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-12 MuiInputLabel-root-7 MuiInputLabel-formControl-8 MuiInputLabel-animated-11"
+      data-shrink={false}
+      htmlFor="title"
+    >
+      Title
+      <span
+        className="MuiFormLabel-asterisk-16"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-17 MuiInput-formControl-18 MuiInput-underline-21"
+    >
+      <input
+        aria-invalid={false}
+        aria-required={true}
+        autoComplete={undefined}
+        autoFocus={undefined}
+        className="MuiInput-input-25"
+        defaultValue={undefined}
+        disabled={false}
+        id="title"
+        name={undefined}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder={undefined}
+        readOnly={undefined}
+        required={true}
+        rows={undefined}
+        type="text"
+        value=""
+      />
+    </div>
+    <p
+      className="MuiFormHelperText-root-30"
+      id="title-helper-text"
+    >
+      Enter a user-friendly title for your experience.
+    </p>
+  </div>
+  <div
+    aria-describedby="field_experience_path-helper-text"
+    className="MuiFormControl-root-3 C-textField-1"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-12 MuiInputLabel-root-7 MuiInputLabel-formControl-8 MuiInputLabel-animated-11"
+      data-shrink={false}
+      htmlFor="field_experience_path"
+    >
+      URL Path
+      <span
+        className="MuiFormLabel-asterisk-16"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-17 MuiInput-formControl-18 MuiInput-underline-21"
+    >
+      <input
+        aria-invalid={false}
+        aria-required={true}
+        autoComplete={undefined}
+        autoFocus={undefined}
+        className="MuiInput-input-25"
+        defaultValue={undefined}
+        disabled={false}
+        id="field_experience_path"
+        name={undefined}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder={undefined}
+        readOnly={undefined}
+        required={true}
+        rows={undefined}
+        type="text"
+        value=""
+      />
+    </div>
+    <p
+      className="MuiFormHelperText-root-30"
+      id="field_experience_path-helper-text"
+    >
+      Enter a url-friendly name for your experience. For example, if you enter 'my-experience', your experience will be published to /view/undefined/experience/my-experience.
+    </p>
+  </div>
+  <div
+    aria-describedby="body-helper-text"
+    className="MuiFormControl-root-3 C-textField-1"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-12 MuiInputLabel-root-7 MuiInputLabel-formControl-8 MuiInputLabel-animated-11"
+      data-shrink={false}
+      htmlFor="body"
+    >
+      Description
+      <span
+        className="MuiFormLabel-asterisk-16"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-17 MuiInput-formControl-18 MuiInput-multiline-23 MuiInput-underline-21"
+    >
+      <textarea
+        aria-invalid={false}
+        aria-required={true}
+        autoComplete={undefined}
+        autoFocus={undefined}
+        className="MuiInput-input-25 MuiInput-inputMultiline-27"
+        defaultValue={undefined}
+        disabled={false}
+        id="body"
+        name={undefined}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder={undefined}
+        readOnly={undefined}
+        required={true}
+        rows={6}
+        type="text"
+        value=""
+      />
+    </div>
+    <p
+      className="MuiFormHelperText-root-30"
+      id="body-helper-text"
+    >
+      Describe your experience so people will know what to expect before they enter your experience.
+    </p>
+  </div>
+  <button
+    className="MuiButtonBase-root-50 MuiButton-root-34 MuiButton-raised-40 MuiButton-raisedPrimary-41 C-button-2"
+    disabled={false}
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex="0"
+    type="submit"
+  >
+    <span
+      className="MuiButton-label-35"
+    >
+      Save
+    </span>
+    <span
+      className="MuiTouchRipple-root-53"
+    />
+  </button>
+</form>
+`;
+
+exports[`<ExperienceForm /> Can be an Edit form for Experiences 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <div
+    aria-describedby="title-helper-text"
+    className="MuiFormControl-root-3 C-textField-1"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-12 MuiInputLabel-root-7 MuiInputLabel-formControl-8 MuiInputLabel-animated-11 MuiInputLabel-shrink-10"
+      data-shrink={true}
+      htmlFor="title"
+    >
+      Title
+      <span
+        className="MuiFormLabel-asterisk-16"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-17 MuiInput-formControl-18 MuiInput-underline-21"
+    >
+      <input
+        aria-invalid={false}
+        aria-required={true}
+        autoComplete={undefined}
+        autoFocus={undefined}
+        className="MuiInput-input-25"
+        defaultValue={undefined}
+        disabled={false}
+        id="title"
+        name={undefined}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder={undefined}
+        readOnly={undefined}
+        required={true}
+        rows={undefined}
+        type="text"
+        value="test"
+      />
+    </div>
+    <p
+      className="MuiFormHelperText-root-30"
+      id="title-helper-text"
+    >
+      Enter a user-friendly title for your experience.
+    </p>
+  </div>
+  <div
+    aria-describedby="field_experience_path-helper-text"
+    className="MuiFormControl-root-3 C-textField-1"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-12 MuiInputLabel-root-7 MuiInputLabel-formControl-8 MuiInputLabel-animated-11 MuiInputLabel-shrink-10"
+      data-shrink={true}
+      htmlFor="field_experience_path"
+    >
+      URL Path
+      <span
+        className="MuiFormLabel-asterisk-16"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-17 MuiInput-formControl-18 MuiInput-underline-21"
+    >
+      <input
+        aria-invalid={false}
+        aria-required={true}
+        autoComplete={undefined}
+        autoFocus={undefined}
+        className="MuiInput-input-25"
+        defaultValue={undefined}
+        disabled={false}
+        id="field_experience_path"
+        name={undefined}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder={undefined}
+        readOnly={undefined}
+        required={true}
+        rows={undefined}
+        type="text"
+        value="test"
+      />
+    </div>
+    <p
+      className="MuiFormHelperText-root-30"
+      id="field_experience_path-helper-text"
+    >
+      Enter a url-friendly name for your experience. For example, if you enter 'my-experience', your experience will be published to /view/undefined/experience/my-experience.
+    </p>
+  </div>
+  <div
+    aria-describedby="body-helper-text"
+    className="MuiFormControl-root-3 C-textField-1"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root-12 MuiInputLabel-root-7 MuiInputLabel-formControl-8 MuiInputLabel-animated-11 MuiInputLabel-shrink-10"
+      data-shrink={true}
+      htmlFor="body"
+    >
+      Description
+      <span
+        className="MuiFormLabel-asterisk-16"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-17 MuiInput-formControl-18 MuiInput-multiline-23 MuiInput-underline-21"
+    >
+      <textarea
+        aria-invalid={false}
+        aria-required={true}
+        autoComplete={undefined}
+        autoFocus={undefined}
+        className="MuiInput-input-25 MuiInput-inputMultiline-27"
+        defaultValue={undefined}
+        disabled={false}
+        id="body"
+        name={undefined}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder={undefined}
+        readOnly={undefined}
+        required={true}
+        rows={6}
+        type="text"
+        value="test"
+      />
+    </div>
+    <p
+      className="MuiFormHelperText-root-30"
+      id="body-helper-text"
+    >
+      Describe your experience so people will know what to expect before they enter your experience.
+    </p>
+  </div>
+  <button
+    className="MuiButtonBase-root-50 MuiButton-root-34 MuiButton-raised-40 MuiButton-raisedPrimary-41 C-button-2"
+    disabled={false}
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex="0"
+    type="submit"
+  >
+    <span
+      className="MuiButton-label-35"
+    >
+      Save
+    </span>
+    <span
+      className="MuiTouchRipple-root-53"
+    />
+  </button>
+</form>
+`;
