@@ -6,10 +6,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TextField, Button, withStyles } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 import { Message } from '../';
 import LoginFormStyles from './LoginForm.style';
-import { USER_LOG_IN, FORM_BUTTON_LOGIN } from '../../constants';
+import {
+  USER_LOG_IN,
+  FORM_BUTTON_LOGIN,
+  FORM_BUTTON_FORGOT_PASSWORD
+} from '../../constants';
 
 class LoginForm extends Component {
   static propTypes = {
@@ -78,6 +83,15 @@ class LoginForm extends Component {
           className={classes.button}
         >
           {FORM_BUTTON_LOGIN}
+        </Button>
+        <Button
+          className={classes.button}
+          variant="raised"
+          color="secondary"
+          component={Link}
+          to="/login/reset"
+        >
+          {FORM_BUTTON_FORGOT_PASSWORD}
         </Button>
       </form>
     );

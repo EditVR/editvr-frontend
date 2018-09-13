@@ -159,10 +159,9 @@ const FormikRegisterForm = withFormik({
       errorHandler: error => {
         const message = error.toString();
         if (message.includes(ERROR_API_REGISTER_FAILED_EMAIL)) {
-          setErrors({email: 'Email in use or invalid'});
-        }
-        else if (message.includes(ERROR_API_REGISTER_FAILED_USERNAME)) {
-          setErrors({username: 'Username in use or invalid'});
+          setErrors({ email: 'Email in use or invalid' });
+        } else if (message.includes(ERROR_API_REGISTER_FAILED_USERNAME)) {
+          setErrors({ username: 'Username in use or invalid' });
         }
         setSubmitting(false);
       }

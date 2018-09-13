@@ -4,7 +4,12 @@
  */
 
 import axiosInstance from './axiosInstance';
-import { getAccessToken, getCsrfToken, registerUserAccount } from './user';
+import {
+  getAccessToken,
+  getCsrfToken,
+  registerUserAccount,
+  resetUserPassword
+} from './user';
 import {
   experiencesFetchForUser,
   experiencesCreate,
@@ -24,6 +29,7 @@ export {
   getAccessToken,
   getCsrfToken,
   registerUserAccount,
+  resetUserPassword,
   experiencesFetchForUser,
   experiencesCreate,
   sceneCreate,

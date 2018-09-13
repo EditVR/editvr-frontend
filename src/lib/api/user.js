@@ -9,6 +9,7 @@ import axiosInstance from './axiosInstance';
 import {
   API_ENDPOINT_USER_LOGIN,
   API_ENDPOINT_USER_REGISTER,
+  API_ENDPOINT_USER_PASSWORD,
   API_ENDPOINT_XCSRF_TOKEN
 } from '../../constants';
 
@@ -53,6 +54,18 @@ export const registerUserAccount = async (username, email, password) =>
     name: { value: username },
     mail: { value: email },
     pass: { value: password }
+  });
+
+/**
+ * Reset a user's account password using their email.
+ *
+ * @param {string} email - Email of user to reset password for.
+ *
+ * @returns {object} - Promise that resolves a token or error.
+ */
+export const resetUserPassword = async email =>
+  axiosInstance({}, 'json').post(`${API_ENDPOINT_USER_PASSWORD}?_format=json`, {
+    mail: email
   });
 
 /**
