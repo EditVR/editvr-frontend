@@ -70,6 +70,7 @@ export function* userLogOut() {
  * @param {string} payload.email - Email of the user that will be registered.
  * @param {string} payload.password - Password of user that will be registered.
  * @param {function} payload.successHandler - Function to be executed on success.
+ * @param {function} payload.errorHandler - Function to be executed on error.
  */
 export function* userRegister({
   username,
