@@ -11,7 +11,10 @@ import { withStyles, TextField, Button } from '@material-ui/core';
 
 import {
   COMPONENT_SELECT,
+  COMPONENT_DELETE,
   FORM_BUTTON_INSERT_UPDATE,
+  FORM_BUTTON_DELETE,
+  FORM_MESSAGE_DELETE_CONFIRM,
   OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
   OPEN_EXPERIENCE_COMPONENT_EDIT
 } from '../../constants';
@@ -58,7 +61,13 @@ class ComponentForm extends Component {
     }).isRequired,
     experience: PropTypes.shape({
       error: PropTypes.string
-    })
+    }),
+    user: PropTypes.shape({
+      authentication: PropTypes.shape({
+        accessToken: PropTypes.string.isRequired,
+        csrfToken: PropTypes.string.isRequired
+      }).isRequired
+    }).isRequired
   };
 
   static defaultProps = {
@@ -102,6 +111,19 @@ class ComponentForm extends Component {
         fieldValue
       });
     }, 200);
+  };
+
+  /**
+   * Dispatches an action to delete the current component.
+   */
+  removeComponent = () => {
+    const {
+      dispatch,
+      user,
+      selectedComponent,
+    } = this.props;
+
+    dispatch({ type: COMPONENT_DELETE, id: selectedComponent, user });
   };
 
   /**
@@ -227,6 +249,20 @@ class ComponentForm extends Component {
           className={classes.button}
         >
           {FORM_BUTTON_INSERT_UPDATE}
+        </Button>
+        <Button
+          onClick={e => {
+            e.preventDefault();
+            if (window.confirm(FORM_MESSAGE_DELETE_CONFIRM)) {
+              this.removeComponent();
+            }
+          }}
+          variant="raised"
+          color="secondary"
+          disabled={isSubmitting}
+          className={classes.button}
+        >
+          {FORM_BUTTON_DELETE}
         </Button>
       </form>
     );
