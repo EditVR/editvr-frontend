@@ -134,6 +134,9 @@ describe('reducers->openExperience', () => {
             body: {
               value: 'test description'
             },
+            field_sky_rotation_x: 9001,
+            field_sky_rotation_y: 9001,
+            field_sky_rotation_z: 9001,
             field_slug: 'test'
           }
         }

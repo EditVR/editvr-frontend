@@ -89,16 +89,10 @@ export const sceneCreate = async (
 /**
  * Takes updated scene data and PATCHes it to the API.
  *
- * @param {object} scene
- *   Object containing data for this updated scene.
- * @param {string} scene.id
- *   ID of scene being updated.
- * @param {string} scene.title
- *   Updated title of the scene.
- * @param {string} scene.body
- *   Updated description for the scene.
- * @param {string} scene.field_slug
- *   Updated URL slug for scene.
+ * @param {string} id
+ *   ID of scene that is being updated.
+ * @param {object} fields
+ *   Object containing the fields that need to be updated.
  * @param {object} user
  *   Object containing information about the current user.
  * @param {object} user.authentication
@@ -108,12 +102,8 @@ export const sceneCreate = async (
  * @param {string} user.authentication.csrfToken
  *   CSRF token for the current user.
  */
-export const sceneEdit = async ({ id, fields }, { authentication }) => {
-  const attributes = {
-    ...fields
-  };
-
-  // If a body is included, ensure it's attribute is configured correctly.
+export const sceneEdit = async (id, fields, { authentication }) => {
+  const attributes = fields;
   if (fields.body) {
     attributes.body = {
       value: fields.body,

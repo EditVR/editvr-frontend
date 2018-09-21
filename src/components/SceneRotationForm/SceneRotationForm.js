@@ -203,6 +203,7 @@ const FormikSceneRotationForm = withFormik({
       field_sky_rotation_y,
       field_sky_rotation_z
     } = experience.scenes ? experience.scenes[sceneSlug] : {};
+
     return {
       id,
       field_sky_rotation_x,
@@ -226,10 +227,10 @@ const FormikSceneRotationForm = withFormik({
     } = props;
 
     const {
+      id,
       field_sky_rotation_x,
       field_sky_rotation_y,
-      field_sky_rotation_z,
-      id
+      field_sky_rotation_z
     } = values;
 
     dispatch({

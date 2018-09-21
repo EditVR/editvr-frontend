@@ -98,13 +98,11 @@ describe('api->scene', () => {
     const body = 'test';
 
     sceneEdit(
+      id,
       {
-        id,
-        fields: {
-          title,
-          field_slug,
-          body
-        }
+        title,
+        field_slug,
+        body
       },
       {
         authentication: {

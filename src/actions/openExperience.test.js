@@ -89,9 +89,11 @@ describe('actions->openExperience', () => {
     };
 
     const payload = {
-      title,
-      body,
-      field_slug,
+      fields: {
+        title,
+        body,
+        field_slug
+      },
       fileData,
       fileName,
       user,
@@ -173,9 +175,11 @@ describe('actions->openExperience', () => {
       .next()
       .call(
         sceneEdit,
+        id,
         {
-          id,
-          fields: payload.fields
+          title,
+          body,
+          field_slug
         },
         user
       )

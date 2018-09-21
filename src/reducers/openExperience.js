@@ -107,14 +107,20 @@ export default function openExperiences(state = defaultState, action) {
       const {
         title,
         body: { value: body },
-        field_slug
+        field_slug,
+        field_sky_rotation_x,
+        field_sky_rotation_y,
+        field_sky_rotation_z
       } = scene;
 
       const newItem = Object.assign({}, state.item);
       const newScene = Object.assign({}, newItem.scenes[field_slug], {
         title,
         body,
-        field_slug
+        field_slug,
+        field_sky_rotation_x,
+        field_sky_rotation_y,
+        field_sky_rotation_z
       });
 
       newItem.scenes[field_slug] = newScene;
