@@ -16,7 +16,9 @@ import {
   USER_REGISTER,
   FORM_BUTTON_LOGIN,
   FORM_BUTTON_REGISTER,
-  FORM_INPUT_VALIDATION_REGEX_URL_SEGMENT
+  FORM_INPUT_VALIDATION_REGEX_URL_SEGMENT,
+  ERROR_API_REGISTER_FAILED_EMAIL,
+  ERROR_API_REGISTER_FAILED_USERNAME
 } from '../../constants';
 
 const RegisterForm = ({
@@ -30,7 +32,7 @@ const RegisterForm = ({
   handleBlur
 }) => (
   <form onSubmit={handleSubmit}>
-    {error && <Message>{error}</Message>}
+    {error && <Message type="error">{error}</Message>}
     <TextField
       required
       id="username"
@@ -137,7 +139,7 @@ const FormikRegisterForm = withFormik({
       .min(3)
       .max(24)
   }),
-  handleSubmit: (values, { props, setSubmitting }) => {
+  handleSubmit: (values, { props, setSubmitting, setErrors }) => {
     const { dispatch } = props;
     const { username, email, password } = values;
     dispatch({
@@ -153,6 +155,16 @@ const FormikRegisterForm = withFormik({
           password,
           successHandler: () => setSubmitting(false)
         });
+      },
+      errorHandler: error => {
+        const message = error.toString();
+        if (message.includes(ERROR_API_REGISTER_FAILED_EMAIL)) {
+          setErrors({email: 'Email in use or invalid'});
+        }
+        else if (message.includes(ERROR_API_REGISTER_FAILED_USERNAME)) {
+          setErrors({username: 'Username in use or invalid'});
+        }
+        setSubmitting(false);
       }
     });
   }

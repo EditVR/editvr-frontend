@@ -47,12 +47,19 @@ describe('lib->actionGenerator()', () => {
   });
 
   it('Yields any error it catches.', () => {
+    const errorHandler = jest.fn();
     const error = 'everything is broken!';
     const type = 'STUB_SAGA';
 
-    testSaga(actionGenerator, type, function* errorStub() {
-      throw new Error(error);
-    })
+    testSaga(
+      actionGenerator,
+      type,
+      function* errorStub() {
+        throw new Error(error);
+      },
+      () => {},
+      errorHandler
+    )
       .next()
       .put(resetLoading())
       .next()
@@ -68,6 +75,8 @@ describe('lib->actionGenerator()', () => {
           error: `Error: ${error}`
         }
       })
+      .next()
+      .call(errorHandler, `Error: ${error}`)
       .next()
       .put(hideLoading())
       .next()

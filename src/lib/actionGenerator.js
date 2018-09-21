@@ -22,7 +22,8 @@ import {
 export default function* actionGenerator(
   type,
   actionHandler,
-  successHandler = () => {}
+  successHandler = () => {},
+  errorHandler = () => {}
 ) {
   yield put(resetLoading());
   yield put(showLoading());
@@ -33,13 +34,15 @@ export default function* actionGenerator(
   try {
     yield* actionHandler();
     yield call(successHandler);
-  } catch (error) {
+  } catch (exception) {
+    const error = exception.toString();
     yield put({
       type: `${type}_FAIL`,
       payload: {
-        error: error.toString()
+        error
       }
     });
+    yield call(errorHandler, error);
   } finally {
     yield put(hideLoading());
   }
