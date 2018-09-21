@@ -11,8 +11,8 @@ import { withStyles, TextField, Button } from '@material-ui/core';
 
 import {
   FORM_BUTTON_INSERT_UPDATE,
-  OPEN_EXPERIENCE_SCENE_FIELD_PRESAVE,
-  OPEN_EXPERIENCE_SCENE_EDIT
+  OPEN_EXPERIENCE_SCENE_EDIT,
+  OPEN_EXPERIENCE_SCENE_FIELD_PRESAVE
 } from '../../constants';
 import { Message } from '../';
 
@@ -220,10 +220,9 @@ const FormikSceneRotationForm = withFormik({
     const {
       dispatch,
       user,
-      experience: { item: experience },
       history: { push },
       match: {
-        params: { sceneSlug }
+        params: { experienceSlug, sceneSlug }
       }
     } = props;
 
@@ -242,14 +241,11 @@ const FormikSceneRotationForm = withFormik({
         field_sky_rotation_y,
         field_sky_rotation_z
       },
+      sceneSlug,
       user,
       successHandler: () => {
         setSubmitting(false);
-        push(
-          `/experience/vreditor/${
-            experience.field_experience_path
-          }/${sceneSlug}`
-        );
+        push(`/experience/vreditor/${experienceSlug}/${sceneSlug}`);
       }
     });
   }
