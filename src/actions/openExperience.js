@@ -160,22 +160,13 @@ export function* openExperienceSceneCreate({
 export function* openExperienceSceneEdit({
   id,
   user,
-  title,
-  body = '',
-  field_slug,
+  fields,
   successHandler = () => {}
 }) {
   yield* actionGenerator(
     OPEN_EXPERIENCE_SCENE_EDIT,
     function* openExperienceSceneEditHandler() {
-      const payload = {
-        id,
-        title,
-        body,
-        field_slug
-      };
-
-      const scene = yield call(sceneEdit, payload, user);
+      const scene = yield call(sceneEdit, { id, fields }, user);
       yield put({
         type: `${OPEN_EXPERIENCE_SCENE_EDIT}_SUCCESS`,
         payload: scene

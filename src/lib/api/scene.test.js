@@ -100,9 +100,11 @@ describe('api->scene', () => {
     sceneEdit(
       {
         id,
-        title,
-        field_slug,
-        body
+        fields: {
+          title,
+          field_slug,
+          body
+        }
       },
       {
         authentication: {

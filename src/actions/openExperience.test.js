@@ -152,9 +152,11 @@ describe('actions->openExperience', () => {
 
     const payload = {
       id,
-      title,
-      body,
-      field_slug,
+      fields: {
+        title,
+        body,
+        field_slug
+      },
       user,
       successHandler
     };
@@ -173,9 +175,7 @@ describe('actions->openExperience', () => {
         sceneEdit,
         {
           id,
-          title,
-          body,
-          field_slug
+          fields: payload.fields
         },
         user
       )

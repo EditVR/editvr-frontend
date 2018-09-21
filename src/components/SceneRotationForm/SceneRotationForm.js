@@ -11,6 +11,7 @@ import { withStyles, TextField, Button } from '@material-ui/core';
 
 import {
   FORM_BUTTON_INSERT_UPDATE,
+  OPEN_EXPERIENCE_SCENE_EDIT,
   OPEN_EXPERIENCE_SCENE_FIELD_PRESAVE
 } from '../../constants';
 import { Message } from '../';
@@ -30,9 +31,18 @@ class SceneRotationForm extends Component {
     handleBlur: PropTypes.func.isRequired,
     isSubmitting: PropTypes.bool,
     values: PropTypes.shape({
-      field_sky_rotation_x: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      field_sky_rotation_y: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      field_sky_rotation_z: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      field_sky_rotation_x: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+      ]),
+      field_sky_rotation_y: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+      ]),
+      field_sky_rotation_z: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+      ])
     }).isRequired,
     errors: PropTypes.shape({
       field_sky_rotation_x: PropTypes.string,
@@ -188,11 +198,13 @@ const FormikSceneRotationForm = withFormik({
     } = props;
 
     const {
+      id,
       field_sky_rotation_x,
       field_sky_rotation_y,
       field_sky_rotation_z
     } = experience.scenes ? experience.scenes[sceneSlug] : {};
     return {
+      id,
       field_sky_rotation_x,
       field_sky_rotation_y,
       field_sky_rotation_z
@@ -207,16 +219,34 @@ const FormikSceneRotationForm = withFormik({
     const {
       dispatch,
       user,
-      experience: { item: experience },
+      history: { push },
       match: {
-        params: { sceneSlug }
+        params: { experienceSlug, sceneSlug }
       }
     } = props;
+
     const {
       field_sky_rotation_x,
       field_sky_rotation_y,
-      field_sky_rotation_z
+      field_sky_rotation_z,
+      id
     } = values;
+
+    dispatch({
+      type: OPEN_EXPERIENCE_SCENE_EDIT,
+      id,
+      fields: {
+        field_sky_rotation_x,
+        field_sky_rotation_y,
+        field_sky_rotation_z
+      },
+      sceneSlug,
+      user,
+      successHandler: () => {
+        setSubmitting(false);
+        push(`/experience/vreditor/${experienceSlug}/${sceneSlug}`);
+      }
+    });
   }
 })(SceneRotationForm);
 
