@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+import { MemoryRouter as Router } from 'react-router-dom';
 import { mount, shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import renderer from 'react-test-renderer';
@@ -18,7 +19,13 @@ describe('<LoginForm />', () => {
     });
 
     expect(
-      renderer.create(<LoginForm store={store} />).toJSON()
+      renderer
+        .create(
+          <Router>
+            <LoginForm store={store} />
+          </Router>
+        )
+        .toJSON()
     ).toMatchSnapshot();
   });
 
@@ -31,9 +38,9 @@ describe('<LoginForm />', () => {
     });
 
     const wrapper = mount(
-      shallow(
-        shallow(<LoginForm submitHandler={submitFn} store={store} />).get(0)
-      ).get(0)
+      <Router>
+        <LoginForm submitHandler={submitFn} store={store} />
+      </Router>
     );
 
     wrapper.find('form').simulate('submit');
