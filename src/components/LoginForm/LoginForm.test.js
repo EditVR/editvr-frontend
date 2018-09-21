@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import renderer from 'react-test-renderer';
 import LoginForm from './LoginForm.container';

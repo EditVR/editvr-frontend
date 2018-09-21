@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+import { MemoryRouter as Router } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 import renderer from 'react-test-renderer';
 import ForgotPasswordForm from './ForgotPasswordForm.container';
@@ -17,7 +18,13 @@ describe('<ForgotPasswordForm />', () => {
     });
 
     expect(
-      renderer.create(<ForgotPasswordForm store={store} />).toJSON()
+      renderer
+        .create(
+          <Router>
+            <ForgotPasswordForm store={store} />
+          </Router>
+        )
+        .toJSON()
     ).toMatchSnapshot();
   });
 });

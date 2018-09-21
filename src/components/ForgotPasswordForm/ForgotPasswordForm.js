@@ -5,7 +5,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TextField, Button, withStyles } from '@material-ui/core';
+import { TextField, Button, withStyles, Typography } from '@material-ui/core';
 import { withFormik } from 'formik';
 import { string, object } from 'yup';
 
@@ -29,6 +29,12 @@ const ForgotPasswordForm = ({
 }) => (
   <form onSubmit={handleSubmit}>
     {error && <Message type="error">{error}</Message>}
+    <Typography type="body1">
+      To re-set your password, please enter the email associated with your
+      EditVR account in the form below, and click Reset Password. Once you do
+      this, you will be redirected to the Login page, and an email will be sent
+      to your email address with further instructions.
+    </Typography>
     <TextField
       required
       id="email"
@@ -94,14 +100,17 @@ const FormikForgotPasswordForm = withFormik({
       .max(100)
   }),
   handleSubmit: (values, { props, setSubmitting, setErrors }) => {
-    const { dispatch } = props;
+    const {
+      dispatch,
+      history: { push }
+    } = props;
     const { email } = values;
     dispatch({
       type: USER_RESET_PASSWORD,
       email,
       successHandler: () => {
-        // After sending email, tell the user?
         setSubmitting(false);
+        push('/login');
       },
       errorHandler: error => {
         const message = error.toString();
