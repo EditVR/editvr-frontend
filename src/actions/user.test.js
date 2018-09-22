@@ -10,10 +10,22 @@ import {
   resetLoading
 } from 'react-redux-loading-bar';
 
-import { userLogIn, userLogOut, userRegister, userSetRole } from './user';
-import { getAccessToken, getCsrfToken, registerUserAccount } from '../lib/api';
+import {
+  userLogIn,
+  userLogOut,
+  userRegister,
+  userResetPassword,
+  userSetRole
+} from './user';
+import {
+  getAccessToken,
+  getCsrfToken,
+  registerUserAccount,
+  resetUserPassword
+} from '../lib/api';
 import {
   USER_REGISTER,
+  USER_RESET_PASSWORD,
   USER_LOG_IN,
   USER_LOG_OUT,
   USER_SET_ROLE,
@@ -90,6 +102,35 @@ describe('actions->user', () => {
         type: `${USER_REGISTER}_SUCCESS`,
         payload: {
           username,
+          email
+        }
+      })
+      .next()
+      // Next is executed twice here to step over the execution of an optional
+      // successHandler method.
+      .next()
+      .put(hideLoading())
+      .next()
+      .isDone();
+  });
+
+  it('user->userResetPassword()', () => {
+    const email = 'bender@moms-robots.com';
+    testSaga(userResetPassword, { email })
+      .next()
+      .put(resetLoading())
+      .next()
+      .put(showLoading())
+      .next()
+      .put({
+        type: `${USER_RESET_PASSWORD}_LOADING`
+      })
+      .next()
+      .call(resetUserPassword, email)
+      .next()
+      .put({
+        type: `${USER_RESET_PASSWORD}_SUCCESS`,
+        payload: {
           email
         }
       })

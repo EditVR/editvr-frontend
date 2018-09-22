@@ -12,6 +12,7 @@ import {
   Login,
   Logout,
   Register,
+  ForgotPassword,
   Dashboard,
   ExperienceCreate,
   ExperienceEdit,
@@ -40,6 +41,12 @@ const App = () => (
           path="/register"
           redirectTo="/dashboard"
           component={Register}
+        />
+        <PublicRoute
+          exact
+          path="/login/reset"
+          redirectTo="/login"
+          component={ForgotPassword}
         />
         <PrivateRoute exact path="/logout" redirectTo="/" component={Logout} />
         <PrivateRoute
