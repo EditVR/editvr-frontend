@@ -3,7 +3,7 @@
  * Exports reducers pertaining to component state.
  */
 
-import { COMPONENT_SELECT, COMPONENT_DELETE } from '../constants';
+import { COMPONENT_SELECT } from '../constants';
 
 /**
  * Default user state.
@@ -27,16 +27,6 @@ export default function component(state = defaultState, action) {
      */
     case `${COMPONENT_SELECT}_SUCCESS`: {
       const { id } = action.payload;
-      return { id };
-    }
-
-    /**
-     * Reducer that handles component selection.
-     */
-    case `${COMPONENT_DELETE}_SUCCESS`: {
-      const { id } = action.payload;
-      // TODO: Remove component from state
-
       return { id };
     }
 

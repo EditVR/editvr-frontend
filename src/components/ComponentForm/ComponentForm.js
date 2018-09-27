@@ -11,12 +11,12 @@ import { withStyles, TextField, Button } from '@material-ui/core';
 
 import {
   COMPONENT_SELECT,
-  COMPONENT_DELETE,
   FORM_BUTTON_INSERT_UPDATE,
   FORM_BUTTON_DELETE,
   FORM_MESSAGE_DELETE_CONFIRM,
   OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
-  OPEN_EXPERIENCE_COMPONENT_EDIT
+  OPEN_EXPERIENCE_COMPONENT_EDIT,
+  OPEN_EXPERIENCE_COMPONENT_DELETE
 } from '../../constants';
 import { Message } from '../';
 import ComponentFormStyles from './ComponentForm.style';
@@ -114,16 +114,24 @@ class ComponentForm extends Component {
   };
 
   /**
-   * Dispatches an action to delete the current component.
+   * Dispatches an action to delete the selected component.
    */
   removeComponent = () => {
     const {
       dispatch,
       user,
       selectedComponent,
+      match: {
+        params: { sceneSlug }
+      }
     } = this.props;
 
-    dispatch({ type: COMPONENT_DELETE, id: selectedComponent, user });
+    dispatch({
+      type: OPEN_EXPERIENCE_COMPONENT_DELETE,
+      id: selectedComponent,
+      sceneSlug,
+      user
+    });
   };
 
   /**

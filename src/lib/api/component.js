@@ -143,7 +143,6 @@ export const componentEdit = async (
     }
   });
 
-
 /**
  * Delete a given component ID via the API.
  *
@@ -158,5 +157,5 @@ export const componentEdit = async (
  * @param {string} user.authentication.csrfToken
  *   CSRF token for the current user.
  */
-export const componentRemove = async ( id, { authentication } ) =>
+export const componentRemove = async (id, { authentication }) =>
   axiosInstance(authentication).delete(`${API_ENDPOINT_COMPONENT}/${id}`);
