@@ -119,5 +119,31 @@ exports[`<LoginForm /> Matches its snapshot 1`] = `
       className="MuiTouchRipple-root-49"
     />
   </button>
+  <a
+    className="MuiButtonBase-root-46 MuiButton-root-30 MuiButton-raised-36 MuiButton-raisedSecondary-38 LoginForm-button-2"
+    href="/login/reset"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    tabIndex="0"
+  >
+    <span
+      className="MuiButton-label-31"
+    >
+      Forgot Password
+    </span>
+    <span
+      className="MuiTouchRipple-root-49"
+    />
+  </a>
 </form>
 `;

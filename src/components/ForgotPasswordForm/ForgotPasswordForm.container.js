@@ -4,6 +4,7 @@
  */
 
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import ForgotPasswordForm from './ForgotPasswordForm';
 
@@ -15,4 +16,6 @@ const mapState = ({ user }) => ({
   user
 });
 
-export default connect(mapState, mapDispatchToProps)(ForgotPasswordForm);
+export default connect(mapState, mapDispatchToProps)(
+  withRouter(ForgotPasswordForm)
+);
