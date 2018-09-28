@@ -14,11 +14,13 @@ if (NODE_ENV === 'production') {
 
 // If local config exists, allow overrides.
 let localConfig;
-try {
-  // eslint-disable-next-line
-  localConfig = require('./local.json');
-} catch (e) {
-  localConfig = {};
+if (NODE_ENV === 'development') {
+  try {
+    // eslint-disable-next-line
+    localConfig = require('./local.json');
+  } catch (e) {
+    localConfig = {};
+  }
 }
 
 module.exports = { ...defaultConfig, ...localConfig };
