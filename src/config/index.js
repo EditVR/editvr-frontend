@@ -15,7 +15,8 @@ if (NODE_ENV === 'production') {
 // If local config exists, allow overrides.
 let localConfig;
 try {
-  localConfig = require('./local.json'); // eslint-disable-line global-require, import/no-unresolved, max-len
+  // eslint-disable-next-line
+  localConfig = require('./local.json');
 } catch (e) {
   localConfig = {};
 }
