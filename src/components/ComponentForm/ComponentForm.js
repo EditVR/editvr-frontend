@@ -19,9 +19,12 @@ import {
 import {
   COMPONENT_SELECT,
   FORM_BUTTON_INSERT_UPDATE,
+  FORM_BUTTON_DELETE,
+  FORM_MESSAGE_DELETE_CONFIRM,
   OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
   OPEN_EXPERIENCE_COMPONENT_EDIT,
-  COMPONENT_TYPE_LINK
+  COMPONENT_TYPE_LINK,
+  OPEN_EXPERIENCE_COMPONENT_DELETE
 } from '../../constants';
 import { Message } from '../';
 import ComponentFormStyles from './ComponentForm.style';
@@ -66,7 +69,13 @@ class ComponentForm extends Component {
     }).isRequired,
     experience: PropTypes.shape({
       error: PropTypes.string
-    })
+    }),
+    user: PropTypes.shape({
+      authentication: PropTypes.shape({
+        accessToken: PropTypes.string.isRequired,
+        csrfToken: PropTypes.string.isRequired
+      }).isRequired
+    }).isRequired
   };
 
   static defaultProps = {
@@ -160,6 +169,38 @@ class ComponentForm extends Component {
   };
 
   inputTimeout = null;
+
+  /**
+   * Dispatches an action to delete the selected component.
+   */
+  removeComponent = () => {
+    const {
+      dispatch,
+      user,
+      selectedComponent,
+      match: {
+        params: { sceneSlug }
+      }
+    } = this.props;
+
+    dispatch({
+      type: OPEN_EXPERIENCE_COMPONENT_DELETE,
+      id: selectedComponent,
+      sceneSlug,
+      user
+    });
+  };
+
+  /**
+   * Handles field changes.
+   *
+   * @param {object} event - Event object.
+   * @param {object} event.target - Event's target field.
+   */
+  handleChange = ({ target: { id, value } }) => {
+    this.presaveField(id, value);
+    this.props.setFieldValue(id, value);
+  };
 
   /**
    * {@inheritdoc}
@@ -275,6 +316,21 @@ class ComponentForm extends Component {
           className={classes.button}
         >
           {FORM_BUTTON_INSERT_UPDATE}
+        </Button>
+        <Button
+          onClick={e => {
+            e.preventDefault();
+            // eslint-disable-next-line
+            if (window.confirm(FORM_MESSAGE_DELETE_CONFIRM)) {
+              this.removeComponent();
+            }
+          }}
+          variant="raised"
+          color="secondary"
+          disabled={isSubmitting}
+          className={classes.button}
+        >
+          {FORM_BUTTON_DELETE}
         </Button>
       </form>
     );

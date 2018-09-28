@@ -17,6 +17,8 @@ export const ERROR_API_REGISTER_FAILED_EMAIL =
   'Unable to register for an account with the provided email. Make sure the email is valid and not already in use.';
 export const ERROR_API_REGISTER_FAILED_USERNAME =
   'Unable to register for an account with the provided username. Make sure the username is valid and not already in use.';
+export const ERROR_API_USER_EMAIL_NOT_FOUND =
+  'Cannot find user with matching email address.';
 
 export const AXIOS_ERROR_NETWORK = 'Error: Network Error';
 export const AXIOS_ERROR_400 = 'Error: Request failed with status code 400';

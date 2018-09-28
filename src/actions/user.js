@@ -10,9 +10,15 @@ import {
   USER_LOG_OUT,
   USER_SET_ROLE,
   USER_ROLE_EDITOR,
-  USER_REGISTER
+  USER_REGISTER,
+  USER_RESET_PASSWORD
 } from '../constants';
-import { getAccessToken, getCsrfToken, registerUserAccount } from '../lib/api';
+import {
+  getAccessToken,
+  getCsrfToken,
+  registerUserAccount,
+  resetUserPassword
+} from '../lib/api';
 import actionGenerator from '../lib/actionGenerator';
 
 /**
@@ -70,13 +76,14 @@ export function* userLogOut() {
  * @param {string} payload.email - Email of the user that will be registered.
  * @param {string} payload.password - Password of user that will be registered.
  * @param {function} payload.successHandler - Function to be executed on success.
+ * @param {function} payload.errorHandler - Function to be executed on error.
  */
 export function* userRegister({
   username,
   email,
   password,
   successHandler = () => {},
-  errorHandler = () => {},
+  errorHandler = () => {}
 }) {
   yield* actionGenerator(
     USER_REGISTER,
@@ -86,6 +93,35 @@ export function* userRegister({
         type: `${USER_REGISTER}_SUCCESS`,
         payload: {
           username,
+          email
+        }
+      });
+    },
+    successHandler,
+    errorHandler
+  );
+}
+
+/**
+ * Resets a user's password.
+ *
+ * @param {object} payload - Payload for this saga action.
+ * @param {string} payload.email - Email of the user that will be registered.
+ * @param {function} payload.successHandler - Function to be executed on success.
+ * @param {function} payload.errorHandler - Function to be executed on error.
+ */
+export function* userResetPassword({
+  email,
+  successHandler = () => {},
+  errorHandler = () => {}
+}) {
+  yield* actionGenerator(
+    USER_RESET_PASSWORD,
+    function* resetUserPasswordHandler() {
+      yield call(resetUserPassword, email);
+      yield put({
+        type: `${USER_RESET_PASSWORD}_SUCCESS`,
+        payload: {
           email
         }
       });
@@ -114,4 +150,5 @@ export function* watchUserActions() {
   yield takeLatest(USER_LOG_OUT, userLogOut);
   yield takeLatest(USER_SET_ROLE, userSetRole);
   yield takeLatest(USER_REGISTER, userRegister);
+  yield takeLatest(USER_RESET_PASSWORD, userResetPassword);
 }

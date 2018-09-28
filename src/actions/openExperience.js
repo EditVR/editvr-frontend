@@ -10,6 +10,7 @@ import {
   OPEN_EXPERIENCE_SCENE_CREATE,
   OPEN_EXPERIENCE_SCENE_EDIT,
   OPEN_EXPERIENCE_COMPONENT_CREATE,
+  OPEN_EXPERIENCE_COMPONENT_DELETE,
   OPEN_EXPERIENCE_COMPONENT_EDIT,
   OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
   OPEN_EXPERIENCE_SCENE_FIELD_PRESAVE
@@ -22,6 +23,7 @@ import {
   sceneEdit,
   componentEdit,
   componentCreate,
+  componentRemove,
   sceneAttachComponent
 } from '../lib/api';
 import actionGenerator from '../lib/actionGenerator';
@@ -221,6 +223,43 @@ export function* openExperienceComponentCreate({
 }
 
 /**
+ * Delete a component.
+ *
+ * @param {object} payload
+ *   Payload for this saga action.
+ * @param {object} payload.sceneSlug
+ *   Scene slug in which this component is located.
+ * @param {string} payload.id
+ *   ID of the component to be deleted.
+ * @param {object} payload.user
+ *   Current user object with authentication.
+ * @param {function} payload.successHandler
+ *   Function to be executed on success.
+ * @param {function} payload.errorHandler
+ *   Function to be executed on error.
+ */
+export function* openExperienceComponentDelete({
+  sceneSlug,
+  id,
+  user,
+  successHandler = () => {},
+  errorHandler = () => {}
+}) {
+  yield* actionGenerator(
+    OPEN_EXPERIENCE_COMPONENT_DELETE,
+    function* openExperienceComponentDeleteHandler() {
+      yield call(componentRemove, id, user);
+      yield put({
+        type: `${OPEN_EXPERIENCE_COMPONENT_DELETE}_SUCCESS`,
+        payload: { sceneSlug, id }
+      });
+    },
+    successHandler,
+    errorHandler
+  );
+}
+
+/**
  * Handles pre-saving a component within the current openExperience.
  *
  * @param {object} payload - Payload for this saga action.
@@ -311,6 +350,10 @@ export function* watchOpenExperienceActions() {
   yield takeLatest(
     OPEN_EXPERIENCE_COMPONENT_CREATE,
     openExperienceComponentCreate
+  );
+  yield takeLatest(
+    OPEN_EXPERIENCE_COMPONENT_DELETE,
+    openExperienceComponentDelete
   );
   yield takeLatest(
     OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,

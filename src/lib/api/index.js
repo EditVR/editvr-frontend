@@ -4,7 +4,12 @@
  */
 
 import axiosInstance from './axiosInstance';
-import { getAccessToken, getCsrfToken, registerUserAccount } from './user';
+import {
+  getAccessToken,
+  getCsrfToken,
+  registerUserAccount,
+  resetUserPassword
+} from './user';
 import {
   experiencesFetchForUser,
   experiencesCreate,
@@ -12,7 +17,7 @@ import {
 } from './experiences';
 import { sceneCreate, sceneEdit, sceneAttachComponent } from './scene';
 import { fileImageCreate, fileVideoCreate, fileCreate } from './file';
-import { componentEdit, componentCreate } from './component';
+import { componentEdit, componentCreate, componentRemove } from './component';
 
 import {
   openExperienceFetchForUser,
@@ -24,6 +29,7 @@ export {
   getAccessToken,
   getCsrfToken,
   registerUserAccount,
+  resetUserPassword,
   experiencesFetchForUser,
   experiencesCreate,
   sceneCreate,
@@ -31,6 +37,7 @@ export {
   sceneAttachComponent,
   componentCreate,
   componentEdit,
+  componentRemove,
   experiencesEdit,
   openExperienceFetchForUser,
   openExperienceAttachScene,

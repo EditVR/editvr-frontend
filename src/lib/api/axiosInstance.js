@@ -9,6 +9,7 @@ import Jsona, { JsonPropertiesMapper } from 'jsona';
 import { apiURL } from '../../config';
 import {
   API_ENDPOINT_USER_REGISTER,
+  API_ENDPOINT_USER_PASSWORD,
   ERROR_API_CONNECTION_FAILED,
   ERROR_API_FORBIDDEN,
   ERROR_API_GENERAL,
@@ -16,6 +17,7 @@ import {
   ERROR_API_LOGIN_FAILED,
   ERROR_API_REGISTER_FAILED_EMAIL,
   ERROR_API_REGISTER_FAILED_USERNAME,
+  ERROR_API_USER_EMAIL_NOT_FOUND,
   ERROR_API_BAD_REQUEST,
   ERROR_API_UNPROCESSABLE_ENTITY,
   AXIOS_ERROR_NETWORK,
@@ -144,6 +146,20 @@ const axiosInstance = (
           throw new Error(ERROR_API_CONNECTION_FAILED);
         }
         case AXIOS_ERROR_400: {
+          // Add in specific sub-errors for user password reset fail.
+          if (
+            error.response.config.url.includes(API_ENDPOINT_USER_PASSWORD) &&
+            error.response.data.message
+          ) {
+            const {
+              response: {
+                data: { message }
+              }
+            } = error;
+            if (message.includes('Unrecognized')) {
+              throw new Error(ERROR_API_USER_EMAIL_NOT_FOUND);
+            }
+          }
           throw new Error(ERROR_API_BAD_REQUEST);
         }
         case AXIOS_ERROR_401: {
@@ -157,12 +173,18 @@ const axiosInstance = (
         }
         case AXIOS_ERROR_422: {
           // Add in specific sub-errors for user registration.
-          if (error.response.config.url.includes(API_ENDPOINT_USER_REGISTER) && error.response.data.message) {
-            const { response: {data: {message} } } = error;
+          if (
+            error.response.config.url.includes(API_ENDPOINT_USER_REGISTER) &&
+            error.response.data.message
+          ) {
+            const {
+              response: {
+                data: { message }
+              }
+            } = error;
             if (message.includes('mail:')) {
               throw new Error(ERROR_API_REGISTER_FAILED_EMAIL);
-            }
-            else if (message.includes('name:')) {
+            } else if (message.includes('name:')) {
               throw new Error(ERROR_API_REGISTER_FAILED_USERNAME);
             }
           }
