@@ -9,6 +9,7 @@ import {
   OPEN_EXPERIENCE_SCENE_CREATE,
   OPEN_EXPERIENCE_SCENE_EDIT,
   OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
+  OPEN_EXPERIENCE_SCENE_FIELD_PRESAVE,
   OPEN_EXPERIENCE_COMPONENT_EDIT,
   OPEN_EXPERIENCE_COMPONENT_CREATE,
   OPEN_EXPERIENCE_COMPONENT_DELETE
@@ -107,14 +108,20 @@ export default function openExperiences(state = defaultState, action) {
       const {
         title,
         body: { value: body },
-        field_slug
+        field_slug,
+        field_sky_rotation_x,
+        field_sky_rotation_y,
+        field_sky_rotation_z
       } = scene;
 
       const newItem = Object.assign({}, state.item);
       const newScene = Object.assign({}, newItem.scenes[field_slug], {
         title,
         body,
-        field_slug
+        field_slug,
+        field_sky_rotation_x,
+        field_sky_rotation_y,
+        field_sky_rotation_z
       });
 
       newItem.scenes[field_slug] = newScene;
@@ -162,6 +169,20 @@ export default function openExperiences(state = defaultState, action) {
     }
 
     /**
+     * Reducer that handles scene field presaves.
+     */
+    case `${OPEN_EXPERIENCE_SCENE_FIELD_PRESAVE}_SUCCESS`: {
+      const { fieldName, fieldValue, sceneSlug } = action.payload;
+      const newItem = clone(state.item);
+      newItem.scenes[sceneSlug][fieldName] = fieldValue;
+      return {
+        loading: false,
+        error: null,
+        item: newItem
+      };
+    }
+
+    /**
      * Reducer that handles component edit loading actions.
      */
     case `${OPEN_EXPERIENCE_COMPONENT_EDIT}_LOADING`: {
@@ -182,19 +203,29 @@ export default function openExperiences(state = defaultState, action) {
         field_y,
         field_z,
         title,
+        field_scene_link,
         field_body,
         sceneSlug
       } = action.payload;
 
       const newItem = clone(state.item);
-      Object.assign(newItem.scenes[sceneSlug].components[id], {
+      const newProps = {
         title,
         field_body,
         field_x,
         field_y,
         field_z
-      });
+      };
 
+      // If a scene link field was provided, be sure to pull in the full
+      // scene object.
+      if (field_scene_link) {
+        newProps.field_scene_link = newItem.field_scenes.find(
+          scene => scene.id === field_scene_link.id
+        );
+      }
+
+      Object.assign(newItem.scenes[sceneSlug].components[id], newProps);
       return {
         loading: false,
         error: null,

@@ -17,6 +17,7 @@ import {
   OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
   OPEN_EXPERIENCE_COMPONENT_EDIT,
   OPEN_EXPERIENCE_COMPONENT_CREATE,
+  COMPONENT_TYPE_DIALOG,
   OPEN_EXPERIENCE_COMPONENT_DELETE
 } from '../constants';
 import {
@@ -91,9 +92,11 @@ describe('actions->openExperience', () => {
     };
 
     const payload = {
-      title,
-      body,
-      field_slug,
+      fields: {
+        title,
+        body,
+        field_slug
+      },
       fileData,
       fileName,
       user,
@@ -154,9 +157,11 @@ describe('actions->openExperience', () => {
 
     const payload = {
       id,
-      title,
-      body,
-      field_slug,
+      fields: {
+        title,
+        body,
+        field_slug
+      },
       user,
       successHandler
     };
@@ -173,8 +178,8 @@ describe('actions->openExperience', () => {
       .next()
       .call(
         sceneEdit,
+        id,
         {
-          id,
           title,
           body,
           field_slug
@@ -288,7 +293,8 @@ describe('actions->openExperience', () => {
       id,
       successHandler,
       user,
-      sceneSlug
+      sceneSlug,
+      componentType: COMPONENT_TYPE_DIALOG
     })
       .next()
       .put(resetLoading())
@@ -299,7 +305,7 @@ describe('actions->openExperience', () => {
         type: `${OPEN_EXPERIENCE_COMPONENT_EDIT}_LOADING`
       })
       .next()
-      .call(componentEdit, { ...fields, id }, user)
+      .call(componentEdit, COMPONENT_TYPE_DIALOG, { ...fields, id }, user)
       .next()
       .put({
         type: `${OPEN_EXPERIENCE_COMPONENT_EDIT}_SUCCESS`,

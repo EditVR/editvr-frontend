@@ -102,6 +102,8 @@ export const componentCreate = async (
 /**
  * Takes updated component data and PATCHes it to the API.
  *
+ * @param {object} componentType
+ *   Type of component that's being edited. (constant COMPONENT_TYPE_DIALOG).
  * @param {object} component
  *   Object containing data for this updated scene.
  * @param {string} component.id
@@ -116,6 +118,8 @@ export const componentCreate = async (
  *   Y coordinate for this component's position.
  * @param {string} component.field_z
  *   Z coordinate for this component's position.
+ * @param {object} component.field_scene_link
+ *   Optional scene object that this component should link to.
  * @param {object} user
  *   Object containing information about the current user.
  * @param {object} user.authentication
@@ -126,22 +130,44 @@ export const componentCreate = async (
  *   CSRF token for the current user.
  */
 export const componentEdit = async (
-  { id, title, field_body, field_x, field_y, field_z },
+  componentType,
+  { id, title, field_body, field_x, field_y, field_z, field_scene_link },
   { authentication }
-) =>
-  axiosInstance(authentication).patch(`${API_ENDPOINT_COMPONENT}/${id}`, {
-    data: {
-      id,
-      type: API_TYPE_COMPONENT,
-      attributes: {
-        title,
-        field_body,
-        field_x,
-        field_y,
-        field_z
+) => {
+  const relationships = {};
+  const attributes = {
+    title,
+    field_x,
+    field_y,
+    field_z
+  };
+
+  // If this is a link component, add the relationship to the destination scene.
+  if (componentType === COMPONENT_TYPE_LINK && field_scene_link) {
+    relationships.field_scene_link = {
+      data: {
+        type: API_TYPE_SCENE,
+        id: field_scene_link.id
+      }
+    };
+  }
+
+  // If this is a dialog component, add the body field.
+  if (componentType === COMPONENT_TYPE_DIALOG) {
+    attributes.field_body = field_body;
+  }
+  return axiosInstance(authentication).patch(
+    `${API_ENDPOINT_COMPONENT}/${id}`,
+    {
+      data: {
+        id,
+        type: API_TYPE_COMPONENT,
+        attributes,
+        relationships
       }
     }
-  });
+  );
+};
 
 /**
  * Delete a given component ID via the API.

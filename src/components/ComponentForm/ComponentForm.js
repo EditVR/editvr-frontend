@@ -3,11 +3,18 @@
  * Exports a component that allows users to operate on scene components.
  */
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { string, object, mixed } from 'yup';
 import { withFormik } from 'formik';
-import { withStyles, TextField, Button } from '@material-ui/core';
+import {
+  withStyles,
+  TextField,
+  Button,
+  Select,
+  MenuItem,
+  InputLabel
+} from '@material-ui/core';
 
 import {
   COMPONENT_SELECT,
@@ -16,6 +23,7 @@ import {
   FORM_MESSAGE_DELETE_CONFIRM,
   OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
   OPEN_EXPERIENCE_COMPONENT_EDIT,
+  COMPONENT_TYPE_LINK,
   OPEN_EXPERIENCE_COMPONENT_DELETE
 } from '../../constants';
 import { Message } from '../';
@@ -84,7 +92,54 @@ class ComponentForm extends Component {
     clearTimeout(this.inputTimeout);
   }
 
-  inputTimeout = null;
+  /**
+   * Helper method that renders fields for link components.
+   */
+  getLinkFields = () => {
+    const {
+      experience: { item: experience },
+      classes,
+      setFieldValue,
+      values
+    } = this.props;
+    const options = Object.keys(experience.scenes).map(sceneSlug => (
+      <MenuItem value={sceneSlug} key={sceneSlug}>
+        {experience.scenes[sceneSlug].title}
+      </MenuItem>
+    ));
+
+    return (
+      <Fragment>
+        <InputLabel className={classes.selectLabel} htmlFor="field_scene_link">
+          Link To:
+        </InputLabel>
+        <Select
+          id="field_scene_link"
+          value={values.field_scene_link}
+          className={classes.select}
+          inputProps={{
+            id: 'field_scene_link'
+          }}
+          onChange={({ target: { value } }) => {
+            setFieldValue('field_scene_link', value);
+          }}
+        >
+          {options}
+        </Select>
+      </Fragment>
+    );
+  };
+
+  /**
+   * Handles field changes.
+   *
+   * @param {object} event - Event object.
+   * @param {object} event.target - Event's target field.
+   */
+  handleChange = ({ target: { id, value } }) => {
+    this.presaveField(id, value);
+    this.props.setFieldValue(id, value);
+  };
 
   /**
    * Dispatches an action that updates the component's state.
@@ -112,6 +167,8 @@ class ComponentForm extends Component {
       });
     }, 200);
   };
+
+  inputTimeout = null;
 
   /**
    * Dispatches an action to delete the selected component.
@@ -249,6 +306,8 @@ class ComponentForm extends Component {
           disabled={isSubmitting}
           className={classes.textField}
         />
+        {values.field_component_type === COMPONENT_TYPE_LINK &&
+          this.getLinkFields()}
         <Button
           variant="raised"
           color="primary"
@@ -261,6 +320,7 @@ class ComponentForm extends Component {
         <Button
           onClick={e => {
             e.preventDefault();
+            // eslint-disable-next-line
             if (window.confirm(FORM_MESSAGE_DELETE_CONFIRM)) {
               this.removeComponent();
             }
@@ -300,13 +360,23 @@ const FormikComponentForm = withFormik({
     };
 
     if (component) {
-      const { title, field_body, field_x, field_y, field_z } = component;
+      const {
+        title,
+        field_body,
+        field_x,
+        field_y,
+        field_z,
+        field_component_type,
+        field_scene_link
+      } = component;
       Object.assign(values, {
         title,
         field_body,
         field_x,
         field_y,
-        field_z
+        field_z,
+        field_component_type,
+        field_scene_link: field_scene_link ? field_scene_link.field_slug : null
       });
     }
 
@@ -330,22 +400,40 @@ const FormikComponentForm = withFormik({
       dispatch,
       user,
       selectedComponent,
+      experience: { item: experience },
       match: {
         params: { sceneSlug }
       }
     } = props;
-    const { title, field_body, field_x, field_y, field_z } = values;
+    const {
+      title,
+      field_body,
+      field_x,
+      field_y,
+      field_z,
+      field_scene_link,
+      field_component_type
+    } = values;
+
+    const fields = {
+      title,
+      field_body,
+      field_x,
+      field_y,
+      field_z
+    };
+
+    // If this is a link component, specify a value for field_scene_link.
+    if (field_component_type === COMPONENT_TYPE_LINK) {
+      fields.field_scene_link = experience.scenes[field_scene_link];
+    }
+
     dispatch({
       type: OPEN_EXPERIENCE_COMPONENT_EDIT,
       id: selectedComponent,
+      componentType: field_component_type,
       user,
-      fields: {
-        title,
-        field_body,
-        field_x,
-        field_y,
-        field_z
-      },
+      fields,
       sceneSlug,
       successHandler: () => {
         setSubmitting(false);

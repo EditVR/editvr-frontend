@@ -12,7 +12,8 @@ import {
   OPEN_EXPERIENCE_COMPONENT_CREATE,
   OPEN_EXPERIENCE_COMPONENT_DELETE,
   OPEN_EXPERIENCE_COMPONENT_EDIT,
-  OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE
+  OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
+  OPEN_EXPERIENCE_SCENE_FIELD_PRESAVE
 } from '../constants';
 import {
   openExperienceFetchForUser as getOpenExperienceForUser,
@@ -63,6 +64,8 @@ export function* openExperienceFetchForUser({ user, experienceSlug }) {
  *
  * @param {object} payload
  *   Payload for this saga action.
+ * @param {object} fields
+ *   Fields values for the scene being created.
  * @param {string} payload.title
  *   Title of this new scene.
  * @param {string} payload.body
@@ -88,9 +91,7 @@ export function* openExperienceFetchForUser({ user, experienceSlug }) {
  */
 export function* openExperienceSceneCreate({
   user,
-  title,
-  body = '',
-  field_slug,
+  fields,
   experience,
   fileData,
   fileName,
@@ -108,11 +109,8 @@ export function* openExperienceSceneCreate({
       const skyField = file.filemime.startsWith('video')
         ? 'field_videosphere'
         : 'field_photosphere';
-      const payload = {
-        title,
-        body,
-        field_slug
-      };
+
+      const payload = fields;
       payload[skyField] = file.id;
       const scene = yield call(sceneCreate, payload, user);
 
@@ -139,14 +137,8 @@ export function* openExperienceSceneCreate({
  *   Payload for this saga action.
  * @param {string} payload.id
  *   ID of this scene.
- * @param {string} payload.title
- *   Title of this new scene.
- * @param {string} payload.body
- *   Body describing this new scene.
- * @param {string} payload.field_slug
- *   URL slug describing this scene's URL segment.
- * @param {string} payload.experience
- *   Object containing experience that this scene will be attached to.
+ * @param {object} payload.fields
+ *   Object containing fields that should be updated.
  * @param {object} payload.user
  *   Object containing user data.
  * @param {object} payload.user.authentication
@@ -160,23 +152,14 @@ export function* openExperienceSceneCreate({
  */
 export function* openExperienceSceneEdit({
   id,
+  fields,
   user,
-  title,
-  body = '',
-  field_slug,
   successHandler = () => {}
 }) {
   yield* actionGenerator(
     OPEN_EXPERIENCE_SCENE_EDIT,
     function* openExperienceSceneEditHandler() {
-      const payload = {
-        id,
-        title,
-        body,
-        field_slug
-      };
-
-      const scene = yield call(sceneEdit, payload, user);
+      const scene = yield call(sceneEdit, id, fields, user);
       yield put({
         type: `${OPEN_EXPERIENCE_SCENE_EDIT}_SUCCESS`,
         payload: scene
@@ -293,10 +276,27 @@ export function* openExperienceComponentFieldPresave(payload) {
 }
 
 /**
+ * Handles pre-saving a scene within the current openExperience.
+ *
+ * @param {object} payload - Payload for this saga action.
+ * @param {string} payload.sceneSlug - Slug of scene containing component.
+ * @param {string} payload.fieldName - Name of field who's value is changing.
+ * @param {string} payload.fieldValue - New value for {fieldName}.
+ */
+export function* openExperienceSceneFieldPresave(payload) {
+  yield put({
+    type: `${OPEN_EXPERIENCE_SCENE_FIELD_PRESAVE}_SUCCESS`,
+    payload
+  });
+}
+
+/**
  * Dispatches an action that updates a component in the currently open scene.
  *
  * @param {object} payload
  *   Payload for this saga action.
+ * @param {object} payload.componentType
+ *   Type of component that's being updated. (constant COMPONENT_TYPE_DIALOG).
  * @param {string} payload.id
  *   ID of this component.
  * @param {object} payload.fields
@@ -316,6 +316,7 @@ export function* openExperienceComponentFieldPresave(payload) {
  */
 export function* openExperienceComponentEdit({
   id,
+  componentType,
   sceneSlug,
   user,
   fields,
@@ -329,7 +330,7 @@ export function* openExperienceComponentEdit({
         ...fields
       };
 
-      const component = yield call(componentEdit, payload, user);
+      const component = yield call(componentEdit, componentType, payload, user);
       yield put({
         type: `${OPEN_EXPERIENCE_COMPONENT_EDIT}_SUCCESS`,
         payload: {
@@ -357,6 +358,10 @@ export function* watchOpenExperienceActions() {
   yield takeLatest(
     OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
     openExperienceComponentFieldPresave
+  );
+  yield takeLatest(
+    OPEN_EXPERIENCE_SCENE_FIELD_PRESAVE,
+    openExperienceSceneFieldPresave
   );
   yield takeLatest(OPEN_EXPERIENCE_COMPONENT_EDIT, openExperienceComponentEdit);
 }
