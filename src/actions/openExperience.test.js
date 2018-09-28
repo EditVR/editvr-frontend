@@ -16,7 +16,8 @@ import {
   OPEN_EXPERIENCE_SCENE_EDIT,
   OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
   OPEN_EXPERIENCE_COMPONENT_EDIT,
-  OPEN_EXPERIENCE_COMPONENT_CREATE
+  OPEN_EXPERIENCE_COMPONENT_CREATE,
+  OPEN_EXPERIENCE_COMPONENT_DELETE
 } from '../constants';
 import {
   openExperienceFetchForUser,
@@ -24,7 +25,8 @@ import {
   openExperienceSceneEdit,
   openExperienceComponentFieldPresave,
   openExperienceComponentEdit,
-  openExperienceComponentCreate
+  openExperienceComponentCreate,
+  openExperienceComponentDelete
 } from './openExperience';
 import {
   openExperienceFetchForUser as getOpenExperienceForUser,
@@ -34,6 +36,7 @@ import {
   sceneEdit,
   componentEdit,
   componentCreate,
+  componentRemove,
   sceneAttachComponent
 } from '../lib/api';
 
@@ -303,6 +306,43 @@ describe('actions->openExperience', () => {
         payload: {
           sceneSlug
         }
+      })
+      .next()
+      .call(successHandler)
+      .next()
+      .put(hideLoading())
+      .next()
+      .isDone();
+  });
+
+  it('openExperience->openExperienceComponentDelete', () => {
+    const successHandler = jest.fn();
+    const id = 10;
+    const sceneSlug = 'test';
+    const user = {
+      authentication: { accessToken: 'test', csrfToken: 'test' }
+    };
+
+    testSaga(openExperienceComponentDelete, {
+      id,
+      user,
+      sceneSlug,
+      successHandler
+    })
+      .next()
+      .put(resetLoading())
+      .next()
+      .put(showLoading())
+      .next()
+      .put({
+        type: `${OPEN_EXPERIENCE_COMPONENT_DELETE}_LOADING`
+      })
+      .next()
+      .call(componentRemove, id, user)
+      .next()
+      .put({
+        type: `${OPEN_EXPERIENCE_COMPONENT_DELETE}_SUCCESS`,
+        payload: { sceneSlug, id }
       })
       .next()
       .call(successHandler)

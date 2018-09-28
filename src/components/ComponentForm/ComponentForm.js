@@ -12,8 +12,11 @@ import { withStyles, TextField, Button } from '@material-ui/core';
 import {
   COMPONENT_SELECT,
   FORM_BUTTON_INSERT_UPDATE,
+  FORM_BUTTON_DELETE,
+  FORM_MESSAGE_DELETE_CONFIRM,
   OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
-  OPEN_EXPERIENCE_COMPONENT_EDIT
+  OPEN_EXPERIENCE_COMPONENT_EDIT,
+  OPEN_EXPERIENCE_COMPONENT_DELETE
 } from '../../constants';
 import { Message } from '../';
 import ComponentFormStyles from './ComponentForm.style';
@@ -58,7 +61,13 @@ class ComponentForm extends Component {
     }).isRequired,
     experience: PropTypes.shape({
       error: PropTypes.string
-    })
+    }),
+    user: PropTypes.shape({
+      authentication: PropTypes.shape({
+        accessToken: PropTypes.string.isRequired,
+        csrfToken: PropTypes.string.isRequired
+      }).isRequired
+    }).isRequired
   };
 
   static defaultProps = {
@@ -102,6 +111,27 @@ class ComponentForm extends Component {
         fieldValue
       });
     }, 200);
+  };
+
+  /**
+   * Dispatches an action to delete the selected component.
+   */
+  removeComponent = () => {
+    const {
+      dispatch,
+      user,
+      selectedComponent,
+      match: {
+        params: { sceneSlug }
+      }
+    } = this.props;
+
+    dispatch({
+      type: OPEN_EXPERIENCE_COMPONENT_DELETE,
+      id: selectedComponent,
+      sceneSlug,
+      user
+    });
   };
 
   /**
@@ -227,6 +257,20 @@ class ComponentForm extends Component {
           className={classes.button}
         >
           {FORM_BUTTON_INSERT_UPDATE}
+        </Button>
+        <Button
+          onClick={e => {
+            e.preventDefault();
+            if (window.confirm(FORM_MESSAGE_DELETE_CONFIRM)) {
+              this.removeComponent();
+            }
+          }}
+          variant="raised"
+          color="secondary"
+          disabled={isSubmitting}
+          className={classes.button}
+        >
+          {FORM_BUTTON_DELETE}
         </Button>
       </form>
     );

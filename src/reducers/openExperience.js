@@ -10,7 +10,8 @@ import {
   OPEN_EXPERIENCE_SCENE_EDIT,
   OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
   OPEN_EXPERIENCE_COMPONENT_EDIT,
-  OPEN_EXPERIENCE_COMPONENT_CREATE
+  OPEN_EXPERIENCE_COMPONENT_CREATE,
+  OPEN_EXPERIENCE_COMPONENT_DELETE
 } from '../constants';
 
 /**
@@ -249,6 +250,23 @@ export default function openExperiences(state = defaultState, action) {
         item: state.item
       };
     }
+
+    /**
+     * Reducer that handles component deletion from open experience & scene.
+     */
+    case `${OPEN_EXPERIENCE_COMPONENT_DELETE}_SUCCESS`: {
+      const { id, sceneSlug } = action.payload;
+
+      // Component should be gone from server, now remove from state.
+      const newItem = clone(state.item);
+      delete newItem.scenes[sceneSlug].components[id];
+      return {
+        loading: false,
+        error: null,
+        item: newItem
+      };
+    }
+
     default:
       return state;
   }
