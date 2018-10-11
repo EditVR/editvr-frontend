@@ -5,7 +5,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { string, object, mixed } from 'yup';
+import { string, object, number } from 'yup';
 import { withFormik } from 'formik';
 import {
   withStyles,
@@ -266,6 +266,7 @@ class ComponentForm extends Component {
               : 'Use this field to set the positional X coordinate for this component'
           }
           value={values.field_x}
+          inputProps={{ step: 'any' }}
           onChange={this.handleChange}
           onBlur={handleBlur}
           error={!!errors.field_x && touched.field_x}
@@ -283,6 +284,7 @@ class ComponentForm extends Component {
               : 'Use this field to set the positional Y coordinate for this component'
           }
           value={values.field_y}
+          inputProps={{ step: 'any' }}
           onChange={this.handleChange}
           onBlur={handleBlur}
           error={!!errors.field_y && touched.field_y}
@@ -300,6 +302,7 @@ class ComponentForm extends Component {
               : 'Use this field to set the positional Z coordinate for this component'
           }
           value={values.field_z}
+          inputProps={{ step: 'any' }}
           onChange={this.handleChange}
           onBlur={handleBlur}
           error={!!errors.field_z && touched.field_z}
@@ -391,9 +394,15 @@ const FormikComponentForm = withFormik({
       .required()
       .min(3)
       .max(200),
-    field_x: mixed(),
-    field_y: mixed(),
-    field_z: mixed()
+    field_x: number()
+      .min(-6)
+      .max(6),
+    field_y: number()
+      .min(-3)
+      .max(6),
+    field_z: number()
+      .min(-6)
+      .max(6)
   }),
   handleSubmit: (values, { props, setSubmitting }) => {
     const {
