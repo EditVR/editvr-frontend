@@ -5,7 +5,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { object, mixed } from 'yup';
+import { object, number } from 'yup';
 import { withFormik } from 'formik';
 import { withStyles, TextField, Button } from '@material-ui/core';
 
@@ -132,6 +132,7 @@ class SceneRotationForm extends Component {
               : 'Use this field to set the X value for this scenes sky rotation.'
           }
           value={values.field_sky_rotation_x}
+          inputProps={{ step: '0.5' }}
           onChange={this.handleChange}
           onBlur={handleBlur}
           error={!!errors.field_sky_rotation_x && touched.field_sky_rotation_x}
@@ -149,6 +150,7 @@ class SceneRotationForm extends Component {
               : 'Use this field to set the Y value for this scenes sky rotation.'
           }
           value={values.field_sky_rotation_y}
+          inputProps={{ step: '0.5' }}
           onChange={this.handleChange}
           onBlur={handleBlur}
           error={!!errors.field_sky_rotation_y && touched.field_sky_rotation_y}
@@ -166,6 +168,7 @@ class SceneRotationForm extends Component {
               : 'Use this field to set the Z value for this scenes sky rotation.'
           }
           value={values.field_sky_rotation_z}
+          inputProps={{ step: '0.5' }}
           onChange={this.handleChange}
           onBlur={handleBlur}
           error={!!errors.field_sky_rotation_z && touched.field_sky_rotation_z}
@@ -212,9 +215,15 @@ const FormikSceneRotationForm = withFormik({
     };
   },
   validationSchema: object().shape({
-    field_sky_rotation_x: mixed(),
-    field_sky_rotation_y: mixed(),
-    field_sky_rotation_z: mixed()
+    field_sky_rotation_x: number()
+      .min(-180)
+      .max(180),
+    field_sky_rotation_y: number()
+      .min(-180)
+      .max(180),
+    field_sky_rotation_z: number()
+      .min(-180)
+      .max(180)
   }),
   handleSubmit: (values, { props, setSubmitting }) => {
     const {
