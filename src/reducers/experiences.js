@@ -6,7 +6,8 @@
 import {
   EXPERIENCES_FETCH_FOR_USER,
   EXPERIENCES_CREATE,
-  EXPERIENCES_EDIT
+  EXPERIENCES_EDIT,
+  EXPERIENCES_DELETE
 } from '../constants';
 
 /**
@@ -129,6 +130,28 @@ export default function experiences(state = defaultState, action) {
         loading: true,
         error: null,
         items: [...state.items]
+      };
+    }
+
+    /**
+     * Reducer that handles experience deletion success actions.
+     */
+    case `${EXPERIENCES_DELETE}_SUCCESS`: {
+      const { id } = action.payload;
+
+      // Filter out the deleted experience.
+      const newItems = [...state.items].filter(item => {
+        if (item.id === id) {
+          return false;
+        }
+
+        return true;
+      });
+
+      return {
+        loading: false,
+        error: null,
+        items: newItems
       };
     }
 
