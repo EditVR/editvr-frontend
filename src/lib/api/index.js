@@ -16,7 +16,12 @@ import {
   experiencesEdit,
   experiencesRemove
 } from './experiences';
-import { sceneCreate, sceneEdit, sceneAttachComponent } from './scene';
+import {
+  sceneCreate,
+  sceneEdit,
+  sceneRemove,
+  sceneAttachComponent
+} from './scene';
 import { fileImageCreate, fileVideoCreate, fileCreate } from './file';
 import { componentEdit, componentCreate, componentRemove } from './component';
 
@@ -36,6 +41,7 @@ export {
   experiencesRemove,
   sceneCreate,
   sceneEdit,
+  sceneRemove,
   sceneAttachComponent,
   componentCreate,
   componentEdit,
