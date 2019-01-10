@@ -8,6 +8,7 @@ import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
   OPEN_EXPERIENCE_SCENE_CREATE,
   OPEN_EXPERIENCE_SCENE_EDIT,
+  OPEN_EXPERIENCE_SCENE_DELETE,
   OPEN_EXPERIENCE_COMPONENT_FIELD_PRESAVE,
   OPEN_EXPERIENCE_SCENE_FIELD_PRESAVE,
   OPEN_EXPERIENCE_COMPONENT_EDIT,
@@ -125,6 +126,23 @@ export default function openExperiences(state = defaultState, action) {
       });
 
       newItem.scenes[field_slug] = newScene;
+      return {
+        loading: false,
+        error: null,
+        item: newItem
+      };
+    }
+
+    /**
+     * Reducer that handles scene deletion success actions.
+     */
+    case `${OPEN_EXPERIENCE_SCENE_DELETE}_SUCCESS`: {
+      const { sceneSlug } = action.payload;
+
+      // Filter out the deleted scene.
+      const newItem = Object.assign({}, state.item);
+      delete newItem.scenes[sceneSlug];
+
       return {
         loading: false,
         error: null,
