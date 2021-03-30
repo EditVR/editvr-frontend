@@ -36,6 +36,9 @@
  - In this repository's root folder, run: `yarn`.
  - To start the dev server, run: `yarn start`.
 
+## Configuration
+In the `./src/config` folder, you will see `production.json` and `development.json` files. These contain configuration for editvr-frontend, feel free to adjust as needed.
+
 ## Testing
 This project makes use of Jest and Enzyme. Test files should be located in the same directory as the component the test file is testing, or in the `__test__` directory.
 

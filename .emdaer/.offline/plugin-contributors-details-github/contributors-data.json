@@ -29,13 +29,15 @@
     "location": "Austin Texas",
     "email": null,
     "hireable": null,
-    "bio": "I write software, mainly JS (Node), Go, and PHP.",
-    "public_repos": 39,
+    "bio":
+      "I write software using a variety of languages (JavaScript/Typescript, PHP, Python, etc)",
+    "twitter_username": null,
+    "public_repos": 40,
     "public_gists": 10,
-    "followers": 78,
-    "following": 56,
+    "followers": 87,
+    "following": 85,
     "created_at": "2011-10-06T15:33:05Z",
-    "updated_at": "2018-06-07T15:43:14Z"
+    "updated_at": "2021-03-30T18:08:23Z"
   },
   {
     "login": "americkson",
@@ -67,12 +69,13 @@
     "email": null,
     "hireable": null,
     "bio": null,
-    "public_repos": 15,
+    "twitter_username": null,
+    "public_repos": 17,
     "public_gists": 17,
     "followers": 2,
     "following": 10,
     "created_at": "2011-01-03T16:32:33Z",
-    "updated_at": "2018-06-15T00:56:49Z"
+    "updated_at": "2021-03-17T14:45:45Z"
   },
   {
     "login": "techninja",
@@ -103,12 +106,13 @@
     "email": null,
     "hireable": true,
     "bio": null,
-    "public_repos": 44,
-    "public_gists": 4,
-    "followers": 44,
-    "following": 17,
+    "twitter_username": "techninja42",
+    "public_repos": 53,
+    "public_gists": 5,
+    "followers": 49,
+    "following": 23,
     "created_at": "2010-07-02T04:08:54Z",
-    "updated_at": "2018-06-06T04:09:51Z"
+    "updated_at": "2021-03-30T17:52:53Z"
   },
   {
     "login": "amazingrando",
@@ -134,19 +138,20 @@
     "type": "User",
     "site_admin": false,
     "name": "Randy Oest",
-    "company": "Four Kitchens",
+    "company": "@fourkitchens ",
     "blog": "www.randyoest.com",
-    "location": "Johnstown, PA",
+    "location": "Pittsburgh, PA",
     "email": null,
     "hireable": null,
     "bio":
-      "Randy Oest is a designer, developer, and teacher who wants to make people happy and confident online.",
-    "public_repos": 26,
-    "public_gists": 5,
-    "followers": 20,
-    "following": 4,
+      "I make digital experiences as approachable, understandable,\r\n& delightful as the real world.",
+    "twitter_username": "amazingrando",
+    "public_repos": 34,
+    "public_gists": 9,
+    "followers": 26,
+    "following": 6,
     "created_at": "2010-09-21T14:01:57Z",
-    "updated_at": "2018-06-11T17:30:24Z"
+    "updated_at": "2021-03-28T21:29:23Z"
   },
   {
     "login": "infiniteluke",
@@ -172,19 +177,19 @@
     "type": "User",
     "site_admin": false,
     "name": "Luke Herrington",
-    "company": "Four Kitchens",
-    "blog": "",
+    "company": "@appfolio ",
+    "blog": "lukeherrington.com",
     "location": "United States",
     "email": null,
     "hireable": null,
-    "bio":
-      "I build multi-channel publishing systems and web applications at @fourkitchens.",
-    "public_repos": 57,
-    "public_gists": 1,
-    "followers": 26,
-    "following": 62,
+    "bio": "Just pixels on your screen",
+    "twitter_username": null,
+    "public_repos": 83,
+    "public_gists": 2,
+    "followers": 53,
+    "following": 86,
     "created_at": "2011-10-14T00:22:53Z",
-    "updated_at": "2018-06-20T16:12:25Z"
+    "updated_at": "2021-03-18T16:56:20Z"
   },
   {
     "login": "jefftomlinson",
@@ -216,12 +221,13 @@
     "email": null,
     "hireable": null,
     "bio": null,
+    "twitter_username": null,
     "public_repos": 20,
-    "public_gists": 8,
-    "followers": 3,
-    "following": 0,
+    "public_gists": 11,
+    "followers": 5,
+    "following": 1,
     "created_at": "2012-10-19T20:21:36Z",
-    "updated_at": "2018-04-22T23:17:48Z"
+    "updated_at": "2021-03-12T01:10:15Z"
   },
   {
     "login": "mirzu",
@@ -250,12 +256,13 @@
     "email": null,
     "hireable": null,
     "bio": null,
-    "public_repos": 25,
+    "twitter_username": null,
+    "public_repos": 27,
     "public_gists": 25,
-    "followers": 27,
-    "following": 13,
+    "followers": 28,
+    "following": 14,
     "created_at": "2010-04-24T21:10:40Z",
-    "updated_at": "2018-06-05T18:26:27Z"
+    "updated_at": "2021-03-18T22:37:29Z"
   },
   {
     "login": "generalredneck",
@@ -288,11 +295,12 @@
     "email": null,
     "hireable": true,
     "bio": null,
-    "public_repos": 56,
+    "twitter_username": null,
+    "public_repos": 76,
     "public_gists": 47,
-    "followers": 14,
-    "following": 6,
+    "followers": 17,
+    "following": 7,
     "created_at": "2010-12-16T22:52:22Z",
-    "updated_at": "2018-05-01T16:27:22Z"
+    "updated_at": "2021-03-12T16:27:58Z"
   }
 ]
