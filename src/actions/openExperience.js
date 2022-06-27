@@ -9,6 +9,7 @@ import {
   OPEN_EXPERIENCE_FETCH_FOR_USER,
   OPEN_EXPERIENCE_SCENE_CREATE,
   OPEN_EXPERIENCE_SCENE_EDIT,
+  OPEN_EXPERIENCE_SCENE_DELETE,
   OPEN_EXPERIENCE_COMPONENT_CREATE,
   OPEN_EXPERIENCE_COMPONENT_DELETE,
   OPEN_EXPERIENCE_COMPONENT_EDIT,
@@ -21,6 +22,7 @@ import {
   fileCreate,
   sceneCreate,
   sceneEdit,
+  sceneRemove,
   componentEdit,
   componentCreate,
   componentRemove,
@@ -163,6 +165,45 @@ export function* openExperienceSceneEdit({
       yield put({
         type: `${OPEN_EXPERIENCE_SCENE_EDIT}_SUCCESS`,
         payload: scene
+      });
+    },
+    successHandler
+  );
+}
+
+/**
+ * Dispatches an action that deletes a scene in the current openExperience.
+ *
+ * @param {object} payload
+ *   Payload for this saga action.
+ * @param {string} payload.id
+ *   ID of this scene.
+ * @param {string} payload.sceneSlug
+ *   Slug of this scene.
+ * @param {object} payload.user
+ *   Object containing user data.
+ * @param {object} payload.user.authentication
+ *   Object containing auth data.
+ * @param {string} payload.user.authentication.accessToken
+ *   Access token for the current user.
+ * @param {string} payload.user.authentication.csrfToken
+ *   CSRF token for the current user.
+ * @param {function} payload.successHandler
+ *   Function to be executed if/when this action succeeds.
+ */
+export function* openExperienceSceneDelete({
+  id,
+  sceneSlug,
+  user,
+  successHandler = () => {}
+}) {
+  yield* actionGenerator(
+    OPEN_EXPERIENCE_SCENE_DELETE,
+    function* openExperienceSceneDeleteHandler() {
+      yield call(sceneRemove, id, user);
+      yield put({
+        type: `${OPEN_EXPERIENCE_SCENE_DELETE}_SUCCESS`,
+        payload: { sceneSlug }
       });
     },
     successHandler
@@ -347,6 +388,7 @@ export function* watchOpenExperienceActions() {
   yield takeLatest(OPEN_EXPERIENCE_FETCH_FOR_USER, openExperienceFetchForUser);
   yield takeLatest(OPEN_EXPERIENCE_SCENE_CREATE, openExperienceSceneCreate);
   yield takeLatest(OPEN_EXPERIENCE_SCENE_EDIT, openExperienceSceneEdit);
+  yield takeLatest(OPEN_EXPERIENCE_SCENE_DELETE, openExperienceSceneDelete);
   yield takeLatest(
     OPEN_EXPERIENCE_COMPONENT_CREATE,
     openExperienceComponentCreate

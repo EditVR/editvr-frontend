@@ -9,6 +9,7 @@ import mockAxios from 'jest-mock-axios';
 import {
   experiencesFetchForUser,
   experiencesCreate,
+  experiencesRemove,
   experiencesEdit
 } from './experiences';
 import { clientId } from '../../config';
@@ -68,6 +69,20 @@ describe('api->experiences', () => {
         }
       }
     });
+  });
+
+  it('experiences->experiencesRemove()', () => {
+    const id = '42';
+    experiencesRemove(id, {
+      authentication: {
+        accessToken: 'test',
+        csrfToken: 'test'
+      }
+    });
+
+    expect(mockAxios.delete).toHaveBeenCalledWith(
+      `${API_ENDPOINT_EXPERIENCE}/${id}`
+    );
   });
 
   it('experiences->experiencesEdit()', () => {
