@@ -15,11 +15,15 @@ import {
   Tooltip,
   withStyles
 } from '@material-ui/core';
-import { AddBox, Edit, OpenInBrowser } from '@material-ui/icons';
+import { AddBox, Edit, OpenInBrowser, DeleteForever } from '@material-ui/icons';
 
 import { DashboardLayout } from '../../layouts';
 import { Message } from '../../components';
-import { EXPERIENCES_FETCH_FOR_USER } from '../../constants';
+import {
+  EXPERIENCES_FETCH_FOR_USER,
+  EXPERIENCES_DELETE,
+  FORM_MESSAGE_DELETE_EXPERIENCE_CONFIRM
+} from '../../constants';
 import DashboardStyles from './Dashboard.style';
 
 class Dashboard extends Component {
@@ -69,6 +73,19 @@ class Dashboard extends Component {
   }
 
   /**
+   * Dispatches an action to delete the specified experience.
+   */
+  removeExperience = experienceID => {
+    const { dispatch, user } = this.props;
+
+    dispatch({
+      type: EXPERIENCES_DELETE,
+      id: experienceID,
+      user
+    });
+  };
+
+  /**
    * {@inheretdoc}
    */
   render() {
@@ -80,8 +97,9 @@ class Dashboard extends Component {
     return (
       <DashboardLayout title="Experiences">
         <Typography component="p">
-          On this page you can create an experience, or open one of your
-          existing experiences for editing by clicking the Open button.
+          On this page you can create an experience, open one of your existing
+          experiences for editing by clicking the Open button, or delete an
+          experience by clicking the delete button.
         </Typography>
         <div className={classes.buttons}>
           <Button
@@ -96,7 +114,7 @@ class Dashboard extends Component {
         </div>
         {error && <Message>{error}</Message>}
         {Object.entries(items).map(
-          ([key, { title, body, field_experience_path: path }]) => (
+          ([key, { title, id, body, field_experience_path: path }]) => (
             <Card key={key} className={classes.card}>
               <CardContent>
                 <Typography gutterBottom variant="headline">
@@ -132,6 +150,23 @@ class Dashboard extends Component {
                     to={`/experience/edit/${path}`}
                   >
                     <Edit />
+                  </Button>
+                </Tooltip>
+                <Tooltip title={`Delete ${title}`}>
+                  <Button
+                    onClick={e => {
+                      e.preventDefault();
+                      if (
+                        window.confirm(FORM_MESSAGE_DELETE_EXPERIENCE_CONFIRM)
+                      ) {
+                        this.removeExperience(id);
+                      }
+                    }}
+                    variant="outlined"
+                    size="small"
+                    className={classes.cardActionButton}
+                  >
+                    <DeleteForever />
                   </Button>
                 </Tooltip>
               </CardActions>

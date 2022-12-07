@@ -13,7 +13,8 @@ import {
 import {
   experiencesFetchForUser,
   experiencesCreate,
-  experiencesEdit
+  experiencesEdit,
+  experiencesRemove
 } from './experiences';
 import { sceneCreate, sceneEdit, sceneAttachComponent } from './scene';
 import { fileImageCreate, fileVideoCreate, fileCreate } from './file';
@@ -32,6 +33,7 @@ export {
   resetUserPassword,
   experiencesFetchForUser,
   experiencesCreate,
+  experiencesRemove,
   sceneCreate,
   sceneEdit,
   sceneAttachComponent,
